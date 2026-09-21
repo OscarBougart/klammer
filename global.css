@@ -1,0 +1,11 @@
+/* Global CSS — processed by NativeWind v4 + Tailwind via metro.config.js
+ *
+ * This file is the entry point for all Tailwind styles.
+ * Import it once in app/_layout.tsx (already done in the template).
+ *
+ * Add custom CSS variables or global resets below the directives if needed.
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -1,0 +1,50 @@
+{
+  "seedVersion": 1,
+  "hashVersion": 1,
+  "sentences": [
+    {
+      "id": "t1-01",
+      "tier": 1,
+      "ruleId": "v2-deklarativ",
+      "gloss": "I drink coffee in the mornings.",
+      "chunks": [
+        {
+          "id": "ich",
+          "surface": "Ich",
+          "neutralSurface": "ich",
+          "role": "SUBJ"
+        },
+        {
+          "id": "trinke",
+          "surface": "trinke",
+          "neutralSurface": "trinke",
+          "role": "FIN"
+        },
+        {
+          "id": "morgens",
+          "surface": "Morgens",
+          "neutralSurface": "morgens",
+          "role": "TEMP"
+        },
+        {
+          "id": "kaffee",
+          "surface": "Kaffee",
+          "neutralSurface": "Kaffee",
+          "role": "AKK",
+          "definite": false
+        }
+      ],
+      "canonical": [
+        "ich",
+        "trinke",
+        "morgens",
+        "kaffee"
+      ],
+      "acceptedHashes": {
+        "b96836f5": "kanonisch",
+        "27533b53": "gueltig",
+        "3656c405": "ungewoehnlich"
+      }
+    }
+  ]
+}

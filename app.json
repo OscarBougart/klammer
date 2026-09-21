@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "name": "Klammer",
+    "slug": "klammer",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "klammer",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "backgroundColor": "#1B2430",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.carbonelk.klammer"
+    },
+    "android": {
+      "package": "com.carbonelk.klammer",
+      "adaptiveIcon": {
+        "backgroundColor": "#1B2430"
+      },
+      "permissions": [],
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      "expo-asset",
+      "expo-sqlite"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

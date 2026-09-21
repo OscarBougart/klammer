@@ -1,0 +1,15 @@
+# Tier 1 — Position zwei.
+#
+# Authored source of truth. Edit here, then `npm run content:expand`.
+# content/generated/seed.json is build output and is never hand-edited.
+
+- id: t1-01
+  tier: 1
+  ruleId: v2-deklarativ
+  gloss: I drink coffee in the mornings.
+  chunks:
+    - { id: ich,     surface: "Ich",     neutralSurface: "ich",     role: SUBJ }
+    - { id: trinke,  surface: "trinke",  neutralSurface: "trinke",  role: FIN }
+    - { id: morgens, surface: "Morgens", neutralSurface: "morgens", role: TEMP }
+    - { id: kaffee,  surface: "Kaffee",  neutralSurface: "Kaffee",  role: AKK, definite: false }
+  canonical: [ich, trinke, morgens, kaffee]
