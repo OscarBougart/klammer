@@ -122,7 +122,7 @@ Spanien* behaves identically to a destination. Worth renaming to
 
 ## Verification status
 
-**All 130 sentences are marked `verified: true`** (2026-09-22), on the strength
+**All sentences are marked `verified: true`** (2026-09-22), on the strength
 of the native-speaker review recorded in this file. `npm run content:expand`
 now reports the bank as verified and no longer prints the draft warning.
 
@@ -133,7 +133,7 @@ What that review actually covered, so the record is honest:
   read closely and several rulings overturned what the generator was doing.
 - The sentences it quoted directly, and the corpus fixture.
 
-The reviewer did **not** read all 130 sentences one at a time. The flag records
+The reviewer did **not** read the sentences one at a time. The flag records
 the owner's judgement that the rules are now right and the bank was drafted
 under them — not a line-by-line reading. Every ruling in the review is now implemented, including the two that were
 open when the flag was first set, so nothing is pending that would change a

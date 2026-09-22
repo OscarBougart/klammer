@@ -4465,6 +4465,1312 @@
       }
     },
     {
+      "id": "t2-27",
+      "tier": 2,
+      "ruleId": "satzklammer-trennbar",
+      "gloss": "We leave for Cologne by train on Friday.",
+      "chunks": [
+        {
+          "id": "wir",
+          "surface": "Wir",
+          "neutralSurface": "wir",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "fahren",
+          "surface": "fahren",
+          "neutralSurface": "fahren",
+          "role": "FIN"
+        },
+        {
+          "id": "freitag",
+          "surface": "Am Freitag",
+          "neutralSurface": "am Freitag",
+          "role": "TEMP"
+        },
+        {
+          "id": "zug",
+          "surface": "Mit dem Zug",
+          "neutralSurface": "mit dem Zug",
+          "role": "INSTR"
+        },
+        {
+          "id": "koeln",
+          "surface": "Nach Köln",
+          "neutralSurface": "nach Köln",
+          "role": "DIR"
+        },
+        {
+          "id": "ab",
+          "surface": "ab",
+          "neutralSurface": "ab",
+          "role": "PTKVZ"
+        }
+      ],
+      "canonical": [
+        "wir",
+        "fahren",
+        "freitag",
+        "zug",
+        "koeln",
+        "ab"
+      ],
+      "acceptedHashes": {
+        "66247661": "ungewoehnlich",
+        "b139fdd3": "kanonisch",
+        "fb0fafdb": "gueltig",
+        "d8cc7a5f": "gueltig"
+      }
+    },
+    {
+      "id": "t2-28",
+      "tier": 2,
+      "ruleId": "satzklammer-trennbar",
+      "gloss": "The German course starts again in September.",
+      "chunks": [
+        {
+          "id": "kurs",
+          "surface": "Der Deutschkurs",
+          "neutralSurface": "der Deutschkurs",
+          "role": "SUBJ"
+        },
+        {
+          "id": "faengt",
+          "surface": "fängt",
+          "neutralSurface": "fängt",
+          "role": "FIN"
+        },
+        {
+          "id": "sept",
+          "surface": "Im September",
+          "neutralSurface": "im September",
+          "role": "TEMP"
+        },
+        {
+          "id": "wieder",
+          "surface": "Wieder",
+          "neutralSurface": "wieder",
+          "role": "PARTIKEL"
+        },
+        {
+          "id": "an",
+          "surface": "an",
+          "neutralSurface": "an",
+          "role": "PTKVZ"
+        }
+      ],
+      "canonical": [
+        "kurs",
+        "faengt",
+        "sept",
+        "wieder",
+        "an"
+      ],
+      "acceptedHashes": {
+        "2cea8128": "kanonisch",
+        "68b50b5c": "gueltig"
+      }
+    },
+    {
+      "id": "t2-29",
+      "tier": 2,
+      "ruleId": "satzklammer-trennbar",
+      "gloss": "I tidy my room up at the weekend.",
+      "chunks": [
+        {
+          "id": "ich",
+          "surface": "Ich",
+          "neutralSurface": "ich",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "raeume",
+          "surface": "räume",
+          "neutralSurface": "räume",
+          "role": "FIN"
+        },
+        {
+          "id": "zimmer",
+          "surface": "Mein Zimmer",
+          "neutralSurface": "mein Zimmer",
+          "role": "AKK",
+          "definite": true
+        },
+        {
+          "id": "woche",
+          "surface": "Am Wochenende",
+          "neutralSurface": "am Wochenende",
+          "role": "TEMP"
+        },
+        {
+          "id": "auf",
+          "surface": "auf",
+          "neutralSurface": "auf",
+          "role": "PTKVZ"
+        }
+      ],
+      "canonical": [
+        "ich",
+        "raeume",
+        "zimmer",
+        "woche",
+        "auf"
+      ],
+      "acceptedHashes": {
+        "d20b7f00": "kanonisch",
+        "8f620538": "gueltig",
+        "7dbf2c76": "gueltig",
+        "f2385ad8": "gueltig"
+      }
+    },
+    {
+      "id": "t2-30",
+      "tier": 2,
+      "ruleId": "satzklammer-trennbar",
+      "gloss": "My mother calls me every Sunday.",
+      "chunks": [
+        {
+          "id": "mutter",
+          "surface": "Meine Mutter",
+          "neutralSurface": "meine Mutter",
+          "role": "SUBJ"
+        },
+        {
+          "id": "ruft",
+          "surface": "ruft",
+          "neutralSurface": "ruft",
+          "role": "FIN"
+        },
+        {
+          "id": "mich",
+          "surface": "Mich",
+          "neutralSurface": "mich",
+          "role": "PRON_AKK"
+        },
+        {
+          "id": "sonntag",
+          "surface": "Jeden Sonntag",
+          "neutralSurface": "jeden Sonntag",
+          "role": "TEMP"
+        },
+        {
+          "id": "an",
+          "surface": "an",
+          "neutralSurface": "an",
+          "role": "PTKVZ"
+        }
+      ],
+      "canonical": [
+        "mutter",
+        "ruft",
+        "mich",
+        "sonntag",
+        "an"
+      ],
+      "acceptedHashes": {
+        "71e07d95": "kanonisch",
+        "65529e05": "ungewoehnlich",
+        "dfa437b5": "ungewoehnlich",
+        "d2bc5bbd": "gueltig",
+        "a75efca1": "gueltig"
+      }
+    },
+    {
+      "id": "t2-31",
+      "tier": 2,
+      "ruleId": "satzklammer-trennbar",
+      "gloss": "We are moving to Hamburg in the summer.",
+      "chunks": [
+        {
+          "id": "wir",
+          "surface": "Wir",
+          "neutralSurface": "wir",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "ziehen",
+          "surface": "ziehen",
+          "neutralSurface": "ziehen",
+          "role": "FIN"
+        },
+        {
+          "id": "sommer",
+          "surface": "Im Sommer",
+          "neutralSurface": "im Sommer",
+          "role": "TEMP"
+        },
+        {
+          "id": "hamburg",
+          "surface": "Nach Hamburg",
+          "neutralSurface": "nach Hamburg",
+          "role": "DIR"
+        },
+        {
+          "id": "um",
+          "surface": "um",
+          "neutralSurface": "um",
+          "role": "PTKVZ"
+        }
+      ],
+      "canonical": [
+        "wir",
+        "ziehen",
+        "sommer",
+        "hamburg",
+        "um"
+      ],
+      "acceptedHashes": {
+        "5a70fb83": "kanonisch",
+        "df04e5ab": "gueltig",
+        "c98f1aeb": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t2-32",
+      "tier": 2,
+      "ruleId": "satzklammer-trennbar",
+      "gloss": "My brother is picking me up by car tomorrow.",
+      "chunks": [
+        {
+          "id": "bruder",
+          "surface": "Mein Bruder",
+          "neutralSurface": "mein Bruder",
+          "role": "SUBJ"
+        },
+        {
+          "id": "holt",
+          "surface": "holt",
+          "neutralSurface": "holt",
+          "role": "FIN"
+        },
+        {
+          "id": "mich",
+          "surface": "Mich",
+          "neutralSurface": "mich",
+          "role": "PRON_AKK"
+        },
+        {
+          "id": "morgen",
+          "surface": "Morgen",
+          "neutralSurface": "morgen",
+          "role": "TEMP"
+        },
+        {
+          "id": "auto",
+          "surface": "Mit dem Auto",
+          "neutralSurface": "mit dem Auto",
+          "role": "INSTR"
+        },
+        {
+          "id": "ab",
+          "surface": "ab",
+          "neutralSurface": "ab",
+          "role": "PTKVZ"
+        }
+      ],
+      "canonical": [
+        "bruder",
+        "holt",
+        "mich",
+        "morgen",
+        "auto",
+        "ab"
+      ],
+      "acceptedHashes": {
+        "2e7e7d61": "kanonisch",
+        "6837b98b": "ungewoehnlich",
+        "d05b5b95": "ungewoehnlich",
+        "1be50cbd": "ungewoehnlich",
+        "442d9b37": "gueltig",
+        "8193b565": "gueltig",
+        "d8a064af": "ungewoehnlich",
+        "178dd757": "gueltig",
+        "5a0a877d": "gueltig",
+        "17c43ac9": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t2-33",
+      "tier": 2,
+      "ruleId": "satzklammer-trennbar",
+      "gloss": "I turn the light off at ten.",
+      "chunks": [
+        {
+          "id": "ich",
+          "surface": "Ich",
+          "neutralSurface": "ich",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "mache",
+          "surface": "mache",
+          "neutralSurface": "mache",
+          "role": "FIN"
+        },
+        {
+          "id": "licht",
+          "surface": "Das Licht",
+          "neutralSurface": "das Licht",
+          "role": "AKK",
+          "definite": true
+        },
+        {
+          "id": "zehn",
+          "surface": "Um zehn Uhr",
+          "neutralSurface": "um zehn Uhr",
+          "role": "TEMP"
+        },
+        {
+          "id": "aus",
+          "surface": "aus",
+          "neutralSurface": "aus",
+          "role": "PTKVZ"
+        }
+      ],
+      "canonical": [
+        "ich",
+        "mache",
+        "licht",
+        "zehn",
+        "aus"
+      ],
+      "acceptedHashes": {
+        "fcaf3e95": "kanonisch",
+        "7b0ce35d": "gueltig",
+        "5b47d315": "gueltig",
+        "d2e78f11": "gueltig"
+      }
+    },
+    {
+      "id": "t2-34",
+      "tier": 2,
+      "ruleId": "satzklammer-perfekt",
+      "gloss": "We visited the museum at the weekend.",
+      "chunks": [
+        {
+          "id": "wir",
+          "surface": "Wir",
+          "neutralSurface": "wir",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "haben",
+          "surface": "haben",
+          "neutralSurface": "haben",
+          "role": "FIN"
+        },
+        {
+          "id": "museum",
+          "surface": "Das Museum",
+          "neutralSurface": "das Museum",
+          "role": "AKK",
+          "definite": true
+        },
+        {
+          "id": "woche",
+          "surface": "Am Wochenende",
+          "neutralSurface": "am Wochenende",
+          "role": "TEMP"
+        },
+        {
+          "id": "besucht",
+          "surface": "besucht",
+          "neutralSurface": "besucht",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "wir",
+        "haben",
+        "museum",
+        "woche",
+        "besucht"
+      ],
+      "acceptedHashes": {
+        "115cb7e9": "kanonisch",
+        "c76028cd": "gueltig",
+        "3f921329": "gueltig",
+        "30e48d59": "gueltig"
+      }
+    },
+    {
+      "id": "t2-35",
+      "tier": 2,
+      "ruleId": "satzklammer-perfekt",
+      "gloss": "I cycled to work yesterday.",
+      "chunks": [
+        {
+          "id": "ich",
+          "surface": "Ich",
+          "neutralSurface": "ich",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "bin",
+          "surface": "bin",
+          "neutralSurface": "bin",
+          "role": "FIN"
+        },
+        {
+          "id": "gestern",
+          "surface": "Gestern",
+          "neutralSurface": "gestern",
+          "role": "TEMP"
+        },
+        {
+          "id": "rad",
+          "surface": "Mit dem Fahrrad",
+          "neutralSurface": "mit dem Fahrrad",
+          "role": "INSTR"
+        },
+        {
+          "id": "arbeit",
+          "surface": "Zur Arbeit",
+          "neutralSurface": "zur Arbeit",
+          "role": "DIR"
+        },
+        {
+          "id": "gef",
+          "surface": "gefahren",
+          "neutralSurface": "gefahren",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "ich",
+        "bin",
+        "gestern",
+        "rad",
+        "arbeit",
+        "gef"
+      ],
+      "acceptedHashes": {
+        "8197c8b4": "kanonisch",
+        "1cbc8ce4": "gueltig",
+        "f1835d78": "gueltig",
+        "0ce450c8": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t2-36",
+      "tier": 2,
+      "ruleId": "satzklammer-perfekt",
+      "gloss": "My parents sent me a parcel.",
+      "chunks": [
+        {
+          "id": "eltern",
+          "surface": "Meine Eltern",
+          "neutralSurface": "meine Eltern",
+          "role": "SUBJ"
+        },
+        {
+          "id": "haben",
+          "surface": "haben",
+          "neutralSurface": "haben",
+          "role": "FIN"
+        },
+        {
+          "id": "mir",
+          "surface": "Mir",
+          "neutralSurface": "mir",
+          "role": "PRON_DAT"
+        },
+        {
+          "id": "paket",
+          "surface": "Ein Paket",
+          "neutralSurface": "ein Paket",
+          "role": "AKK",
+          "definite": false
+        },
+        {
+          "id": "gesch",
+          "surface": "geschickt",
+          "neutralSurface": "geschickt",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "eltern",
+        "haben",
+        "mir",
+        "paket",
+        "gesch"
+      ],
+      "acceptedHashes": {
+        "16b79124": "kanonisch",
+        "56209f54": "ungewoehnlich",
+        "89f761e2": "ungewoehnlich",
+        "fa64c42e": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t2-37",
+      "tier": 2,
+      "ruleId": "satzklammer-perfekt",
+      "gloss": "We talked on the phone for a long time yesterday evening.",
+      "chunks": [
+        {
+          "id": "wir",
+          "surface": "Wir",
+          "neutralSurface": "wir",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "haben",
+          "surface": "haben",
+          "neutralSurface": "haben",
+          "role": "FIN"
+        },
+        {
+          "id": "abend",
+          "surface": "Gestern Abend",
+          "neutralSurface": "gestern Abend",
+          "role": "TEMP"
+        },
+        {
+          "id": "lange",
+          "surface": "Lange",
+          "neutralSurface": "lange",
+          "role": "MODAL"
+        },
+        {
+          "id": "tel",
+          "surface": "telefoniert",
+          "neutralSurface": "telefoniert",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "wir",
+        "haben",
+        "abend",
+        "lange",
+        "tel"
+      ],
+      "acceptedHashes": {
+        "7448d637": "kanonisch",
+        "dba03087": "gueltig",
+        "292e3e1b": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t2-38",
+      "tier": 2,
+      "ruleId": "satzklammer-perfekt",
+      "gloss": "He left the key in the car.",
+      "chunks": [
+        {
+          "id": "er",
+          "surface": "Er",
+          "neutralSurface": "er",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "hat",
+          "surface": "hat",
+          "neutralSurface": "hat",
+          "role": "FIN"
+        },
+        {
+          "id": "schl",
+          "surface": "Den Schlüssel",
+          "neutralSurface": "den Schlüssel",
+          "role": "AKK",
+          "definite": true
+        },
+        {
+          "id": "auto",
+          "surface": "Im Auto",
+          "neutralSurface": "im Auto",
+          "role": "LOK"
+        },
+        {
+          "id": "verg",
+          "surface": "vergessen",
+          "neutralSurface": "vergessen",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "er",
+        "hat",
+        "schl",
+        "auto",
+        "verg"
+      ],
+      "acceptedHashes": {
+        "d51a0688": "kanonisch",
+        "48e1092e": "gueltig",
+        "4f2dd596": "gueltig"
+      }
+    },
+    {
+      "id": "t2-39",
+      "tier": 2,
+      "ruleId": "satzklammer-perfekt",
+      "gloss": "The bus came too late this morning.",
+      "chunks": [
+        {
+          "id": "bus",
+          "surface": "Der Bus",
+          "neutralSurface": "der Bus",
+          "role": "SUBJ"
+        },
+        {
+          "id": "ist",
+          "surface": "ist",
+          "neutralSurface": "ist",
+          "role": "FIN"
+        },
+        {
+          "id": "morgen",
+          "surface": "Heute Morgen",
+          "neutralSurface": "heute Morgen",
+          "role": "TEMP"
+        },
+        {
+          "id": "spaet",
+          "surface": "Zu spät",
+          "neutralSurface": "zu spät",
+          "role": "MODAL"
+        },
+        {
+          "id": "gek",
+          "surface": "gekommen",
+          "neutralSurface": "gekommen",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "bus",
+        "ist",
+        "morgen",
+        "spaet",
+        "gek"
+      ],
+      "acceptedHashes": {
+        "18239949": "kanonisch",
+        "58651c35": "gueltig",
+        "aa6323df": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t2-40",
+      "tier": 2,
+      "ruleId": "satzklammer-perfekt",
+      "gloss": "I gave my sister the book.",
+      "chunks": [
+        {
+          "id": "ich",
+          "surface": "Ich",
+          "neutralSurface": "ich",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "habe",
+          "surface": "habe",
+          "neutralSurface": "habe",
+          "role": "FIN"
+        },
+        {
+          "id": "schw",
+          "surface": "Meiner Schwester",
+          "neutralSurface": "meiner Schwester",
+          "role": "DAT",
+          "definite": true
+        },
+        {
+          "id": "buch",
+          "surface": "Das Buch",
+          "neutralSurface": "das Buch",
+          "role": "AKK",
+          "definite": true
+        },
+        {
+          "id": "geg",
+          "surface": "gegeben",
+          "neutralSurface": "gegeben",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "ich",
+        "habe",
+        "schw",
+        "buch",
+        "geg"
+      ],
+      "acceptedHashes": {
+        "8384c14d": "kanonisch",
+        "e654ad6b": "gueltig",
+        "d9f5482b": "gueltig",
+        "98b23ddb": "gueltig"
+      }
+    },
+    {
+      "id": "t2-41",
+      "tier": 2,
+      "ruleId": "satzklammer-modal",
+      "gloss": "We have to get up early on Monday.",
+      "chunks": [
+        {
+          "id": "wir",
+          "surface": "Wir",
+          "neutralSurface": "wir",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "muess",
+          "surface": "müssen",
+          "neutralSurface": "müssen",
+          "role": "FIN"
+        },
+        {
+          "id": "montag",
+          "surface": "Am Montag",
+          "neutralSurface": "am Montag",
+          "role": "TEMP"
+        },
+        {
+          "id": "frueh",
+          "surface": "Früh",
+          "neutralSurface": "früh",
+          "role": "MODAL"
+        },
+        {
+          "id": "auf",
+          "surface": "aufstehen",
+          "neutralSurface": "aufstehen",
+          "role": "INF"
+        }
+      ],
+      "canonical": [
+        "wir",
+        "muess",
+        "montag",
+        "frueh",
+        "auf"
+      ],
+      "acceptedHashes": {
+        "ec59e7f6": "kanonisch",
+        "88b87b44": "gueltig",
+        "efabae22": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t2-42",
+      "tier": 2,
+      "ruleId": "satzklammer-modal",
+      "gloss": "I can bring you the book tomorrow.",
+      "chunks": [
+        {
+          "id": "ich",
+          "surface": "Ich",
+          "neutralSurface": "ich",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "kann",
+          "surface": "kann",
+          "neutralSurface": "kann",
+          "role": "FIN"
+        },
+        {
+          "id": "dir",
+          "surface": "Dir",
+          "neutralSurface": "dir",
+          "role": "PRON_DAT"
+        },
+        {
+          "id": "buch",
+          "surface": "Das Buch",
+          "neutralSurface": "das Buch",
+          "role": "AKK",
+          "definite": true
+        },
+        {
+          "id": "morgen",
+          "surface": "Morgen",
+          "neutralSurface": "morgen",
+          "role": "TEMP"
+        },
+        {
+          "id": "mit",
+          "surface": "mitbringen",
+          "neutralSurface": "mitbringen",
+          "role": "INF"
+        }
+      ],
+      "canonical": [
+        "ich",
+        "kann",
+        "dir",
+        "buch",
+        "morgen",
+        "mit"
+      ],
+      "acceptedHashes": {
+        "2e19bc9e": "kanonisch",
+        "3a0f9a9e": "ungewoehnlich",
+        "403607b2": "gueltig",
+        "c827d62c": "ungewoehnlich",
+        "a0295da8": "ungewoehnlich",
+        "5af32bdc": "gueltig",
+        "67486f4a": "ungewoehnlich",
+        "fe718980": "gueltig"
+      }
+    },
+    {
+      "id": "t2-43",
+      "tier": 2,
+      "ruleId": "satzklammer-modal",
+      "gloss": "The children are allowed to watch television longer today.",
+      "chunks": [
+        {
+          "id": "kinder",
+          "surface": "Die Kinder",
+          "neutralSurface": "die Kinder",
+          "role": "SUBJ"
+        },
+        {
+          "id": "duerf",
+          "surface": "dürfen",
+          "neutralSurface": "dürfen",
+          "role": "FIN"
+        },
+        {
+          "id": "heute",
+          "surface": "Heute",
+          "neutralSurface": "heute",
+          "role": "TEMP"
+        },
+        {
+          "id": "laeng",
+          "surface": "Länger",
+          "neutralSurface": "länger",
+          "role": "MODAL"
+        },
+        {
+          "id": "fern",
+          "surface": "fernsehen",
+          "neutralSurface": "fernsehen",
+          "role": "INF"
+        }
+      ],
+      "canonical": [
+        "kinder",
+        "duerf",
+        "heute",
+        "laeng",
+        "fern"
+      ],
+      "acceptedHashes": {
+        "f4cf75bb": "kanonisch",
+        "c4213c25": "gueltig",
+        "64fd58c5": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t2-44",
+      "tier": 2,
+      "ruleId": "satzklammer-modal",
+      "gloss": "We want to drive to France in the summer.",
+      "chunks": [
+        {
+          "id": "wir",
+          "surface": "Wir",
+          "neutralSurface": "wir",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "wollen",
+          "surface": "wollen",
+          "neutralSurface": "wollen",
+          "role": "FIN"
+        },
+        {
+          "id": "sommer",
+          "surface": "Im Sommer",
+          "neutralSurface": "im Sommer",
+          "role": "TEMP"
+        },
+        {
+          "id": "auto",
+          "surface": "Mit dem Auto",
+          "neutralSurface": "mit dem Auto",
+          "role": "INSTR"
+        },
+        {
+          "id": "frank",
+          "surface": "Nach Frankreich",
+          "neutralSurface": "nach Frankreich",
+          "role": "DIR"
+        },
+        {
+          "id": "fahren",
+          "surface": "fahren",
+          "neutralSurface": "fahren",
+          "role": "INF"
+        }
+      ],
+      "canonical": [
+        "wir",
+        "wollen",
+        "sommer",
+        "auto",
+        "frank",
+        "fahren"
+      ],
+      "acceptedHashes": {
+        "5afd0db8": "kanonisch",
+        "05d00ef4": "gueltig",
+        "6befe54c": "gueltig",
+        "e4834ab4": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t2-45",
+      "tier": 2,
+      "ruleId": "satzklammer-modal",
+      "gloss": "My son would like to go to the swimming pool on Saturday.",
+      "chunks": [
+        {
+          "id": "sohn",
+          "surface": "Mein Sohn",
+          "neutralSurface": "mein Sohn",
+          "role": "SUBJ"
+        },
+        {
+          "id": "moechte",
+          "surface": "möchte",
+          "neutralSurface": "möchte",
+          "role": "FIN"
+        },
+        {
+          "id": "samstag",
+          "surface": "Am Samstag",
+          "neutralSurface": "am Samstag",
+          "role": "TEMP"
+        },
+        {
+          "id": "bad",
+          "surface": "Ins Schwimmbad",
+          "neutralSurface": "ins Schwimmbad",
+          "role": "DIR"
+        },
+        {
+          "id": "gehen",
+          "surface": "gehen",
+          "neutralSurface": "gehen",
+          "role": "INF"
+        }
+      ],
+      "canonical": [
+        "sohn",
+        "moechte",
+        "samstag",
+        "bad",
+        "gehen"
+      ],
+      "acceptedHashes": {
+        "631408ee": "kanonisch",
+        "17260e1c": "gueltig",
+        "18ef5816": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t2-46",
+      "tier": 2,
+      "ruleId": "satzklammer-modal",
+      "gloss": "You should call me at the office tomorrow.",
+      "chunks": [
+        {
+          "id": "du",
+          "surface": "Du",
+          "neutralSurface": "du",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "sollt",
+          "surface": "solltest",
+          "neutralSurface": "solltest",
+          "role": "FIN"
+        },
+        {
+          "id": "mich",
+          "surface": "Mich",
+          "neutralSurface": "mich",
+          "role": "PRON_AKK"
+        },
+        {
+          "id": "morgen",
+          "surface": "Morgen",
+          "neutralSurface": "morgen",
+          "role": "TEMP"
+        },
+        {
+          "id": "buero",
+          "surface": "Im Büro",
+          "neutralSurface": "im Büro",
+          "role": "LOK"
+        },
+        {
+          "id": "anruf",
+          "surface": "anrufen",
+          "neutralSurface": "anrufen",
+          "role": "INF"
+        }
+      ],
+      "canonical": [
+        "du",
+        "sollt",
+        "mich",
+        "morgen",
+        "buero",
+        "anruf"
+      ],
+      "acceptedHashes": {
+        "27566998": "kanonisch",
+        "d15c3912": "ungewoehnlich",
+        "98cdb00c": "ungewoehnlich",
+        "8820244c": "gueltig",
+        "d0f636c6": "gueltig",
+        "2452bb14": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t2-47",
+      "tier": 2,
+      "ruleId": "negation-vor-klammer",
+      "gloss": "The train is not leaving for Munich today.",
+      "chunks": [
+        {
+          "id": "zug",
+          "surface": "Der Zug",
+          "neutralSurface": "der Zug",
+          "role": "SUBJ"
+        },
+        {
+          "id": "faehrt",
+          "surface": "fährt",
+          "neutralSurface": "fährt",
+          "role": "FIN"
+        },
+        {
+          "id": "heute",
+          "surface": "Heute",
+          "neutralSurface": "heute",
+          "role": "TEMP"
+        },
+        {
+          "id": "nicht",
+          "surface": "Nicht",
+          "neutralSurface": "nicht",
+          "role": "NEG"
+        },
+        {
+          "id": "muen",
+          "surface": "Nach München",
+          "neutralSurface": "nach München",
+          "role": "DIR"
+        },
+        {
+          "id": "ab",
+          "surface": "ab",
+          "neutralSurface": "ab",
+          "role": "PTKVZ"
+        }
+      ],
+      "canonical": [
+        "zug",
+        "faehrt",
+        "heute",
+        "nicht",
+        "muen",
+        "ab"
+      ],
+      "acceptedHashes": {
+        "88db06ee": "kanonisch",
+        "525d4470": "gueltig",
+        "0a79e5fe": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t2-48",
+      "tier": 2,
+      "ruleId": "negation-vor-klammer",
+      "gloss": "I did not find my key today.",
+      "chunks": [
+        {
+          "id": "ich",
+          "surface": "Ich",
+          "neutralSurface": "ich",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "habe",
+          "surface": "habe",
+          "neutralSurface": "habe",
+          "role": "FIN"
+        },
+        {
+          "id": "schl",
+          "surface": "Meinen Schlüssel",
+          "neutralSurface": "meinen Schlüssel",
+          "role": "AKK",
+          "definite": true
+        },
+        {
+          "id": "heute",
+          "surface": "Heute",
+          "neutralSurface": "heute",
+          "role": "TEMP"
+        },
+        {
+          "id": "nicht",
+          "surface": "Nicht",
+          "neutralSurface": "nicht",
+          "role": "NEG"
+        },
+        {
+          "id": "gef",
+          "surface": "gefunden",
+          "neutralSurface": "gefunden",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "ich",
+        "habe",
+        "schl",
+        "heute",
+        "nicht",
+        "gef"
+      ],
+      "acceptedHashes": {
+        "a4e81072": "kanonisch",
+        "dacf9f48": "gueltig",
+        "00c0ed42": "gueltig",
+        "e91645de": "gueltig"
+      }
+    },
+    {
+      "id": "t2-49",
+      "tier": 2,
+      "ruleId": "negation-vor-klammer",
+      "gloss": "We cannot go to the cinema on Sunday.",
+      "chunks": [
+        {
+          "id": "wir",
+          "surface": "Wir",
+          "neutralSurface": "wir",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "koennen",
+          "surface": "können",
+          "neutralSurface": "können",
+          "role": "FIN"
+        },
+        {
+          "id": "sonntag",
+          "surface": "Am Sonntag",
+          "neutralSurface": "am Sonntag",
+          "role": "TEMP"
+        },
+        {
+          "id": "nicht",
+          "surface": "Nicht",
+          "neutralSurface": "nicht",
+          "role": "NEG"
+        },
+        {
+          "id": "kino",
+          "surface": "Ins Kino",
+          "neutralSurface": "ins Kino",
+          "role": "DIR"
+        },
+        {
+          "id": "gehen",
+          "surface": "gehen",
+          "neutralSurface": "gehen",
+          "role": "INF"
+        }
+      ],
+      "canonical": [
+        "wir",
+        "koennen",
+        "sonntag",
+        "nicht",
+        "kino",
+        "gehen"
+      ],
+      "acceptedHashes": {
+        "291fb029": "kanonisch",
+        "053de069": "gueltig",
+        "3b242acd": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t2-50",
+      "tier": 2,
+      "ruleId": "negation-vor-klammer",
+      "gloss": "My brother has not given me the money back yet.",
+      "chunks": [
+        {
+          "id": "bruder",
+          "surface": "Mein Bruder",
+          "neutralSurface": "mein Bruder",
+          "role": "SUBJ"
+        },
+        {
+          "id": "hat",
+          "surface": "hat",
+          "neutralSurface": "hat",
+          "role": "FIN"
+        },
+        {
+          "id": "mir",
+          "surface": "Mir",
+          "neutralSurface": "mir",
+          "role": "PRON_DAT"
+        },
+        {
+          "id": "geld",
+          "surface": "Das Geld",
+          "neutralSurface": "das Geld",
+          "role": "AKK",
+          "definite": true
+        },
+        {
+          "id": "nicht",
+          "surface": "Noch nicht",
+          "neutralSurface": "noch nicht",
+          "role": "NEG"
+        },
+        {
+          "id": "zurueck",
+          "surface": "zurückgegeben",
+          "neutralSurface": "zurückgegeben",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "bruder",
+        "hat",
+        "mir",
+        "geld",
+        "nicht",
+        "zurueck"
+      ],
+      "acceptedHashes": {
+        "fce255e5": "kanonisch",
+        "8a45c167": "ungewoehnlich",
+        "1af9b249": "gueltig",
+        "f9d91c85": "gueltig"
+      }
+    },
+    {
       "id": "t3-01",
       "tier": 3,
       "ruleId": "dativ-vor-akkusativ",
