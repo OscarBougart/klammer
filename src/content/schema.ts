@@ -68,6 +68,28 @@ export type AuthoredSentence = {
   extraAccepted?: { order: string[]; class: AcceptedClass }[];
   /** Orders the author has vetoed out of the generated set. */
   vetoed?: string[][];
+  /**
+   * Set by the review CLI once someone has been through this sentence's
+   * generated set and kept or vetoed each order.
+   *
+   * This records that a pass happened — not that the German is right. See
+   * `verified`.
+   */
+  reviewed?: boolean;
+  /**
+   * Set once a confident German speaker has confirmed the sentence and its
+   * accepted orders actually read as German — E6.6.
+   *
+   * Deliberately separate from `reviewed`. An author who is still learning the
+   * language can sensibly judge whether a sentence is *useful*, whether the
+   * vocabulary is in range, and whether a puzzle is too easy — but not whether
+   * a marked order is grammatical. Collapsing the two would let the bank claim
+   * an assurance nobody gave it, and design.md is explicit that a wrong
+   * sentence in the seed is a product defect rather than a typo.
+   *
+   * `npm run content:expand` reports how many sentences are still unverified.
+   */
+  verified?: boolean;
 };
 
 /** design.md §4. `falsch` is the absence of a class, never a stored value. */
@@ -199,6 +221,14 @@ export function assertAuthoredSentence(
         );
       }
     }
+  }
+
+  if (s.reviewed !== undefined && typeof s.reviewed !== 'boolean') {
+    fail('`reviewed` must be a boolean when present');
+  }
+
+  if (s.verified !== undefined && typeof s.verified !== 'boolean') {
+    fail('`verified` must be a boolean when present');
   }
 
   if (s.vetoed !== undefined) {

@@ -1,0 +1,321 @@
+# Tier 3 — Das Mittelfeld.
+#
+# The middle field stops being a bag and acquires an internal order:
+#
+#   pronouns first, and among themselves accusative before dative
+#   full noun objects after them, dative before accusative
+#   adverbials by time – reason – manner – place
+#   negation pressed against the right bracket
+#
+# The pronoun rule is the one worth the tier on its own, because it inverts:
+# two full nouns run dative-then-accusative, two pronouns run the other way.
+#
+# Deliberately absent: negation together with a place phrase. The generator
+# currently orders those wrongly and the question is open — see
+# GERMAN-REVIEW.md §1.5. Nothing here relies on it.
+#
+# Authored source of truth. Edit here, then `npm run content:expand`.
+
+# ─── Dative before accusative, with full nouns ──────────────────────────────
+
+- id: t3-01
+  tier: 3
+  ruleId: dativ-vor-akkusativ
+  gloss: I am giving my mother a book for her birthday.
+  chunks:
+    - { id: ich,     surface: "Ich",             neutralSurface: "ich",             role: SUBJ }
+    - { id: schenke, surface: "schenke",         neutralSurface: "schenke",         role: FIN }
+    - { id: mutter,  surface: "Meiner Mutter",   neutralSurface: "meiner Mutter",   role: DAT, definite: true }
+    - { id: gb,      surface: "Zum Geburtstag",  neutralSurface: "zum Geburtstag",  role: KAUS }
+    - { id: buch,    surface: "Ein Buch",        neutralSurface: "ein Buch",        role: AKK, definite: false }
+  canonical: [ich, schenke, mutter, gb, buch]
+
+- id: t3-02
+  tier: 3
+  ruleId: dativ-vor-akkusativ
+  gloss: We sent our parents a photo.
+  chunks:
+    - { id: wir,    surface: "Wir",            neutralSurface: "wir",            role: SUBJ }
+    - { id: haben,  surface: "haben",          neutralSurface: "haben",          role: FIN }
+    - { id: eltern, surface: "Unseren Eltern", neutralSurface: "unseren Eltern", role: DAT, definite: true }
+    - { id: foto,   surface: "Ein Foto",       neutralSurface: "ein Foto",       role: AKK, definite: false }
+    - { id: gesch,  surface: "geschickt",      neutralSurface: "geschickt",      role: PART }
+  canonical: [wir, haben, eltern, foto, gesch]
+
+- id: t3-03
+  tier: 3
+  ruleId: dativ-vor-akkusativ
+  gloss: She is showing her friend a photo tomorrow.
+  chunks:
+    - { id: sie,    surface: "Sie",             neutralSurface: "sie",             role: SUBJ }
+    - { id: zeigt,  surface: "zeigt",           neutralSurface: "zeigt",           role: FIN }
+    - { id: freund, surface: "Ihrer Freundin",  neutralSurface: "ihrer Freundin",  role: DAT, definite: true }
+    - { id: morgen, surface: "Morgen",          neutralSurface: "morgen",          role: TEMP }
+    - { id: foto,   surface: "Ein Foto",        neutralSurface: "ein Foto",        role: AKK, definite: false }
+  canonical: [sie, zeigt, freund, morgen, foto]
+
+- id: t3-04
+  tier: 3
+  ruleId: dativ-vor-akkusativ
+  gloss: I wrote my brother an email yesterday.
+  chunks:
+    - { id: ich,     surface: "Ich",           neutralSurface: "ich",           role: SUBJ }
+    - { id: habe,    surface: "habe",          neutralSurface: "habe",          role: FIN }
+    - { id: bruder,  surface: "Meinem Bruder", neutralSurface: "meinem Bruder", role: DAT, definite: true }
+    - { id: gestern, surface: "Gestern",       neutralSurface: "gestern",       role: TEMP }
+    - { id: mail,    surface: "Eine E-Mail",   neutralSurface: "eine E-Mail",   role: AKK, definite: false }
+    - { id: geschr,  surface: "geschrieben",   neutralSurface: "geschrieben",   role: PART }
+  canonical: [ich, habe, bruder, gestern, mail, geschr]
+
+- id: t3-05
+  tier: 3
+  ruleId: dativ-vor-akkusativ
+  gloss: The doctor prescribed me a medicine.
+  chunks:
+    - { id: arzt,    surface: "Der Arzt",         neutralSurface: "der Arzt",         role: SUBJ }
+    - { id: hat,     surface: "hat",              neutralSurface: "hat",              role: FIN }
+    - { id: mir,     surface: "mir",              neutralSurface: "mir",              role: PRON_DAT }
+    - { id: medi,    surface: "Ein Medikament",   neutralSurface: "ein Medikament",   role: AKK, definite: false }
+    - { id: versch,  surface: "verschrieben",     neutralSurface: "verschrieben",     role: PART }
+  canonical: [arzt, hat, mir, medi, versch]
+
+# ─── Two pronouns — accusative before dative, the inversion ─────────────────
+
+- id: t3-06
+  tier: 3
+  ruleId: pronomen-akk-vor-dat
+  gloss: I will give it to you tomorrow.
+  chunks:
+    - { id: ich,    surface: "Ich",    neutralSurface: "ich",    role: SUBJ }
+    - { id: gebe,   surface: "gebe",   neutralSurface: "gebe",   role: FIN }
+    - { id: es,     surface: "es",     neutralSurface: "es",     role: PRON_AKK, stressable: false }
+    - { id: dir,    surface: "dir",    neutralSurface: "dir",    role: PRON_DAT }
+    - { id: morgen, surface: "Morgen", neutralSurface: "morgen", role: TEMP }
+  canonical: [ich, gebe, es, dir, morgen]
+
+- id: t3-07
+  tier: 3
+  ruleId: pronomen-akk-vor-dat
+  gloss: He told me it yesterday.
+  chunks:
+    - { id: er,      surface: "Er",      neutralSurface: "er",      role: SUBJ }
+    - { id: hat,     surface: "hat",     neutralSurface: "hat",     role: FIN }
+    - { id: es,      surface: "es",      neutralSurface: "es",      role: PRON_AKK, stressable: false }
+    - { id: mir,     surface: "mir",     neutralSurface: "mir",     role: PRON_DAT }
+    - { id: gestern, surface: "Gestern", neutralSurface: "gestern", role: TEMP }
+    - { id: gesagt,  surface: "gesagt",  neutralSurface: "gesagt",  role: PART }
+  canonical: [er, hat, es, mir, gestern, gesagt]
+
+- id: t3-08
+  tier: 3
+  ruleId: pronomen-akk-vor-dat
+  gloss: We are sending it to you this evening.
+  chunks:
+    - { id: wir,    surface: "Wir",         neutralSurface: "wir",         role: SUBJ }
+    - { id: schick, surface: "schicken",    neutralSurface: "schicken",    role: FIN }
+    - { id: es,     surface: "es",          neutralSurface: "es",          role: PRON_AKK, stressable: false }
+    - { id: euch,   surface: "euch",        neutralSurface: "euch",        role: PRON_DAT }
+    - { id: abend,  surface: "Heute Abend", neutralSurface: "heute Abend", role: TEMP }
+  canonical: [wir, schick, es, euch, abend]
+
+# ─── Pronouns before full nouns ─────────────────────────────────────────────
+
+- id: t3-09
+  tier: 3
+  ruleId: pronomen-vor-nomen
+  gloss: He still has not given me the book back.
+  chunks:
+    - { id: er,   surface: "Er",             neutralSurface: "er",             role: SUBJ }
+    - { id: hat,  surface: "hat",            neutralSurface: "hat",            role: FIN }
+    - { id: mir,  surface: "mir",            neutralSurface: "mir",            role: PRON_DAT }
+    - { id: buch, surface: "Das Buch",       neutralSurface: "das Buch",       role: AKK, definite: true }
+    - { id: nn,   surface: "noch nicht",     neutralSurface: "noch nicht",     role: NEG }
+    - { id: zur,  surface: "zurückgegeben",  neutralSurface: "zurückgegeben",  role: PART }
+  canonical: [er, hat, mir, buch, nn, zur]
+
+- id: t3-10
+  tier: 3
+  ruleId: pronomen-vor-nomen
+  gloss: We showed them the flat.
+  chunks:
+    - { id: wir,     surface: "Wir",           neutralSurface: "wir",           role: SUBJ }
+    - { id: haben,   surface: "haben",         neutralSurface: "haben",         role: FIN }
+    - { id: ihnen,   surface: "ihnen",         neutralSurface: "ihnen",         role: PRON_DAT }
+    - { id: wohnung, surface: "Die Wohnung",   neutralSurface: "die Wohnung",   role: AKK, definite: true }
+    - { id: gezeigt, surface: "gezeigt",       neutralSurface: "gezeigt",       role: PART }
+  canonical: [wir, haben, ihnen, wohnung, gezeigt]
+
+- id: t3-11
+  tier: 3
+  ruleId: pronomen-vor-nomen
+  gloss: We are bringing you a present tomorrow.
+  chunks:
+    - { id: wir,    surface: "Wir",         neutralSurface: "wir",         role: SUBJ }
+    - { id: bringen, surface: "bringen",    neutralSurface: "bringen",     role: FIN }
+    - { id: euch,   surface: "euch",        neutralSurface: "euch",        role: PRON_DAT }
+    - { id: morgen, surface: "Morgen",      neutralSurface: "morgen",      role: TEMP }
+    - { id: gesch,  surface: "Ein Geschenk", neutralSurface: "ein Geschenk", role: AKK, definite: false }
+  canonical: [wir, bringen, euch, morgen, gesch]
+
+- id: t3-12
+  tier: 3
+  ruleId: pronomen-vor-nomen
+  gloss: She did not answer him.
+  chunks:
+    - { id: sie,   surface: "Sie",           neutralSurface: "sie",           role: SUBJ }
+    - { id: hat,   surface: "hat",           neutralSurface: "hat",           role: FIN }
+    - { id: ihm,   surface: "ihm",           neutralSurface: "ihm",           role: PRON_DAT }
+    - { id: nicht, surface: "nicht",         neutralSurface: "nicht",         role: NEG }
+    - { id: geant, surface: "geantwortet",   neutralSurface: "geantwortet",   role: PART }
+  canonical: [sie, hat, ihm, nicht, geant]
+
+- id: t3-13
+  tier: 3
+  ruleId: pronomen-vor-nomen
+  gloss: I cannot help you today.
+  chunks:
+    - { id: ich,    surface: "Ich",     neutralSurface: "ich",     role: SUBJ }
+    - { id: kann,   surface: "kann",    neutralSurface: "kann",    role: FIN }
+    - { id: dir,    surface: "dir",     neutralSurface: "dir",     role: PRON_DAT }
+    - { id: heute,  surface: "Heute",   neutralSurface: "heute",   role: TEMP }
+    - { id: nicht,  surface: "nicht",   neutralSurface: "nicht",   role: NEG }
+    - { id: helfen, surface: "helfen",  neutralSurface: "helfen",  role: INF }
+  canonical: [ich, kann, dir, heute, nicht, helfen]
+
+# ─── Full TeKaMoLo ──────────────────────────────────────────────────────────
+
+- id: t3-14
+  tier: 3
+  ruleId: tekamolo-voll
+  gloss: She cycles to work every day.
+  chunks:
+    - { id: sie,    surface: "Sie",             neutralSurface: "sie",             role: SUBJ }
+    - { id: faehrt, surface: "fährt",           neutralSurface: "fährt",           role: FIN }
+    - { id: tag,    surface: "Jeden Tag",       neutralSurface: "jeden Tag",       role: TEMP }
+    - { id: rad,    surface: "Mit dem Fahrrad", neutralSurface: "mit dem Fahrrad", role: MODAL }
+    - { id: arb,    surface: "Zur Arbeit",      neutralSurface: "zur Arbeit",      role: DIR }
+  canonical: [sie, faehrt, tag, rad, arb]
+
+- id: t3-15
+  tier: 3
+  ruleId: tekamolo-voll
+  gloss: I am going to Cologne tomorrow because of the exam.
+  chunks:
+    - { id: ich,   surface: "Ich",               neutralSurface: "ich",               role: SUBJ }
+    - { id: fahre, surface: "fahre",             neutralSurface: "fahre",             role: FIN }
+    - { id: morgen, surface: "Morgen",           neutralSurface: "morgen",            role: TEMP }
+    - { id: pruef, surface: "Wegen der Prüfung", neutralSurface: "wegen der Prüfung", role: KAUS }
+    - { id: koeln, surface: "Nach Köln",         neutralSurface: "nach Köln",         role: DIR }
+  canonical: [ich, fahre, morgen, pruef, koeln]
+
+- id: t3-16
+  tier: 3
+  ruleId: tekamolo-voll
+  gloss: He is coming home by train tomorrow.
+  chunks:
+    - { id: er,     surface: "Er",          neutralSurface: "er",          role: SUBJ }
+    - { id: kommt,  surface: "kommt",       neutralSurface: "kommt",       role: FIN }
+    - { id: morgen, surface: "Morgen",      neutralSurface: "morgen",      role: TEMP }
+    - { id: zug,    surface: "Mit dem Zug", neutralSurface: "mit dem Zug", role: MODAL }
+    - { id: hause,  surface: "Nach Hause",  neutralSurface: "nach Hause",  role: DIR }
+  canonical: [er, kommt, morgen, zug, hause]
+
+- id: t3-17
+  tier: 3
+  ruleId: tekamolo-voll
+  gloss: She has been working at home since January because of the children.
+  chunks:
+    - { id: sie,     surface: "Sie",              neutralSurface: "sie",              role: SUBJ }
+    - { id: arbeitet, surface: "arbeitet",        neutralSurface: "arbeitet",         role: FIN }
+    - { id: januar,  surface: "Seit Januar",      neutralSurface: "seit Januar",      role: TEMP }
+    - { id: kinder,  surface: "Wegen der Kinder", neutralSurface: "wegen der Kinder", role: KAUS }
+    - { id: hause,   surface: "Zu Hause",         neutralSurface: "zu Hause",         role: LOK }
+  canonical: [sie, arbeitet, januar, kinder, hause]
+
+- id: t3-18
+  tier: 3
+  ruleId: tekamolo-voll
+  gloss: We like going to the mountains in winter.
+  chunks:
+    - { id: wir,    surface: "Wir",           neutralSurface: "wir",           role: SUBJ }
+    - { id: fahren, surface: "fahren",        neutralSurface: "fahren",        role: FIN }
+    - { id: winter, surface: "Im Winter",     neutralSurface: "im Winter",     role: TEMP }
+    - { id: gern,   surface: "Gern",          neutralSurface: "gern",          role: MODAL }
+    - { id: berge,  surface: "In die Berge",  neutralSurface: "in die Berge",  role: DIR }
+  canonical: [wir, fahren, winter, gern, berge]
+
+- id: t3-19
+  tier: 3
+  ruleId: tekamolo-voll
+  gloss: I am travelling to Vienna by train on Monday.
+  chunks:
+    - { id: ich,    surface: "Ich",         neutralSurface: "ich",         role: SUBJ }
+    - { id: fahre,  surface: "fahre",       neutralSurface: "fahre",       role: FIN }
+    - { id: montag, surface: "Am Montag",   neutralSurface: "am Montag",   role: TEMP }
+    - { id: zug,    surface: "Mit dem Zug", neutralSurface: "mit dem Zug", role: MODAL }
+    - { id: wien,   surface: "Nach Wien",   neutralSurface: "nach Wien",   role: DIR }
+  canonical: [ich, fahre, montag, zug, wien]
+
+# ─── Negation against the bracket ───────────────────────────────────────────
+
+- id: t3-20
+  tier: 3
+  ruleId: negation-vor-klammer
+  gloss: I have not read the book yet.
+  chunks:
+    - { id: ich,     surface: "Ich",         neutralSurface: "ich",         role: SUBJ }
+    - { id: habe,    surface: "habe",        neutralSurface: "habe",        role: FIN }
+    - { id: buch,    surface: "Das Buch",    neutralSurface: "das Buch",    role: AKK, definite: true }
+    - { id: nn,      surface: "noch nicht",  neutralSurface: "noch nicht",  role: NEG }
+    - { id: gelesen, surface: "gelesen",     neutralSurface: "gelesen",     role: PART }
+  canonical: [ich, habe, buch, nn, gelesen]
+
+- id: t3-21
+  tier: 3
+  ruleId: negation-vor-klammer
+  gloss: He did not drive to work yesterday.
+  chunks:
+    - { id: er,      surface: "Er",         neutralSurface: "er",         role: SUBJ }
+    - { id: ist,     surface: "ist",        neutralSurface: "ist",        role: FIN }
+    - { id: gestern, surface: "Gestern",    neutralSurface: "gestern",    role: TEMP }
+    - { id: nicht,   surface: "nicht",      neutralSurface: "nicht",      role: NEG }
+    - { id: arb,     surface: "Zur Arbeit", neutralSurface: "zur Arbeit", role: DIR }
+    - { id: gef,     surface: "gefahren",   neutralSurface: "gefahren",   role: PART }
+  canonical: [er, ist, gestern, nicht, arb, gef]
+
+- id: t3-22
+  tier: 3
+  ruleId: negation-vor-klammer
+  gloss: We did not understand the film.
+  chunks:
+    - { id: wir,   surface: "Wir",          neutralSurface: "wir",          role: SUBJ }
+    - { id: haben, surface: "haben",        neutralSurface: "haben",        role: FIN }
+    - { id: film,  surface: "Den Film",     neutralSurface: "den Film",     role: AKK, definite: true }
+    - { id: nicht, surface: "nicht",        neutralSurface: "nicht",        role: NEG }
+    - { id: vers,  surface: "verstanden",   neutralSurface: "verstanden",   role: PART }
+  canonical: [wir, haben, film, nicht, vers]
+
+- id: t3-23
+  tier: 3
+  ruleId: negation-vor-klammer
+  gloss: She does not want to eat the soup.
+  chunks:
+    - { id: sie,   surface: "Sie",        neutralSurface: "sie",        role: SUBJ }
+    - { id: will,  surface: "will",       neutralSurface: "will",       role: FIN }
+    - { id: suppe, surface: "Die Suppe",  neutralSurface: "die Suppe",  role: AKK, definite: true }
+    - { id: nicht, surface: "nicht",      neutralSurface: "nicht",      role: NEG }
+    - { id: essen, surface: "essen",      neutralSurface: "essen",      role: INF }
+  canonical: [sie, will, suppe, nicht, essen]
+
+- id: t3-24
+  tier: 3
+  ruleId: negation-vor-klammer
+  gloss: I did not see him yesterday.
+  chunks:
+    - { id: ich,     surface: "Ich",       neutralSurface: "ich",       role: SUBJ }
+    - { id: habe,    surface: "habe",      neutralSurface: "habe",      role: FIN }
+    - { id: ihn,     surface: "ihn",       neutralSurface: "ihn",       role: PRON_AKK }
+    - { id: gestern, surface: "Gestern",   neutralSurface: "gestern",   role: TEMP }
+    - { id: nicht,   surface: "nicht",     neutralSurface: "nicht",     role: NEG }
+    - { id: gesehen, surface: "gesehen",   neutralSurface: "gesehen",   role: PART }
+  canonical: [ich, habe, ihn, gestern, nicht, gesehen]

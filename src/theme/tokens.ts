@@ -88,6 +88,22 @@ export const duration = {
   capitaliseFlip: 180,
 } as const;
 
+/**
+ * The Klammer arc. Its height is how far the bracket drops below the fields
+ * before running across; the stroke is deliberately thin so it reads as a
+ * drawn diagram rather than a UI chrome bar.
+ */
+export const arc = {
+  height: 28,
+  stroke: 2,
+} as const;
+
+/** Outline weights. Used where colour alone must not carry meaning. */
+export const border = {
+  hairline: 1,
+  emphasis: 2,
+} as const;
+
 /** Reanimated spring config for tile lift, follow and settle. */
 export const spring = {
   damping: 18,

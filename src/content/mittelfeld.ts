@@ -36,11 +36,20 @@ export const RANK = {
   TEMP: 40,
   KAUS: 41,
 
-  /** Indefinite objects fall behind the temporal. This is the t2-01/t2-02 split. */
-  DAT_INDEFINITE: 50,
-  AKK_INDEFINITE: 51,
-
   MODAL: 60,
+
+  /**
+   * Indefinite and bare objects fall behind the adverbials.
+   *
+   * This is the t2-01/t2-02 split — `meine Schwester` precedes `morgen`,
+   * `einen Film` follows `gestern` — but it goes further than the temporal.
+   * A bare object forms a unit with its verb (`Deutsch sprechen`, `Kaffee
+   * trinken`) and sits as late as it can: `sie spricht sehr gut Deutsch`,
+   * never `sie spricht Deutsch sehr gut`.
+   */
+  DAT_INDEFINITE: 62,
+  AKK_INDEFINITE: 63,
+
   LOK: 70,
 
   /**

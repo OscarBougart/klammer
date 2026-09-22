@@ -6,8 +6,13 @@ Nachfeld). Read `design.md` before changing game logic or visuals.
 
 ## Stack
 
-Expo SDK 54 · Expo Router v6 · TypeScript strict · NativeWind v4 · Zustand ·
+Expo SDK 57 · Expo Router v6 · TypeScript 6 strict · NativeWind v4 · Zustand ·
 expo-sqlite + Drizzle · Reanimated 4 · Gesture Handler 2 · expo-haptics
+
+Expo Go only ever ships the current SDK, so the project tracks it. Upgrading
+means `npm install expo@^<next>`, then aligning every other package to
+`node_modules/expo/bundledNativeModules.json` — that file is the source of
+truth for what the SDK expects, not the changelog.
 
 Package manager is **npm** (`--legacy-peer-deps` for anything outside the Expo
 SDK; `npx expo install` for anything inside it).

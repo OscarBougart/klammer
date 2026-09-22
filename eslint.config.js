@@ -47,4 +47,28 @@ module.exports = [
     files: ["src/theme/**"],
     rules: { "no-restricted-syntax": "off" },
   },
+
+  {
+    // Reanimated's SharedValue is mutated by design — `sv.value = x` is the
+    // whole API. The React Compiler rule assumes React state semantics and
+    // reads every assignment as a mistake, so it is a false positive here and
+    // nowhere else. Scoped to the board, which is the only place Reanimated
+    // lives.
+    files: ["src/board/**"],
+    rules: { "react-hooks/immutability": "off" },
+  },
+
+  {
+    // Setting state from an effect after async work (loading a session from
+    // SQLite) or when derived input changes (a new sentence is dealt) is the
+    // pattern React still sanctions without Suspense. Arrived with the
+    // React-Compiler-aware config in SDK 57; reviewed case by case and none of
+    // the four are bugs.
+    //
+    // Worth revisiting — the guidance is sound in general, and these would be
+    // cleaner as derived state — but not during an SDK upgrade, and not in
+    // code that has never run on a device.
+    files: ["app/**", "src/board/Tile.tsx"],
+    rules: { "react-hooks/set-state-in-effect": "off" },
+  },
 ];
