@@ -835,13 +835,13 @@
 - id: t1-76
   tier: 1
   ruleId: praedikativ-final
-  gloss: The train is late again.
+  gloss: The train is delayed again.
   chunks:
-    - { id: zug,    surface: "Der Zug",   neutralSurface: "der Zug",   role: SUBJ }
-    - { id: ist,    surface: "ist",       neutralSurface: "ist",       role: FIN }
-    - { id: wieder, surface: "Wieder",    neutralSurface: "wieder",    role: TEMP }
-    - { id: spaet,  surface: "spät",      neutralSurface: "spät",      role: PRAED }
-  canonical: [zug, ist, wieder, spaet]
+    - { id: zug,    surface: "Der Zug",     neutralSurface: "der Zug",     role: SUBJ }
+    - { id: hat,    surface: "hat",         neutralSurface: "hat",         role: FIN }
+    - { id: wieder, surface: "Wieder",      neutralSurface: "wieder",      role: TEMP }
+    - { id: versp,  surface: "Verspätung",  neutralSurface: "Verspätung",  role: AKK, definite: false }
+  canonical: [zug, hat, wieder, versp]
 
 - id: t1-77
   tier: 1

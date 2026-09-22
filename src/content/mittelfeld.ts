@@ -36,6 +36,21 @@ export const RANK = {
   TEMP: 40,
   KAUS: 41,
 
+  /**
+   * Negation sits further forward than design.md implied.
+   *
+   * Native review: `nicht` precedes the second verb part, prepositional
+   * objects, modal adverbials AND local adverbials — `Wir sind am Samstag
+   * nicht dorthin gefahren`. It still follows definite objects and pronouns
+   * (`Ich habe das Buch nicht gelesen`) and follows the time phrase; moving it
+   * in front of the time phrase turns it into contrastive negation, which
+   * needs a `sondern`.
+   *
+   * At its old rank of 80 the generator built `zu Hause nicht`, which is not
+   * a German sentence.
+   */
+  NEG: 55,
+
   MODAL: 60,
 
   /**
@@ -51,12 +66,6 @@ export const RANK = {
   AKK_INDEFINITE: 63,
 
   LOK: 70,
-
-  /**
-   * Negation sits against the right bracket — after most Mittelfeld material,
-   * but still before directionals and predicatives.
-   */
-  NEG: 80,
 
   DIR: 85,
   PRAED: 90,

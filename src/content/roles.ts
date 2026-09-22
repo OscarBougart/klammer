@@ -106,6 +106,10 @@ export const VORFELD_ELIGIBLE: ReadonlySet<Role> = new Set<Role>([
   'DAT',
   'PRAED',
   'NEBENSATZ',
+  // Object pronouns may be fronted under contrast. `es` cannot be stressed and
+  // is excluded by `stressable: false`, not by role.
+  'PRON_AKK',
+  'PRON_DAT',
 ]);
 
 /** Verbal material that belongs in the right bracket. */

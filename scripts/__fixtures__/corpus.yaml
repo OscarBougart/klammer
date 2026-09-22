@@ -22,9 +22,11 @@
     - [k, ich, trinke, morgens, kaffee]
     - [g, morgens, trinke, ich, kaffee]
     - [u, kaffee, trinke, ich, morgens]      # contrastive: coffee, as opposed to tea
+    # Native review 1.1: marked, not wrong. Reads with focus on `morgens`.
+    - [u, ich, trinke, kaffee, morgens]
   reject:
     - [ich, morgens, trinke, kaffee]         # FIN not second
-    - [ich, trinke, kaffee, morgens]         # bare indefinite object can't precede TEMP
+
 
 - id: t1-02
   tier: 1
@@ -38,7 +40,7 @@
   accept:
     - [k, wir, wohn, seit, aachen]
     - [g, seit, wohn, wir, aachen]
-    - [u, aachen, wohn, wir, seit]
+    - [g, aachen, wohn, wir, seit]   # native review P2: place fronting is ordinary
   reject:
     - [wir, wohn, aachen, seit]              # LOK before TEMP breaks TeKaMoLo
 
@@ -125,8 +127,10 @@
     - [k, wir, haben, gestern, film, gesehen]
     - [g, gestern, haben, wir, film, gesehen]
     - [u, film, haben, wir, gestern, gesehen]
+    # Native review 1.1: marked, not wrong.
+    - [u, wir, haben, film, gestern, gesehen]
   reject:
-    - [wir, haben, film, gestern, gesehen]   # indefinite object can't outrank TEMP
+
     - [wir, haben, gestern, gesehen, film]
 
 - id: t2-03
@@ -174,7 +178,7 @@
   accept:
     - [k, ich, habe, schl, hause, verg]
     - [g, schl, habe, ich, hause, verg]
-    - [u, hause, habe, ich, schl, verg]
+    - [g, hause, habe, ich, schl, verg]  # native review P2: place fronting is ordinary
   reject:
     - [ich, habe, hause, schl, verg]         # definite object before LOK
 
@@ -364,6 +368,7 @@
   accept:
     - [k, er, hat, mir, gestern, erz, ns]
     - [g, gestern, hat, er, mir, erz, ns]
+    # Native review 1.4: only with stress on `mir`, so marked rather than wrong.
+    - [u, er, hat, gestern, mir, erz, ns]
   reject:
     - [er, hat, mir, gestern, ns, erz]       # Nachfeld sits outside the bracket
-    - [er, hat, gestern, mir, erz, ns]       # pronoun leads the Mittelfeld

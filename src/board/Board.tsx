@@ -179,10 +179,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: space.lg,
   },
   zones: {
-    flex: 1,
+    // Sized by its contents, not stretched to fill. Stretching left the zone
+    // boxes short inside tall wrappers, and combined with shrinking produced
+    // overlapping fields on a real screen.
+    flexGrow: 0,
+    flexShrink: 0,
     gap: space.md,
     padding: space.lg,
-    justifyContent: 'center',
   },
   tray: {
     backgroundColor: palette.feld,

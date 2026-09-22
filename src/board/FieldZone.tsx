@@ -95,10 +95,12 @@ export default memo(FieldZoneComponent);
 
 const styles = StyleSheet.create({
   wrapper: {
-    flexGrow: 1,
-    flexShrink: 1,
-    // Zones size to their contents but never collapse below a tile's width.
-    flexBasis: 'auto',
+    // Never shrink below the content. With flexShrink the zone collapses when
+    // the verdict panel appears and squeezes the board, and the tiles spill
+    // out of their box and overlap the zone below — which is exactly what the
+    // first device run showed.
+    flexShrink: 0,
+    flexGrow: 0,
     gap: space.xs,
   },
   zone: {

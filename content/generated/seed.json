@@ -42,6 +42,7 @@
       ],
       "acceptedHashes": {
         "b96836f5": "kanonisch",
+        "5ee13067": "ungewoehnlich",
         "27533b53": "gueltig",
         "3656c405": "ungewoehnlich"
       }
@@ -86,6 +87,7 @@
       ],
       "acceptedHashes": {
         "260370ab": "kanonisch",
+        "23ba6ae7": "ungewoehnlich",
         "94d7197b": "gueltig",
         "6daed28f": "ungewoehnlich"
       }
@@ -130,6 +132,7 @@
       ],
       "acceptedHashes": {
         "fb82e90c": "kanonisch",
+        "436e0468": "ungewoehnlich",
         "aabedb20": "gueltig",
         "21831f14": "ungewoehnlich"
       }
@@ -174,6 +177,7 @@
       ],
       "acceptedHashes": {
         "0b84ec1e": "kanonisch",
+        "00e11a3e": "ungewoehnlich",
         "67a1be64": "gueltig",
         "fa7e09ba": "ungewoehnlich"
       }
@@ -254,6 +258,7 @@
       ],
       "acceptedHashes": {
         "aa0c47f3": "kanonisch",
+        "7da895bb": "gueltig",
         "0e52536b": "ungewoehnlich",
         "de3df623": "ungewoehnlich"
       }
@@ -298,7 +303,7 @@
       "acceptedHashes": {
         "fa21aeb9": "kanonisch",
         "c0c2c3e1": "gueltig",
-        "9d761855": "ungewoehnlich"
+        "9d761855": "gueltig"
       }
     },
     {
@@ -680,7 +685,7 @@
       ],
       "acceptedHashes": {
         "9f3c99cf": "kanonisch",
-        "2a16e95b": "ungewoehnlich"
+        "2a16e95b": "gueltig"
       }
     },
     {
@@ -714,7 +719,7 @@
         "garten"
       ],
       "acceptedHashes": {
-        "82132249": "ungewoehnlich",
+        "82132249": "gueltig",
         "a130c4a9": "kanonisch"
       }
     },
@@ -750,7 +755,7 @@
       ],
       "acceptedHashes": {
         "3c5f3ae2": "kanonisch",
-        "9469cd1c": "ungewoehnlich"
+        "9469cd1c": "gueltig"
       }
     },
     {
@@ -785,7 +790,7 @@
       ],
       "acceptedHashes": {
         "57f9ff2e": "kanonisch",
-        "2ba0726e": "ungewoehnlich"
+        "2ba0726e": "gueltig"
       }
     },
     {
@@ -992,6 +997,7 @@
       ],
       "acceptedHashes": {
         "dad7eb2d": "kanonisch",
+        "5c4e995d": "gueltig",
         "17b02af1": "ungewoehnlich",
         "b6523a01": "ungewoehnlich"
       }
@@ -1036,6 +1042,7 @@
       ],
       "acceptedHashes": {
         "376f2f11": "kanonisch",
+        "ccfc28c9": "gueltig",
         "f51023e5": "ungewoehnlich",
         "1bf65e79": "ungewoehnlich"
       }
@@ -1113,7 +1120,7 @@
         "park"
       ],
       "acceptedHashes": {
-        "77891498": "ungewoehnlich",
+        "77891498": "gueltig",
         "8918e1dc": "kanonisch",
         "0946cbbc": "ungewoehnlich"
       }
@@ -1244,7 +1251,7 @@
       "acceptedHashes": {
         "65dbfc95": "kanonisch",
         "04cae229": "gueltig",
-        "45c6eb8f": "ungewoehnlich"
+        "45c6eb8f": "gueltig"
       }
     },
     {
@@ -1410,7 +1417,7 @@
       ],
       "acceptedHashes": {
         "bb07eafa": "kanonisch",
-        "d4e60608": "ungewoehnlich"
+        "d4e60608": "gueltig"
       }
     },
     {
@@ -1531,7 +1538,7 @@
       "acceptedHashes": {
         "3a166a8b": "kanonisch",
         "7956a16f": "gueltig",
-        "80dbb87b": "ungewoehnlich"
+        "80dbb87b": "gueltig"
       }
     },
     {
@@ -1646,6 +1653,7 @@
       ],
       "acceptedHashes": {
         "d82c5ab2": "kanonisch",
+        "f0f484d4": "ungewoehnlich",
         "fb952f3c": "gueltig",
         "a0d502d0": "ungewoehnlich"
       }
@@ -1788,7 +1796,7 @@
       ],
       "acceptedHashes": {
         "5435fbcb": "kanonisch",
-        "24cd9287": "ungewoehnlich"
+        "24cd9287": "gueltig"
       }
     },
     {
@@ -1823,7 +1831,7 @@
       ],
       "acceptedHashes": {
         "0e155c0e": "kanonisch",
-        "529efc1e": "ungewoehnlich"
+        "529efc1e": "gueltig"
       }
     },
     {
@@ -1866,7 +1874,7 @@
       "acceptedHashes": {
         "5b24d4c6": "kanonisch",
         "31f5abe8": "gueltig",
-        "ee1b6b14": "ungewoehnlich"
+        "ee1b6b14": "gueltig"
       }
     },
     {
@@ -2180,7 +2188,7 @@
         "wien"
       ],
       "acceptedHashes": {
-        "98880094": "ungewoehnlich",
+        "98880094": "gueltig",
         "2c8298d2": "kanonisch"
       }
     },
@@ -2216,7 +2224,7 @@
       ],
       "acceptedHashes": {
         "90e73608": "kanonisch",
-        "24f84b98": "ungewoehnlich"
+        "24f84b98": "gueltig"
       }
     },
     {
@@ -2251,7 +2259,7 @@
       ],
       "acceptedHashes": {
         "7c351e63": "kanonisch",
-        "cea9097b": "ungewoehnlich"
+        "cea9097b": "gueltig"
       }
     },
     {
@@ -2286,7 +2294,7 @@
       ],
       "acceptedHashes": {
         "6bf46f29": "kanonisch",
-        "76b9eb15": "ungewoehnlich"
+        "76b9eb15": "gueltig"
       }
     },
     {
@@ -2329,7 +2337,7 @@
       "acceptedHashes": {
         "53040504": "kanonisch",
         "7c28c5a2": "gueltig",
-        "7d1b4412": "ungewoehnlich"
+        "7d1b4412": "gueltig"
       }
     },
     {
@@ -2607,6 +2615,7 @@
       ],
       "acceptedHashes": {
         "a432d884": "kanonisch",
+        "625faadc": "ungewoehnlich",
         "67110e30": "gueltig",
         "c7bbcebe": "ungewoehnlich"
       }
@@ -2724,7 +2733,7 @@
       "acceptedHashes": {
         "dded273f": "kanonisch",
         "71e6c5e1": "ungewoehnlich",
-        "5c761e49": "ungewoehnlich"
+        "5c761e49": "gueltig"
       }
     },
     {
@@ -2767,6 +2776,7 @@
       ],
       "acceptedHashes": {
         "72e363d7": "kanonisch",
+        "9f5f30f5": "ungewoehnlich",
         "4dce4c81": "gueltig",
         "3002ed2f": "ungewoehnlich"
       }
@@ -2924,7 +2934,7 @@
       "id": "t1-76",
       "tier": 1,
       "ruleId": "praedikativ-final",
-      "gloss": "The train is late again.",
+      "gloss": "The train is delayed again.",
       "chunks": [
         {
           "id": "zug",
@@ -2933,9 +2943,9 @@
           "role": "SUBJ"
         },
         {
-          "id": "ist",
-          "surface": "ist",
-          "neutralSurface": "ist",
+          "id": "hat",
+          "surface": "hat",
+          "neutralSurface": "hat",
           "role": "FIN"
         },
         {
@@ -2945,22 +2955,24 @@
           "role": "TEMP"
         },
         {
-          "id": "spaet",
-          "surface": "spät",
-          "neutralSurface": "spät",
-          "role": "PRAED"
+          "id": "versp",
+          "surface": "Verspätung",
+          "neutralSurface": "Verspätung",
+          "role": "AKK",
+          "definite": false
         }
       ],
       "canonical": [
         "zug",
-        "ist",
+        "hat",
         "wieder",
-        "spaet"
+        "versp"
       ],
       "acceptedHashes": {
-        "d1161d3e": "kanonisch",
-        "255fb0fe": "gueltig",
-        "8c7f83fc": "ungewoehnlich"
+        "52df4f88": "kanonisch",
+        "598bf250": "ungewoehnlich",
+        "3b7bfd26": "gueltig",
+        "14ed5690": "ungewoehnlich"
       }
     },
     {
@@ -3116,7 +3128,7 @@
       "acceptedHashes": {
         "1d59f84b": "kanonisch",
         "e0b87679": "gueltig",
-        "b3ad9c95": "ungewoehnlich"
+        "b3ad9c95": "gueltig"
       }
     },
     {
@@ -3226,6 +3238,8 @@
       ],
       "acceptedHashes": {
         "25f86382": "kanonisch",
+        "72f06f12": "ungewoehnlich",
+        "f0da4596": "ungewoehnlich",
         "4df0f586": "gueltig"
       }
     },
@@ -3276,7 +3290,7 @@
       "acceptedHashes": {
         "77273b83": "kanonisch",
         "320332b1": "gueltig",
-        "b0780fc3": "ungewoehnlich"
+        "b0780fc3": "gueltig"
       }
     },
     {
@@ -3376,7 +3390,7 @@
       "acceptedHashes": {
         "64e7f6bf": "kanonisch",
         "54920cfb": "gueltig",
-        "7d2ba4d9": "ungewoehnlich"
+        "7d2ba4d9": "gueltig"
       }
     },
     {
@@ -3426,6 +3440,7 @@
       ],
       "acceptedHashes": {
         "57249566": "kanonisch",
+        "f37a35c2": "ungewoehnlich",
         "77d111d6": "gueltig",
         "de874c52": "ungewoehnlich"
       }
@@ -3526,6 +3541,7 @@
       ],
       "acceptedHashes": {
         "9ff2faf8": "kanonisch",
+        "b62d4970": "ungewoehnlich",
         "e3a99dd0": "gueltig",
         "fd771f28": "ungewoehnlich"
       }
@@ -3578,7 +3594,7 @@
       "acceptedHashes": {
         "8961dc75": "kanonisch",
         "c7ecaec5": "gueltig",
-        "dcfe535d": "ungewoehnlich"
+        "dcfe535d": "gueltig"
       }
     },
     {
@@ -3628,6 +3644,7 @@
       ],
       "acceptedHashes": {
         "a81d78a9": "kanonisch",
+        "99aa534b": "ungewoehnlich",
         "eb23daa9": "gueltig",
         "3851d8eb": "ungewoehnlich"
       }
@@ -3679,6 +3696,7 @@
       ],
       "acceptedHashes": {
         "a0c70aab": "kanonisch",
+        "f7bd70d7": "ungewoehnlich",
         "1c4d51df": "gueltig",
         "a187d047": "ungewoehnlich"
       }
@@ -3779,6 +3797,8 @@
       ],
       "acceptedHashes": {
         "2c6c9bd3": "kanonisch",
+        "26d60907": "ungewoehnlich",
+        "aa74f8b5": "ungewoehnlich",
         "741aeeed": "gueltig"
       }
     },
@@ -3829,7 +3849,7 @@
       "acceptedHashes": {
         "68117c9c": "kanonisch",
         "3f5b8004": "gueltig",
-        "d885b18c": "ungewoehnlich"
+        "d885b18c": "gueltig"
       }
     },
     {
@@ -4079,6 +4099,7 @@
       ],
       "acceptedHashes": {
         "4e3f07f5": "kanonisch",
+        "523e8701": "ungewoehnlich",
         "ff9fb831": "gueltig",
         "a1fe58c5": "ungewoehnlich"
       }
@@ -4384,6 +4405,8 @@
       ],
       "acceptedHashes": {
         "b65e152a": "kanonisch",
+        "31711a6a": "ungewoehnlich",
+        "e3a006c6": "ungewoehnlich",
         "ec46a54a": "gueltig"
       }
     },
@@ -4485,10 +4508,12 @@
       "acceptedHashes": {
         "ccc04cfe": "kanonisch",
         "ac6a60fe": "gueltig",
+        "dfda5836": "gueltig",
         "3cf2c908": "gueltig",
         "6e7b8038": "gueltig",
         "d95520da": "gueltig",
         "bbd2d08c": "gueltig",
+        "4f5b707e": "gueltig",
         "644d3924": "ungewoehnlich",
         "c4d4ebe4": "ungewoehnlich"
       }
@@ -4541,6 +4566,7 @@
       ],
       "acceptedHashes": {
         "88a0c0fb": "kanonisch",
+        "ae61849b": "gueltig",
         "c0ea2967": "gueltig",
         "3cc3ebf3": "ungewoehnlich"
       }
@@ -4595,8 +4621,12 @@
         "78340403": "ungewoehnlich",
         "83562373": "kanonisch",
         "bc6b487f": "gueltig",
+        "f6137f7f": "gueltig",
+        "06c9d6a3": "ungewoehnlich",
         "e392e4ef": "gueltig",
+        "a190e52f": "ungewoehnlich",
         "97f7fd5b": "gueltig",
+        "fd37298b": "gueltig",
         "23d28f37": "ungewoehnlich"
       }
     },
@@ -4656,8 +4686,12 @@
       "acceptedHashes": {
         "187ef59c": "kanonisch",
         "cbacd154": "gueltig",
+        "ecbc34ae": "gueltig",
+        "7f61b0a8": "ungewoehnlich",
         "cfc2b05c": "gueltig",
+        "da674a68": "ungewoehnlich",
         "537763b0": "gueltig",
+        "50c8c86e": "gueltig",
         "c70b2ca4": "ungewoehnlich",
         "8c7249b4": "ungewoehnlich"
       }
@@ -4709,6 +4743,7 @@
       ],
       "acceptedHashes": {
         "370477cb": "kanonisch",
+        "985391e9": "ungewoehnlich",
         "bac23f4f": "ungewoehnlich"
       }
     },
@@ -4759,6 +4794,10 @@
       ],
       "acceptedHashes": {
         "bad6f3f5": "kanonisch",
+        "88126e41": "ungewoehnlich",
+        "a29f922b": "ungewoehnlich",
+        "28bd29a9": "ungewoehnlich",
+        "106bd7cd": "ungewoehnlich",
         "83f95e11": "gueltig"
       }
     },
@@ -4816,6 +4855,10 @@
       ],
       "acceptedHashes": {
         "f7617402": "kanonisch",
+        "3fad19a2": "ungewoehnlich",
+        "7beb2ce6": "ungewoehnlich",
+        "7b36f33c": "ungewoehnlich",
+        "c656f13c": "ungewoehnlich",
         "3195ce90": "gueltig"
       }
     },
@@ -4866,6 +4909,10 @@
       ],
       "acceptedHashes": {
         "0fb191e1": "kanonisch",
+        "6ef4c177": "ungewoehnlich",
+        "2a8a1df9": "ungewoehnlich",
+        "39b09dcb": "ungewoehnlich",
+        "923daa23": "ungewoehnlich",
         "7a70caa1": "gueltig"
       }
     },
@@ -4923,6 +4970,7 @@
       ],
       "acceptedHashes": {
         "4a408b80": "kanonisch",
+        "e36e2dce": "ungewoehnlich",
         "20c210c6": "gueltig"
       }
     },
@@ -4973,6 +5021,7 @@
       ],
       "acceptedHashes": {
         "00e67c0c": "kanonisch",
+        "d18e3afc": "ungewoehnlich",
         "610b79dc": "gueltig"
       }
     },
@@ -5023,8 +5072,13 @@
       ],
       "acceptedHashes": {
         "378db87b": "kanonisch",
+        "7573d659": "ungewoehnlich",
+        "051f00fb": "ungewoehnlich",
+        "58dc2879": "ungewoehnlich",
+        "a5847379": "ungewoehnlich",
         "29611daf": "gueltig",
-        "810434af": "ungewoehnlich"
+        "810434af": "ungewoehnlich",
+        "f677f8a1": "ungewoehnlich"
       }
     },
     {
@@ -5072,7 +5126,8 @@
         "geant"
       ],
       "acceptedHashes": {
-        "dd9d64fe": "kanonisch"
+        "dd9d64fe": "kanonisch",
+        "17575c8a": "ungewoehnlich"
       }
     },
     {
@@ -5128,6 +5183,8 @@
       ],
       "acceptedHashes": {
         "7bf28161": "kanonisch",
+        "29064b2d": "ungewoehnlich",
+        "e3b0d07b": "ungewoehnlich",
         "a9d85f8b": "gueltig"
       }
     },
@@ -5332,7 +5389,7 @@
         "38058b68": "kanonisch",
         "517f9182": "gueltig",
         "33d3af4a": "gueltig",
-        "c9a3e8be": "ungewoehnlich"
+        "c9a3e8be": "gueltig"
       }
     },
     {
@@ -5697,6 +5754,8 @@
       ],
       "acceptedHashes": {
         "101b7499": "kanonisch",
+        "20bacb25": "ungewoehnlich",
+        "49c040ff": "ungewoehnlich",
         "c0a5d031": "gueltig"
       }
     }
