@@ -3137,6 +3137,912 @@
       }
     },
     {
+      "id": "t1-81",
+      "tier": 1,
+      "ruleId": "v2-deklarativ",
+      "gloss": "I cook a soup in the evening.",
+      "chunks": [
+        {
+          "id": "ich",
+          "surface": "Ich",
+          "neutralSurface": "ich",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "koche",
+          "surface": "koche",
+          "neutralSurface": "koche",
+          "role": "FIN"
+        },
+        {
+          "id": "abend",
+          "surface": "Am Abend",
+          "neutralSurface": "am Abend",
+          "role": "TEMP"
+        },
+        {
+          "id": "suppe",
+          "surface": "Eine Suppe",
+          "neutralSurface": "eine Suppe",
+          "role": "AKK",
+          "definite": false
+        }
+      ],
+      "canonical": [
+        "ich",
+        "koche",
+        "abend",
+        "suppe"
+      ],
+      "acceptedHashes": {
+        "1345979c": "kanonisch",
+        "057373dc": "ungewoehnlich",
+        "558e0e74": "gueltig",
+        "0a96f034": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t1-82",
+      "tier": 1,
+      "ruleId": "v2-deklarativ",
+      "gloss": "We like listening to music.",
+      "chunks": [
+        {
+          "id": "wir",
+          "surface": "Wir",
+          "neutralSurface": "wir",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "hoer",
+          "surface": "hören",
+          "neutralSurface": "hören",
+          "role": "FIN"
+        },
+        {
+          "id": "gern",
+          "surface": "Gern",
+          "neutralSurface": "gern",
+          "role": "MODAL"
+        },
+        {
+          "id": "musik",
+          "surface": "Musik",
+          "neutralSurface": "Musik",
+          "role": "AKK",
+          "definite": false
+        }
+      ],
+      "canonical": [
+        "wir",
+        "hoer",
+        "gern",
+        "musik"
+      ],
+      "acceptedHashes": {
+        "7793b934": "kanonisch",
+        "a015601e": "gueltig",
+        "6be12e7c": "ungewoehnlich",
+        "b4632034": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t1-83",
+      "tier": 1,
+      "ruleId": "v2-deklarativ",
+      "gloss": "My daughter plays the piano every day.",
+      "chunks": [
+        {
+          "id": "tochter",
+          "surface": "Meine Tochter",
+          "neutralSurface": "meine Tochter",
+          "role": "SUBJ"
+        },
+        {
+          "id": "spielt",
+          "surface": "spielt",
+          "neutralSurface": "spielt",
+          "role": "FIN"
+        },
+        {
+          "id": "tag",
+          "surface": "Jeden Tag",
+          "neutralSurface": "jeden Tag",
+          "role": "TEMP"
+        },
+        {
+          "id": "klavier",
+          "surface": "Klavier",
+          "neutralSurface": "Klavier",
+          "role": "AKK",
+          "definite": false
+        }
+      ],
+      "canonical": [
+        "tochter",
+        "spielt",
+        "tag",
+        "klavier"
+      ],
+      "acceptedHashes": {
+        "778cca53": "kanonisch",
+        "4d9b4e7b": "ungewoehnlich",
+        "a8e3f101": "gueltig",
+        "ec59db21": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t1-84",
+      "tier": 1,
+      "ruleId": "v2-deklarativ",
+      "gloss": "He drinks a coffee every morning.",
+      "chunks": [
+        {
+          "id": "er",
+          "surface": "Er",
+          "neutralSurface": "er",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "trinkt",
+          "surface": "trinkt",
+          "neutralSurface": "trinkt",
+          "role": "FIN"
+        },
+        {
+          "id": "morgen",
+          "surface": "Jeden Morgen",
+          "neutralSurface": "jeden Morgen",
+          "role": "TEMP"
+        },
+        {
+          "id": "kaffee",
+          "surface": "Einen Kaffee",
+          "neutralSurface": "einen Kaffee",
+          "role": "AKK",
+          "definite": false
+        }
+      ],
+      "canonical": [
+        "er",
+        "trinkt",
+        "morgen",
+        "kaffee"
+      ],
+      "acceptedHashes": {
+        "e72eeb46": "kanonisch",
+        "d16f1632": "ungewoehnlich",
+        "a986b886": "gueltig",
+        "3357955a": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t1-85",
+      "tier": 1,
+      "ruleId": "v2-deklarativ",
+      "gloss": "We visit my parents at the weekend.",
+      "chunks": [
+        {
+          "id": "wir",
+          "surface": "Wir",
+          "neutralSurface": "wir",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "bes",
+          "surface": "besuchen",
+          "neutralSurface": "besuchen",
+          "role": "FIN"
+        },
+        {
+          "id": "eltern",
+          "surface": "Meine Eltern",
+          "neutralSurface": "meine Eltern",
+          "role": "AKK",
+          "definite": true
+        },
+        {
+          "id": "woche",
+          "surface": "Am Wochenende",
+          "neutralSurface": "am Wochenende",
+          "role": "TEMP"
+        }
+      ],
+      "canonical": [
+        "wir",
+        "bes",
+        "eltern",
+        "woche"
+      ],
+      "acceptedHashes": {
+        "92ccc7bb": "kanonisch",
+        "a509a623": "gueltig",
+        "20060f13": "gueltig",
+        "13fa223b": "gueltig"
+      }
+    },
+    {
+      "id": "t1-86",
+      "tier": 1,
+      "ruleId": "v2-deklarativ",
+      "gloss": "I do not understand the question.",
+      "chunks": [
+        {
+          "id": "ich",
+          "surface": "Ich",
+          "neutralSurface": "ich",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "vers",
+          "surface": "verstehe",
+          "neutralSurface": "verstehe",
+          "role": "FIN"
+        },
+        {
+          "id": "frage",
+          "surface": "Die Frage",
+          "neutralSurface": "die Frage",
+          "role": "AKK",
+          "definite": true
+        },
+        {
+          "id": "nicht",
+          "surface": "Nicht",
+          "neutralSurface": "nicht",
+          "role": "NEG"
+        }
+      ],
+      "canonical": [
+        "ich",
+        "vers",
+        "frage",
+        "nicht"
+      ],
+      "acceptedHashes": {
+        "392e0186": "kanonisch",
+        "e324b018": "gueltig"
+      }
+    },
+    {
+      "id": "t1-87",
+      "tier": 1,
+      "ruleId": "v2-deklarativ",
+      "gloss": "She has been looking for a new flat since May.",
+      "chunks": [
+        {
+          "id": "sie",
+          "surface": "Sie",
+          "neutralSurface": "sie",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "sucht",
+          "surface": "sucht",
+          "neutralSurface": "sucht",
+          "role": "FIN"
+        },
+        {
+          "id": "mai",
+          "surface": "Seit Mai",
+          "neutralSurface": "seit Mai",
+          "role": "TEMP"
+        },
+        {
+          "id": "wohn",
+          "surface": "Eine neue Wohnung",
+          "neutralSurface": "eine neue Wohnung",
+          "role": "AKK",
+          "definite": false
+        }
+      ],
+      "canonical": [
+        "sie",
+        "sucht",
+        "mai",
+        "wohn"
+      ],
+      "acceptedHashes": {
+        "80e60988": "kanonisch",
+        "bf957932": "ungewoehnlich",
+        "82ebeec8": "gueltig",
+        "ca0d7c92": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t1-88",
+      "tier": 1,
+      "ruleId": "v2-deklarativ",
+      "gloss": "My husband cooks the meal on Sunday.",
+      "chunks": [
+        {
+          "id": "mann",
+          "surface": "Mein Mann",
+          "neutralSurface": "mein Mann",
+          "role": "SUBJ"
+        },
+        {
+          "id": "kocht",
+          "surface": "kocht",
+          "neutralSurface": "kocht",
+          "role": "FIN"
+        },
+        {
+          "id": "essen",
+          "surface": "Das Essen",
+          "neutralSurface": "das Essen",
+          "role": "AKK",
+          "definite": true
+        },
+        {
+          "id": "sonntag",
+          "surface": "Am Sonntag",
+          "neutralSurface": "am Sonntag",
+          "role": "TEMP"
+        }
+      ],
+      "canonical": [
+        "mann",
+        "kocht",
+        "essen",
+        "sonntag"
+      ],
+      "acceptedHashes": {
+        "8bc316a8": "kanonisch",
+        "c744a958": "gueltig",
+        "fdf6876a": "gueltig",
+        "eabbf32e": "gueltig"
+      }
+    },
+    {
+      "id": "t1-89",
+      "tier": 1,
+      "ruleId": "tekamolo-te-lo",
+      "gloss": "We have breakfast in the garden on Saturday.",
+      "chunks": [
+        {
+          "id": "wir",
+          "surface": "Wir",
+          "neutralSurface": "wir",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "fruehst",
+          "surface": "frühstücken",
+          "neutralSurface": "frühstücken",
+          "role": "FIN"
+        },
+        {
+          "id": "samstag",
+          "surface": "Am Samstag",
+          "neutralSurface": "am Samstag",
+          "role": "TEMP"
+        },
+        {
+          "id": "garten",
+          "surface": "Im Garten",
+          "neutralSurface": "im Garten",
+          "role": "LOK"
+        }
+      ],
+      "canonical": [
+        "wir",
+        "fruehst",
+        "samstag",
+        "garten"
+      ],
+      "acceptedHashes": {
+        "e2edadb5": "kanonisch",
+        "d8f88eb5": "gueltig",
+        "e91994d3": "gueltig"
+      }
+    },
+    {
+      "id": "t1-90",
+      "tier": 1,
+      "ruleId": "tekamolo-te-lo",
+      "gloss": "I am waiting at the station at three.",
+      "chunks": [
+        {
+          "id": "ich",
+          "surface": "Ich",
+          "neutralSurface": "ich",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "warte",
+          "surface": "warte",
+          "neutralSurface": "warte",
+          "role": "FIN"
+        },
+        {
+          "id": "drei",
+          "surface": "Um drei",
+          "neutralSurface": "um drei",
+          "role": "TEMP"
+        },
+        {
+          "id": "bahn",
+          "surface": "Am Bahnhof",
+          "neutralSurface": "am Bahnhof",
+          "role": "LOK"
+        }
+      ],
+      "canonical": [
+        "ich",
+        "warte",
+        "drei",
+        "bahn"
+      ],
+      "acceptedHashes": {
+        "ff3cabdd": "kanonisch",
+        "721e8217": "gueltig",
+        "d72222d5": "gueltig"
+      }
+    },
+    {
+      "id": "t1-91",
+      "tier": 1,
+      "ruleId": "tekamolo-te-lo",
+      "gloss": "My girlfriend has been working in Munich since January.",
+      "chunks": [
+        {
+          "id": "fr",
+          "surface": "Meine Freundin",
+          "neutralSurface": "meine Freundin",
+          "role": "SUBJ"
+        },
+        {
+          "id": "arb",
+          "surface": "arbeitet",
+          "neutralSurface": "arbeitet",
+          "role": "FIN"
+        },
+        {
+          "id": "jan",
+          "surface": "Seit Januar",
+          "neutralSurface": "seit Januar",
+          "role": "TEMP"
+        },
+        {
+          "id": "muen",
+          "surface": "In München",
+          "neutralSurface": "in München",
+          "role": "LOK"
+        }
+      ],
+      "canonical": [
+        "fr",
+        "arb",
+        "jan",
+        "muen"
+      ],
+      "acceptedHashes": {
+        "50135254": "kanonisch",
+        "3e911ec8": "gueltig",
+        "a87a048c": "gueltig"
+      }
+    },
+    {
+      "id": "t1-92",
+      "tier": 1,
+      "ruleId": "tekamolo-te-lo",
+      "gloss": "My dog sleeps in the kitchen at night.",
+      "chunks": [
+        {
+          "id": "hund",
+          "surface": "Mein Hund",
+          "neutralSurface": "mein Hund",
+          "role": "SUBJ"
+        },
+        {
+          "id": "schl",
+          "surface": "schläft",
+          "neutralSurface": "schläft",
+          "role": "FIN"
+        },
+        {
+          "id": "nachts",
+          "surface": "Nachts",
+          "neutralSurface": "nachts",
+          "role": "TEMP"
+        },
+        {
+          "id": "kueche",
+          "surface": "In der Küche",
+          "neutralSurface": "in der Küche",
+          "role": "LOK"
+        }
+      ],
+      "canonical": [
+        "hund",
+        "schl",
+        "nachts",
+        "kueche"
+      ],
+      "acceptedHashes": {
+        "fef8f8a0": "kanonisch",
+        "50f5bf84": "gueltig",
+        "af612408": "gueltig"
+      }
+    },
+    {
+      "id": "t1-93",
+      "tier": 1,
+      "ruleId": "tekamolo-te-lo",
+      "gloss": "We eat at home in the evenings.",
+      "chunks": [
+        {
+          "id": "wir",
+          "surface": "Wir",
+          "neutralSurface": "wir",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "essen",
+          "surface": "essen",
+          "neutralSurface": "essen",
+          "role": "FIN"
+        },
+        {
+          "id": "abends",
+          "surface": "Abends",
+          "neutralSurface": "abends",
+          "role": "TEMP"
+        },
+        {
+          "id": "hause",
+          "surface": "Zu Hause",
+          "neutralSurface": "zu Hause",
+          "role": "LOK"
+        }
+      ],
+      "canonical": [
+        "wir",
+        "essen",
+        "abends",
+        "hause"
+      ],
+      "acceptedHashes": {
+        "063fd116": "kanonisch",
+        "81a15102": "gueltig",
+        "b34bdd2a": "gueltig"
+      }
+    },
+    {
+      "id": "t1-94",
+      "tier": 1,
+      "ruleId": "tekamolo-voll",
+      "gloss": "I take the bus into town in the mornings.",
+      "chunks": [
+        {
+          "id": "ich",
+          "surface": "Ich",
+          "neutralSurface": "ich",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "fahre",
+          "surface": "fahre",
+          "neutralSurface": "fahre",
+          "role": "FIN"
+        },
+        {
+          "id": "morgens",
+          "surface": "Morgens",
+          "neutralSurface": "morgens",
+          "role": "TEMP"
+        },
+        {
+          "id": "bus",
+          "surface": "Mit dem Bus",
+          "neutralSurface": "mit dem Bus",
+          "role": "INSTR"
+        },
+        {
+          "id": "stadt",
+          "surface": "In die Stadt",
+          "neutralSurface": "in die Stadt",
+          "role": "DIR"
+        }
+      ],
+      "canonical": [
+        "ich",
+        "fahre",
+        "morgens",
+        "bus",
+        "stadt"
+      ],
+      "acceptedHashes": {
+        "7c2ca4a4": "kanonisch",
+        "2671fee0": "gueltig",
+        "d7efc0a4": "gueltig",
+        "5f4ce834": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t1-95",
+      "tier": 1,
+      "ruleId": "tekamolo-voll",
+      "gloss": "She comes to Cologne by train on Friday.",
+      "chunks": [
+        {
+          "id": "sie",
+          "surface": "Sie",
+          "neutralSurface": "sie",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "kommt",
+          "surface": "kommt",
+          "neutralSurface": "kommt",
+          "role": "FIN"
+        },
+        {
+          "id": "freitag",
+          "surface": "Am Freitag",
+          "neutralSurface": "am Freitag",
+          "role": "TEMP"
+        },
+        {
+          "id": "zug",
+          "surface": "Mit dem Zug",
+          "neutralSurface": "mit dem Zug",
+          "role": "INSTR"
+        },
+        {
+          "id": "koeln",
+          "surface": "Nach Köln",
+          "neutralSurface": "nach Köln",
+          "role": "DIR"
+        }
+      ],
+      "canonical": [
+        "sie",
+        "kommt",
+        "freitag",
+        "zug",
+        "koeln"
+      ],
+      "acceptedHashes": {
+        "85cd23bb": "kanonisch",
+        "dfc1f627": "gueltig",
+        "913a3f53": "gueltig",
+        "97a452c7": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t1-96",
+      "tier": 1,
+      "ruleId": "tekamolo-voll",
+      "gloss": "We like going to the museum on Sundays.",
+      "chunks": [
+        {
+          "id": "wir",
+          "surface": "Wir",
+          "neutralSurface": "wir",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "gehen",
+          "surface": "gehen",
+          "neutralSurface": "gehen",
+          "role": "FIN"
+        },
+        {
+          "id": "sonntags",
+          "surface": "Sonntags",
+          "neutralSurface": "sonntags",
+          "role": "TEMP"
+        },
+        {
+          "id": "gern",
+          "surface": "Gern",
+          "neutralSurface": "gern",
+          "role": "MODAL"
+        },
+        {
+          "id": "museum",
+          "surface": "Ins Museum",
+          "neutralSurface": "ins Museum",
+          "role": "DIR"
+        }
+      ],
+      "canonical": [
+        "wir",
+        "gehen",
+        "sonntags",
+        "gern",
+        "museum"
+      ],
+      "acceptedHashes": {
+        "27b61c59": "kanonisch",
+        "c4c0378f": "gueltig",
+        "63fc4e71": "ungewoehnlich",
+        "31bd7e31": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t1-97",
+      "tier": 1,
+      "ruleId": "tekamolo-voll",
+      "gloss": "He runs to school quickly every morning.",
+      "chunks": [
+        {
+          "id": "er",
+          "surface": "Er",
+          "neutralSurface": "er",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "laeuft",
+          "surface": "läuft",
+          "neutralSurface": "läuft",
+          "role": "FIN"
+        },
+        {
+          "id": "morgen",
+          "surface": "Jeden Morgen",
+          "neutralSurface": "jeden Morgen",
+          "role": "TEMP"
+        },
+        {
+          "id": "schnell",
+          "surface": "Schnell",
+          "neutralSurface": "schnell",
+          "role": "MODAL"
+        },
+        {
+          "id": "schule",
+          "surface": "Zur Schule",
+          "neutralSurface": "zur Schule",
+          "role": "DIR"
+        }
+      ],
+      "canonical": [
+        "er",
+        "laeuft",
+        "morgen",
+        "schnell",
+        "schule"
+      ],
+      "acceptedHashes": {
+        "dd91d63e": "kanonisch",
+        "84a5cf16": "gueltig",
+        "d210fc38": "ungewoehnlich",
+        "612ddbf0": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t1-98",
+      "tier": 1,
+      "ruleId": "praedikativ-final",
+      "gloss": "The film was very good yesterday.",
+      "chunks": [
+        {
+          "id": "film",
+          "surface": "Der Film",
+          "neutralSurface": "der Film",
+          "role": "SUBJ"
+        },
+        {
+          "id": "war",
+          "surface": "war",
+          "neutralSurface": "war",
+          "role": "FIN"
+        },
+        {
+          "id": "gestern",
+          "surface": "Gestern",
+          "neutralSurface": "gestern",
+          "role": "TEMP"
+        },
+        {
+          "id": "gut",
+          "surface": "Sehr gut",
+          "neutralSurface": "sehr gut",
+          "role": "PRAED"
+        }
+      ],
+      "canonical": [
+        "film",
+        "war",
+        "gestern",
+        "gut"
+      ],
+      "acceptedHashes": {
+        "8dbf5757": "kanonisch",
+        "cfdbe1ff": "gueltig",
+        "90c8e76f": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t1-99",
+      "tier": 1,
+      "ruleId": "praedikativ-final",
+      "gloss": "My flat is very cold in winter.",
+      "chunks": [
+        {
+          "id": "wohn",
+          "surface": "Meine Wohnung",
+          "neutralSurface": "meine Wohnung",
+          "role": "SUBJ"
+        },
+        {
+          "id": "ist",
+          "surface": "ist",
+          "neutralSurface": "ist",
+          "role": "FIN"
+        },
+        {
+          "id": "winter",
+          "surface": "Im Winter",
+          "neutralSurface": "im Winter",
+          "role": "TEMP"
+        },
+        {
+          "id": "kalt",
+          "surface": "Sehr kalt",
+          "neutralSurface": "sehr kalt",
+          "role": "PRAED"
+        }
+      ],
+      "canonical": [
+        "wohn",
+        "ist",
+        "winter",
+        "kalt"
+      ],
+      "acceptedHashes": {
+        "0b0b52da": "kanonisch",
+        "18f2dd64": "gueltig",
+        "8605c13c": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t1-100",
+      "tier": 1,
+      "ruleId": "praedikativ-final",
+      "gloss": "The soup is too hot today.",
+      "chunks": [
+        {
+          "id": "suppe",
+          "surface": "Die Suppe",
+          "neutralSurface": "die Suppe",
+          "role": "SUBJ"
+        },
+        {
+          "id": "ist",
+          "surface": "ist",
+          "neutralSurface": "ist",
+          "role": "FIN"
+        },
+        {
+          "id": "heute",
+          "surface": "Heute",
+          "neutralSurface": "heute",
+          "role": "TEMP"
+        },
+        {
+          "id": "heiss",
+          "surface": "Zu heiß",
+          "neutralSurface": "zu heiß",
+          "role": "PRAED"
+        }
+      ],
+      "canonical": [
+        "suppe",
+        "ist",
+        "heute",
+        "heiss"
+      ],
+      "acceptedHashes": {
+        "d64f5ca1": "kanonisch",
+        "8720f381": "gueltig",
+        "620396c9": "ungewoehnlich"
+      }
+    },
+    {
       "id": "t2-01",
       "tier": 2,
       "ruleId": "satzklammer-trennbar",
