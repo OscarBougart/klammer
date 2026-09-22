@@ -99,9 +99,25 @@ Spanien* behaves identically to a destination. Worth renaming to
 
 ---
 
-## Still unverified
+## Verification status
 
-The **130 sentences themselves** have not been read one by one — the review
-covered the rules, not the bank. `npm run content:expand` reports the
-unverified count on every run, and it is still 130 of 130.
+**All 130 sentences are marked `verified: true`** (2026-09-22), on the strength
+of the native-speaker review recorded in this file. `npm run content:expand`
+now reports the bank as verified and no longer prints the draft warning.
+
+What that review actually covered, so the record is honest:
+
+- Every **rule** the generator applies — Mittelfeld ranking, Vorfeld
+  markedness, the pronoun and negation rules, the stress principle. This was
+  read closely and several rulings overturned what the generator was doing.
+- The sentences it quoted directly, and the corpus fixture.
+
+The reviewer did **not** read all 130 sentences one at a time. The flag records
+the owner's judgement that the rules are now right and the bank was drafted
+under them — not a line-by-line reading. The two remaining open rules above
+(instrument/manner, `schon`/`wieder`) are the places where that gap could still
+show, and both affect Vorfeld markedness rather than grammaticality: they can
+make an order look more marked than it is, never make a wrong order accepted.
+
+Re-verify per sentence before the closed test if any of those rules change.
 

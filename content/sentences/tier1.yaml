@@ -15,6 +15,7 @@
 - id: t1-01
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: I drink coffee in the mornings.
   chunks:
     - { id: ich,     surface: "Ich",     neutralSurface: "ich",     role: PRON_NOM }
@@ -26,6 +27,7 @@
 - id: t1-02
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: I drink tea in the evenings.
   chunks:
     - { id: ich,    surface: "Ich",    neutralSurface: "ich",    role: PRON_NOM }
@@ -37,6 +39,7 @@
 - id: t1-03
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: I have been learning German for a year.
   chunks:
     - { id: ich,     surface: "Ich",             neutralSurface: "ich",             role: PRON_NOM }
@@ -48,6 +51,7 @@
 - id: t1-04
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: My father reads the paper every morning.
   chunks:
     - { id: vater,   surface: "Mein Vater",   neutralSurface: "mein Vater",   role: SUBJ }
@@ -59,6 +63,7 @@
 - id: t1-05
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: I have two brothers.
   chunks:
     - { id: ich,     surface: "Ich",         neutralSurface: "ich",         role: PRON_NOM }
@@ -69,6 +74,7 @@
 - id: t1-06
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: She speaks German very well.
   chunks:
     - { id: sie,     surface: "Sie",      neutralSurface: "sie",      role: PRON_NOM }
@@ -82,6 +88,7 @@
 - id: t1-07
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: We have lived in Aachen for three years.
   chunks:
     - { id: wir,    surface: "Wir",              neutralSurface: "wir",              role: PRON_NOM }
@@ -93,6 +100,7 @@
 - id: t1-08
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: My daughter goes to school at eight.
   chunks:
     - { id: tochter, surface: "Meine Tochter", neutralSurface: "meine Tochter", role: SUBJ }
@@ -104,6 +112,7 @@
 - id: t1-09
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: We are going to Italy in the summer.
   chunks:
     - { id: wir,     surface: "Wir",          neutralSurface: "wir",          role: PRON_NOM }
@@ -115,6 +124,7 @@
 - id: t1-10
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: I go to the cinema on Saturdays.
   chunks:
     - { id: ich,      surface: "Ich",      neutralSurface: "ich",      role: PRON_NOM }
@@ -126,6 +136,7 @@
 - id: t1-11
   tier: 1
   ruleId: tekamolo-voll
+  verified: true
   gloss: He cycles to work.
   chunks:
     - { id: er,     surface: "Er",              neutralSurface: "er",              role: PRON_NOM }
@@ -139,6 +150,7 @@
 - id: t1-12
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: The train arrives in ten minutes.
   chunks:
     - { id: zug,   surface: "Der Zug",         neutralSurface: "der Zug",         role: SUBJ }
@@ -149,6 +161,7 @@
 - id: t1-13
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: The bus runs every hour.
   chunks:
     - { id: bus,    surface: "Der Bus",     neutralSurface: "der Bus",     role: SUBJ }
@@ -159,6 +172,7 @@
 - id: t1-14
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: The museum opens at ten.
   chunks:
     - { id: museum,  surface: "Das Museum",  neutralSurface: "das Museum",  role: SUBJ }
@@ -169,6 +183,7 @@
 - id: t1-15
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: My parents are coming on Friday.
   chunks:
     - { id: eltern,  surface: "Meine Eltern", neutralSurface: "meine Eltern", role: SUBJ }
@@ -179,6 +194,7 @@
 - id: t1-16
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: The child is already asleep.
   chunks:
     - { id: kind,     surface: "Das Kind", neutralSurface: "das Kind", role: SUBJ }
@@ -189,6 +205,7 @@
 - id: t1-17
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: My sister works in Berlin.
   chunks:
     - { id: schwester, surface: "Meine Schwester", neutralSurface: "meine Schwester", role: SUBJ }
@@ -199,6 +216,7 @@
 - id: t1-18
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: The children are playing in the garden.
   chunks:
     - { id: kinder,  surface: "Die Kinder", neutralSurface: "die Kinder", role: SUBJ }
@@ -209,6 +227,7 @@
 - id: t1-19
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: She lives with her parents.
   chunks:
     - { id: sie,    surface: "Sie",               neutralSurface: "sie",               role: PRON_NOM }
@@ -219,6 +238,7 @@
 - id: t1-20
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: I live on the third floor.
   chunks:
     - { id: ich,   surface: "Ich",              neutralSurface: "ich",              role: PRON_NOM }
@@ -231,6 +251,7 @@
 - id: t1-21
   tier: 1
   ruleId: praedikativ-final
+  verified: true
   gloss: I'm off at the weekend.
   chunks:
     - { id: ich,  surface: "Ich",           neutralSurface: "ich",           role: PRON_NOM }
@@ -242,6 +263,7 @@
 - id: t1-22
   tier: 1
   ruleId: praedikativ-final
+  verified: true
   gloss: The weather is lovely today.
   chunks:
     - { id: wetter, surface: "Das Wetter", neutralSurface: "das Wetter", role: SUBJ }
@@ -253,6 +275,7 @@
 - id: t1-23
   tier: 1
   ruleId: praedikativ-final
+  verified: true
   gloss: I'm tired today.
   chunks:
     - { id: ich,   surface: "Ich",   neutralSurface: "ich",   role: PRON_NOM }
@@ -264,6 +287,7 @@
 - id: t1-24
   tier: 1
   ruleId: praedikativ-final
+  verified: true
   gloss: The coffee is too hot.
   chunks:
     - { id: kaffee, surface: "Der Kaffee", neutralSurface: "der Kaffee", role: SUBJ }
@@ -282,6 +306,7 @@
 - id: t1-25
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: I like eating pizza.
   chunks:
     - { id: ich,   surface: "Ich",   neutralSurface: "ich",   role: PRON_NOM }
@@ -293,6 +318,7 @@
 - id: t1-26
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: She studies German hard.
   chunks:
     - { id: sie,      surface: "Sie",     neutralSurface: "sie",     role: PRON_NOM }
@@ -304,6 +330,7 @@
 - id: t1-27
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: The food tastes very good.
   chunks:
     - { id: essen,    surface: "Das Essen", neutralSurface: "das Essen", role: SUBJ }
@@ -314,6 +341,7 @@
 - id: t1-28
   tier: 1
   ruleId: tekamolo-voll
+  verified: true
   gloss: The child likes playing in the park.
   chunks:
     - { id: kind,   surface: "Das Kind", neutralSurface: "das Kind", role: SUBJ }
@@ -325,6 +353,7 @@
 - id: t1-29
   tier: 1
   ruleId: tekamolo-voll
+  verified: true
   gloss: We are cooking together this evening.
   chunks:
     - { id: wir,      surface: "Wir",         neutralSurface: "wir",         role: PRON_NOM }
@@ -336,6 +365,7 @@
 - id: t1-30
   tier: 1
   ruleId: tekamolo-voll
+  verified: true
   gloss: She takes the bus every day.
   chunks:
     - { id: sie,    surface: "Sie",         neutralSurface: "sie",         role: PRON_NOM }
@@ -349,6 +379,7 @@
 - id: t1-31
   tier: 1
   ruleId: tekamolo-voll
+  verified: true
   gloss: He is staying home because of his cold.
   chunks:
     - { id: er,     surface: "Er",                  neutralSurface: "er",                  role: PRON_NOM }
@@ -360,6 +391,7 @@
 - id: t1-32
   tier: 1
   ruleId: tekamolo-voll
+  verified: true
   gloss: I need a suitcase for the trip.
   chunks:
     - { id: ich,     surface: "Ich",             neutralSurface: "ich",             role: PRON_NOM }
@@ -371,6 +403,7 @@
 - id: t1-33
   tier: 1
   ruleId: tekamolo-voll
+  verified: true
   gloss: We are driving to France by car in August.
   chunks:
     - { id: wir,        surface: "Wir",             neutralSurface: "wir",             role: PRON_NOM }
@@ -385,6 +418,7 @@
 - id: t1-34
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: We have breakfast at eight.
   chunks:
     - { id: wir,  surface: "Wir",           neutralSurface: "wir",          role: PRON_NOM }
@@ -395,6 +429,7 @@
 - id: t1-35
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: My mother works at the hospital.
   chunks:
     - { id: mutter,   surface: "Meine Mutter",   neutralSurface: "meine Mutter",   role: SUBJ }
@@ -405,6 +440,7 @@
 - id: t1-36
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: The supermarket closes at eight.
   chunks:
     - { id: markt, surface: "Der Supermarkt", neutralSurface: "der Supermarkt", role: SUBJ }
@@ -415,6 +451,7 @@
 - id: t1-37
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: I am going to Hamburg tomorrow.
   chunks:
     - { id: ich,     surface: "Ich",          neutralSurface: "ich",          role: PRON_NOM }
@@ -426,6 +463,7 @@
 - id: t1-38
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: We are staying home today.
   chunks:
     - { id: wir,     surface: "Wir",      neutralSurface: "wir",      role: PRON_NOM }
@@ -437,6 +475,7 @@
 - id: t1-39
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: I am looking for my key.
   chunks:
     - { id: ich,   surface: "Ich",                neutralSurface: "ich",                role: PRON_NOM }
@@ -447,6 +486,7 @@
 - id: t1-40
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: My husband does not drink coffee.
   chunks:
     - { id: mann,   surface: "Mein Mann",     neutralSurface: "mein Mann",     role: SUBJ }
@@ -457,6 +497,7 @@
 - id: t1-41
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: I do not have time today.
   chunks:
     - { id: ich,   surface: "Ich",        neutralSurface: "ich",        role: PRON_NOM }
@@ -468,6 +509,7 @@
 - id: t1-42
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: The book costs twelve euros.
   chunks:
     - { id: buch,   surface: "Das Buch",   neutralSurface: "das Buch",   role: SUBJ }
@@ -478,6 +520,7 @@
 - id: t1-43
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: The lesson starts at nine.
   chunks:
     - { id: unt,     surface: "Der Unterricht", neutralSurface: "der Unterricht", role: SUBJ }
@@ -488,6 +531,7 @@
 - id: t1-44
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: I work Monday to Friday.
   chunks:
     - { id: ich,     surface: "Ich",                    neutralSurface: "ich",                    role: PRON_NOM }
@@ -498,6 +542,7 @@
 - id: t1-45
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: My flat is in the centre.
   chunks:
     - { id: wohnung, surface: "Meine Wohnung", neutralSurface: "meine Wohnung", role: SUBJ }
@@ -508,6 +553,7 @@
 - id: t1-46
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: The dog sleeps in the living room.
   chunks:
     - { id: hund,   surface: "Der Hund",      neutralSurface: "der Hund",      role: SUBJ }
@@ -518,6 +564,7 @@
 - id: t1-47
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: We have lived in Munich since May.
   chunks:
     - { id: wir,    surface: "Wir",         neutralSurface: "wir",         role: PRON_NOM }
@@ -529,6 +576,7 @@
 - id: t1-48
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: She comes from Spain.
   chunks:
     - { id: sie,     surface: "Sie",         neutralSurface: "sie",         role: PRON_NOM }
@@ -539,6 +587,7 @@
 - id: t1-49
   tier: 1
   ruleId: praedikativ-final
+  verified: true
   gloss: The room is very small.
   chunks:
     - { id: zimmer, surface: "Das Zimmer", neutralSurface: "das Zimmer", role: SUBJ }
@@ -549,6 +598,7 @@
 - id: t1-50
   tier: 1
   ruleId: praedikativ-final
+  verified: true
   gloss: The children are hungry.
   chunks:
     - { id: kinder,  surface: "Die Kinder", neutralSurface: "die Kinder", role: SUBJ }
@@ -569,6 +619,7 @@
 - id: t1-51
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: The shop opens at nine.
   chunks:
     - { id: laden,  surface: "Der Laden",    neutralSurface: "der Laden",    role: SUBJ }
@@ -579,6 +630,7 @@
 - id: t1-52
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: The concert starts at eight.
   chunks:
     - { id: konzert, surface: "Das Konzert", neutralSurface: "das Konzert", role: SUBJ }
@@ -589,6 +641,7 @@
 - id: t1-53
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: My friend is coming on Sunday.
   chunks:
     - { id: freund,  surface: "Meine Freundin", neutralSurface: "meine Freundin", role: SUBJ }
@@ -599,6 +652,7 @@
 - id: t1-54
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: We are eating in an hour.
   chunks:
     - { id: wir,    surface: "Wir",           neutralSurface: "wir",           role: PRON_NOM }
@@ -609,6 +663,7 @@
 - id: t1-55
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: The holidays start in July.
   chunks:
     - { id: ferien,  surface: "Die Ferien",  neutralSurface: "die Ferien",  role: SUBJ }
@@ -621,6 +676,7 @@
 - id: t1-56
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: My brother lives in Vienna.
   chunks:
     - { id: bruder, surface: "Mein Bruder", neutralSurface: "mein Bruder", role: SUBJ }
@@ -631,6 +687,7 @@
 - id: t1-57
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: The keys are in the kitchen.
   chunks:
     - { id: schl,   surface: "Die Schlüssel", neutralSurface: "die Schlüssel", role: SUBJ }
@@ -641,6 +698,7 @@
 - id: t1-58
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: My colleagues work in Frankfurt.
   chunks:
     - { id: koll,   surface: "Meine Kollegen", neutralSurface: "meine Kollegen", role: SUBJ }
@@ -651,6 +709,7 @@
 - id: t1-59
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: The car is in the garage.
   chunks:
     - { id: auto,   surface: "Das Auto",     neutralSurface: "das Auto",     role: SUBJ }
@@ -661,6 +720,7 @@
 - id: t1-60
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: We are sitting in the garden today.
   chunks:
     - { id: wir,    surface: "Wir",       neutralSurface: "wir",       role: PRON_NOM }
@@ -674,6 +734,7 @@
 - id: t1-61
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: I am going to the doctor tomorrow.
   chunks:
     - { id: ich,    surface: "Ich",         neutralSurface: "ich",         role: PRON_NOM }
@@ -685,6 +746,7 @@
 - id: t1-62
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: The children are walking to school.
   chunks:
     - { id: kinder, surface: "Die Kinder",   neutralSurface: "die Kinder",   role: SUBJ }
@@ -695,6 +757,7 @@
 - id: t1-63
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: We are flying to Greece in September.
   chunks:
     - { id: wir,    surface: "Wir",              neutralSurface: "wir",              role: PRON_NOM }
@@ -706,6 +769,7 @@
 - id: t1-64
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: She is driving into town.
   chunks:
     - { id: sie,    surface: "Sie",          neutralSurface: "sie",          role: PRON_NOM }
@@ -716,6 +780,7 @@
 - id: t1-65
   tier: 1
   ruleId: tekamolo-te-lo
+  verified: true
   gloss: My parents are coming to Berlin in May.
   chunks:
     - { id: eltern, surface: "Meine Eltern", neutralSurface: "meine Eltern", role: SUBJ }
@@ -729,6 +794,7 @@
 - id: t1-66
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: I am reading a book.
   chunks:
     - { id: ich,   surface: "Ich",       neutralSurface: "ich",       role: PRON_NOM }
@@ -739,6 +805,7 @@
 - id: t1-67
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: We are watching a film this evening.
   chunks:
     - { id: wir,   surface: "Wir",         neutralSurface: "wir",         role: PRON_NOM }
@@ -750,6 +817,7 @@
 - id: t1-68
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: She is writing an email.
   chunks:
     - { id: sie,     surface: "Sie",         neutralSurface: "sie",         role: PRON_NOM }
@@ -760,6 +828,7 @@
 - id: t1-69
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: I need a new jacket.
   chunks:
     - { id: ich,     surface: "Ich",              neutralSurface: "ich",              role: PRON_NOM }
@@ -770,6 +839,7 @@
 - id: t1-70
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: My son is learning English at school.
   chunks:
     - { id: sohn,    surface: "Mein Sohn",     neutralSurface: "mein Sohn",     role: SUBJ }
@@ -781,6 +851,7 @@
 - id: t1-71
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: We are buying tickets today.
   chunks:
     - { id: wir,    surface: "Wir",    neutralSurface: "wir",    role: PRON_NOM }
@@ -792,6 +863,7 @@
 - id: t1-72
   tier: 1
   ruleId: v2-deklarativ
+  verified: true
   gloss: The children are drinking milk.
   chunks:
     - { id: kinder, surface: "Die Kinder", neutralSurface: "die Kinder", role: SUBJ }
@@ -804,6 +876,7 @@
 - id: t1-73
   tier: 1
   ruleId: praedikativ-final
+  verified: true
   gloss: The exercise is easy.
   chunks:
     - { id: aufgabe, surface: "Die Aufgabe", neutralSurface: "die Aufgabe", role: SUBJ }
@@ -814,6 +887,7 @@
 - id: t1-74
   tier: 1
   ruleId: praedikativ-final
+  verified: true
   gloss: The weather is bad today.
   chunks:
     - { id: wetter,  surface: "Das Wetter", neutralSurface: "das Wetter", role: SUBJ }
@@ -825,6 +899,7 @@
 - id: t1-75
   tier: 1
   ruleId: praedikativ-final
+  verified: true
   gloss: My apartment is small but nice.
   chunks:
     - { id: wohnung, surface: "Meine Wohnung",   neutralSurface: "meine Wohnung",   role: SUBJ }
@@ -835,6 +910,7 @@
 - id: t1-76
   tier: 1
   ruleId: praedikativ-final
+  verified: true
   gloss: The train is delayed again.
   chunks:
     - { id: zug,    surface: "Der Zug",     neutralSurface: "der Zug",     role: SUBJ }
@@ -846,6 +922,7 @@
 - id: t1-77
   tier: 1
   ruleId: praedikativ-final
+  verified: true
   gloss: I am ready.
   chunks:
     - { id: ich,    surface: "Ich",    neutralSurface: "ich",    role: PRON_NOM }
@@ -858,6 +935,7 @@
 - id: t1-78
   tier: 1
   ruleId: tekamolo-voll
+  verified: true
   gloss: He speaks very quietly.
   chunks:
     - { id: er,      surface: "Er",           neutralSurface: "er",           role: PRON_NOM }
@@ -868,6 +946,7 @@
 - id: t1-79
   tier: 1
   ruleId: tekamolo-voll
+  verified: true
   gloss: We are travelling to Hamburg by train.
   chunks:
     - { id: wir,     surface: "Wir",          neutralSurface: "wir",          role: PRON_NOM }
@@ -879,6 +958,7 @@
 - id: t1-80
   tier: 1
   ruleId: tekamolo-voll
+  verified: true
   gloss: She works at home on Fridays.
   chunks:
     - { id: sie,      surface: "Sie",        neutralSurface: "sie",        role: PRON_NOM }

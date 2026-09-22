@@ -217,10 +217,12 @@ mechanic hold attention for a fortnight?**
 
 Prerequisites, in order:
 
-1. A German speaker has verified the bank — `GERMAN-REVIEW.md`. **Blocking.**
-   Closed testers learning wrong German is worse than no test.
+1. ~~A German speaker has verified the bank~~ — done. All 130 sentences carry
+   `verified: true`; see the verification-status note in `GERMAN-REVIEW.md`
+   for exactly what the review covered.
 2. A real device build succeeds — E0.5, still open.
 3. Content reaches roughly 370 sentences across tiers 1–3. Currently 130.
+   **This is now the long pole.**
 4. Icon, feature graphic and screenshots exist — E7.3.
 5. Privacy policy has a public URL.
 

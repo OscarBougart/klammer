@@ -21,6 +21,7 @@
 - id: t3-01
   tier: 3
   ruleId: dativ-vor-akkusativ
+  verified: true
   gloss: I am giving my mother a book for her birthday.
   chunks:
     - { id: ich,     surface: "Ich",             neutralSurface: "ich",             role: PRON_NOM }
@@ -33,6 +34,7 @@
 - id: t3-02
   tier: 3
   ruleId: dativ-vor-akkusativ
+  verified: true
   gloss: We sent our parents a photo.
   chunks:
     - { id: wir,    surface: "Wir",            neutralSurface: "wir",            role: PRON_NOM }
@@ -45,6 +47,7 @@
 - id: t3-03
   tier: 3
   ruleId: dativ-vor-akkusativ
+  verified: true
   gloss: She is showing her friend a photo tomorrow.
   chunks:
     - { id: sie,    surface: "Sie",             neutralSurface: "sie",             role: PRON_NOM }
@@ -57,6 +60,7 @@
 - id: t3-04
   tier: 3
   ruleId: dativ-vor-akkusativ
+  verified: true
   gloss: I wrote my brother an email yesterday.
   chunks:
     - { id: ich,     surface: "Ich",           neutralSurface: "ich",           role: PRON_NOM }
@@ -70,6 +74,7 @@
 - id: t3-05
   tier: 3
   ruleId: dativ-vor-akkusativ
+  verified: true
   gloss: The doctor prescribed me a medicine.
   chunks:
     - { id: arzt,    surface: "Der Arzt",         neutralSurface: "der Arzt",         role: SUBJ }
@@ -84,6 +89,7 @@
 - id: t3-06
   tier: 3
   ruleId: pronomen-akk-vor-dat
+  verified: true
   gloss: I will give it to you tomorrow.
   chunks:
     - { id: ich,    surface: "Ich",    neutralSurface: "ich",    role: PRON_NOM }
@@ -96,6 +102,7 @@
 - id: t3-07
   tier: 3
   ruleId: pronomen-akk-vor-dat
+  verified: true
   gloss: He told me it yesterday.
   chunks:
     - { id: er,      surface: "Er",      neutralSurface: "er",      role: PRON_NOM }
@@ -109,6 +116,7 @@
 - id: t3-08
   tier: 3
   ruleId: pronomen-akk-vor-dat
+  verified: true
   gloss: We are sending it to you this evening.
   chunks:
     - { id: wir,    surface: "Wir",         neutralSurface: "wir",         role: PRON_NOM }
@@ -123,6 +131,7 @@
 - id: t3-09
   tier: 3
   ruleId: pronomen-vor-nomen
+  verified: true
   gloss: He still has not given me the book back.
   chunks:
     - { id: er,   surface: "Er",             neutralSurface: "er",             role: PRON_NOM }
@@ -136,6 +145,7 @@
 - id: t3-10
   tier: 3
   ruleId: pronomen-vor-nomen
+  verified: true
   gloss: We showed them the flat.
   chunks:
     - { id: wir,     surface: "Wir",           neutralSurface: "wir",           role: PRON_NOM }
@@ -148,6 +158,7 @@
 - id: t3-11
   tier: 3
   ruleId: pronomen-vor-nomen
+  verified: true
   gloss: We are bringing you a present tomorrow.
   chunks:
     - { id: wir,    surface: "Wir",         neutralSurface: "wir",         role: PRON_NOM }
@@ -160,6 +171,7 @@
 - id: t3-12
   tier: 3
   ruleId: pronomen-vor-nomen
+  verified: true
   gloss: She did not answer him.
   chunks:
     - { id: sie,   surface: "Sie",           neutralSurface: "sie",           role: PRON_NOM }
@@ -172,6 +184,7 @@
 - id: t3-13
   tier: 3
   ruleId: pronomen-vor-nomen
+  verified: true
   gloss: I cannot help you today.
   chunks:
     - { id: ich,    surface: "Ich",     neutralSurface: "ich",     role: PRON_NOM }
@@ -187,6 +200,7 @@
 - id: t3-14
   tier: 3
   ruleId: tekamolo-voll
+  verified: true
   gloss: She cycles to work every day.
   chunks:
     - { id: sie,    surface: "Sie",             neutralSurface: "sie",             role: PRON_NOM }
@@ -199,6 +213,7 @@
 - id: t3-15
   tier: 3
   ruleId: tekamolo-voll
+  verified: true
   gloss: I am going to Cologne tomorrow because of the exam.
   chunks:
     - { id: ich,   surface: "Ich",               neutralSurface: "ich",               role: PRON_NOM }
@@ -211,6 +226,7 @@
 - id: t3-16
   tier: 3
   ruleId: tekamolo-voll
+  verified: true
   gloss: He is coming home by train tomorrow.
   chunks:
     - { id: er,     surface: "Er",          neutralSurface: "er",          role: PRON_NOM }
@@ -223,6 +239,7 @@
 - id: t3-17
   tier: 3
   ruleId: tekamolo-voll
+  verified: true
   gloss: She has been working at home since January because of the children.
   chunks:
     - { id: sie,     surface: "Sie",              neutralSurface: "sie",              role: PRON_NOM }
@@ -235,6 +252,7 @@
 - id: t3-18
   tier: 3
   ruleId: tekamolo-voll
+  verified: true
   gloss: We like going to the mountains in winter.
   chunks:
     - { id: wir,    surface: "Wir",           neutralSurface: "wir",           role: PRON_NOM }
@@ -247,6 +265,7 @@
 - id: t3-19
   tier: 3
   ruleId: tekamolo-voll
+  verified: true
   gloss: I am travelling to Vienna by train on Monday.
   chunks:
     - { id: ich,    surface: "Ich",         neutralSurface: "ich",         role: PRON_NOM }
@@ -261,6 +280,7 @@
 - id: t3-20
   tier: 3
   ruleId: negation-vor-klammer
+  verified: true
   gloss: I have not read the book yet.
   chunks:
     - { id: ich,     surface: "Ich",         neutralSurface: "ich",         role: PRON_NOM }
@@ -273,6 +293,7 @@
 - id: t3-21
   tier: 3
   ruleId: negation-vor-klammer
+  verified: true
   gloss: He did not drive to work yesterday.
   chunks:
     - { id: er,      surface: "Er",         neutralSurface: "er",         role: PRON_NOM }
@@ -286,6 +307,7 @@
 - id: t3-22
   tier: 3
   ruleId: negation-vor-klammer
+  verified: true
   gloss: We did not understand the film.
   chunks:
     - { id: wir,   surface: "Wir",          neutralSurface: "wir",          role: PRON_NOM }
@@ -298,6 +320,7 @@
 - id: t3-23
   tier: 3
   ruleId: negation-vor-klammer
+  verified: true
   gloss: She does not want to eat the soup.
   chunks:
     - { id: sie,   surface: "Sie",        neutralSurface: "sie",        role: PRON_NOM }
@@ -310,6 +333,7 @@
 - id: t3-24
   tier: 3
   ruleId: negation-vor-klammer
+  verified: true
   gloss: I did not see him yesterday.
   chunks:
     - { id: ich,     surface: "Ich",       neutralSurface: "ich",       role: PRON_NOM }

@@ -16,6 +16,7 @@
 - id: t2-01
   tier: 2
   ruleId: satzklammer-trennbar
+  verified: true
   gloss: I am picking my sister up from the station tomorrow.
   chunks:
     - { id: ich,     surface: "Ich",             neutralSurface: "ich",             role: PRON_NOM }
@@ -29,6 +30,7 @@
 - id: t2-02
   tier: 2
   ruleId: satzklammer-trennbar
+  verified: true
   gloss: I call you every evening.
   chunks:
     - { id: ich,   surface: "Ich",         neutralSurface: "ich",         role: PRON_NOM }
@@ -41,6 +43,7 @@
 - id: t2-03
   tier: 2
   ruleId: satzklammer-trennbar
+  verified: true
   gloss: We do the shopping at the supermarket on Saturdays.
   chunks:
     - { id: wir,      surface: "Wir",             neutralSurface: "wir",             role: PRON_NOM }
@@ -53,6 +56,7 @@
 - id: t2-04
   tier: 2
   ruleId: satzklammer-trennbar
+  verified: true
   gloss: I get up late at the weekend.
   chunks:
     - { id: ich,   surface: "Ich",           neutralSurface: "ich",           role: PRON_NOM }
@@ -65,6 +69,7 @@
 - id: t2-05
   tier: 2
   ruleId: satzklammer-trennbar
+  verified: true
   gloss: The train arrives in Berlin at ten.
   chunks:
     - { id: zug,    surface: "Der Zug",     neutralSurface: "der Zug",     role: SUBJ }
@@ -77,6 +82,7 @@
 - id: t2-06
   tier: 2
   ruleId: satzklammer-trennbar
+  verified: true
   gloss: We are inviting friends over on Sunday.
   chunks:
     - { id: wir,     surface: "Wir",        neutralSurface: "wir",        role: PRON_NOM }
@@ -89,6 +95,7 @@
 - id: t2-07
   tier: 2
   ruleId: satzklammer-trennbar
+  verified: true
   gloss: The shop does not open on Sundays.
   chunks:
     - { id: laden,   surface: "Der Laden",  neutralSurface: "der Laden",  role: SUBJ }
@@ -103,6 +110,7 @@
 - id: t2-08
   tier: 2
   ruleId: satzklammer-perfekt
+  verified: true
   gloss: We watched a film yesterday.
   chunks:
     - { id: wir,     surface: "Wir",        neutralSurface: "wir",        role: PRON_NOM }
@@ -115,6 +123,7 @@
 - id: t2-09
   tier: 2
   ruleId: satzklammer-perfekt
+  verified: true
   gloss: I left my key at home.
   chunks:
     - { id: ich,   surface: "Ich",                neutralSurface: "ich",                role: PRON_NOM }
@@ -127,6 +136,7 @@
 - id: t2-10
   tier: 2
   ruleId: satzklammer-perfekt
+  verified: true
   gloss: We went on a trip at the weekend.
   chunks:
     - { id: wir,     surface: "Wir",           neutralSurface: "wir",           role: PRON_NOM }
@@ -139,6 +149,7 @@
 - id: t2-11
   tier: 2
   ruleId: satzklammer-perfekt
+  verified: true
   gloss: I wrote a letter yesterday.
   chunks:
     - { id: ich,     surface: "Ich",           neutralSurface: "ich",           role: PRON_NOM }
@@ -151,6 +162,7 @@
 - id: t2-12
   tier: 2
   ruleId: satzklammer-perfekt
+  verified: true
   gloss: We drove to Italy in the summer.
   chunks:
     - { id: wir,     surface: "Wir",          neutralSurface: "wir",          role: PRON_NOM }
@@ -163,6 +175,7 @@
 - id: t2-13
   tier: 2
   ruleId: satzklammer-perfekt
+  verified: true
   gloss: He helped me yesterday.
   chunks:
     - { id: er,      surface: "Er",       neutralSurface: "er",       role: PRON_NOM }
@@ -175,6 +188,7 @@
 - id: t2-14
   tier: 2
   ruleId: satzklammer-perfekt
+  verified: true
   gloss: We ate at the restaurant yesterday.
   chunks:
     - { id: wir,     surface: "Wir",             neutralSurface: "wir",             role: PRON_NOM }
@@ -187,6 +201,7 @@
 - id: t2-15
   tier: 2
   ruleId: satzklammer-perfekt
+  verified: true
   gloss: She worked late yesterday evening.
   chunks:
     - { id: sie,   surface: "Sie",           neutralSurface: "sie",           role: PRON_NOM }
@@ -201,6 +216,7 @@
 - id: t2-16
   tier: 2
   ruleId: satzklammer-modal
+  verified: true
   gloss: I have to go to the dentist tomorrow.
   chunks:
     - { id: ich,   surface: "Ich",          neutralSurface: "ich",          role: PRON_NOM }
@@ -213,6 +229,7 @@
 - id: t2-17
   tier: 2
   ruleId: satzklammer-modal
+  verified: true
   gloss: We want to go to the cinema at the weekend.
   chunks:
     - { id: wir,   surface: "Wir",           neutralSurface: "wir",           role: PRON_NOM }
@@ -225,6 +242,7 @@
 - id: t2-18
   tier: 2
   ruleId: satzklammer-modal
+  verified: true
   gloss: She would like to fly to Spain in the summer.
   chunks:
     - { id: sie,     surface: "Sie",          neutralSurface: "sie",          role: PRON_NOM }
@@ -237,6 +255,7 @@
 - id: t2-19
   tier: 2
   ruleId: satzklammer-modal
+  verified: true
   gloss: You should drink more water every day.
   chunks:
     - { id: du,     surface: "Du",          neutralSurface: "du",          role: PRON_NOM }
@@ -249,6 +268,7 @@
 - id: t2-20
   tier: 2
   ruleId: satzklammer-modal
+  verified: true
   gloss: He has to drive to work early tomorrow.
   chunks:
     - { id: er,     surface: "Er",           neutralSurface: "er",           role: PRON_NOM }
@@ -261,6 +281,7 @@
 - id: t2-21
   tier: 2
   ruleId: satzklammer-modal
+  verified: true
   gloss: I am allowed to stay longer today.
   chunks:
     - { id: ich,    surface: "Ich",      neutralSurface: "ich",      role: PRON_NOM }
@@ -275,6 +296,7 @@
 - id: t2-22
   tier: 2
   ruleId: negation-vor-klammer
+  verified: true
   gloss: You do not have to work today.
   chunks:
     - { id: du,    surface: "Du",       neutralSurface: "du",       role: PRON_NOM }
@@ -287,6 +309,7 @@
 - id: t2-23
   tier: 2
   ruleId: negation-vor-klammer
+  verified: true
   gloss: I cannot come today.
   chunks:
     - { id: ich,   surface: "Ich",    neutralSurface: "ich",    role: PRON_NOM }
@@ -299,6 +322,7 @@
 - id: t2-24
   tier: 2
   ruleId: negation-vor-klammer
+  verified: true
   gloss: We have not seen the film yet.
   chunks:
     - { id: wir,     surface: "Wir",         neutralSurface: "wir",         role: PRON_NOM }
@@ -311,6 +335,7 @@
 - id: t2-25
   tier: 2
   ruleId: negation-vor-klammer
+  verified: true
   gloss: She did not call me yesterday.
   chunks:
     - { id: sie,     surface: "Sie",        neutralSurface: "sie",        role: PRON_NOM }
@@ -324,6 +349,7 @@
 - id: t2-26
   tier: 2
   ruleId: negation-vor-klammer
+  verified: true
   gloss: I did not sleep well last night.
   chunks:
     - { id: ich,      surface: "Ich",           neutralSurface: "ich",           role: PRON_NOM }
