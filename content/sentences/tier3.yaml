@@ -23,7 +23,7 @@
   ruleId: dativ-vor-akkusativ
   gloss: I am giving my mother a book for her birthday.
   chunks:
-    - { id: ich,     surface: "Ich",             neutralSurface: "ich",             role: SUBJ }
+    - { id: ich,     surface: "Ich",             neutralSurface: "ich",             role: PRON_NOM }
     - { id: schenke, surface: "schenke",         neutralSurface: "schenke",         role: FIN }
     - { id: mutter,  surface: "Meiner Mutter",   neutralSurface: "meiner Mutter",   role: DAT, definite: true }
     - { id: gb,      surface: "Zum Geburtstag",  neutralSurface: "zum Geburtstag",  role: KAUS }
@@ -35,7 +35,7 @@
   ruleId: dativ-vor-akkusativ
   gloss: We sent our parents a photo.
   chunks:
-    - { id: wir,    surface: "Wir",            neutralSurface: "wir",            role: SUBJ }
+    - { id: wir,    surface: "Wir",            neutralSurface: "wir",            role: PRON_NOM }
     - { id: haben,  surface: "haben",          neutralSurface: "haben",          role: FIN }
     - { id: eltern, surface: "Unseren Eltern", neutralSurface: "unseren Eltern", role: DAT, definite: true }
     - { id: foto,   surface: "Ein Foto",       neutralSurface: "ein Foto",       role: AKK, definite: false }
@@ -47,7 +47,7 @@
   ruleId: dativ-vor-akkusativ
   gloss: She is showing her friend a photo tomorrow.
   chunks:
-    - { id: sie,    surface: "Sie",             neutralSurface: "sie",             role: SUBJ }
+    - { id: sie,    surface: "Sie",             neutralSurface: "sie",             role: PRON_NOM }
     - { id: zeigt,  surface: "zeigt",           neutralSurface: "zeigt",           role: FIN }
     - { id: freund, surface: "Ihrer Freundin",  neutralSurface: "ihrer Freundin",  role: DAT, definite: true }
     - { id: morgen, surface: "Morgen",          neutralSurface: "morgen",          role: TEMP }
@@ -59,7 +59,7 @@
   ruleId: dativ-vor-akkusativ
   gloss: I wrote my brother an email yesterday.
   chunks:
-    - { id: ich,     surface: "Ich",           neutralSurface: "ich",           role: SUBJ }
+    - { id: ich,     surface: "Ich",           neutralSurface: "ich",           role: PRON_NOM }
     - { id: habe,    surface: "habe",          neutralSurface: "habe",          role: FIN }
     - { id: bruder,  surface: "Meinem Bruder", neutralSurface: "meinem Bruder", role: DAT, definite: true }
     - { id: gestern, surface: "Gestern",       neutralSurface: "gestern",       role: TEMP }
@@ -86,7 +86,7 @@
   ruleId: pronomen-akk-vor-dat
   gloss: I will give it to you tomorrow.
   chunks:
-    - { id: ich,    surface: "Ich",    neutralSurface: "ich",    role: SUBJ }
+    - { id: ich,    surface: "Ich",    neutralSurface: "ich",    role: PRON_NOM }
     - { id: gebe,   surface: "gebe",   neutralSurface: "gebe",   role: FIN }
     - { id: es,     surface: "es",     neutralSurface: "es",     role: PRON_AKK, stressable: false }
     - { id: dir,    surface: "dir",    neutralSurface: "dir",    role: PRON_DAT }
@@ -98,7 +98,7 @@
   ruleId: pronomen-akk-vor-dat
   gloss: He told me it yesterday.
   chunks:
-    - { id: er,      surface: "Er",      neutralSurface: "er",      role: SUBJ }
+    - { id: er,      surface: "Er",      neutralSurface: "er",      role: PRON_NOM }
     - { id: hat,     surface: "hat",     neutralSurface: "hat",     role: FIN }
     - { id: es,      surface: "es",      neutralSurface: "es",      role: PRON_AKK, stressable: false }
     - { id: mir,     surface: "mir",     neutralSurface: "mir",     role: PRON_DAT }
@@ -111,7 +111,7 @@
   ruleId: pronomen-akk-vor-dat
   gloss: We are sending it to you this evening.
   chunks:
-    - { id: wir,    surface: "Wir",         neutralSurface: "wir",         role: SUBJ }
+    - { id: wir,    surface: "Wir",         neutralSurface: "wir",         role: PRON_NOM }
     - { id: schick, surface: "schicken",    neutralSurface: "schicken",    role: FIN }
     - { id: es,     surface: "es",          neutralSurface: "es",          role: PRON_AKK, stressable: false }
     - { id: euch,   surface: "euch",        neutralSurface: "euch",        role: PRON_DAT }
@@ -125,7 +125,7 @@
   ruleId: pronomen-vor-nomen
   gloss: He still has not given me the book back.
   chunks:
-    - { id: er,   surface: "Er",             neutralSurface: "er",             role: SUBJ }
+    - { id: er,   surface: "Er",             neutralSurface: "er",             role: PRON_NOM }
     - { id: hat,  surface: "hat",            neutralSurface: "hat",            role: FIN }
     - { id: mir,  surface: "mir",            neutralSurface: "mir",            role: PRON_DAT }
     - { id: buch, surface: "Das Buch",       neutralSurface: "das Buch",       role: AKK, definite: true }
@@ -138,7 +138,7 @@
   ruleId: pronomen-vor-nomen
   gloss: We showed them the flat.
   chunks:
-    - { id: wir,     surface: "Wir",           neutralSurface: "wir",           role: SUBJ }
+    - { id: wir,     surface: "Wir",           neutralSurface: "wir",           role: PRON_NOM }
     - { id: haben,   surface: "haben",         neutralSurface: "haben",         role: FIN }
     - { id: ihnen,   surface: "ihnen",         neutralSurface: "ihnen",         role: PRON_DAT }
     - { id: wohnung, surface: "Die Wohnung",   neutralSurface: "die Wohnung",   role: AKK, definite: true }
@@ -150,7 +150,7 @@
   ruleId: pronomen-vor-nomen
   gloss: We are bringing you a present tomorrow.
   chunks:
-    - { id: wir,    surface: "Wir",         neutralSurface: "wir",         role: SUBJ }
+    - { id: wir,    surface: "Wir",         neutralSurface: "wir",         role: PRON_NOM }
     - { id: bringen, surface: "bringen",    neutralSurface: "bringen",     role: FIN }
     - { id: euch,   surface: "euch",        neutralSurface: "euch",        role: PRON_DAT }
     - { id: morgen, surface: "Morgen",      neutralSurface: "morgen",      role: TEMP }
@@ -162,7 +162,7 @@
   ruleId: pronomen-vor-nomen
   gloss: She did not answer him.
   chunks:
-    - { id: sie,   surface: "Sie",           neutralSurface: "sie",           role: SUBJ }
+    - { id: sie,   surface: "Sie",           neutralSurface: "sie",           role: PRON_NOM }
     - { id: hat,   surface: "hat",           neutralSurface: "hat",           role: FIN }
     - { id: ihm,   surface: "ihm",           neutralSurface: "ihm",           role: PRON_DAT }
     - { id: nicht, surface: "nicht",         neutralSurface: "nicht",         role: NEG }
@@ -174,7 +174,7 @@
   ruleId: pronomen-vor-nomen
   gloss: I cannot help you today.
   chunks:
-    - { id: ich,    surface: "Ich",     neutralSurface: "ich",     role: SUBJ }
+    - { id: ich,    surface: "Ich",     neutralSurface: "ich",     role: PRON_NOM }
     - { id: kann,   surface: "kann",    neutralSurface: "kann",    role: FIN }
     - { id: dir,    surface: "dir",     neutralSurface: "dir",     role: PRON_DAT }
     - { id: heute,  surface: "Heute",   neutralSurface: "heute",   role: TEMP }
@@ -189,7 +189,7 @@
   ruleId: tekamolo-voll
   gloss: She cycles to work every day.
   chunks:
-    - { id: sie,    surface: "Sie",             neutralSurface: "sie",             role: SUBJ }
+    - { id: sie,    surface: "Sie",             neutralSurface: "sie",             role: PRON_NOM }
     - { id: faehrt, surface: "fährt",           neutralSurface: "fährt",           role: FIN }
     - { id: tag,    surface: "Jeden Tag",       neutralSurface: "jeden Tag",       role: TEMP }
     - { id: rad,    surface: "Mit dem Fahrrad", neutralSurface: "mit dem Fahrrad", role: MODAL }
@@ -201,7 +201,7 @@
   ruleId: tekamolo-voll
   gloss: I am going to Cologne tomorrow because of the exam.
   chunks:
-    - { id: ich,   surface: "Ich",               neutralSurface: "ich",               role: SUBJ }
+    - { id: ich,   surface: "Ich",               neutralSurface: "ich",               role: PRON_NOM }
     - { id: fahre, surface: "fahre",             neutralSurface: "fahre",             role: FIN }
     - { id: morgen, surface: "Morgen",           neutralSurface: "morgen",            role: TEMP }
     - { id: pruef, surface: "Wegen der Prüfung", neutralSurface: "wegen der Prüfung", role: KAUS }
@@ -213,7 +213,7 @@
   ruleId: tekamolo-voll
   gloss: He is coming home by train tomorrow.
   chunks:
-    - { id: er,     surface: "Er",          neutralSurface: "er",          role: SUBJ }
+    - { id: er,     surface: "Er",          neutralSurface: "er",          role: PRON_NOM }
     - { id: kommt,  surface: "kommt",       neutralSurface: "kommt",       role: FIN }
     - { id: morgen, surface: "Morgen",      neutralSurface: "morgen",      role: TEMP }
     - { id: zug,    surface: "Mit dem Zug", neutralSurface: "mit dem Zug", role: MODAL }
@@ -225,7 +225,7 @@
   ruleId: tekamolo-voll
   gloss: She has been working at home since January because of the children.
   chunks:
-    - { id: sie,     surface: "Sie",              neutralSurface: "sie",              role: SUBJ }
+    - { id: sie,     surface: "Sie",              neutralSurface: "sie",              role: PRON_NOM }
     - { id: arbeitet, surface: "arbeitet",        neutralSurface: "arbeitet",         role: FIN }
     - { id: januar,  surface: "Seit Januar",      neutralSurface: "seit Januar",      role: TEMP }
     - { id: kinder,  surface: "Wegen der Kinder", neutralSurface: "wegen der Kinder", role: KAUS }
@@ -237,7 +237,7 @@
   ruleId: tekamolo-voll
   gloss: We like going to the mountains in winter.
   chunks:
-    - { id: wir,    surface: "Wir",           neutralSurface: "wir",           role: SUBJ }
+    - { id: wir,    surface: "Wir",           neutralSurface: "wir",           role: PRON_NOM }
     - { id: fahren, surface: "fahren",        neutralSurface: "fahren",        role: FIN }
     - { id: winter, surface: "Im Winter",     neutralSurface: "im Winter",     role: TEMP }
     - { id: gern,   surface: "Gern",          neutralSurface: "gern",          role: MODAL }
@@ -249,7 +249,7 @@
   ruleId: tekamolo-voll
   gloss: I am travelling to Vienna by train on Monday.
   chunks:
-    - { id: ich,    surface: "Ich",         neutralSurface: "ich",         role: SUBJ }
+    - { id: ich,    surface: "Ich",         neutralSurface: "ich",         role: PRON_NOM }
     - { id: fahre,  surface: "fahre",       neutralSurface: "fahre",       role: FIN }
     - { id: montag, surface: "Am Montag",   neutralSurface: "am Montag",   role: TEMP }
     - { id: zug,    surface: "Mit dem Zug", neutralSurface: "mit dem Zug", role: MODAL }
@@ -263,7 +263,7 @@
   ruleId: negation-vor-klammer
   gloss: I have not read the book yet.
   chunks:
-    - { id: ich,     surface: "Ich",         neutralSurface: "ich",         role: SUBJ }
+    - { id: ich,     surface: "Ich",         neutralSurface: "ich",         role: PRON_NOM }
     - { id: habe,    surface: "habe",        neutralSurface: "habe",        role: FIN }
     - { id: buch,    surface: "Das Buch",    neutralSurface: "das Buch",    role: AKK, definite: true }
     - { id: nn,      surface: "noch nicht",  neutralSurface: "noch nicht",  role: NEG }
@@ -275,7 +275,7 @@
   ruleId: negation-vor-klammer
   gloss: He did not drive to work yesterday.
   chunks:
-    - { id: er,      surface: "Er",         neutralSurface: "er",         role: SUBJ }
+    - { id: er,      surface: "Er",         neutralSurface: "er",         role: PRON_NOM }
     - { id: ist,     surface: "ist",        neutralSurface: "ist",        role: FIN }
     - { id: gestern, surface: "Gestern",    neutralSurface: "gestern",    role: TEMP }
     - { id: nicht,   surface: "nicht",      neutralSurface: "nicht",      role: NEG }
@@ -288,7 +288,7 @@
   ruleId: negation-vor-klammer
   gloss: We did not understand the film.
   chunks:
-    - { id: wir,   surface: "Wir",          neutralSurface: "wir",          role: SUBJ }
+    - { id: wir,   surface: "Wir",          neutralSurface: "wir",          role: PRON_NOM }
     - { id: haben, surface: "haben",        neutralSurface: "haben",        role: FIN }
     - { id: film,  surface: "Den Film",     neutralSurface: "den Film",     role: AKK, definite: true }
     - { id: nicht, surface: "nicht",        neutralSurface: "nicht",        role: NEG }
@@ -300,7 +300,7 @@
   ruleId: negation-vor-klammer
   gloss: She does not want to eat the soup.
   chunks:
-    - { id: sie,   surface: "Sie",        neutralSurface: "sie",        role: SUBJ }
+    - { id: sie,   surface: "Sie",        neutralSurface: "sie",        role: PRON_NOM }
     - { id: will,  surface: "will",       neutralSurface: "will",       role: FIN }
     - { id: suppe, surface: "Die Suppe",  neutralSurface: "die Suppe",  role: AKK, definite: true }
     - { id: nicht, surface: "nicht",      neutralSurface: "nicht",      role: NEG }
@@ -312,7 +312,7 @@
   ruleId: negation-vor-klammer
   gloss: I did not see him yesterday.
   chunks:
-    - { id: ich,     surface: "Ich",       neutralSurface: "ich",       role: SUBJ }
+    - { id: ich,     surface: "Ich",       neutralSurface: "ich",       role: PRON_NOM }
     - { id: habe,    surface: "habe",      neutralSurface: "habe",      role: FIN }
     - { id: ihn,     surface: "ihn",       neutralSurface: "ihn",       role: PRON_AKK }
     - { id: gestern, surface: "Gestern",   neutralSurface: "gestern",   role: TEMP }

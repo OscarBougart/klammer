@@ -17,7 +17,7 @@
   ruleId: v2-deklarativ
   gloss: I drink coffee in the mornings.
   chunks:
-    - { id: ich,     surface: "Ich",     neutralSurface: "ich",     role: SUBJ }
+    - { id: ich,     surface: "Ich",     neutralSurface: "ich",     role: PRON_NOM }
     - { id: trinke,  surface: "trinke",  neutralSurface: "trinke",  role: FIN }
     - { id: morgens, surface: "Morgens", neutralSurface: "morgens", role: TEMP }
     - { id: kaffee,  surface: "Kaffee",  neutralSurface: "Kaffee",  role: AKK, definite: false }
@@ -28,7 +28,7 @@
   ruleId: v2-deklarativ
   gloss: I drink tea in the evenings.
   chunks:
-    - { id: ich,    surface: "Ich",    neutralSurface: "ich",    role: SUBJ }
+    - { id: ich,    surface: "Ich",    neutralSurface: "ich",    role: PRON_NOM }
     - { id: trinke, surface: "trinke", neutralSurface: "trinke", role: FIN }
     - { id: abends, surface: "Abends", neutralSurface: "abends", role: TEMP }
     - { id: tee,    surface: "Tee",    neutralSurface: "Tee",    role: AKK, definite: false }
@@ -39,7 +39,7 @@
   ruleId: v2-deklarativ
   gloss: I have been learning German for a year.
   chunks:
-    - { id: ich,     surface: "Ich",             neutralSurface: "ich",             role: SUBJ }
+    - { id: ich,     surface: "Ich",             neutralSurface: "ich",             role: PRON_NOM }
     - { id: lerne,   surface: "lerne",           neutralSurface: "lerne",           role: FIN }
     - { id: jahr,    surface: "Seit einem Jahr", neutralSurface: "seit einem Jahr", role: TEMP }
     - { id: deutsch, surface: "Deutsch",         neutralSurface: "Deutsch",         role: AKK, definite: false }
@@ -61,7 +61,7 @@
   ruleId: v2-deklarativ
   gloss: I have two brothers.
   chunks:
-    - { id: ich,     surface: "Ich",         neutralSurface: "ich",         role: SUBJ }
+    - { id: ich,     surface: "Ich",         neutralSurface: "ich",         role: PRON_NOM }
     - { id: habe,    surface: "habe",        neutralSurface: "habe",        role: FIN }
     - { id: brueder, surface: "Zwei Brüder", neutralSurface: "zwei Brüder", role: AKK, definite: false }
   canonical: [ich, habe, brueder]
@@ -71,7 +71,7 @@
   ruleId: v2-deklarativ
   gloss: She speaks German very well.
   chunks:
-    - { id: sie,     surface: "Sie",      neutralSurface: "sie",      role: SUBJ }
+    - { id: sie,     surface: "Sie",      neutralSurface: "sie",      role: PRON_NOM }
     - { id: spricht, surface: "spricht",  neutralSurface: "spricht",  role: FIN }
     - { id: gut,     surface: "Sehr gut", neutralSurface: "sehr gut", role: MODAL }
     - { id: deutsch, surface: "Deutsch",  neutralSurface: "Deutsch",  role: AKK, definite: false }
@@ -84,7 +84,7 @@
   ruleId: tekamolo-te-lo
   gloss: We have lived in Aachen for three years.
   chunks:
-    - { id: wir,    surface: "Wir",              neutralSurface: "wir",              role: SUBJ }
+    - { id: wir,    surface: "Wir",              neutralSurface: "wir",              role: PRON_NOM }
     - { id: wohnen, surface: "wohnen",           neutralSurface: "wohnen",           role: FIN }
     - { id: seit,   surface: "Seit drei Jahren", neutralSurface: "seit drei Jahren", role: TEMP }
     - { id: aachen, surface: "In Aachen",        neutralSurface: "in Aachen",        role: LOK }
@@ -106,7 +106,7 @@
   ruleId: tekamolo-te-lo
   gloss: We are going to Italy in the summer.
   chunks:
-    - { id: wir,     surface: "Wir",          neutralSurface: "wir",          role: SUBJ }
+    - { id: wir,     surface: "Wir",          neutralSurface: "wir",          role: PRON_NOM }
     - { id: fahren,  surface: "fahren",       neutralSurface: "fahren",       role: FIN }
     - { id: sommer,  surface: "Im Sommer",    neutralSurface: "im Sommer",    role: TEMP }
     - { id: italien, surface: "Nach Italien", neutralSurface: "nach Italien", role: DIR }
@@ -117,7 +117,7 @@
   ruleId: tekamolo-te-lo
   gloss: I go to the cinema on Saturdays.
   chunks:
-    - { id: ich,      surface: "Ich",      neutralSurface: "ich",      role: SUBJ }
+    - { id: ich,      surface: "Ich",      neutralSurface: "ich",      role: PRON_NOM }
     - { id: gehe,     surface: "gehe",     neutralSurface: "gehe",     role: FIN }
     - { id: samstags, surface: "Samstags", neutralSurface: "samstags", role: TEMP }
     - { id: kino,     surface: "Ins Kino", neutralSurface: "ins Kino", role: DIR }
@@ -128,7 +128,7 @@
   ruleId: tekamolo-voll
   gloss: He cycles to work.
   chunks:
-    - { id: er,     surface: "Er",              neutralSurface: "er",              role: SUBJ }
+    - { id: er,     surface: "Er",              neutralSurface: "er",              role: PRON_NOM }
     - { id: faehrt, surface: "fährt",           neutralSurface: "fährt",           role: FIN }
     - { id: rad,    surface: "Mit dem Fahrrad", neutralSurface: "mit dem Fahrrad", role: MODAL }
     - { id: arbeit, surface: "Zur Arbeit",      neutralSurface: "zur Arbeit",      role: DIR }
@@ -211,7 +211,7 @@
   ruleId: tekamolo-te-lo
   gloss: She lives with her parents.
   chunks:
-    - { id: sie,    surface: "Sie",               neutralSurface: "sie",               role: SUBJ }
+    - { id: sie,    surface: "Sie",               neutralSurface: "sie",               role: PRON_NOM }
     - { id: wohnt,  surface: "wohnt",             neutralSurface: "wohnt",             role: FIN }
     - { id: eltern, surface: "Bei ihren Eltern",  neutralSurface: "bei ihren Eltern",  role: LOK }
   canonical: [sie, wohnt, eltern]
@@ -221,7 +221,7 @@
   ruleId: tekamolo-te-lo
   gloss: I live on the third floor.
   chunks:
-    - { id: ich,   surface: "Ich",              neutralSurface: "ich",              role: SUBJ }
+    - { id: ich,   surface: "Ich",              neutralSurface: "ich",              role: PRON_NOM }
     - { id: wohne, surface: "wohne",            neutralSurface: "wohne",            role: FIN }
     - { id: stock, surface: "Im dritten Stock", neutralSurface: "im dritten Stock", role: LOK }
   canonical: [ich, wohne, stock]
@@ -233,7 +233,7 @@
   ruleId: praedikativ-final
   gloss: I'm off at the weekend.
   chunks:
-    - { id: ich,  surface: "Ich",           neutralSurface: "ich",           role: SUBJ }
+    - { id: ich,  surface: "Ich",           neutralSurface: "ich",           role: PRON_NOM }
     - { id: habe, surface: "habe",          neutralSurface: "habe",          role: FIN }
     - { id: we,   surface: "Am Wochenende", neutralSurface: "am Wochenende", role: TEMP }
     - { id: frei, surface: "frei",          neutralSurface: "frei",          role: PRAED }
@@ -255,7 +255,7 @@
   ruleId: praedikativ-final
   gloss: I'm tired today.
   chunks:
-    - { id: ich,   surface: "Ich",   neutralSurface: "ich",   role: SUBJ }
+    - { id: ich,   surface: "Ich",   neutralSurface: "ich",   role: PRON_NOM }
     - { id: bin,   surface: "bin",   neutralSurface: "bin",   role: FIN }
     - { id: heute, surface: "Heute", neutralSurface: "heute", role: TEMP }
     - { id: muede, surface: "müde",  neutralSurface: "müde",  role: PRAED }
@@ -284,7 +284,7 @@
   ruleId: v2-deklarativ
   gloss: I like eating pizza.
   chunks:
-    - { id: ich,   surface: "Ich",   neutralSurface: "ich",   role: SUBJ }
+    - { id: ich,   surface: "Ich",   neutralSurface: "ich",   role: PRON_NOM }
     - { id: esse,  surface: "esse",  neutralSurface: "esse",  role: FIN }
     - { id: gern,  surface: "Gern",  neutralSurface: "gern",  role: MODAL }
     - { id: pizza, surface: "Pizza", neutralSurface: "Pizza", role: AKK, definite: false }
@@ -295,7 +295,7 @@
   ruleId: v2-deklarativ
   gloss: She studies German hard.
   chunks:
-    - { id: sie,      surface: "Sie",     neutralSurface: "sie",     role: SUBJ }
+    - { id: sie,      surface: "Sie",     neutralSurface: "sie",     role: PRON_NOM }
     - { id: lernt,    surface: "lernt",   neutralSurface: "lernt",   role: FIN }
     - { id: fleissig, surface: "Fleißig", neutralSurface: "fleißig", role: MODAL }
     - { id: deutsch,  surface: "Deutsch", neutralSurface: "Deutsch", role: AKK, definite: false }
@@ -327,7 +327,7 @@
   ruleId: tekamolo-voll
   gloss: We are cooking together this evening.
   chunks:
-    - { id: wir,      surface: "Wir",         neutralSurface: "wir",         role: SUBJ }
+    - { id: wir,      surface: "Wir",         neutralSurface: "wir",         role: PRON_NOM }
     - { id: kochen,   surface: "kochen",      neutralSurface: "kochen",      role: FIN }
     - { id: abend,    surface: "Heute Abend", neutralSurface: "heute Abend", role: TEMP }
     - { id: zusammen, surface: "Zusammen",    neutralSurface: "zusammen",    role: MODAL }
@@ -338,7 +338,7 @@
   ruleId: tekamolo-voll
   gloss: She takes the bus every day.
   chunks:
-    - { id: sie,    surface: "Sie",         neutralSurface: "sie",         role: SUBJ }
+    - { id: sie,    surface: "Sie",         neutralSurface: "sie",         role: PRON_NOM }
     - { id: faehrt, surface: "fährt",       neutralSurface: "fährt",       role: FIN }
     - { id: tag,    surface: "Jeden Tag",   neutralSurface: "jeden Tag",   role: TEMP }
     - { id: bus,    surface: "Mit dem Bus", neutralSurface: "mit dem Bus", role: MODAL }
@@ -351,7 +351,7 @@
   ruleId: tekamolo-voll
   gloss: He is staying home because of his cold.
   chunks:
-    - { id: er,     surface: "Er",                  neutralSurface: "er",                  role: SUBJ }
+    - { id: er,     surface: "Er",                  neutralSurface: "er",                  role: PRON_NOM }
     - { id: bleibt, surface: "bleibt",              neutralSurface: "bleibt",              role: FIN }
     - { id: erkalt, surface: "Wegen der Erkältung", neutralSurface: "wegen der Erkältung", role: KAUS }
     - { id: hause,  surface: "Zu Hause",            neutralSurface: "zu Hause",            role: LOK }
@@ -362,7 +362,7 @@
   ruleId: tekamolo-voll
   gloss: I need a suitcase for the trip.
   chunks:
-    - { id: ich,     surface: "Ich",             neutralSurface: "ich",             role: SUBJ }
+    - { id: ich,     surface: "Ich",             neutralSurface: "ich",             role: PRON_NOM }
     - { id: brauche, surface: "brauche",         neutralSurface: "brauche",         role: FIN }
     - { id: reise,   surface: "Wegen der Reise", neutralSurface: "wegen der Reise", role: KAUS }
     - { id: koffer,  surface: "Einen Koffer",    neutralSurface: "einen Koffer",    role: AKK, definite: false }
@@ -373,7 +373,7 @@
   ruleId: tekamolo-voll
   gloss: We are driving to France by car in August.
   chunks:
-    - { id: wir,        surface: "Wir",             neutralSurface: "wir",             role: SUBJ }
+    - { id: wir,        surface: "Wir",             neutralSurface: "wir",             role: PRON_NOM }
     - { id: fahren,     surface: "fahren",          neutralSurface: "fahren",          role: FIN }
     - { id: august,     surface: "Im August",       neutralSurface: "im August",       role: TEMP }
     - { id: auto,       surface: "Mit dem Auto",    neutralSurface: "mit dem Auto",    role: MODAL }
@@ -387,7 +387,7 @@
   ruleId: v2-deklarativ
   gloss: We have breakfast at eight.
   chunks:
-    - { id: wir,  surface: "Wir",           neutralSurface: "wir",          role: SUBJ }
+    - { id: wir,  surface: "Wir",           neutralSurface: "wir",          role: PRON_NOM }
     - { id: fruh, surface: "frühstücken",   neutralSurface: "frühstücken",  role: FIN }
     - { id: acht, surface: "Um acht Uhr",   neutralSurface: "um acht Uhr",  role: TEMP }
   canonical: [wir, fruh, acht]
@@ -417,7 +417,7 @@
   ruleId: tekamolo-te-lo
   gloss: I am going to Hamburg tomorrow.
   chunks:
-    - { id: ich,     surface: "Ich",          neutralSurface: "ich",          role: SUBJ }
+    - { id: ich,     surface: "Ich",          neutralSurface: "ich",          role: PRON_NOM }
     - { id: fahre,   surface: "fahre",        neutralSurface: "fahre",        role: FIN }
     - { id: morgen,  surface: "Morgen",       neutralSurface: "morgen",       role: TEMP }
     - { id: hamburg, surface: "Nach Hamburg", neutralSurface: "nach Hamburg", role: DIR }
@@ -428,7 +428,7 @@
   ruleId: tekamolo-te-lo
   gloss: We are staying home today.
   chunks:
-    - { id: wir,     surface: "Wir",      neutralSurface: "wir",      role: SUBJ }
+    - { id: wir,     surface: "Wir",      neutralSurface: "wir",      role: PRON_NOM }
     - { id: bleiben, surface: "bleiben",  neutralSurface: "bleiben",  role: FIN }
     - { id: heute,   surface: "Heute",    neutralSurface: "heute",    role: TEMP }
     - { id: hause,   surface: "Zu Hause", neutralSurface: "zu Hause", role: LOK }
@@ -439,7 +439,7 @@
   ruleId: v2-deklarativ
   gloss: I am looking for my key.
   chunks:
-    - { id: ich,   surface: "Ich",                neutralSurface: "ich",                role: SUBJ }
+    - { id: ich,   surface: "Ich",                neutralSurface: "ich",                role: PRON_NOM }
     - { id: suche, surface: "suche",              neutralSurface: "suche",              role: FIN }
     - { id: schl,  surface: "Meinen Schlüssel",   neutralSurface: "meinen Schlüssel",   role: AKK, definite: true }
   canonical: [ich, suche, schl]
@@ -459,7 +459,7 @@
   ruleId: v2-deklarativ
   gloss: I do not have time today.
   chunks:
-    - { id: ich,   surface: "Ich",        neutralSurface: "ich",        role: SUBJ }
+    - { id: ich,   surface: "Ich",        neutralSurface: "ich",        role: PRON_NOM }
     - { id: habe,  surface: "habe",       neutralSurface: "habe",       role: FIN }
     - { id: heute, surface: "Heute",      neutralSurface: "heute",      role: TEMP }
     - { id: zeit,  surface: "Keine Zeit", neutralSurface: "keine Zeit", role: AKK, definite: false }
@@ -490,7 +490,7 @@
   ruleId: v2-deklarativ
   gloss: I work Monday to Friday.
   chunks:
-    - { id: ich,     surface: "Ich",                    neutralSurface: "ich",                    role: SUBJ }
+    - { id: ich,     surface: "Ich",                    neutralSurface: "ich",                    role: PRON_NOM }
     - { id: arbeite, surface: "arbeite",                neutralSurface: "arbeite",                role: FIN }
     - { id: montag,  surface: "Von Montag bis Freitag", neutralSurface: "von Montag bis Freitag", role: TEMP }
   canonical: [ich, arbeite, montag]
@@ -520,7 +520,7 @@
   ruleId: tekamolo-te-lo
   gloss: We have lived in Munich since May.
   chunks:
-    - { id: wir,    surface: "Wir",         neutralSurface: "wir",         role: SUBJ }
+    - { id: wir,    surface: "Wir",         neutralSurface: "wir",         role: PRON_NOM }
     - { id: wohnen, surface: "wohnen",      neutralSurface: "wohnen",      role: FIN }
     - { id: mai,    surface: "Seit Mai",    neutralSurface: "seit Mai",    role: TEMP }
     - { id: muen,   surface: "In München",  neutralSurface: "in München",  role: LOK }
@@ -531,7 +531,7 @@
   ruleId: tekamolo-te-lo
   gloss: She comes from Spain.
   chunks:
-    - { id: sie,     surface: "Sie",         neutralSurface: "sie",         role: SUBJ }
+    - { id: sie,     surface: "Sie",         neutralSurface: "sie",         role: PRON_NOM }
     - { id: kommt,   surface: "kommt",       neutralSurface: "kommt",       role: FIN }
     - { id: spanien, surface: "Aus Spanien", neutralSurface: "aus Spanien", role: DIR }
   canonical: [sie, kommt, spanien]
@@ -601,7 +601,7 @@
   ruleId: v2-deklarativ
   gloss: We are eating in an hour.
   chunks:
-    - { id: wir,    surface: "Wir",           neutralSurface: "wir",           role: SUBJ }
+    - { id: wir,    surface: "Wir",           neutralSurface: "wir",           role: PRON_NOM }
     - { id: essen,  surface: "essen",         neutralSurface: "essen",         role: FIN }
     - { id: stunde, surface: "In einer Stunde", neutralSurface: "in einer Stunde", role: TEMP }
   canonical: [wir, essen, stunde]
@@ -663,7 +663,7 @@
   ruleId: tekamolo-te-lo
   gloss: We are sitting in the garden today.
   chunks:
-    - { id: wir,    surface: "Wir",       neutralSurface: "wir",       role: SUBJ }
+    - { id: wir,    surface: "Wir",       neutralSurface: "wir",       role: PRON_NOM }
     - { id: sitzen, surface: "sitzen",    neutralSurface: "sitzen",    role: FIN }
     - { id: heute,  surface: "Heute",     neutralSurface: "heute",     role: TEMP }
     - { id: garten, surface: "Im Garten", neutralSurface: "im Garten", role: LOK }
@@ -676,7 +676,7 @@
   ruleId: tekamolo-te-lo
   gloss: I am going to the doctor tomorrow.
   chunks:
-    - { id: ich,    surface: "Ich",         neutralSurface: "ich",         role: SUBJ }
+    - { id: ich,    surface: "Ich",         neutralSurface: "ich",         role: PRON_NOM }
     - { id: gehe,   surface: "gehe",        neutralSurface: "gehe",        role: FIN }
     - { id: morgen, surface: "Morgen",      neutralSurface: "morgen",      role: TEMP }
     - { id: arzt,   surface: "Zum Arzt",    neutralSurface: "zum Arzt",    role: DIR }
@@ -697,7 +697,7 @@
   ruleId: tekamolo-te-lo
   gloss: We are flying to Greece in September.
   chunks:
-    - { id: wir,    surface: "Wir",              neutralSurface: "wir",              role: SUBJ }
+    - { id: wir,    surface: "Wir",              neutralSurface: "wir",              role: PRON_NOM }
     - { id: fliegen, surface: "fliegen",         neutralSurface: "fliegen",          role: FIN }
     - { id: sept,   surface: "Im September",     neutralSurface: "im September",     role: TEMP }
     - { id: grie,   surface: "Nach Griechenland", neutralSurface: "nach Griechenland", role: DIR }
@@ -708,7 +708,7 @@
   ruleId: tekamolo-te-lo
   gloss: She is driving into town.
   chunks:
-    - { id: sie,    surface: "Sie",          neutralSurface: "sie",          role: SUBJ }
+    - { id: sie,    surface: "Sie",          neutralSurface: "sie",          role: PRON_NOM }
     - { id: faehrt, surface: "fährt",        neutralSurface: "fährt",        role: FIN }
     - { id: stadt,  surface: "In die Stadt", neutralSurface: "in die Stadt", role: DIR }
   canonical: [sie, faehrt, stadt]
@@ -731,7 +731,7 @@
   ruleId: v2-deklarativ
   gloss: I am reading a book.
   chunks:
-    - { id: ich,   surface: "Ich",       neutralSurface: "ich",       role: SUBJ }
+    - { id: ich,   surface: "Ich",       neutralSurface: "ich",       role: PRON_NOM }
     - { id: lese,  surface: "lese",      neutralSurface: "lese",      role: FIN }
     - { id: buch,  surface: "Ein Buch",  neutralSurface: "ein Buch",  role: AKK, definite: false }
   canonical: [ich, lese, buch]
@@ -741,7 +741,7 @@
   ruleId: v2-deklarativ
   gloss: We are watching a film this evening.
   chunks:
-    - { id: wir,   surface: "Wir",         neutralSurface: "wir",         role: SUBJ }
+    - { id: wir,   surface: "Wir",         neutralSurface: "wir",         role: PRON_NOM }
     - { id: sehen, surface: "sehen",       neutralSurface: "sehen",       role: FIN }
     - { id: abend, surface: "Heute Abend", neutralSurface: "heute Abend", role: TEMP }
     - { id: film,  surface: "Einen Film",  neutralSurface: "einen Film",  role: AKK, definite: false }
@@ -752,7 +752,7 @@
   ruleId: v2-deklarativ
   gloss: She is writing an email.
   chunks:
-    - { id: sie,     surface: "Sie",         neutralSurface: "sie",         role: SUBJ }
+    - { id: sie,     surface: "Sie",         neutralSurface: "sie",         role: PRON_NOM }
     - { id: schreibt, surface: "schreibt",   neutralSurface: "schreibt",    role: FIN }
     - { id: mail,    surface: "Eine E-Mail", neutralSurface: "eine E-Mail", role: AKK, definite: false }
   canonical: [sie, schreibt, mail]
@@ -762,7 +762,7 @@
   ruleId: v2-deklarativ
   gloss: I need a new jacket.
   chunks:
-    - { id: ich,     surface: "Ich",              neutralSurface: "ich",              role: SUBJ }
+    - { id: ich,     surface: "Ich",              neutralSurface: "ich",              role: PRON_NOM }
     - { id: brauche, surface: "brauche",          neutralSurface: "brauche",          role: FIN }
     - { id: jacke,   surface: "Eine neue Jacke",  neutralSurface: "eine neue Jacke",  role: AKK, definite: false }
   canonical: [ich, brauche, jacke]
@@ -783,7 +783,7 @@
   ruleId: v2-deklarativ
   gloss: We are buying tickets today.
   chunks:
-    - { id: wir,    surface: "Wir",    neutralSurface: "wir",    role: SUBJ }
+    - { id: wir,    surface: "Wir",    neutralSurface: "wir",    role: PRON_NOM }
     - { id: kaufen, surface: "kaufen", neutralSurface: "kaufen", role: FIN }
     - { id: heute,  surface: "Heute",  neutralSurface: "heute",  role: TEMP }
     - { id: karten, surface: "Karten", neutralSurface: "Karten", role: AKK, definite: false }
@@ -848,7 +848,7 @@
   ruleId: praedikativ-final
   gloss: I am ready.
   chunks:
-    - { id: ich,    surface: "Ich",    neutralSurface: "ich",    role: SUBJ }
+    - { id: ich,    surface: "Ich",    neutralSurface: "ich",    role: PRON_NOM }
     - { id: bin,    surface: "bin",    neutralSurface: "bin",    role: FIN }
     - { id: fertig, surface: "fertig", neutralSurface: "fertig", role: PRAED }
   canonical: [ich, bin, fertig]
@@ -860,7 +860,7 @@
   ruleId: tekamolo-voll
   gloss: He speaks very quietly.
   chunks:
-    - { id: er,      surface: "Er",           neutralSurface: "er",           role: SUBJ }
+    - { id: er,      surface: "Er",           neutralSurface: "er",           role: PRON_NOM }
     - { id: spricht, surface: "spricht",      neutralSurface: "spricht",      role: FIN }
     - { id: leise,   surface: "Sehr leise",   neutralSurface: "sehr leise",   role: MODAL }
   canonical: [er, spricht, leise]
@@ -870,7 +870,7 @@
   ruleId: tekamolo-voll
   gloss: We are travelling to Hamburg by train.
   chunks:
-    - { id: wir,     surface: "Wir",          neutralSurface: "wir",          role: SUBJ }
+    - { id: wir,     surface: "Wir",          neutralSurface: "wir",          role: PRON_NOM }
     - { id: fahren,  surface: "fahren",       neutralSurface: "fahren",       role: FIN }
     - { id: zug,     surface: "Mit dem Zug",  neutralSurface: "mit dem Zug",  role: MODAL }
     - { id: hamburg, surface: "Nach Hamburg", neutralSurface: "nach Hamburg", role: DIR }
@@ -881,7 +881,7 @@
   ruleId: tekamolo-voll
   gloss: She works at home on Fridays.
   chunks:
-    - { id: sie,      surface: "Sie",        neutralSurface: "sie",        role: SUBJ }
+    - { id: sie,      surface: "Sie",        neutralSurface: "sie",        role: PRON_NOM }
     - { id: arbeitet, surface: "arbeitet",   neutralSurface: "arbeitet",   role: FIN }
     - { id: freitags, surface: "Freitags",   neutralSurface: "freitags",   role: TEMP }
     - { id: hause,    surface: "Zu Hause",   neutralSurface: "zu Hause",   role: LOK }

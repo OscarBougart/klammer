@@ -25,6 +25,7 @@ German is wrong.
 | 1.1 bare object across a time phrase | Marked, **not wrong** | `Ich trinke Kaffee morgens` and `Wir haben einen Film gestern gesehen` now accepted as `ungewoehnlich`; two corpus rejects became accepts |
 | 1.1 object across a manner phrase | Ordinary | `Sie spricht Deutsch sehr gut` is `gueltig` — manner already sits by the verb, so the object barely moves |
 | 1.2 definite object vs time | Genuine tie; keep current rule | Unchanged. Both accepted, neither implied to be less normal |
+| 1.3 object pronoun before a noun subject | Accept | Pronoun subjects retagged `PRON_NOM`; `Gestern hat mir der Mann das Buch gegeben` now generated as `gueltig`. Corpus entry `r13-01` |
 | 1.4 / 1.7 pronoun out of slot | Marked, not wrong | Generator now produces them as `ungewoehnlich` with a stress note, instead of refusing |
 | 1.5 negation and place | Confirmed | `NEG` rank moved 80 → 55, now before manner, place, direction and predicatives. It had been building `zu Hause nicht` |
 | 1.6 two pronouns | `es dir` right, `dir es` wrong | Tier 3 stands unchanged |
@@ -36,28 +37,36 @@ German is wrong.
 | P3 `Der Zug ist wieder spät` | Sounds English | Rewritten as `Der Zug hat wieder Verspätung` |
 | t3-12 had no alternatives | Alternatives exist | Now generates `Ihm hat sie nicht geantwortet` as `ungewoehnlich`. **No sentence in the bank has a single solution any more** |
 
-Accepted orders went from 347 to 405 — most of that is German the app would
+Accepted orders went from 347 to 406 — most of that is German the app would
 previously have called wrong.
 
 ---
 
-## Still open
-
-### 1.3 — object pronoun before a full-noun subject
+### 1.3 in detail
 
 **Ruled: accept, possibly as canonical.** *Gestern hat mir der Mann das Buch
 gegeben* is at least as natural as the subject-first order, and it is the same
 pronoun-before-noun rule already enforced in 1.7.
 
-**Not implemented.** The generator cannot currently tell a pronoun subject
-from a noun subject — all 130 sentences tag both as `SUBJ`, and the rule
-applies only to noun subjects. Fixing it means either retagging pronoun
-subjects as `PRON_NOM` (the role exists and is unused) or adding a flag.
-Mechanical, but it touches every sentence, so it wants doing deliberately
-rather than at the end of a long session.
+**Implemented.** Pronoun subjects now carry `PRON_NOM` rather than `SUBJ` — 89
+chunks across the three tiers, plus 17 in the corpus fixture — so the generator
+can tell the two apart. `licensedSwap` accepts an object pronoun ahead of a
+full-noun subject as `gueltig`; two pronouns are untouched, and nominative
+still comes first there.
 
-Consequence meanwhile: the app does not *reject* these orders, it simply never
-offers them as alternatives. Additive gap, not wrong German.
+Adding `PRON_NOM` to `VORFELD_ELIGIBLE` was part of the same change. The role
+had sat unused since it was defined, so nobody had noticed that the most
+ordinary German sentence shape of all — a pronoun subject in the Vorfeld —
+was not licensed by the set.
+
+The bank exercises the rule in exactly one sentence (t3-05, and there only
+under a marked fronting), so the gate on it is the corpus entry `r13-01`
+rather than the content. **Worth more sentences with a full-noun subject and a
+pronoun object when tiers 2 and 3 are extended.**
+
+---
+
+## Still open
 
 ### Instrument versus manner in the Vorfeld
 

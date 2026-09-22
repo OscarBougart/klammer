@@ -276,6 +276,25 @@ function licensedSwap(a: AuthoredChunk, b: AuthoredChunk): SwapRule | null {
     };
   }
 
+  // An object pronoun and a full-noun subject — GERMAN-REVIEW.md 1.3. In the
+  // Mittelfeld a pronoun outranks a full noun whatever its case, so `Gestern
+  // hat mir der Mann das Buch gegeben` is at least as natural as the
+  // subject-first order. Accepted as ordinary, not marked. Pronoun subjects
+  // carry `PRON_NOM` and are excluded: two pronouns keep nominative first.
+  const nounSubject = a.role === 'SUBJ' ? a : b.role === 'SUBJ' ? b : undefined;
+  const objectPronoun =
+    a.role === 'PRON_AKK' || a.role === 'PRON_DAT'
+      ? a
+      : b.role === 'PRON_AKK' || b.role === 'PRON_DAT'
+        ? b
+        : undefined;
+  if (nounSubject && objectPronoun) {
+    return {
+      class: 'gueltig',
+      reason: `${objectPronoun.id} before ${nounSubject.id} — a pronoun comes early`,
+    };
+  }
+
   // Two full noun objects. Dative before accusative is the neutral order, but
   // the reverse is emphasis rather than error — `Ich gebe das Buch meinem
   // Bruder` has to be accepted.

@@ -97,6 +97,10 @@ export function isRole(value: string): value is Role {
  */
 export const VORFELD_ELIGIBLE: ReadonlySet<Role> = new Set<Role>([
   'SUBJ',
+  // A nominative pronoun in the Vorfeld is the most ordinary German sentence
+  // there is. The role sat unused until GERMAN-REVIEW.md 1.3 made the
+  // pronoun/noun subject distinction load-bearing, so the omission never bit.
+  'PRON_NOM',
   'TEMP',
   'KAUS',
   'MODAL',
