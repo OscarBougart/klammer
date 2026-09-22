@@ -35,9 +35,11 @@ German is wrong.
 | P3 `spät`, `lange`, `länger` | Manner is correct | Unchanged — a time tag would have built `Ich stehe spät nicht auf` |
 | P3 `kein-`, `zum Geburtstag`, `gern`, t3-17 | All correct | Unchanged |
 | P3 `Der Zug ist wieder spät` | Sounds English | Rewritten as `Der Zug hat wieder Verspätung` |
+| P2 instrument vs manner fronting | Instrument ordinary, manner marked | New `INSTR` role; `Mit dem Fahrrad fahre ich…` is `gueltig`, `schnell` stays `ungewoehnlich` |
+| P3 `schon` / `wieder` fronting | Should not be offered | New `PARTIKEL` role, barred from the Vorfeld. t1-16 regrown so it keeps an alternative |
 | t3-12 had no alternatives | Alternatives exist | Now generates `Ihm hat sie nicht geantwortet` as `ungewoehnlich`. **No sentence in the bank has a single solution any more** |
 
-Accepted orders went from 347 to 406 — most of that is German the app would
+Accepted orders went from 347 to 404 — most of that is German the app would
 previously have called wrong.
 
 ---
@@ -66,22 +68,41 @@ pronoun object when tiers 2 and 3 are extended.**
 
 ---
 
-## Still open
+## Implemented later, in detail
+
+Everything the review ruled on is now in the generator. These two came after
+the first pass because each needed a new role rather than a rule change.
 
 ### Instrument versus manner in the Vorfeld
 
 **Ruled:** fronting an instrument (*mit dem Fahrrad*) is ordinary; fronting a
 true manner adverb (*schnell*, *gern*, *spät*) stays marked.
 
-**Not implemented** — both currently carry the `MODAL` role, so they cannot be
-told apart. Needs a role split. Fronted `MODAL` is currently `ungewoehnlich`,
-which is right for manner and too harsh for instruments.
+**Implemented** as a role split. `INSTR` carries the instrumentals — the seven
+`mit dem …` chunks in the bank, plus one in the fixture — and fronts as
+`gueltig`; `MODAL` keeps true manner and stays `ungewoehnlich` when fronted.
+In the Mittelfeld `INSTR` ranks 61, immediately behind manner. No sentence in
+the bank carries both, so that ordering is a considered guess rather than
+something the corpus tests; it exists so the two never tie.
+
+The corpus expectation for t3-04 was stale and moved `u` → `g`.
 
 ### `schon` and `wieder` in the Vorfeld
 
 **Ruled:** their Mittelfeld placement is right, but *Schon schläft das Kind*
-should not be offered as ordinary. Block them from the Vorfeld or give them
-their own role. **Not implemented.**
+should not be offered as ordinary.
+
+**Implemented** as the `PARTIKEL` role: ranks 42, with the temporals, and is
+deliberately absent from `VORFELD_ELIGIBLE`, so the fronted order is not
+produced at any class. Corpus entry `part-01` rejects it.
+
+One knock-on: t1-16 was *Das Kind schläft schon* — three tiles, and with
+`schon` unfrontable it became the only sentence in the bank with a single
+solution. Rewritten as *Das Kind schläft um acht Uhr schon*, which gives it a
+real alternative without changing what it teaches.
+
+A particle *phrase* is a different constituent — *Schon wieder hat der Zug
+Verspätung* is fine — and would be authored as one tile with its own role.
 
 ### Two traps to respect when authoring
 
@@ -114,10 +135,9 @@ What that review actually covered, so the record is honest:
 
 The reviewer did **not** read all 130 sentences one at a time. The flag records
 the owner's judgement that the rules are now right and the bank was drafted
-under them — not a line-by-line reading. The two remaining open rules above
-(instrument/manner, `schon`/`wieder`) are the places where that gap could still
-show, and both affect Vorfeld markedness rather than grammaticality: they can
-make an order look more marked than it is, never make a wrong order accepted.
+under them — not a line-by-line reading. Every ruling in the review is now implemented, including the two that were
+open when the flag was first set, so nothing is pending that would change a
+sentence's accepted set.
 
-Re-verify per sentence before the closed test if any of those rules change.
+Re-verify per sentence if a new rule lands that moves orders between classes.
 

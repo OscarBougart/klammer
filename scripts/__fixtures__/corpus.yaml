@@ -246,12 +246,15 @@
     sie:  { surface: "Sie",             neutral: "sie",             role: PRON_NOM }
     faehrt: { surface: "fährt",          neutral: "fährt",           role: FIN }
     tag:  { surface: "Jeden Tag",       neutral: "jeden Tag",       role: TEMP }
-    rad:  { surface: "Mit dem Fahrrad", neutral: "mit dem Fahrrad", role: MODAL }
+    rad:  { surface: "Mit dem Fahrrad", neutral: "mit dem Fahrrad", role: INSTR }
     arb:  { surface: "Zur Arbeit",      neutral: "zur Arbeit",      role: DIR }
   accept:
     - [k, sie, faehrt, tag, rad, arb]
     - [g, tag, faehrt, sie, rad, arb]
-    - [u, rad, faehrt, sie, tag, arb]
+    # Native review: fronting an instrument is ordinary, not marked.
+    # `Mit dem Fahrrad fährt sie jeden Tag zur Arbeit` answers "how?" and
+    # needs no contrast — which is why INSTR split from MODAL.
+    - [g, rad, faehrt, sie, tag, arb]
     - [u, arb, faehrt, sie, tag, rad]
   reject:
     - [sie, faehrt, rad, tag, arb]           # Mo before Te
@@ -398,3 +401,25 @@
   reject:
     # The dative pronoun cannot sit behind the accusative full noun.
     - [gestern, hat, mann, buch, mir, geg]
+
+# ─── Native review · `schon` and `wieder` stay out of the Vorfeld ──────────
+#
+# PARTIKEL ranks with the temporals but is absent from VORFELD_ELIGIBLE, so
+# the fronted order must not be produced at any class. The reject below is the
+# whole point of the role.
+
+- id: part-01
+  tier: 1
+  rule: v2-deklarativ
+  gloss: The child is already asleep by eight.
+  chunks:
+    kind:  { surface: "Das Kind",    neutral: "das Kind",    role: SUBJ }
+    schl:  { surface: "schläft",     neutral: "schläft",     role: FIN }
+    acht:  { surface: "Um acht Uhr", neutral: "um acht Uhr", role: TEMP }
+    schon: { surface: "Schon",       neutral: "schon",       role: PARTIKEL }
+  accept:
+    - [k, kind, schl, acht, schon]
+    - [g, acht, schl, kind, schon]          # time fronted, ordinary
+  reject:
+    - [schon, schl, kind, acht]             # bare `schon` in the Vorfeld
+    - [schon, schl, acht, kind]

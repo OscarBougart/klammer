@@ -312,7 +312,7 @@ function licensedSwap(a: AuthoredChunk, b: AuthoredChunk): SwapRule | null {
 }
 
 const OBJECT_ROLES = new Set(['AKK', 'DAT', 'PRON_AKK', 'PRON_DAT']);
-const ADVERBIAL_ROLES_SWAP = new Set(['TEMP', 'KAUS', 'MODAL']);
+const ADVERBIAL_ROLES_SWAP = new Set(['TEMP', 'KAUS', 'MODAL', 'INSTR']);
 
 function pickObject(
   a: AuthoredChunk,
@@ -367,6 +367,14 @@ function classifyVorfeld(chunk: AuthoredChunk): {
   // stay marked — `Vom Bahnhof hole ich…` only works as a contrast.
   if (chunk.role === 'LOK') {
     return { class: 'gueltig', reason: `${chunk.id} fronted — sets the scene` };
+  }
+
+  // Instrument fronts freely — `Mit dem Fahrrad fahre ich zur Arbeit` answers
+  // "how do you get there?" and needs no contrast. True manner (`schnell`,
+  // `gern`, `spät`) falls through to the marked case below, which is the whole
+  // reason INSTR is a separate role.
+  if (chunk.role === 'INSTR') {
+    return { class: 'gueltig', reason: `${chunk.id} fronted — the means` };
   }
 
   // An object pronoun can be fronted, but only under contrast: `Mir hat er…`

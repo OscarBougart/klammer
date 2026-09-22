@@ -457,7 +457,7 @@
           "id": "rad",
           "surface": "Mit dem Fahrrad",
           "neutralSurface": "mit dem Fahrrad",
-          "role": "MODAL"
+          "role": "INSTR"
         },
         {
           "id": "arbeit",
@@ -474,7 +474,7 @@
       ],
       "acceptedHashes": {
         "93aaa682": "kanonisch",
-        "b95006c0": "ungewoehnlich",
+        "b95006c0": "gueltig",
         "ff97aac0": "ungewoehnlich"
       }
     },
@@ -622,7 +622,7 @@
       "id": "t1-16",
       "tier": 1,
       "ruleId": "v2-deklarativ",
-      "gloss": "The child is already asleep.",
+      "gloss": "The child is already asleep by eight.",
       "chunks": [
         {
           "id": "kind",
@@ -637,20 +637,27 @@
           "role": "FIN"
         },
         {
+          "id": "acht",
+          "surface": "Um acht Uhr",
+          "neutralSurface": "um acht Uhr",
+          "role": "TEMP"
+        },
+        {
           "id": "schon",
           "surface": "Schon",
           "neutralSurface": "schon",
-          "role": "TEMP"
+          "role": "PARTIKEL"
         }
       ],
       "canonical": [
         "kind",
         "schlaeft",
+        "acht",
         "schon"
       ],
       "acceptedHashes": {
-        "b96ae110": "kanonisch",
-        "365a8388": "gueltig"
+        "958063a2": "kanonisch",
+        "5a7f5096": "gueltig"
       }
     },
     {
@@ -1196,7 +1203,7 @@
           "id": "bus",
           "surface": "Mit dem Bus",
           "neutralSurface": "mit dem Bus",
-          "role": "MODAL"
+          "role": "INSTR"
         }
       ],
       "canonical": [
@@ -1208,7 +1215,7 @@
       "acceptedHashes": {
         "ceda2de8": "kanonisch",
         "4f01af42": "gueltig",
-        "708ebf7e": "ungewoehnlich"
+        "708ebf7e": "gueltig"
       }
     },
     {
@@ -1327,7 +1334,7 @@
           "id": "auto",
           "surface": "Mit dem Auto",
           "neutralSurface": "mit dem Auto",
-          "role": "MODAL"
+          "role": "INSTR"
         },
         {
           "id": "frankreich",
@@ -1346,7 +1353,7 @@
       "acceptedHashes": {
         "e3957fa2": "kanonisch",
         "fa0d6360": "gueltig",
-        "9333bbdc": "ungewoehnlich",
+        "9333bbdc": "gueltig",
         "4c001330": "ungewoehnlich"
       }
     },
@@ -2952,7 +2959,7 @@
           "id": "wieder",
           "surface": "Wieder",
           "neutralSurface": "wieder",
-          "role": "TEMP"
+          "role": "PARTIKEL"
         },
         {
           "id": "versp",
@@ -2970,8 +2977,6 @@
       ],
       "acceptedHashes": {
         "52df4f88": "kanonisch",
-        "598bf250": "ungewoehnlich",
-        "3b7bfd26": "gueltig",
         "14ed5690": "ungewoehnlich"
       }
     },
@@ -3067,7 +3072,7 @@
           "id": "zug",
           "surface": "Mit dem Zug",
           "neutralSurface": "mit dem Zug",
-          "role": "MODAL"
+          "role": "INSTR"
         },
         {
           "id": "hamburg",
@@ -3084,7 +3089,7 @@
       ],
       "acceptedHashes": {
         "bd0763c9": "kanonisch",
-        "c8db6311": "ungewoehnlich",
+        "c8db6311": "gueltig",
         "33ae94b5": "ungewoehnlich"
       }
     },
@@ -5217,7 +5222,7 @@
           "id": "rad",
           "surface": "Mit dem Fahrrad",
           "neutralSurface": "mit dem Fahrrad",
-          "role": "MODAL"
+          "role": "INSTR"
         },
         {
           "id": "arb",
@@ -5236,7 +5241,7 @@
       "acceptedHashes": {
         "cabb6ed2": "kanonisch",
         "8d6ec8e8": "gueltig",
-        "4f694386": "ungewoehnlich",
+        "4f694386": "gueltig",
         "a02f346a": "ungewoehnlich"
       }
     },
@@ -5319,7 +5324,7 @@
           "id": "zug",
           "surface": "Mit dem Zug",
           "neutralSurface": "mit dem Zug",
-          "role": "MODAL"
+          "role": "INSTR"
         },
         {
           "id": "hause",
@@ -5338,7 +5343,7 @@
       "acceptedHashes": {
         "a554bb8e": "kanonisch",
         "6c6b1b8c": "gueltig",
-        "b7f88972": "ungewoehnlich",
+        "b7f88972": "gueltig",
         "8efcc362": "ungewoehnlich"
       }
     },
@@ -5472,7 +5477,7 @@
           "id": "zug",
           "surface": "Mit dem Zug",
           "neutralSurface": "mit dem Zug",
-          "role": "MODAL"
+          "role": "INSTR"
         },
         {
           "id": "wien",
@@ -5491,7 +5496,7 @@
       "acceptedHashes": {
         "0f2d4e0a": "kanonisch",
         "8ebad836": "gueltig",
-        "4157b0c2": "ungewoehnlich",
+        "4157b0c2": "gueltig",
         "31e16478": "ungewoehnlich"
       }
     },

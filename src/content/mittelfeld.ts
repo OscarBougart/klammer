@@ -18,8 +18,9 @@ export const RANK = {
    * Thin spot: this is right for a pronominal subject (`dass sie mich morgen
    * abholen muss`) and defensible but not obligatory for a full-NP one —
    * `gestern hat mir der Mann das Buch gegeben` is at least as good as the
-   * order this produces. No corpus sentence tests a full-NP subject alongside
-   * an object pronoun. Revisit when tier 3 authoring reaches one.
+   * order this produces. That order is now generated — see `licensedSwap` and
+   * GERMAN-REVIEW.md 1.3 — as `gueltig` rather than as a second canonical,
+   * because exactly one order per sentence may be canonical.
    */
   SUBJ: 5,
 
@@ -35,6 +36,9 @@ export const RANK = {
   /** TeKaMoLo begins. */
   TEMP: 40,
   KAUS: 41,
+
+  /** `schon`, `wieder` — temporal in force, so they sit with the temporals. */
+  PARTIKEL: 42,
 
   /**
    * Negation sits further forward than design.md implied.
@@ -52,6 +56,15 @@ export const RANK = {
   NEG: 55,
 
   MODAL: 60,
+
+  /**
+   * Instrument sits in the same TeKaMoLo slot as manner, just behind it:
+   * `Er hat den Brief schnell mit der Hand geschrieben`. No sentence in the
+   * bank carries both, so this ordering is a considered guess rather than
+   * something the corpus tests — it exists so the two roles never tie. What
+   * the split is actually *for* is the Vorfeld, where they diverge sharply.
+   */
+  INSTR: 61,
 
   /**
    * Indefinite and bare objects fall behind the adverbials.
@@ -97,6 +110,10 @@ export function rankOf(chunk: AuthoredChunk): number {
       return RANK.TEMP;
     case 'KAUS':
       return RANK.KAUS;
+    case 'PARTIKEL':
+      return RANK.PARTIKEL;
+    case 'INSTR':
+      return RANK.INSTR;
     case 'MODAL':
       return RANK.MODAL;
     case 'LOK':

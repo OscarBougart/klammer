@@ -206,7 +206,7 @@
     - { id: sie,    surface: "Sie",             neutralSurface: "sie",             role: PRON_NOM }
     - { id: faehrt, surface: "fährt",           neutralSurface: "fährt",           role: FIN }
     - { id: tag,    surface: "Jeden Tag",       neutralSurface: "jeden Tag",       role: TEMP }
-    - { id: rad,    surface: "Mit dem Fahrrad", neutralSurface: "mit dem Fahrrad", role: MODAL }
+    - { id: rad,    surface: "Mit dem Fahrrad", neutralSurface: "mit dem Fahrrad", role: INSTR }
     - { id: arb,    surface: "Zur Arbeit",      neutralSurface: "zur Arbeit",      role: DIR }
   canonical: [sie, faehrt, tag, rad, arb]
 
@@ -232,7 +232,7 @@
     - { id: er,     surface: "Er",          neutralSurface: "er",          role: PRON_NOM }
     - { id: kommt,  surface: "kommt",       neutralSurface: "kommt",       role: FIN }
     - { id: morgen, surface: "Morgen",      neutralSurface: "morgen",      role: TEMP }
-    - { id: zug,    surface: "Mit dem Zug", neutralSurface: "mit dem Zug", role: MODAL }
+    - { id: zug,    surface: "Mit dem Zug", neutralSurface: "mit dem Zug", role: INSTR }
     - { id: hause,  surface: "Nach Hause",  neutralSurface: "nach Hause",  role: DIR }
   canonical: [er, kommt, morgen, zug, hause]
 
@@ -271,7 +271,7 @@
     - { id: ich,    surface: "Ich",         neutralSurface: "ich",         role: PRON_NOM }
     - { id: fahre,  surface: "fahre",       neutralSurface: "fahre",       role: FIN }
     - { id: montag, surface: "Am Montag",   neutralSurface: "am Montag",   role: TEMP }
-    - { id: zug,    surface: "Mit dem Zug", neutralSurface: "mit dem Zug", role: MODAL }
+    - { id: zug,    surface: "Mit dem Zug", neutralSurface: "mit dem Zug", role: INSTR }
     - { id: wien,   surface: "Nach Wien",   neutralSurface: "nach Wien",   role: DIR }
   canonical: [ich, fahre, montag, zug, wien]
 
