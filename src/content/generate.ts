@@ -250,8 +250,12 @@ function licensedSwap(a: AuthoredChunk, b: AuthoredChunk): SwapRule | null {
   const adverbial = pickAdverbial(a, b);
 
   if (object && adverbial) {
-    // A pronoun leaves its slot only under contrast.
+    // A pronoun leaves its slot only under contrast — and `es`, which cannot
+    // carry stress, never leaves it. This check was missing: `Ich gebe morgen
+    // dir es` shipped as `ungewoehnlich` in t3-06 while the comments above
+    // said it could not be generated.
     if (object.role === 'PRON_AKK' || object.role === 'PRON_DAT') {
+      if (!isStressable(object)) return null;
       return {
         class: 'ungewoehnlich',
         reason: `${object.id} behind ${adverbial.id} — only with stress on ${object.id}`,

@@ -126,8 +126,8 @@ Spanien* behaves identically to a destination. Worth renaming to
 (2026-09-22), on the strength of the native-speaker review recorded in this
 file: t1-01–t1-80, t2-01–t2-26, t3-01–t3-24.
 
-**The 158 sentences added afterwards are `verified: false`** (2026-09-23):
-t1-81–t1-120, t2-27–t2-120, t3-25–t3-48. They were drafted under the reviewed
+**The 186 sentences added afterwards are `verified: false`** (2026-09-23):
+t1-81–t1-120, t2-27–t2-120, t3-25–t3-76. They were drafted under the reviewed
 rules, but no German speaker has seen them. They are playable, and
 `npm run content:expand` prints the draft warning until they are checked.
 Flip each one only after a German speaker has read it.
@@ -146,4 +146,11 @@ open when the flag was first set, so nothing is pending that would change a
 sentence's accepted set.
 
 Re-verify per sentence if a new rule lands that moves orders between classes.
+
+**2026-09-23 — `es` fix.** The ruling that `es` cannot carry stress was only
+half implemented: it was kept out of the Vorfeld, but the Mittelfeld swap still
+let it trail an adverbial (`Ich gebe morgen dir es`, as `ungewoehnlich`). That
+is now barred, and a bank test checks it. t3-06, t3-07 and t3-08 (verified) and
+t3-30–t3-33 each lose two accepted orders. This removes orders the review had
+already ruled out, so their flags stand.
 

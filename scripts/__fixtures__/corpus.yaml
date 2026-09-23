@@ -219,6 +219,7 @@
     - [ich, gebe, dir, es, morgen]           # THE tier-3 test: DAT before AKK pronoun
     - [es, gebe, ich, dir, morgen]           # unstressed pronoun in Vorfeld
     - [ich, gebe, morgen, es, dir]           # pronouns must lead the Mittelfeld
+    - [ich, gebe, morgen, dir, es]           # es cannot be stressed, so cannot trail an adverbial
 
 - id: t3-03
   tier: 3

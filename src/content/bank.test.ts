@@ -23,6 +23,49 @@ function* permutations<T>(items: readonly T[]): Generator<T[]> {
   }
 }
 
+type Sentence = (typeof seed.sentences)[number];
+type Chunk = Sentence['chunks'][number];
+
+/**
+ * Accepted orders in which some chunk has changed sides relative to a pivot
+ * chunk. Only the fronted chunk may leave its side, and the pivot itself is
+ * never fronted. With `overtakingOnly`, a chunk that moves from in front of
+ * the pivot to behind it is allowed — only overtaking the pivot counts.
+ *
+ * Every permutation is hashed and tested for membership, because the seed
+ * stores hashes, not orders. Sentences are small enough for that.
+ */
+function crossings(
+  isPivot: (c: Chunk) => boolean,
+  overtakingOnly: boolean,
+): string[] {
+  const found: string[] = [];
+  for (const s of seed.sentences) {
+    if (s.chunks.some((c) => c.role === 'KONJ')) continue;
+    for (const pivot of s.chunks.filter(isPivot)) {
+      const side = (order: readonly string[], id: string) =>
+        order.indexOf(id) < order.indexOf(pivot.id);
+      for (const order of permutations(s.canonical)) {
+        if (!(hashOrder(order) in s.acceptedHashes)) continue;
+        if (order[0] === pivot.id) {
+          found.push(`${s.id}: ${order.join(' ')}`);
+          continue;
+        }
+        const rest = order.slice(1);
+        const moved = s.canonical.find(
+          (id) =>
+            id !== pivot.id &&
+            id !== order[0] &&
+            side(s.canonical, id) !== side(rest, id) &&
+            !(overtakingOnly && side(s.canonical, id)),
+        );
+        if (moved) found.push(`${s.id}: ${order.join(' ')}`);
+      }
+    }
+  }
+  return found;
+}
+
 describe('the sentence bank', () => {
   it('is not empty', () => {
     // Without this, every check below passes vacuously on a broken seed.
@@ -80,30 +123,23 @@ describe('the sentence bank', () => {
      * `den Weg nicht sofort gefunden` and `sofort nicht den Weg gefunden` are
      * different claims, and the second is not what the sentence means. The
      * generator's pairwise swap once produced exactly that as `gueltig`
-     * (a draft of t2-120). Only the fronted chunk may leave its side.
-     *
-     * Every permutation is hashed and tested for membership, because the
-     * seed stores hashes, not orders. Sentences are small enough for that.
+     * (a draft of t2-120).
      */
-    const crossings: string[] = [];
-    for (const s of seed.sentences) {
-      const neg = s.chunks.find((c) => c.role === 'NEG');
-      if (!neg || s.chunks.some((c) => c.role === 'KONJ')) continue;
-      const side = (order: readonly string[], id: string) =>
-        order.indexOf(id) < order.indexOf(neg.id);
-      for (const order of permutations(s.canonical)) {
-        if (!(hashOrder(order) in s.acceptedHashes)) continue;
-        const rest = order.slice(1);
-        const moved = s.canonical.find(
-          (id) =>
-            id !== neg.id &&
-            id !== order[0] &&
-            side(s.canonical, id) !== side(rest, id),
-        );
-        if (moved) crossings.push(`${s.id}: ${order.join(' ')}`);
-      }
-    }
-    expect(crossings).toEqual([]);
+    expect(crossings((c) => c.role === 'NEG', false)).toEqual([]);
+  });
+
+  it('never moves or fronts an unstressable pronoun', () => {
+    /*
+     * GERMAN-REVIEW: `es` cannot carry stress, so it has no marked positions
+     * at all — not the Vorfeld, and not behind an adverbial. t3-06 shipped
+     * `Ich gebe morgen dir es` as `ungewoehnlich` before licensedSwap
+     * learned to check `stressable`.
+     *
+     * Moving *earlier* is the opposite of a marked position: `Seiner Mutter
+     * hat es das Kind erzählt` puts the weak pronoun ahead of a full-noun
+     * subject, where it naturally goes. Only being overtaken is checked.
+     */
+    expect(crossings((c) => c.stressable === false, true)).toEqual([]);
   });
 
   it('lists every canonical chunk id in the sentence', () => {
