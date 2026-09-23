@@ -1018,3 +1018,331 @@
     - { id: nicht,  surface: "Noch nicht",   neutralSurface: "noch nicht",   role: NEG }
     - { id: an,     surface: "angekommen",   neutralSurface: "angekommen",   role: PART }
   canonical: [paket, ist, heute, nicht, an]
+
+# ─── Batch 6 · separable prefixes ───────────────────────────────────────────
+
+- id: t2-75
+  tier: 2
+  ruleId: satzklammer-trennbar
+  verified: false
+  gloss: The train leaves from platform three in ten minutes.
+  chunks:
+    - { id: zug,    surface: "Der Zug",          neutralSurface: "der Zug",          role: SUBJ }
+    - { id: faehrt, surface: "fährt",            neutralSurface: "fährt",            role: FIN }
+    - { id: zehn,   surface: "In zehn Minuten",  neutralSurface: "in zehn Minuten",  role: TEMP }
+    - { id: gleis,  surface: "Von Gleis drei",   neutralSurface: "von Gleis drei",   role: DIR }
+    - { id: ab,     surface: "ab",               neutralSurface: "ab",               role: PTKVZ }
+  canonical: [zug, faehrt, zehn, gleis, ab]
+
+- id: t2-76
+  tier: 2
+  ruleId: satzklammer-trennbar
+  verified: false
+  gloss: I close the window in the evenings.
+  chunks:
+    - { id: ich,     surface: "Ich",          neutralSurface: "ich",          role: PRON_NOM }
+    - { id: mache,   surface: "mache",        neutralSurface: "mache",        role: FIN }
+    - { id: fenster, surface: "Das Fenster",  neutralSurface: "das Fenster",  role: AKK, definite: true }
+    - { id: abends,  surface: "Abends",       neutralSurface: "abends",       role: TEMP }
+    - { id: zu,      surface: "zu",           neutralSurface: "zu",           role: PTKVZ }
+  canonical: [ich, mache, fenster, abends, zu]
+
+- id: t2-77
+  tier: 2
+  ruleId: satzklammer-trennbar
+  verified: false
+  gloss: The children clear the table after the meal.
+  chunks:
+    - { id: kinder, surface: "Die Kinder",       neutralSurface: "die Kinder",       role: SUBJ }
+    - { id: raeumen, surface: "räumen",          neutralSurface: "räumen",           role: FIN }
+    - { id: tisch,  surface: "Den Tisch",        neutralSurface: "den Tisch",        role: AKK, definite: true }
+    - { id: essen,  surface: "Nach dem Essen",   neutralSurface: "nach dem Essen",   role: TEMP }
+    - { id: ab,     surface: "ab",               neutralSurface: "ab",               role: PTKVZ }
+  canonical: [kinder, raeumen, tisch, essen, ab]
+
+- id: t2-78
+  tier: 2
+  ruleId: satzklammer-trennbar
+  verified: false
+  gloss: Today the teacher is introducing a new pupil to us.
+  chunks:
+    - { id: lehrer,   surface: "Der Lehrer",          neutralSurface: "der Lehrer",          role: SUBJ }
+    - { id: stellt,   surface: "stellt",              neutralSurface: "stellt",              role: FIN }
+    - { id: uns,      surface: "Uns",                 neutralSurface: "uns",                 role: PRON_DAT }
+    - { id: heute,    surface: "Heute",               neutralSurface: "heute",               role: TEMP }
+    - { id: schueler, surface: "Einen neuen Schüler", neutralSurface: "einen neuen Schüler", role: AKK, definite: false }
+    - { id: vor,      surface: "vor",                 neutralSurface: "vor",                 role: PTKVZ }
+  canonical: [lehrer, stellt, uns, heute, schueler, vor]
+
+- id: t2-79
+  tier: 2
+  ruleId: satzklammer-trennbar
+  verified: false
+  gloss: I will ring the doctor's surgery first thing tomorrow.
+  chunks:
+    - { id: ich,    surface: "Ich",          neutralSurface: "ich",          role: PRON_NOM }
+    - { id: rufe,   surface: "rufe",         neutralSurface: "rufe",         role: FIN }
+    - { id: frueh,  surface: "Morgen früh",  neutralSurface: "morgen früh",  role: TEMP }
+    - { id: arzt,   surface: "Beim Arzt",    neutralSurface: "beim Arzt",    role: LOK }
+    - { id: an,     surface: "an",           neutralSurface: "an",           role: PTKVZ }
+  canonical: [ich, rufe, frueh, arzt, an]
+
+- id: t2-80
+  tier: 2
+  ruleId: satzklammer-trennbar
+  verified: false
+  gloss: At the main station we change to the S-Bahn.
+  chunks:
+    - { id: wir,    surface: "Wir",                neutralSurface: "wir",                role: PRON_NOM }
+    - { id: steigen, surface: "steigen",           neutralSurface: "steigen",            role: FIN }
+    - { id: hbf,    surface: "Am Hauptbahnhof",    neutralSurface: "am Hauptbahnhof",    role: LOK }
+    - { id: sbahn,  surface: "In die S-Bahn",      neutralSurface: "in die S-Bahn",      role: DIR }
+    - { id: um,     surface: "um",                 neutralSurface: "um",                 role: PTKVZ }
+  canonical: [wir, steigen, hbf, sbahn, um]
+
+# ─── Batch 6 · Perfekt ──────────────────────────────────────────────────────
+
+- id: t2-81
+  tier: 2
+  ruleId: satzklammer-perfekt
+  verified: false
+  gloss: My neighbour lent me a ladder yesterday.
+  chunks:
+    - { id: nachbar,  surface: "Mein Nachbar",  neutralSurface: "mein Nachbar",  role: SUBJ }
+    - { id: hat,      surface: "hat",           neutralSurface: "hat",           role: FIN }
+    - { id: mir,      surface: "Mir",           neutralSurface: "mir",           role: PRON_DAT }
+    - { id: gestern,  surface: "Gestern",       neutralSurface: "gestern",       role: TEMP }
+    - { id: leiter,   surface: "Eine Leiter",   neutralSurface: "eine Leiter",   role: AKK, definite: false }
+    - { id: geliehen, surface: "geliehen",      neutralSurface: "geliehen",      role: PART }
+  canonical: [nachbar, hat, mir, gestern, leiter, geliehen]
+
+- id: t2-82
+  tier: 2
+  ruleId: satzklammer-perfekt
+  verified: false
+  gloss: Last week we found a new flat.
+  chunks:
+    - { id: wir,      surface: "Wir",                neutralSurface: "wir",                role: PRON_NOM }
+    - { id: haben,    surface: "haben",              neutralSurface: "haben",              role: FIN }
+    - { id: woche,    surface: "Letzte Woche",       neutralSurface: "letzte Woche",       role: TEMP }
+    - { id: wohnung,  surface: "Eine neue Wohnung",  neutralSurface: "eine neue Wohnung",  role: AKK, definite: false }
+    - { id: gefunden, surface: "gefunden",           neutralSurface: "gefunden",           role: PART }
+  canonical: [wir, haben, woche, wohnung, gefunden]
+
+- id: t2-83
+  tier: 2
+  ruleId: satzklammer-perfekt
+  verified: false
+  gloss: She came home at six o'clock.
+  chunks:
+    - { id: sie,      surface: "Sie",          neutralSurface: "sie",          role: PRON_NOM }
+    - { id: ist,      surface: "ist",          neutralSurface: "ist",          role: FIN }
+    - { id: sechs,    surface: "Um sechs Uhr", neutralSurface: "um sechs Uhr", role: TEMP }
+    - { id: hause,    surface: "Nach Hause",   neutralSurface: "nach Hause",   role: DIR }
+    - { id: gekommen, surface: "gekommen",     neutralSurface: "gekommen",     role: PART }
+  canonical: [sie, ist, sechs, hause, gekommen]
+
+- id: t2-84
+  tier: 2
+  ruleId: satzklammer-perfekt
+  verified: false
+  gloss: The waiter brought us the bill.
+  chunks:
+    - { id: kellner,  surface: "Der Kellner",   neutralSurface: "der Kellner",   role: SUBJ }
+    - { id: hat,      surface: "hat",           neutralSurface: "hat",           role: FIN }
+    - { id: uns,      surface: "Uns",           neutralSurface: "uns",           role: PRON_DAT }
+    - { id: rechnung, surface: "Die Rechnung",  neutralSurface: "die Rechnung",  role: AKK, definite: true }
+    - { id: gebracht, surface: "gebracht",      neutralSurface: "gebracht",      role: PART }
+  canonical: [kellner, hat, uns, rechnung, gebracht]
+
+- id: t2-85
+  tier: 2
+  ruleId: satzklammer-perfekt
+  verified: false
+  gloss: My sister studied medicine for five years.
+  chunks:
+    - { id: schwester, surface: "Meine Schwester",  neutralSurface: "meine Schwester",  role: SUBJ }
+    - { id: hat,       surface: "hat",              neutralSurface: "hat",              role: FIN }
+    - { id: jahre,     surface: "Fünf Jahre lang",  neutralSurface: "fünf Jahre lang",  role: TEMP }
+    - { id: medizin,   surface: "Medizin",          neutralSurface: "Medizin",          role: AKK, definite: false }
+    - { id: studiert,  surface: "studiert",         neutralSurface: "studiert",         role: PART }
+  canonical: [schwester, hat, jahre, medizin, studiert]
+
+- id: t2-86
+  tier: 2
+  ruleId: satzklammer-perfekt
+  verified: false
+  gloss: Yesterday I visited my grandma in hospital.
+  chunks:
+    - { id: ich,     surface: "Ich",                neutralSurface: "ich",                role: PRON_NOM }
+    - { id: habe,    surface: "habe",               neutralSurface: "habe",               role: FIN }
+    - { id: oma,     surface: "Meine Oma",          neutralSurface: "meine Oma",          role: AKK, definite: true }
+    - { id: gestern, surface: "Gestern",            neutralSurface: "gestern",            role: TEMP }
+    - { id: kh,      surface: "Im Krankenhaus",     neutralSurface: "im Krankenhaus",     role: LOK }
+    - { id: besucht, surface: "besucht",            neutralSurface: "besucht",            role: PART }
+  canonical: [ich, habe, oma, gestern, kh, besucht]
+
+# ─── Batch 6 · modal verbs ──────────────────────────────────────────────────
+
+- id: t2-87
+  tier: 2
+  ruleId: satzklammer-modal
+  verified: false
+  gloss: You have to hand in the form by Friday.
+  chunks:
+    - { id: du,       surface: "Du",            neutralSurface: "du",            role: PRON_NOM }
+    - { id: musst,    surface: "musst",         neutralSurface: "musst",         role: FIN }
+    - { id: formular, surface: "Das Formular",  neutralSurface: "das Formular",  role: AKK, definite: true }
+    - { id: freitag,  surface: "Bis Freitag",   neutralSurface: "bis Freitag",   role: TEMP }
+    - { id: abgeben,  surface: "abgeben",       neutralSurface: "abgeben",       role: INF }
+  canonical: [du, musst, formular, freitag, abgeben]
+
+- id: t2-88
+  tier: 2
+  ruleId: satzklammer-modal
+  verified: false
+  gloss: We want to buy a house next year.
+  chunks:
+    - { id: wir,    surface: "Wir",             neutralSurface: "wir",             role: PRON_NOM }
+    - { id: wollen, surface: "wollen",          neutralSurface: "wollen",          role: FIN }
+    - { id: jahr,   surface: "Nächstes Jahr",   neutralSurface: "nächstes Jahr",   role: TEMP }
+    - { id: haus,   surface: "Ein Haus",        neutralSurface: "ein Haus",        role: AKK, definite: false }
+    - { id: kaufen, surface: "kaufen",          neutralSurface: "kaufen",          role: INF }
+  canonical: [wir, wollen, jahr, haus, kaufen]
+
+- id: t2-89
+  tier: 2
+  ruleId: satzklammer-modal
+  verified: false
+  gloss: My mother can pick us up by car on Saturday.
+  chunks:
+    - { id: mutter,  surface: "Meine Mutter",  neutralSurface: "meine Mutter",  role: SUBJ }
+    - { id: kann,    surface: "kann",          neutralSurface: "kann",          role: FIN }
+    - { id: uns,     surface: "Uns",           neutralSurface: "uns",           role: PRON_AKK }
+    - { id: samstag, surface: "Am Samstag",    neutralSurface: "am Samstag",    role: TEMP }
+    - { id: auto,    surface: "Mit dem Auto",  neutralSurface: "mit dem Auto",  role: INSTR }
+    - { id: abholen, surface: "abholen",       neutralSurface: "abholen",       role: INF }
+  canonical: [mutter, kann, uns, samstag, auto, abholen]
+
+- id: t2-90
+  tier: 2
+  ruleId: satzklammer-modal
+  verified: false
+  gloss: I would like to order pizza this evening.
+  chunks:
+    - { id: ich,      surface: "Ich",          neutralSurface: "ich",          role: PRON_NOM }
+    - { id: moechte,  surface: "möchte",       neutralSurface: "möchte",       role: FIN }
+    - { id: abend,    surface: "Heute Abend",  neutralSurface: "heute Abend",  role: TEMP }
+    - { id: pizza,    surface: "Pizza",        neutralSurface: "Pizza",        role: AKK, definite: false }
+    - { id: bestellen, surface: "bestellen",   neutralSurface: "bestellen",    role: INF }
+  canonical: [ich, moechte, abend, pizza, bestellen]
+
+- id: t2-91
+  tier: 2
+  ruleId: satzklammer-modal
+  verified: false
+  gloss: After his degree he wants to work in Berlin.
+  chunks:
+    - { id: er,       surface: "Er",                  neutralSurface: "er",                  role: PRON_NOM }
+    - { id: will,     surface: "will",                neutralSurface: "will",                role: FIN }
+    - { id: studium,  surface: "Nach dem Studium",    neutralSurface: "nach dem Studium",    role: TEMP }
+    - { id: berlin,   surface: "In Berlin",           neutralSurface: "in Berlin",           role: LOK }
+    - { id: arbeiten, surface: "arbeiten",            neutralSurface: "arbeiten",            role: INF }
+  canonical: [er, will, studium, berlin, arbeiten]
+
+- id: t2-92
+  tier: 2
+  ruleId: satzklammer-modal
+  verified: false
+  gloss: The children are supposed to go to bed early in the evenings.
+  chunks:
+    - { id: kinder, surface: "Die Kinder",  neutralSurface: "die Kinder",  role: SUBJ }
+    - { id: sollen, surface: "sollen",      neutralSurface: "sollen",      role: FIN }
+    - { id: abends, surface: "Abends",      neutralSurface: "abends",      role: TEMP }
+    - { id: frueh,  surface: "Früh",        neutralSurface: "früh",        role: MODAL }
+    - { id: bett,   surface: "Ins Bett",    neutralSurface: "ins Bett",    role: DIR }
+    - { id: gehen,  surface: "gehen",       neutralSurface: "gehen",       role: INF }
+  canonical: [kinder, sollen, abends, frueh, bett, gehen]
+
+# ─── Batch 6 · negation before the bracket ──────────────────────────────────
+
+- id: t2-93
+  tier: 2
+  ruleId: negation-vor-klammer
+  verified: false
+  gloss: He did not go to work yesterday.
+  chunks:
+    - { id: er,       surface: "Er",           neutralSurface: "er",           role: PRON_NOM }
+    - { id: ist,      surface: "ist",          neutralSurface: "ist",          role: FIN }
+    - { id: gestern,  surface: "Gestern",      neutralSurface: "gestern",      role: TEMP }
+    - { id: nicht,    surface: "Nicht",        neutralSurface: "nicht",        role: NEG }
+    - { id: arbeit,   surface: "Zur Arbeit",   neutralSurface: "zur Arbeit",   role: DIR }
+    - { id: gegangen, surface: "gegangen",     neutralSurface: "gegangen",     role: PART }
+  canonical: [er, ist, gestern, nicht, arbeit, gegangen]
+
+- id: t2-94
+  tier: 2
+  ruleId: negation-vor-klammer
+  verified: false
+  gloss: My daughter does not want to go to school today.
+  chunks:
+    - { id: tochter, surface: "Meine Tochter",  neutralSurface: "meine Tochter",  role: SUBJ }
+    - { id: will,    surface: "will",           neutralSurface: "will",           role: FIN }
+    - { id: heute,   surface: "Heute",          neutralSurface: "heute",          role: TEMP }
+    - { id: nicht,   surface: "Nicht",          neutralSurface: "nicht",          role: NEG }
+    - { id: schule,  surface: "In die Schule",  neutralSurface: "in die Schule",  role: DIR }
+    - { id: gehen,   surface: "gehen",          neutralSurface: "gehen",          role: INF }
+  canonical: [tochter, will, heute, nicht, schule, gehen]
+
+- id: t2-95
+  tier: 2
+  ruleId: negation-vor-klammer
+  verified: false
+  gloss: She has not answered the email yet.
+  chunks:
+    - { id: sie,     surface: "Sie",           neutralSurface: "sie",           role: PRON_NOM }
+    - { id: hat,     surface: "hat",           neutralSurface: "hat",           role: FIN }
+    - { id: mail,    surface: "Die E-Mail",    neutralSurface: "die E-Mail",    role: AKK, definite: true }
+    - { id: nicht,   surface: "Noch nicht",    neutralSurface: "noch nicht",    role: NEG }
+    - { id: beantw,  surface: "beantwortet",   neutralSurface: "beantwortet",   role: PART }
+  canonical: [sie, hat, mail, nicht, beantw]
+
+- id: t2-96
+  tier: 2
+  ruleId: negation-vor-klammer
+  verified: false
+  gloss: The bus did not come today.
+  chunks:
+    - { id: bus,      surface: "Der Bus",   neutralSurface: "der Bus",   role: SUBJ }
+    - { id: ist,      surface: "ist",       neutralSurface: "ist",       role: FIN }
+    - { id: heute,    surface: "Heute",     neutralSurface: "heute",     role: TEMP }
+    - { id: nicht,    surface: "Nicht",     neutralSurface: "nicht",     role: NEG }
+    - { id: gekommen, surface: "gekommen",  neutralSurface: "gekommen",  role: PART }
+  canonical: [bus, ist, heute, nicht, gekommen]
+
+- id: t2-97
+  tier: 2
+  ruleId: negation-vor-klammer
+  verified: false
+  gloss: I won't call you again today.
+  chunks:
+    - { id: ich,   surface: "Ich",         neutralSurface: "ich",         role: PRON_NOM }
+    - { id: rufe,  surface: "rufe",        neutralSurface: "rufe",        role: FIN }
+    - { id: dich,  surface: "Dich",        neutralSurface: "dich",        role: PRON_AKK }
+    - { id: heute, surface: "Heute",       neutralSurface: "heute",       role: TEMP }
+    - { id: nicht, surface: "Nicht mehr",  neutralSurface: "nicht mehr",  role: NEG }
+    - { id: an,    surface: "an",          neutralSurface: "an",          role: PTKVZ }
+  canonical: [ich, rufe, dich, heute, nicht, an]
+
+- id: t2-98
+  tier: 2
+  ruleId: negation-vor-klammer
+  verified: false
+  gloss: The children did not watch TV last night.
+  chunks:
+    - { id: kinder, surface: "Die Kinder",      neutralSurface: "die Kinder",      role: SUBJ }
+    - { id: haben,  surface: "haben",           neutralSurface: "haben",           role: FIN }
+    - { id: abend,  surface: "Gestern Abend",   neutralSurface: "gestern Abend",   role: TEMP }
+    - { id: nicht,  surface: "Nicht",           neutralSurface: "nicht",           role: NEG }
+    - { id: fern,   surface: "ferngesehen",     neutralSurface: "ferngesehen",     role: PART }
+  canonical: [kinder, haben, abend, nicht, fern]
