@@ -851,6 +851,10 @@
     - { id: englisch, surface: "Englisch",     neutralSurface: "Englisch",      role: AKK, definite: false }
     - { id: schule,  surface: "In der Schule", neutralSurface: "in der Schule", role: LOK }
   canonical: [sohn, lernt, englisch, schule]
+  # The generator ranks a bare object ahead of LOK, but a bare object that
+  # forms a unit with its verb can also sit last, next to it.
+  extraAccepted:
+    - { order: [sohn, lernt, schule, englisch], class: gueltig }
 
 - id: t1-71
   tier: 1
@@ -1222,3 +1226,258 @@
     - { id: heute, surface: "Heute",     neutralSurface: "heute",     role: TEMP }
     - { id: heiss, surface: "Zu heiß",   neutralSurface: "zu heiß",   role: PRAED }
   canonical: [suppe, ist, heute, heiss]
+
+# ─── Batch 5 · subject · verb · time · object ───────────────────────────────
+
+- id: t1-101
+  tier: 1
+  ruleId: v2-deklarativ
+  verified: false
+  gloss: My grandma bakes a cake on Sunday.
+  chunks:
+    - { id: oma,     surface: "Meine Oma",    neutralSurface: "meine Oma",    role: SUBJ }
+    - { id: backt,   surface: "backt",        neutralSurface: "backt",        role: FIN }
+    - { id: sonntag, surface: "Am Sonntag",   neutralSurface: "am Sonntag",   role: TEMP }
+    - { id: kuchen,  surface: "Einen Kuchen", neutralSurface: "einen Kuchen", role: AKK, definite: false }
+  canonical: [oma, backt, sonntag, kuchen]
+
+- id: t1-102
+  tier: 1
+  ruleId: v2-deklarativ
+  verified: false
+  gloss: I wear a hat in winter.
+  chunks:
+    - { id: ich,    surface: "Ich",        neutralSurface: "ich",        role: PRON_NOM }
+    - { id: trage,  surface: "trage",      neutralSurface: "trage",      role: FIN }
+    - { id: winter, surface: "Im Winter",  neutralSurface: "im Winter",  role: TEMP }
+    - { id: muetze, surface: "Eine Mütze", neutralSurface: "eine Mütze", role: AKK, definite: false }
+  canonical: [ich, trage, winter, muetze]
+
+- id: t1-103
+  tier: 1
+  ruleId: v2-deklarativ
+  verified: false
+  gloss: My brother plays football at the weekend.
+  chunks:
+    - { id: bruder,   surface: "Mein Bruder",   neutralSurface: "mein Bruder",   role: SUBJ }
+    - { id: spielt,   surface: "spielt",        neutralSurface: "spielt",        role: FIN }
+    - { id: woche,    surface: "Am Wochenende", neutralSurface: "am Wochenende", role: TEMP }
+    - { id: fussball, surface: "Fußball",       neutralSurface: "Fußball",       role: AKK, definite: false }
+  canonical: [bruder, spielt, woche, fussball]
+
+- id: t1-104
+  tier: 1
+  ruleId: v2-deklarativ
+  verified: false
+  gloss: He is buying a new bike on Saturday.
+  chunks:
+    - { id: er,      surface: "Er",                neutralSurface: "er",                role: PRON_NOM }
+    - { id: kauft,   surface: "kauft",             neutralSurface: "kauft",             role: FIN }
+    - { id: samstag, surface: "Am Samstag",        neutralSurface: "am Samstag",        role: TEMP }
+    - { id: rad,     surface: "Ein neues Fahrrad", neutralSurface: "ein neues Fahrrad", role: AKK, definite: false }
+  canonical: [er, kauft, samstag, rad]
+
+- id: t1-105
+  tier: 1
+  ruleId: v2-deklarativ
+  verified: false
+  gloss: She buys vegetables at the market.
+  chunks:
+    - { id: sie,     surface: "Sie",           neutralSurface: "sie",           role: PRON_NOM }
+    - { id: kauft,   surface: "kauft",         neutralSurface: "kauft",         role: FIN }
+    - { id: gemuese, surface: "Gemüse",        neutralSurface: "Gemüse",        role: AKK, definite: false }
+    - { id: markt,   surface: "Auf dem Markt", neutralSurface: "auf dem Markt", role: LOK }
+  canonical: [sie, kauft, gemuese, markt]
+  # Same as t1-70: the bare object may also sit last, next to the verb.
+  extraAccepted:
+    - { order: [sie, kauft, markt, gemuese], class: gueltig }
+
+- id: t1-106
+  tier: 1
+  ruleId: v2-deklarativ
+  verified: false
+  gloss: My colleague has her birthday tomorrow.
+  chunks:
+    - { id: kollegin, surface: "Meine Kollegin", neutralSurface: "meine Kollegin", role: SUBJ }
+    - { id: hat,      surface: "hat",            neutralSurface: "hat",            role: FIN }
+    - { id: morgen,   surface: "Morgen",         neutralSurface: "morgen",         role: TEMP }
+    - { id: geb,      surface: "Geburtstag",     neutralSurface: "Geburtstag",     role: AKK, definite: false }
+  canonical: [kollegin, hat, morgen, geb]
+
+# ─── Batch 5 · time before place ────────────────────────────────────────────
+
+- id: t1-107
+  tier: 1
+  ruleId: tekamolo-te-lo
+  verified: false
+  gloss: My father works nights at a hotel.
+  chunks:
+    - { id: vater,    surface: "Mein Vater", neutralSurface: "mein Vater", role: SUBJ }
+    - { id: arbeitet, surface: "arbeitet",   neutralSurface: "arbeitet",   role: FIN }
+    - { id: nachts,   surface: "Nachts",     neutralSurface: "nachts",     role: TEMP }
+    - { id: hotel,    surface: "Im Hotel",   neutralSurface: "im Hotel",   role: LOK }
+  canonical: [vater, arbeitet, nachts, hotel]
+
+- id: t1-108
+  tier: 1
+  ruleId: tekamolo-te-lo
+  verified: false
+  gloss: In summer I swim in the lake.
+  chunks:
+    - { id: ich,      surface: "Ich",       neutralSurface: "ich",       role: PRON_NOM }
+    - { id: schwimme, surface: "schwimme",  neutralSurface: "schwimme",  role: FIN }
+    - { id: sommer,   surface: "Im Sommer", neutralSurface: "im Sommer", role: TEMP }
+    - { id: see,      surface: "Im See",    neutralSurface: "im See",    role: LOK }
+  canonical: [ich, schwimme, sommer, see]
+
+- id: t1-109
+  tier: 1
+  ruleId: tekamolo-te-lo
+  verified: false
+  gloss: Today the lesson is in room twelve.
+  chunks:
+    - { id: unterricht, surface: "Der Unterricht", neutralSurface: "der Unterricht", role: SUBJ }
+    - { id: ist,        surface: "ist",            neutralSurface: "ist",            role: FIN }
+    - { id: heute,      surface: "Heute",          neutralSurface: "heute",          role: TEMP }
+    - { id: raum,       surface: "In Raum zwölf",  neutralSurface: "in Raum zwölf",  role: LOK }
+  canonical: [unterricht, ist, heute, raum]
+
+- id: t1-110
+  tier: 1
+  ruleId: tekamolo-te-lo
+  verified: false
+  gloss: We are going to the seaside next week.
+  chunks:
+    - { id: wir,    surface: "Wir",           neutralSurface: "wir",           role: PRON_NOM }
+    - { id: fahren, surface: "fahren",        neutralSurface: "fahren",        role: FIN }
+    - { id: woche,  surface: "Nächste Woche", neutralSurface: "nächste Woche", role: TEMP }
+    - { id: meer,   surface: "Ans Meer",      neutralSurface: "ans Meer",      role: DIR }
+  canonical: [wir, fahren, woche, meer]
+
+- id: t1-111
+  tier: 1
+  ruleId: tekamolo-te-lo
+  verified: false
+  gloss: My grandparents have lived in the country for forty years.
+  chunks:
+    - { id: grosseltern, surface: "Meine Großeltern",    neutralSurface: "meine Großeltern",    role: SUBJ }
+    - { id: wohnen,      surface: "wohnen",              neutralSurface: "wohnen",              role: FIN }
+    - { id: jahre,       surface: "Seit vierzig Jahren", neutralSurface: "seit vierzig Jahren", role: TEMP }
+    - { id: land,        surface: "Auf dem Land",        neutralSurface: "auf dem Land",        role: LOK }
+  canonical: [grosseltern, wohnen, jahre, land]
+
+# ─── Batch 5 · full TeKaMoLo ────────────────────────────────────────────────
+
+- id: t1-112
+  tier: 1
+  ruleId: tekamolo-voll
+  verified: false
+  gloss: Today I am taking the underground to university.
+  chunks:
+    - { id: ich,   surface: "Ich",            neutralSurface: "ich",            role: PRON_NOM }
+    - { id: fahre, surface: "fahre",          neutralSurface: "fahre",          role: FIN }
+    - { id: heute, surface: "Heute",          neutralSurface: "heute",          role: TEMP }
+    - { id: ubahn, surface: "Mit der U-Bahn", neutralSurface: "mit der U-Bahn", role: INSTR }
+    - { id: uni,   surface: "Zur Uni",        neutralSurface: "zur Uni",        role: DIR }
+  canonical: [ich, fahre, heute, ubahn, uni]
+
+- id: t1-113
+  tier: 1
+  ruleId: tekamolo-voll
+  verified: false
+  gloss: Because of the weather we are staying in the hotel.
+  chunks:
+    - { id: wir,     surface: "Wir",               neutralSurface: "wir",               role: PRON_NOM }
+    - { id: bleiben, surface: "bleiben",           neutralSurface: "bleiben",           role: FIN }
+    - { id: wetter,  surface: "Wegen des Wetters", neutralSurface: "wegen des Wetters", role: KAUS }
+    - { id: hotel,   surface: "Im Hotel",          neutralSurface: "im Hotel",          role: LOK }
+  canonical: [wir, bleiben, wetter, hotel]
+
+- id: t1-114
+  tier: 1
+  ruleId: tekamolo-voll
+  verified: false
+  gloss: In the evenings she walks home alone.
+  chunks:
+    - { id: sie,    surface: "Sie",        neutralSurface: "sie",        role: PRON_NOM }
+    - { id: geht,   surface: "geht",       neutralSurface: "geht",       role: FIN }
+    - { id: abends, surface: "Abends",     neutralSurface: "abends",     role: TEMP }
+    - { id: allein, surface: "Allein",     neutralSurface: "allein",     role: MODAL }
+    - { id: hause,  surface: "Nach Hause", neutralSurface: "nach Hause", role: DIR }
+  canonical: [sie, geht, abends, allein, hause]
+
+- id: t1-115
+  tier: 1
+  ruleId: tekamolo-voll
+  verified: false
+  gloss: In winter I take the train to the mountains.
+  chunks:
+    - { id: ich,    surface: "Ich",          neutralSurface: "ich",          role: PRON_NOM }
+    - { id: fahre,  surface: "fahre",        neutralSurface: "fahre",        role: FIN }
+    - { id: winter, surface: "Im Winter",    neutralSurface: "im Winter",    role: TEMP }
+    - { id: zug,    surface: "Mit dem Zug",  neutralSurface: "mit dem Zug",  role: INSTR }
+    - { id: berge,  surface: "In die Berge", neutralSurface: "in die Berge", role: DIR }
+  canonical: [ich, fahre, winter, zug, berge]
+
+- id: t1-116
+  tier: 1
+  ruleId: tekamolo-voll
+  verified: false
+  gloss: On Sundays we go running together in the park.
+  chunks:
+    - { id: wir,      surface: "Wir",      neutralSurface: "wir",      role: PRON_NOM }
+    - { id: laufen,   surface: "laufen",   neutralSurface: "laufen",   role: FIN }
+    - { id: sonntags, surface: "Sonntags", neutralSurface: "sonntags", role: TEMP }
+    - { id: zusammen, surface: "Zusammen", neutralSurface: "zusammen", role: MODAL }
+    - { id: park,     surface: "Im Park",  neutralSurface: "im Park",  role: LOK }
+  canonical: [wir, laufen, sonntags, zusammen, park]
+
+# ─── Batch 5 · predicative last ─────────────────────────────────────────────
+
+- id: t1-117
+  tier: 1
+  ruleId: praedikativ-final
+  verified: false
+  gloss: My brother has been ill since Monday.
+  chunks:
+    - { id: bruder, surface: "Mein Bruder", neutralSurface: "mein Bruder", role: SUBJ }
+    - { id: ist,    surface: "ist",         neutralSurface: "ist",         role: FIN }
+    - { id: montag, surface: "Seit Montag", neutralSurface: "seit Montag", role: TEMP }
+    - { id: krank,  surface: "Krank",       neutralSurface: "krank",       role: PRAED }
+  canonical: [bruder, ist, montag, krank]
+
+- id: t1-118
+  tier: 1
+  ruleId: praedikativ-final
+  verified: false
+  gloss: The street is very quiet at night.
+  chunks:
+    - { id: strasse, surface: "Die Straße", neutralSurface: "die Straße", role: SUBJ }
+    - { id: ist,     surface: "ist",        neutralSurface: "ist",        role: FIN }
+    - { id: nachts,  surface: "Nachts",     neutralSurface: "nachts",     role: TEMP }
+    - { id: ruhig,   surface: "Sehr ruhig", neutralSurface: "sehr ruhig", role: PRAED }
+  canonical: [strasse, ist, nachts, ruhig]
+
+- id: t1-119
+  tier: 1
+  ruleId: praedikativ-final
+  verified: false
+  gloss: The restaurant is closed on Mondays.
+  chunks:
+    - { id: restaurant, surface: "Das Restaurant", neutralSurface: "das Restaurant", role: SUBJ }
+    - { id: ist,        surface: "ist",            neutralSurface: "ist",            role: FIN }
+    - { id: montags,    surface: "Montags",        neutralSurface: "montags",        role: TEMP }
+    - { id: zu,         surface: "Geschlossen",    neutralSurface: "geschlossen",    role: PRAED }
+  canonical: [restaurant, ist, montags, zu]
+
+- id: t1-120
+  tier: 1
+  ruleId: praedikativ-final
+  verified: false
+  gloss: The exam was hard yesterday.
+  chunks:
+    - { id: pruefung, surface: "Die Prüfung", neutralSurface: "die Prüfung", role: SUBJ }
+    - { id: war,      surface: "war",         neutralSurface: "war",         role: FIN }
+    - { id: gestern,  surface: "Gestern",     neutralSurface: "gestern",     role: TEMP }
+    - { id: schwer,   surface: "Schwer",      neutralSurface: "schwer",      role: PRAED }
+  canonical: [pruefung, war, gestern, schwer]

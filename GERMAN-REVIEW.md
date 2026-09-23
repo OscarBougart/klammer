@@ -126,8 +126,8 @@ Spanien* behaves identically to a destination. Worth renaming to
 (2026-09-22), on the strength of the native-speaker review recorded in this
 file: t1-01–t1-80, t2-01–t2-26, t3-01–t3-24.
 
-**The 68 sentences added afterwards are `verified: false`** (2026-09-23):
-t1-81–t1-100, t2-27–t2-50, t3-25–t3-48. They were drafted under the reviewed
+**The 88 sentences added afterwards are `verified: false`** (2026-09-23):
+t1-81–t1-120, t2-27–t2-50, t3-25–t3-48. They were drafted under the reviewed
 rules, but no German speaker has seen them. They are playable, and
 `npm run content:expand` prints the draft warning until they are checked.
 Flip each one only after a German speaker has read it.
