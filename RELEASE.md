@@ -218,13 +218,13 @@ mechanic hold attention for a fortnight?**
 Prerequisites, in order:
 
 1. A German speaker has verified the bank — done for the first 130
-   sentences, **open for the 213 added after the review** (and for everything
+   sentences, **open for the 240 added after the review** (and for everything
    added from here on). `npm run content:expand` counts what's left; see the
-   verification-status note in `GERMAN-REVIEW.md`.
+   verification-status note in `GERMAN-REVIEW.md`, which also lists the open
+   questions for the reviewer. **This is now the long pole.**
 2. A real device build succeeds — E0.5, still open.
-3. Content reaches roughly 370 sentences across tiers 1–3. Currently 343
-   (tier 1: 120 — complete, tier 2: 120 — complete, tier 3: 103).
-   **This is now the long pole.**
+3. ~~Content reaches roughly 370 sentences across tiers 1–3~~ — done:
+   370 (tier 1: 120, tier 2: 120, tier 3: 130).
 4. Icon, feature graphic and screenshots exist — E7.3.
 5. Privacy policy has a public URL.
 
