@@ -28,6 +28,12 @@ export type Settings = {
   showGloss: boolean;
   /** One optional daily reminder, declinable forever. */
   reminder: boolean;
+  /**
+   * The guided first sentence has been played. Not a switch on the settings
+   * screen, but it is per-device and must survive a restart, so it lives with
+   * the rest. Settings can set it back to false to replay the introduction.
+   */
+  guideDone: boolean;
 };
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -36,6 +42,7 @@ export const DEFAULT_SETTINGS: Settings = {
   haptics: true,
   showGloss: true,
   reminder: false,
+  guideDone: false,
 };
 
 type SettingsState = Settings & {
@@ -68,10 +75,10 @@ export const useSettingsStore = create<SettingsState>((setState, getState) => ({
   set: (key, value) => {
     setState({ [key]: value } as Pick<SettingsState, typeof key>);
 
-    const { theme, sound, haptics, showGloss, reminder } = getState();
+    const { theme, sound, haptics, showGloss, reminder, guideDone } = getState();
     void AsyncStorage.setItem(
       STORAGE_KEY,
-      JSON.stringify({ theme, sound, haptics, showGloss, reminder }),
+      JSON.stringify({ theme, sound, haptics, showGloss, reminder, guideDone }),
     );
   },
 }));

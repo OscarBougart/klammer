@@ -7,9 +7,10 @@
  */
 import { useRouter } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import Button from '@/components/Button';
 import WeekStrip from '@/board/WeekStrip';
 import { localDate, previousDate } from '@/content/dates';
 import {
@@ -19,14 +20,13 @@ import {
   type WeekDay,
 } from '@/content/progression';
 import { loadPlayedDates, loadProgress } from '@/content/repository';
+import { useSettingsStore } from '@/store/settings';
 import {
-  a11y,
   display,
   explanation,
   gloss,
   heading,
   palette,
-  radius,
   space,
 } from '@/theme';
 
@@ -40,12 +40,41 @@ const TIER_NAME = [
   'Das Nachfeld',
 ];
 
+/**
+ * What the tier trains, in one line. The tier's name is the grammar's; this
+ * is what it means for the learner about to press start.
+ */
+const TIER_SUMMARY: { de: string; en: string }[] = [
+  { de: '', en: '' },
+  { de: 'Das Verb steht an Position 2.', en: 'The verb goes in position 2.' },
+  {
+    de: 'Das Verb teilt sich: ein Teil vorn, der Rest am Ende.',
+    en: 'The verb splits: one part early, the rest at the end.',
+  },
+  {
+    de: 'Die Ordnung in der Mitte: Pronomen, Zeit, Grund, Art, Ort.',
+    en: 'The order in the middle: pronouns, time, reason, manner, place.',
+  },
+  {
+    de: 'Im Nebensatz steht das Verb am Ende.',
+    en: 'In a subordinate clause the verb goes last.',
+  },
+  {
+    de: 'Was hinter der Klammer stehen darf.',
+    en: 'What may come after the bracket.',
+  },
+];
+
 export default function HomeScreen() {
   const router = useRouter();
 
   const [tier, setTier] = useState(1);
   const [days, setDays] = useState<WeekDay[]>([]);
   const [streak, setStreak] = useState<StreakStatus | null>(null);
+
+  const showGloss = useSettingsStore((s) => s.showGloss);
+  const guideDone = useSettingsStore((s) => s.guideDone);
+  const summary = TIER_SUMMARY[tier];
 
   const refresh = useCallback(async () => {
     const now = new Date();
@@ -83,12 +112,23 @@ export default function HomeScreen() {
       <View style={styles.header}>
         <Text style={styles.title}>Klammer</Text>
         <Text style={styles.subtitle}>Deutsche Wortstellung, Satz für Satz.</Text>
+        {showGloss ? (
+          <Text style={styles.subtitleGloss}>
+            German word order, one sentence at a time.
+          </Text>
+        ) : null}
       </View>
 
       <View style={styles.body}>
         <View style={styles.tier}>
           <Text style={styles.tierLabel}>Stufe {tier}</Text>
           <Text style={styles.tierName}>{TIER_NAME[tier] ?? ''}</Text>
+          {summary ? (
+            <>
+              <Text style={styles.tierSummary}>{summary.de}</Text>
+              {showGloss ? <Text style={styles.tierGloss}>{summary.en}</Text> : null}
+            </>
+          ) : null}
         </View>
 
         <WeekStrip
@@ -100,25 +140,27 @@ export default function HomeScreen() {
       </View>
 
       <View style={styles.footer}>
-        <Pressable
+        <Button
+          // The very first session opens with a guided sentence; saying so
+          // tells a new learner they will not be dropped in cold.
+          label={guideDone ? 'Sitzung starten' : 'Los geht’s'}
+          accessibilityLabel={
+            guideDone ? 'Sitzung starten, zehn Sätze' : 'Los geht’s, mit Einführung'
+          }
           onPress={() => router.push('/(game)/session')}
-          accessibilityRole="button"
-          accessibilityLabel="Sitzung starten, zehn Sätze"
-          style={styles.action}
-        >
-          <Text style={styles.actionLabel}>Sitzung starten</Text>
-        </Pressable>
+        />
 
-        <Text style={styles.hint}>Zehn Sätze, etwa zwölf Minuten.</Text>
+        <Text style={styles.hint}>
+          {guideDone
+            ? 'Zehn Sätze, etwa zwölf Minuten.'
+            : 'Der erste Satz zeigt dir Schritt für Schritt, wie es geht.'}
+        </Text>
 
-        <Pressable
+        <Button
+          variant="secondary"
+          label="Einstellungen"
           onPress={() => router.push('/settings')}
-          accessibilityRole="button"
-          accessibilityLabel="Einstellungen"
-          style={styles.secondary}
-        >
-          <Text style={styles.secondaryLabel}>Einstellungen</Text>
-        </Pressable>
+        />
       </View>
     </SafeAreaView>
   );
@@ -135,7 +177,8 @@ const styles = StyleSheet.create({
     gap: space.xs,
   },
   title: display,
-  subtitle: gloss,
+  subtitle: explanation,
+  subtitleGloss: gloss,
   body: {
     padding: space.lg,
     gap: space.xl,
@@ -145,26 +188,17 @@ const styles = StyleSheet.create({
   },
   tierLabel: gloss,
   tierName: heading,
+  tierSummary: {
+    ...explanation,
+    marginTop: space.xs,
+  },
+  tierGloss: gloss,
   footer: {
     padding: space.lg,
-    gap: space.sm,
+    gap: space.md,
   },
-  action: {
-    backgroundColor: palette.messing,
-    borderRadius: radius.tile,
-    minHeight: a11y.minTouchTarget,
-    alignItems: 'center',
-    justifyContent: 'center',
+  hint: {
+    ...gloss,
+    textAlign: 'center',
   },
-  actionLabel: {
-    ...explanation,
-    color: palette.schiefer,
-  },
-  hint: gloss,
-  secondary: {
-    minHeight: a11y.minTouchTarget,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  secondaryLabel: gloss,
 });

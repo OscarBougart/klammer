@@ -89,13 +89,17 @@ export const duration = {
 } as const;
 
 /**
- * The Klammer arc. Its height is how far the bracket drops below the fields
- * before running across; the stroke is deliberately thin so it reads as a
- * drawn diagram rather than a UI chrome bar.
+ * The Klammer arc, drawn down the board's left edge from the left bracket to
+ * the right one. `gutter` is the strip it lives in, `tick` how far each end
+ * reaches in towards its field. The stroke is deliberately thin so it reads as
+ * a drawn diagram rather than UI chrome. `ghostOpacity` is the always-visible
+ * outline that shows which two fields belong together before it closes.
  */
 export const arc = {
-  height: 28,
   stroke: 2,
+  gutter: 16,
+  tick: 10,
+  ghostOpacity: 0.35,
 } as const;
 
 /** Outline weights. Used where colour alone must not carry meaning. */

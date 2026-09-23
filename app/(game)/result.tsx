@@ -19,7 +19,8 @@ import {
   useSessionStore,
   type SessionAttempt,
 } from '@/store/session';
-import { a11y, border, explanation, fieldLabel, gloss as glossStyle, heading, palette, radius, space } from '@/theme';
+import Button from '@/components/Button';
+import { border, explanation, fieldLabel, gloss as glossStyle, heading, palette, radius, space } from '@/theme';
 
 /** How each verdict reads in the list. Shape and word, never colour alone. */
 const MARK: Record<Verdict, string> = {
@@ -69,6 +70,9 @@ export default function ResultScreen() {
         <Text style={styles.summary}>
           {correct} von {attempts.length} richtig
         </Text>
+        <Text style={styles.tapHint}>
+          Tippe einen Satz an, um die neutrale Form und die Regel zu sehen.
+        </Text>
       </View>
 
       <ScrollView contentContainerStyle={styles.list}>
@@ -110,7 +114,7 @@ export default function ResultScreen() {
                 <View style={styles.detail}>
                   {/* The canonical order, so a wrong answer has something to
                       be read against rather than merely being marked wrong. */}
-                  <Text style={styles.detailLabel}>Kanonisch</Text>
+                  <Text style={styles.detailLabel}>Die neutrale Reihenfolge</Text>
                   <Text style={styles.built}>
                     {renderOrder(sentence, sentence.canonical)}
                   </Text>
@@ -130,16 +134,10 @@ export default function ResultScreen() {
       </ScrollView>
 
       <View style={styles.footer}>
-        <Pressable
+        <Button
+          label={unlockedTier !== null ? 'Neues Feld ansehen' : 'Zurück zum Start'}
           onPress={finish}
-          accessibilityRole="button"
-          accessibilityLabel="Fertig"
-          style={styles.action}
-        >
-          <Text style={styles.actionLabel}>
-            {unlockedTier !== null ? 'Neues Feld ansehen' : 'Fertig'}
-          </Text>
-        </Pressable>
+        />
       </View>
     </SafeAreaView>
   );
@@ -201,7 +199,8 @@ const styles = StyleSheet.create({
     gap: space.xs,
   },
   title: heading,
-  summary: glossStyle,
+  summary: explanation,
+  tapHint: glossStyle,
   list: {
     paddingHorizontal: space.lg,
     paddingBottom: space.lg,
@@ -244,16 +243,5 @@ const styles = StyleSheet.create({
   detailLabel: fieldLabel,
   footer: {
     padding: space.lg,
-  },
-  action: {
-    backgroundColor: palette.messing,
-    borderRadius: radius.tile,
-    minHeight: a11y.minTouchTarget,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  actionLabel: {
-    ...explanation,
-    color: palette.schiefer,
   },
 });

@@ -10,21 +10,14 @@
  * business existing.
  */
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import Button from '@/components/Button';
 import FieldZone from '@/board/FieldZone';
 import { boardFields, type Tier } from '@/board/fields';
 import { DragProvider } from '@/board/dragContext';
-import {
-  a11y,
-  explanation,
-  gloss,
-  heading,
-  palette,
-  radius,
-  space,
-} from '@/theme';
+import { explanation, gloss, heading, palette, space } from '@/theme';
 
 /** What each tier opens up, in both languages. */
 const TIER_LESSON: Record<number, { name: string; de: string; en: string }> = {
@@ -90,14 +83,7 @@ export default function UnlockScreen() {
       </View>
 
       <View style={styles.footer}>
-        <Pressable
-          onPress={() => router.replace('/')}
-          accessibilityRole="button"
-          accessibilityLabel="Weiter"
-          style={styles.action}
-        >
-          <Text style={styles.actionLabel}>Weiter</Text>
-        </Pressable>
+        <Button label="Weiter" onPress={() => router.replace('/')} />
       </View>
     </SafeAreaView>
   );
@@ -135,16 +121,5 @@ const styles = StyleSheet.create({
   english: gloss,
   footer: {
     padding: space.lg,
-  },
-  action: {
-    backgroundColor: palette.messing,
-    borderRadius: radius.tile,
-    minHeight: a11y.minTouchTarget,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  actionLabel: {
-    ...explanation,
-    color: palette.schiefer,
   },
 });

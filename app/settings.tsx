@@ -6,9 +6,10 @@
  * and one reminder that can be declined forever.
  */
 import { useRouter } from 'expo-router';
-import { Pressable, StyleSheet, Switch, Text, View } from 'react-native';
+import { StyleSheet, Switch, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import Button from '@/components/Button';
 import { useSettingsStore } from '@/store/settings';
 import {
   a11y,
@@ -17,7 +18,6 @@ import {
   gloss,
   heading,
   palette,
-  radius,
   space,
 } from '@/theme';
 
@@ -81,14 +81,16 @@ export default function SettingsScreen() {
           Werbung, keine Datenübertragung.
         </Text>
 
-        <Pressable
-          onPress={() => router.back()}
-          accessibilityRole="button"
-          accessibilityLabel="Zurück"
-          style={styles.action}
-        >
-          <Text style={styles.actionLabel}>Zurück</Text>
-        </Pressable>
+        {settings.guideDone ? (
+          <Button
+            variant="secondary"
+            label="Einführung wiederholen"
+            accessibilityHint="Der nächste Satz zeigt die Schritte noch einmal."
+            onPress={() => settings.set('guideDone', false)}
+          />
+        ) : null}
+
+        <Button label="Zurück" onPress={() => router.back()} />
       </View>
     </SafeAreaView>
   );
@@ -129,12 +131,4 @@ const styles = StyleSheet.create({
     gap: space.md,
   },
   privacy: gloss,
-  action: {
-    backgroundColor: palette.feld,
-    borderRadius: radius.tile,
-    minHeight: a11y.minTouchTarget,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  actionLabel: explanation,
 });

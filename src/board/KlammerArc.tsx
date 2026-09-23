@@ -1,10 +1,16 @@
 /**
  * The Klammer arc — E3.2.
  *
- * design.md §6: the app's one orchestrated moment. When both bracket halves
- * are filled correctly the arc draws left to right over 420ms with a slight
- * overshoot, and one sharp haptic lands on arrival. Nothing else in the app
- * has a signature animation, which is what makes this one mean something.
+ * design.md §6: the app's one orchestrated moment. When the sentence is right
+ * the bracket draws over 420ms with a slight overshoot, and one sharp haptic
+ * lands on arrival. Nothing else in the app has a signature animation, which
+ * is what makes this one mean something.
+ *
+ * The board stacks its fields vertically, so the bracket runs down its left
+ * edge: from the left bracket (the finite verb) to the right bracket (the rest
+ * of the verb), tying the two together the way the grammar does. A faint
+ * outline of it is always there once the tier has a bracket, so the pairing is
+ * visible before the learner has earned the brass.
  *
  * Success is the arc completing in brass — not a green tick. Colour never
  * carries the meaning alone: the arc's *shape* closing is the signal, so it
@@ -14,12 +20,12 @@ import * as Haptics from 'expo-haptics';
 import { memo, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, {
+  Easing,
   runOnJS,
   useAnimatedProps,
   useReducedMotion,
   useSharedValue,
   withTiming,
-  Easing,
 } from 'react-native-reanimated';
 import Svg, { Path } from 'react-native-svg';
 
@@ -36,23 +42,27 @@ export type KlammerArcProps = {
    * `ungewoehnlich` the same closing arc in a dimmer tone.
    */
   dimmed?: boolean;
-  width: number;
-  height?: number;
+  /** Where the arc starts, from the top of its container: the left bracket. */
+  top: number;
+  /** How far down it runs: to the middle of the right bracket. */
+  span: number;
 };
 
-
-function KlammerArcComponent({
-  closed,
-  dimmed = false,
-  width,
-  height = arc.height,
-}: KlammerArcProps) {
+function KlammerArcComponent({ closed, dimmed = false, top, span }: KlammerArcProps) {
   const reducedMotion = useReducedMotion();
   const progress = useSharedValue(0);
 
+  const width = arc.gutter;
+  const height = span + arc.stroke * 2;
+  const x = width - arc.tick;
+  const bottom = height - arc.stroke;
+
+  // A "[": in from the left bracket, down the edge, back out to the right one.
+  const d = `M ${width} ${arc.stroke} L ${x} ${arc.stroke} L ${x} ${bottom} L ${width} ${bottom}`;
+
   // The arc is drawn as a stroked path revealed by its dash offset, which is
   // the only way to animate "drawing" a line in SVG.
-  const length = width + height * 2;
+  const length = arc.tick * 2 + span;
 
   const onArrival = () => {
     if (!useSettingsStore.getState().haptics) return;
@@ -92,15 +102,26 @@ function KlammerArcComponent({
     strokeDashoffset: length * (1 - progress.value),
   }));
 
+  if (span <= 0) return null;
+
   return (
-    <View style={[styles.container, { width, height }]} pointerEvents="none">
+    <View
+      style={[styles.container, { top: top - arc.stroke, width, height }]}
+      pointerEvents="none"
+      importantForAccessibility="no-hide-descendants"
+      accessibilityElementsHidden
+    >
       <Svg width={width} height={height}>
-        {/*
-          Down from the left bracket, across, and back up to the right one —
-          the shape of a composing stick holding the sentence together.
-        */}
+        <Path
+          d={d}
+          stroke={palette.grau}
+          strokeOpacity={arc.ghostOpacity}
+          strokeWidth={arc.stroke}
+          fill="none"
+          strokeLinecap="round"
+        />
         <AnimatedPath
-          d={`M ${arc.stroke} 0 L ${arc.stroke} ${height - arc.stroke} L ${width - arc.stroke} ${height - arc.stroke} L ${width - arc.stroke} 0`}
+          d={d}
           stroke={dimmed ? palette.grau : palette.messing}
           strokeWidth={arc.stroke}
           fill="none"
@@ -117,6 +138,7 @@ export default memo(KlammerArcComponent);
 
 const styles = StyleSheet.create({
   container: {
-    alignSelf: 'center',
+    position: 'absolute',
+    left: 0,
   },
 });

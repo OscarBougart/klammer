@@ -23,8 +23,14 @@ export type Tier = 1 | 2 | 3 | 4 | 5;
 
 export type Field = {
   id: FieldId;
-  /** Shown under the zone, 13px with loose tracking, sentence case. */
+  /** The field's name, shown above the zone. Sentence case. */
   label: string;
+  /**
+   * What goes here, in two or three A1 words, shown after the name. The field
+   * names are the grammar's own vocabulary and worth learning, but on first
+   * sight `Linke Klammer` says nothing; `Position 2 · Verb` says what to do.
+   */
+  hint: string;
   /**
    * Screen-reader label.
    *
@@ -50,6 +56,7 @@ function fieldsFor(tier: Tier): Field[] {
   const vorfeld: Field = {
     id: 'vorfeld',
     label: 'Vorfeld',
+    hint: 'Position 1 · ein Satzteil',
     a11yLabel: 'Vorfeld, erste Position, ein Satzglied',
     capacity: 'single',
   };
@@ -59,12 +66,14 @@ function fieldsFor(tier: Tier): Field[] {
       ? {
           id: 'linkeKlammer',
           label: 'Konjunktion',
+          hint: 'weil, dass …',
           a11yLabel: 'Linke Klammer, die Konjunktion',
           capacity: 'single',
         }
       : {
           id: 'linkeKlammer',
           label: 'Linke Klammer',
+          hint: 'Position 2 · Verb',
           a11yLabel: 'Linke Klammer, das finite Verb',
           capacity: 'single',
         };
@@ -72,6 +81,7 @@ function fieldsFor(tier: Tier): Field[] {
   const mittelfeld: Field = {
     id: 'mittelfeld',
     label: 'Mittelfeld',
+    hint: 'alles dazwischen',
     a11yLabel: 'Mittelfeld',
     capacity: 'many',
   };
@@ -82,6 +92,7 @@ function fieldsFor(tier: Tier): Field[] {
   const rest: Field = {
     id: 'mittelfeld',
     label: 'Rest',
+    hint: 'alles andere',
     a11yLabel: 'Der Rest des Satzes',
     capacity: 'many',
   };
@@ -89,6 +100,7 @@ function fieldsFor(tier: Tier): Field[] {
   const rechteKlammer: Field = {
     id: 'rechteKlammer',
     label: 'Rechte Klammer',
+    hint: 'Verbteile am Ende',
     a11yLabel: 'Rechte Klammer, die übrigen Verbteile',
     capacity: 'many',
   };
@@ -96,6 +108,7 @@ function fieldsFor(tier: Tier): Field[] {
   const nachfeld: Field = {
     id: 'nachfeld',
     label: 'Nachfeld',
+    hint: 'nach der Klammer',
     a11yLabel: 'Nachfeld, hinter der rechten Klammer',
     capacity: 'many',
   };

@@ -60,6 +60,27 @@ export const gloss: TextStyle = {
   color: palette.grau,
 };
 
+/**
+ * Button labels. Display face at 17: the main action on a screen is the one
+ * thing a first-time learner must find, so it does not whisper in body text.
+ */
+export const buttonLabel: TextStyle = {
+  fontFamily: fonts.displaySemiBold,
+  fontSize: fontSize.bodyLarge,
+  color: palette.kreide,
+};
+
+/**
+ * The sentence as the learner is building it, read as one line above the
+ * board. Display face, between body and tile size, so it reads as the result
+ * of the tiles rather than as another tile.
+ */
+export const sentenceLine: TextStyle = {
+  fontFamily: fonts.displayMedium,
+  fontSize: fontSize.bodyLarge,
+  color: palette.kreide,
+};
+
 export const heading: TextStyle = {
   fontFamily: fonts.displaySemiBold,
   fontSize: fontSize.heading,

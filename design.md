@@ -71,7 +71,18 @@ structure is currently in play.
 3. Slots accept anything. The board never blocks a wrong placement — being
    wrong must be possible or nothing is being tested.
 4. **Prüfen** validates.
-5. Feedback (§5), then next sentence.
+5. Feedback (§5), then next sentence. After a wrong answer the learner may
+   try again ("Nochmal") or have the one-tile fix shown. Only the first
+   attempt counts for the score, tier progress and the review queue.
+
+A line above the board reads back whatever has been placed, left to right,
+as German. The fields are stacked on a phone; this line is where the
+sentence, and the verb in second position, becomes visible as a sentence.
+
+**First run.** The very first sentence is guided: a line under the board
+says what to do next (tap a tile, tap a field, the verb goes in position 2,
+check), read off the board's state rather than scripted. After that sentence
+the guide is gone; Settings can replay it.
 
 ### Tiles are chunks, not words
 
@@ -212,10 +223,12 @@ labels at 13 with loose tracking. Sentence case everywhere; no all-caps labels.
 
 ### Motion
 
-One orchestrated moment: **the bracket closing.** When both halves are filled
-correctly, the arc draws left-to-right over 420ms with a slight overshoot at the
-end, and one sharp haptic lands on arrival. Nothing else in the app has a
-signature animation.
+One orchestrated moment: **the bracket closing.** The fields stack vertically
+on a phone, so the arc runs down the board's left edge from the left bracket
+to the right one. A faint outline of it is always there from tier 2, showing
+which two fields belong together. When the sentence is right it draws in
+brass over 420ms with a slight overshoot at the end, and one sharp haptic
+lands on arrival. Nothing else in the app has a signature animation.
 
 Everything else answers a touch directly: tiles lift, snap, and settle with
 spring physics (Reanimated, `damping: 18, stiffness: 220`). Snap is 110ms and

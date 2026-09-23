@@ -3,16 +3,21 @@
  *
  * design.md §7: ten sentences, fixed, and no timer during a puzzle. The
  * progress indicator says how far through you are and nothing about how fast.
+ *
+ * After a wrong answer the learner may try again. Only the first attempt is
+ * recorded (score, tier progress, review queue); the retry exists because
+ * fixing it yourself is the most useful moment in the whole loop.
  */
 import { useRouter } from 'expo-router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import Button from '@/components/Button';
 import Board from '@/board/Board';
 import { DragProvider } from '@/board/dragContext';
 import { boardFields, isVerbFinal, type FieldId, type Tier } from '@/board/fields';
-import KlammerArc from '@/board/KlammerArc';
+import { guideLine } from '@/board/guide';
 import VerdictPanel from '@/board/VerdictPanel';
 import { localDate, previousDate } from '@/content/dates';
 import {
@@ -27,6 +32,7 @@ import {
 } from '@/content/repository';
 import { seed } from '@/content/seed';
 import { selectSession, SESSION_LENGTH } from '@/content/selection';
+import { diagnoseRule } from '@/engine/diagnose';
 import { explainAlternative, explainRule, type Explanation } from '@/engine/rules';
 import {
   findSingleTileCorrection,
@@ -49,7 +55,6 @@ import {
   gloss,
   numeral,
   palette,
-  radius,
   space,
 } from '@/theme';
 
@@ -90,12 +95,18 @@ export default function SessionScreen() {
 
   const loadBoard = useBoardStore((s) => s.load);
   const tray = useBoardStore((s) => s.tray);
+  const fields = useBoardStore((s) => s.fields);
+  const selectedTileId = useBoardStore((s) => s.selectedTileId);
 
   const showGloss = useSettingsStore((s) => s.showGloss);
+  const guideDone = useSettingsStore((s) => s.guideDone);
+  const setSetting = useSettingsStore((s) => s.set);
 
   const [result, setResult] = useState<Result | null>(null);
   const [shakeNonce, setShakeNonce] = useState(0);
   const [starting, setStarting] = useState(true);
+  /** How many times this sentence has been checked. Only the first counts. */
+  const [checks, setChecks] = useState(0);
 
   // ─── Start or resume ────────────────────────────────────────────────────
   useEffect(() => {
@@ -182,6 +193,7 @@ export default function SessionScreen() {
     if (tiles.length === 0) return;
     loadBoard(tiles, shuffle(tiles.map((t) => t.id)));
     setResult(null);
+    setChecks(0);
   }, [tiles, loadBoard]);
 
   // ─── Finish ─────────────────────────────────────────────────────────────
@@ -210,20 +222,34 @@ export default function SessionScreen() {
     const order = useBoardStore.getState().submittedOrder(fieldOrder);
     const verdict = validate(order, sentence);
 
-    record({ sentenceId: sentence.id, submittedOrder: order, verdict });
-    void recordAttempt({
-      sessionId,
-      sentenceId: sentence.id,
-      submittedOrder: order,
-      verdict,
-      now: Math.floor(Date.now() / 1000),
-    });
+    // Only the first answer to a sentence counts. A retry is for learning,
+    // and letting it overwrite the first result would turn every wrong
+    // answer into a free second chance at the score.
+    if (checks === 0) {
+      record({ sentenceId: sentence.id, submittedOrder: order, verdict });
+      void recordAttempt({
+        sessionId,
+        sentenceId: sentence.id,
+        submittedOrder: order,
+        verdict,
+        now: Math.floor(Date.now() / 1000),
+      });
+    }
+    setChecks((n) => n + 1);
 
     if (verdict === 'falsch') {
       const correction = findSingleTileCorrection(order, sentence);
+      // Name the rule the learner actually broke, not merely the one this
+      // sentence was written to practise.
+      const rule = diagnoseRule({
+        fields: useBoardStore.getState().fields,
+        fieldOrder,
+        tiles,
+        sentenceRuleId: sentence.ruleId,
+      });
       setResult({
         verdict,
-        message: explainRule(sentence.ruleId),
+        message: explainRule(rule),
         ...(correction
           ? {
               correctionTileId: correction.tileId,
@@ -257,7 +283,7 @@ export default function SessionScreen() {
       message: { de: note.de, en: note.en },
       ...(note.emphasis ? { emphasis: note.emphasis } : {}),
     });
-  }, [sentence, sessionId, fieldOrder, tiles, record]);
+  }, [sentence, sessionId, fieldOrder, tiles, record, checks]);
 
   if (starting || !sentence) {
     return (
@@ -269,6 +295,8 @@ export default function SessionScreen() {
 
   const ready = isComplete({ tray });
   const closed = result !== null && isCorrect(result.verdict);
+  const wrong = result?.verdict === 'falsch';
+  const guided = !guideDone;
 
   /**
    * Shows the fix by making it — one tile travels, the rest reflow around it.
@@ -285,20 +313,57 @@ export default function SessionScreen() {
     setResult(rest);
   };
 
+  /** Back to the board as the learner left it, to fix it themselves. */
+  const tryAgain = () => setResult(null);
+
+  const next = () => {
+    // The guided first sentence ends when the learner moves past it, whatever
+    // the verdict — they have seen every step by then.
+    if (guided) setSetting('guideDone', true);
+    advance();
+  };
+
+  const leftBracket = fields.linkeKlammer ?? [];
+  const verbInPlace = tiles.some(
+    (t) => t.role === 'FIN' && leftBracket.includes(t.id),
+  );
+
+  const hint = guideLine({
+    guided,
+    trayCount: tray.length,
+    placedCount: tiles.length - tray.length,
+    hasSelection: selectedTileId !== null,
+    verbInPlace,
+    verdict: result?.verdict ?? null,
+    isRetry: result !== null && checks > 1,
+  });
+
   return (
     <SafeAreaView style={styles.root} edges={['top', 'bottom']}>
       <View style={styles.header}>
-        {/* Progress, never a timer — timing pressure degrades the exact
-            processing this app trains. */}
-        <Text
-          style={styles.progress}
-          accessibilityLabel={`Sentence ${index + 1} of ${sentences.length}`}
-        >
-          {index + 1} / {sentences.length}
-        </Text>
-        {showGloss ? (
-          <Text style={styles.gloss}>{sentence.gloss}</Text>
-        ) : null}
+        <View style={styles.headerRow}>
+          {/* Progress, never a timer — timing pressure degrades the exact
+              processing this app trains. */}
+          <Text
+            style={styles.progress}
+            accessibilityLabel={`Satz ${index + 1} von ${sentences.length}`}
+          >
+            Satz {index + 1} von {sentences.length}
+          </Text>
+
+          {/* The session resumes where it stopped, so leaving is safe. */}
+          <Pressable
+            onPress={() => router.back()}
+            accessibilityRole="button"
+            accessibilityLabel="Pause, später weitermachen"
+            hitSlop={space.sm}
+            style={styles.pause}
+          >
+            <Text style={styles.pauseLabel}>Pause</Text>
+          </Pressable>
+        </View>
+
+        {showGloss ? <Text style={styles.gloss}>{sentence.gloss}</Text> : null}
       </View>
 
       <DragProvider>
@@ -308,15 +373,11 @@ export default function SessionScreen() {
           {...(result?.correctionTileId
             ? { shakeTileId: result.correctionTileId, shakeNonce }
             : {})}
+          closed={closed}
+          dimmed={result?.verdict === 'ungewoehnlich'}
+          showVerbAnchor={!wrong}
         />
       </DragProvider>
-
-      {/* Closes only on a correct bracket — success is the arc, not a tick. */}
-      <KlammerArc
-        closed={closed}
-        dimmed={result?.verdict === 'ungewoehnlich'}
-        width={280}
-      />
 
       {result ? (
         <VerdictPanel
@@ -327,46 +388,52 @@ export default function SessionScreen() {
       ) : null}
 
       <View style={styles.footer}>
-        {result?.correctedOrder ? (
-          <Pressable
-            onPress={showCorrection}
-            accessibilityRole="button"
-            accessibilityLabel="Lösung zeigen"
-            style={styles.secondary}
+        {hint ? (
+          <View
+            style={styles.hint}
+            accessibilityLiveRegion="polite"
+            accessible
+            accessibilityLabel={hint.de}
           >
-            <Text style={styles.secondaryLabel}>Zeigen</Text>
-          </Pressable>
+            <Text style={guided ? styles.hintGuided : styles.hintText}>{hint.de}</Text>
+            {showGloss ? <Text style={styles.hintGloss}>{hint.en}</Text> : null}
+          </View>
+        ) : null}
+
+        {wrong ? (
+          <View style={styles.row}>
+            <View style={styles.rowItem}>
+              <Button
+                variant="secondary"
+                label="Nochmal"
+                accessibilityLabel="Nochmal versuchen"
+                onPress={tryAgain}
+              />
+            </View>
+            {result.correctedOrder ? (
+              <View style={styles.rowItem}>
+                <Button
+                  variant="secondary"
+                  label="Lösung zeigen"
+                  onPress={showCorrection}
+                />
+              </View>
+            ) : null}
+          </View>
         ) : null}
 
         {result ? (
-          <Pressable
-            onPress={advance}
-            accessibilityRole="button"
-            accessibilityLabel="Weiter"
-            style={styles.action}
-          >
-            <Text style={styles.actionLabel}>Weiter</Text>
-          </Pressable>
+          <Button label="Weiter" onPress={next} />
         ) : (
-          <Pressable
+          <Button
+            label="Prüfen"
             onPress={check}
             disabled={!ready}
-            accessibilityRole="button"
-            accessibilityLabel="Prüfen"
-            accessibilityState={{ disabled: !ready }}
-            style={[styles.action, !ready && styles.actionDisabled]}
-          >
-            <Text style={styles.actionLabel}>Prüfen</Text>
-          </Pressable>
+            {...(ready
+              ? {}
+              : { accessibilityHint: 'Erst alle Bausteine setzen.' })}
+          />
         )}
-
-        <Text style={styles.hint}>
-          {result
-            ? ''
-            : ready
-              ? 'Alle Bausteine gesetzt.'
-              : 'Tippe einen Baustein an, dann ein Feld — oder zieh ihn.'}
-        </Text>
       </View>
     </SafeAreaView>
   );
@@ -379,38 +446,44 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingHorizontal: space.lg,
-    paddingTop: space.md,
+    paddingTop: space.sm,
     gap: space.xs,
   },
+  headerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    minHeight: a11y.minTouchTarget,
+  },
   progress: numeral,
+  pause: {
+    minHeight: a11y.minTouchTarget,
+    minWidth: a11y.minTouchTarget,
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+  },
+  pauseLabel: gloss,
   gloss,
   footer: {
     padding: space.lg,
-    gap: space.sm,
+    gap: space.md,
   },
-  action: {
-    backgroundColor: palette.messing,
-    borderRadius: radius.tile,
-    minHeight: a11y.minTouchTarget,
-    alignItems: 'center',
-    justifyContent: 'center',
+  hint: {
+    gap: space.xs,
   },
-  actionDisabled: {
-    // Quieter, not invisible — the learner should see where the button is
-    // before they are able to press it.
-    opacity: 0.4,
-  },
-  actionLabel: {
+  hintText: fieldLabel,
+  hintGuided: {
     ...explanation,
-    color: palette.schiefer,
+    color: palette.kreide,
   },
-  secondary: {
-    minHeight: a11y.minTouchTarget,
-    alignItems: 'center',
-    justifyContent: 'center',
+  hintGloss: gloss,
+  row: {
+    flexDirection: 'row',
+    gap: space.md,
   },
-  secondaryLabel: gloss,
-  hint: fieldLabel,
+  rowItem: {
+    flex: 1,
+  },
   empty: {
     flex: 1,
     backgroundColor: palette.schiefer,
