@@ -25,6 +25,8 @@ export type GuideState = {
   hasSelection: boolean;
   /** The finite verb sits in the left bracket. */
   verbInPlace: boolean;
+  /** Something sits in position 1, the Vorfeld. */
+  frontFilled: boolean;
   /** The current verdict, once checked. */
   verdict: Verdict | null;
   /** This verdict came from a second try, which does not count. */
@@ -32,7 +34,8 @@ export type GuideState = {
 };
 
 export function guideLine(state: GuideState): GuideLine | null {
-  const { guided, trayCount, placedCount, hasSelection, verbInPlace, verdict, isRetry } = state;
+  const { guided, trayCount, placedCount, hasSelection, verbInPlace, frontFilled, verdict, isRetry } =
+    state;
 
   if (verdict !== null) {
     if (isRetry) {
@@ -76,13 +79,22 @@ export function guideLine(state: GuideState): GuideLine | null {
 
   if (!guided) return null;
 
-  return verbInPlace
-    ? {
-        de: 'Gut. Vorn steht genau ein Satzteil, alles andere kommt danach.',
-        en: 'Good. Exactly one part goes in front; everything else comes after.',
-      }
-    : {
-        de: 'Tipp: Das konjugierte Verb steht immer an Position 2.',
-        en: 'Tip: the conjugated verb always goes in position 2.',
-      };
+  if (verbInPlace) {
+    // Praise only what is true: "exactly one part in front" said over an
+    // empty position 1 read as if the learner had already done it.
+    return frontFilled
+      ? {
+          de: 'Gut. Vorn steht genau ein Satzteil, alles andere kommt danach.',
+          en: 'Good. Exactly one part goes in front; everything else comes after.',
+        }
+      : {
+          de: 'Gut, das Verb steht an Position 2. Jetzt genau ein Satzteil nach vorn, auf Position 1.',
+          en: 'Good, the verb is in position 2. Now put exactly one part in front, in position 1.',
+        };
+  }
+
+  return {
+    de: 'Tipp: Das konjugierte Verb steht immer an Position 2.',
+    en: 'Tip: the conjugated verb always goes in position 2.',
+  };
 }

@@ -154,6 +154,7 @@ export default function IntroScreen() {
     placedCount: tiles.length - tray.length,
     hasSelection: selectedTileId !== null,
     verbInPlace: tiles.some((t) => t.role === 'FIN' && leftBracket.includes(t.id)),
+    frontFilled: (fields.vorfeld ?? []).length > 0,
     verdict: result?.verdict ?? null,
     isRetry: false,
   });
@@ -192,24 +193,27 @@ export default function IntroScreen() {
           closed={result !== null && isCorrect(result.verdict)}
           dimmed={result?.verdict === 'ungewoehnlich'}
           showVerbAnchor={!wrong}
-        />
+          revealKey={result ? result.verdict : 'none'}
+        >
+          {/* Inside the board's scroll area, so text can never cover tiles. */}
+          {result ? (
+            <VerdictPanel
+              verdict={result.verdict}
+              message={result.message}
+              {...(result.emphasis ? { emphasis: result.emphasis } : {})}
+            />
+          ) : null}
+
+          {hint ? (
+            <View style={styles.hint} accessibilityLiveRegion="polite" accessible accessibilityLabel={hint.de}>
+              <Text style={styles.hintText}>{hint.de}</Text>
+              {showGloss ? <Text style={styles.hintGloss}>{hint.en}</Text> : null}
+            </View>
+          ) : null}
+        </Board>
       </DragProvider>
 
-      {result ? (
-        <VerdictPanel
-          verdict={result.verdict}
-          message={result.message}
-          {...(result.emphasis ? { emphasis: result.emphasis } : {})}
-        />
-      ) : null}
-
       <View style={styles.footer}>
-        {hint ? (
-          <View style={styles.hint} accessibilityLiveRegion="polite" accessible accessibilityLabel={hint.de}>
-            <Text style={styles.hintText}>{hint.de}</Text>
-            {showGloss ? <Text style={styles.hintGloss}>{hint.en}</Text> : null}
-          </View>
-        ) : null}
 
         {wrong ? (
           <View style={styles.row}>
@@ -270,6 +274,7 @@ const styles = StyleSheet.create({
   },
   hint: {
     gap: space.xs,
+    paddingHorizontal: space.lg,
   },
   hintText: {
     ...explanation,

@@ -21,12 +21,12 @@ export { insertionIndex, zoneAt } from './geometry';
 export type { Rect, ZoneRects } from './geometry';
 
 type DragContextValue = {
-  /** Field id -> rect in window coordinates. Read inside worklets. */
+  /** Field id -> rect in content coordinates (see scrollY). Read in worklets. */
   zones: SharedValue<ZoneRects>;
-  /** Called by a zone once it knows where it is. */
+  /** Called by a zone once it knows where it is, with its window rect. */
   registerZone: (field: FieldId, rect: Rect) => void;
   /**
-   * Tile id -> rect in window coordinates. Used to work out *where* in a zone
+   * Tile id -> rect in content coordinates. Used to work out *where* in a zone
    * a tile was dropped, not just which zone. Read on the JS thread after the
    * gesture ends, never during it.
    */
@@ -34,6 +34,14 @@ type DragContextValue = {
   registerTile: (tileId: string, rect: Rect) => void;
   /** The tile currently under the finger, or null. Drives tray/zone styling. */
   draggingTileId: SharedValue<string | null>;
+  /**
+   * How far the board has scrolled. The fields sit in a scroll view (so a
+   * tall board can never spill over the tray), which means window positions
+   * move when it scrolls. Every rect above is therefore stored in *content*
+   * coordinates, window y plus this, and every drop point is converted the
+   * same way before it is compared.
+   */
+  scrollY: SharedValue<number>;
 };
 
 const DragContext = createContext<DragContextValue | null>(null);
@@ -42,26 +50,27 @@ export function DragProvider({ children }: { children: ReactNode }) {
   const zones = useSharedValue<ZoneRects>({});
   const tiles = useSharedValue<Record<string, Rect>>({});
   const draggingTileId = useSharedValue<string | null>(null);
+  const scrollY = useSharedValue(0);
 
   const registerZone = useCallback(
     (field: FieldId, rect: Rect) => {
       // Mutating the object in place would not notify the UI thread; a new
       // object is what makes the write visible to worklets.
-      zones.value = { ...zones.value, [field]: rect };
+      zones.value = { ...zones.value, [field]: { ...rect, y: rect.y + scrollY.value } };
     },
-    [zones],
+    [zones, scrollY],
   );
 
   const registerTile = useCallback(
     (tileId: string, rect: Rect) => {
-      tiles.value = { ...tiles.value, [tileId]: rect };
+      tiles.value = { ...tiles.value, [tileId]: { ...rect, y: rect.y + scrollY.value } };
     },
-    [tiles],
+    [tiles, scrollY],
   );
 
   const value = useMemo(
-    () => ({ zones, registerZone, tiles, registerTile, draggingTileId }),
-    [zones, registerZone, tiles, registerTile, draggingTileId],
+    () => ({ zones, registerZone, tiles, registerTile, draggingTileId, scrollY }),
+    [zones, registerZone, tiles, registerTile, draggingTileId, scrollY],
   );
 
   return <DragContext.Provider value={value}>{children}</DragContext.Provider>;

@@ -8,6 +8,7 @@ const start: GuideState = {
   placedCount: 0,
   hasSelection: false,
   verbInPlace: false,
+  frontFilled: false,
   verdict: null,
   isRetry: false,
 };
@@ -26,7 +27,8 @@ describe('guideLine', () => {
   it('points at position 2 until the verb is there', () => {
     const mid = { ...start, trayCount: 2, placedCount: 2 };
     expect(guideLine(mid)?.en).toMatch(/position 2/);
-    expect(guideLine({ ...mid, verbInPlace: true })?.en).toMatch(/Exactly one part/);
+    expect(guideLine({ ...mid, verbInPlace: true })?.en).toMatch(/Now put exactly one part in front/);
+    expect(guideLine({ ...mid, verbInPlace: true, frontFilled: true })?.en).toMatch(/Exactly one part/);
   });
 
   it('asks for the check once the tray is empty', () => {

@@ -11,8 +11,12 @@
  * placed, read left to right, as German. That is where "the verb is second"
  * actually becomes visible.
  */
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Animated, {
+  useAnimatedScrollHandler,
+  useReducedMotion,
+} from 'react-native-reanimated';
 
 import DraggableTile from './DraggableTile';
 import FieldZone, { type ZoneBox } from './FieldZone';
@@ -41,6 +45,13 @@ export type BoardProps = {
    * so the only colour on the board is the one pointing at the mistake.
    */
   showVerbAnchor?: boolean;
+  /**
+   * Shown under the fields, inside the scrolling part: the verdict and the
+   * hint. Anything text-heavy goes here so it can never cover the tray.
+   */
+  children?: ReactNode;
+  /** Changes when something new appears under the fields; scrolls to it. */
+  revealKey?: string | number;
 };
 
 export default function Board({
@@ -51,6 +62,8 @@ export default function Board({
   closed = false,
   dimmed = false,
   showVerbAnchor = true,
+  children,
+  revealKey,
 }: BoardProps) {
   const tiles = useBoardStore((s) => s.tiles);
   const fields = useBoardStore((s) => s.fields);
@@ -60,7 +73,26 @@ export default function Board({
   const place = useBoardStore((s) => s.place);
   const returnToTray = useBoardStore((s) => s.returnToTray);
 
-  const { tiles: tileRects } = useDragContext();
+  const { tiles: tileRects, scrollY } = useDragContext();
+  const reducedMotion = useReducedMotion();
+
+  // ─── Scrolling, only when it has to ───────────────────────────────────────
+  // A pan on a placed tile competes with a scroll view for the same finger,
+  // so the view only scrolls when the board is genuinely taller than the
+  // space. On most phones it never is, and every drag stays a drag.
+  const scrollRef = useRef<Animated.ScrollView>(null);
+  const [viewport, setViewport] = useState(0);
+  const [content, setContent] = useState(0);
+  const canScroll = content > viewport + 1;
+
+  const onScroll = useAnimatedScrollHandler((event) => {
+    scrollY.value = event.contentOffset.y;
+  });
+
+  useEffect(() => {
+    if (revealKey === undefined || !canScroll) return;
+    scrollRef.current?.scrollToEnd({ animated: !reducedMotion });
+  }, [revealKey, canScroll, reducedMotion]);
 
   /** Each zone's box, for drawing the bracket between two of them. */
   const [boxes, setBoxes] = useState<Partial<Record<FieldId, ZoneBox>>>({});
@@ -103,14 +135,18 @@ export default function Board({
 
   // ─── The sentence so far, as one line ─────────────────────────────────────
   const built = zones.flatMap((z) => fields[z.id] ?? []);
-  const words = built.map((id, i) => {
+  // Only a word in the Vorfeld is sentence-initial. With position 1 still
+  // empty, the line opens with a gap rather than capitalising whatever came
+  // first — "Trinke …" read as if the verb began the sentence.
+  const vorfeldEmpty = zones.some((z) => z.id === 'vorfeld') && !vorfeldTileId;
+  const words = built.map((id) => {
     const text = byId.get(id)?.neutralSurface ?? '';
-    return i === 0 ? capitalise(text) : text;
+    return id === vorfeldTileId ? capitalise(text) : text;
   });
   const line =
     words.length === 0
       ? null
-      : `${words.join(' ')}${tray.length === 0 ? '.' : ' …'}`;
+      : `${vorfeldEmpty ? '… ' : ''}${words.join(' ')}${tray.length === 0 ? '.' : ' …'}`;
 
   // ─── The bracket ──────────────────────────────────────────────────────────
   const left = boxes.linkeKlammer;
@@ -133,6 +169,27 @@ export default function Board({
 
   return (
     <View style={styles.root}>
+      {/*
+        The fields and everything written under them scroll; the tray below
+        does not. A tall board — small phone, large text, a long verdict — used
+        to spill over the tray and the buttons, so tiles could not be reached
+        and the text sat on top of them. Now the tray is always at the bottom,
+        under the thumb, and the rest makes room by scrolling.
+
+        A pan on a placed tile and a scroll compete for the same finger, which
+        is why scrolling is switched on only when the content does not fit.
+      */}
+      <Animated.ScrollView
+        ref={scrollRef}
+        style={styles.scroll}
+        contentContainerStyle={styles.scrollContent}
+        scrollEnabled={canScroll}
+        onScroll={onScroll}
+        scrollEventThrottle={16}
+        onLayout={(e) => setViewport(e.nativeEvent.layout.height)}
+        onContentSizeChange={(_w, h) => setContent(h)}
+        keyboardShouldPersistTaps="handled"
+      >
       {matrix ? <Text style={styles.matrix}>{matrix}</Text> : null}
 
       <View
@@ -148,17 +205,6 @@ export default function Board({
         </Text>
       </View>
 
-      {/*
-        Deliberately not a ScrollView. A Pan gesture inside a vertical scroll
-        view loses gesture arbitration to the scroll, and the usual escape —
-        requiring a long press before a drag activates — would contradict
-        design.md §6, where a tile lifts in direct response to touch.
-
-        The board is a diagram and is meant to be seen whole. If very large
-        dynamic type overflows it, that is a layout problem to solve in E8.3,
-        not a reason to put a scroll surface under the one gesture the product
-        is made of.
-      */}
       <View style={styles.zones}>
         {bracket ? (
           <KlammerArc closed={closed} dimmed={dimmed} top={bracket.top} span={bracket.span} />
@@ -226,6 +272,9 @@ export default function Board({
         })}
       </View>
 
+      {children}
+      </Animated.ScrollView>
+
       {/*
         The tray only exists while it holds something. An empty tray is the
         moment the verdict and its buttons need the room, and a board that
@@ -263,7 +312,13 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor: palette.schiefer,
+  },
+  scroll: {
+    flex: 1,
+  },
+  scrollContent: {
     gap: space.md,
+    paddingBottom: space.md,
   },
   matrix: {
     ...fieldLabel,

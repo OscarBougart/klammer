@@ -42,7 +42,7 @@ const SPRING: WithSpringConfig = {
 export type DraggableTileProps = TileProps & {
   /**
    * Called when the tile is released over a zone, with the drop point in
-   * window coordinates so the board can work out where in the zone it landed.
+   * content coordinates so the board can work out where in the zone it landed.
    */
   onDropInto: (field: FieldId, dropX: number, dropY: number) => void;
   /** Called when the tile is released over nothing. */
@@ -61,7 +61,7 @@ function DraggableTileComponent({
   shakeNonce = 0,
   ...tileProps
 }: DraggableTileProps) {
-  const { zones, registerTile, draggingTileId } = useDragContext();
+  const { zones, registerTile, draggingTileId, scrollY } = useDragContext();
   const reducedMotion = useReducedMotion();
 
   const wrapperRef = useRef<View>(null);
@@ -119,7 +119,10 @@ function DraggableTileComponent({
       translateY.value = event.translationY;
     })
     .onEnd((event) => {
-      const target = zoneAt(zones.value, event.absoluteX, event.absoluteY);
+      // Rects are stored in content coordinates; convert the drop point to
+      // match, or a scrolled board would drop into the wrong field.
+      const dropY = event.absoluteY + scrollY.value;
+      const target = zoneAt(zones.value, event.absoluteX, dropY);
 
       lifted.value = withTiming(0, { duration: duration.snap });
       draggingTileId.value = null;
@@ -138,7 +141,7 @@ function DraggableTileComponent({
 
       if (target) {
         runOnJS(onSnap)();
-        runOnJS(onDropInto)(target, event.absoluteX, event.absoluteY);
+        runOnJS(onDropInto)(target, event.absoluteX, dropY);
       } else if (onDropOutside) {
         runOnJS(onDropOutside)();
       }
