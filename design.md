@@ -79,10 +79,11 @@ A line above the board reads back whatever has been placed, left to right,
 as German. The fields are stacked on a phone; this line is where the
 sentence, and the verb in second position, becomes visible as a sentence.
 
-**First run.** The very first sentence is guided: a line under the board
+**First run.** Before the first session comes one practice sentence on its
+own screen, outside any session and never scored. A line under the board
 says what to do next (tap a tile, tap a field, the verb goes in position 2,
-check), read off the board's state rather than scripted. After that sentence
-the guide is gone; Settings can replay it.
+check), read off the board's state rather than scripted. It can be skipped,
+and it hands straight on to practice. Settings can replay it.
 
 ### Tiles are chunks, not words
 
@@ -253,10 +254,11 @@ Finishing shows a board of the ten sentences you built, tappable to review.
 **No timer during a puzzle.** Timing pressure degrades the exact processing this
 app trains.
 
-**Streak, gently.** A seven-day week strip, not a number that climbs to 400. One
-missed day greys out; two missed days reset. A missed day can be repaired by
-doing two sessions the next day. This is the one place where Duolingo's design
-does active harm and it costs nothing to avoid it.
+**No streak on screen.** The app is for practising a bit, easily; Home shows
+what the current tier trains and one button. Played days are still recorded
+(`progression.ts` keeps the week-strip and repair logic), but nothing shows
+them. If a streak ever returns, it is a seven-day week strip, never a number
+that climbs to 400.
 
 **Tier advance** requires 8/10 canonical-or-valid across three consecutive
 sessions. Advancement is announced as a new zone appearing on the board, with a

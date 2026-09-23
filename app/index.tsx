@@ -1,34 +1,28 @@
 /**
  * Home — E5.4.
  *
- * Today's session, the streak, the current tier. Nothing else: no XP, no
- * shop, no mascot, no badge shelf. The button that starts a session is the
- * only thing here with any weight.
+ * What you are practising and one button to practise it. Nothing else: no
+ * XP, no shop, no mascot, no badge shelf, and no streak. The point of opening
+ * the app is to do a few sentences, so the screen gets out of the way of that.
+ *
+ * A first-time learner is sent to the one-sentence introduction; everyone
+ * else to a session, which resumes if one was left unfinished — and the
+ * button says so, rather than dropping them on "Satz 3 von 10" unexplained.
  */
-import { useRouter } from 'expo-router';
-import { useCallback, useEffect, useState } from 'react';
+import { useFocusEffect, useRouter } from 'expo-router';
+import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Button from '@/components/Button';
-import WeekStrip from '@/board/WeekStrip';
-import { localDate, previousDate } from '@/content/dates';
 import {
-  streakStatus,
-  weekStrip,
-  type StreakStatus,
-  type WeekDay,
-} from '@/content/progression';
-import { loadPlayedDates, loadProgress } from '@/content/repository';
+  loadProgress,
+  loadSessionAttempts,
+  loadUnfinishedSessionId,
+} from '@/content/repository';
+import { SESSION_LENGTH } from '@/content/selection';
 import { useSettingsStore } from '@/store/settings';
-import {
-  display,
-  explanation,
-  gloss,
-  heading,
-  palette,
-  space,
-} from '@/theme';
+import { display, explanation, gloss, heading, palette, space } from '@/theme';
 
 /** What each tier is called on the board — design.md §2. */
 const TIER_NAME = [
@@ -69,43 +63,49 @@ export default function HomeScreen() {
   const router = useRouter();
 
   const [tier, setTier] = useState(1);
-  const [days, setDays] = useState<WeekDay[]>([]);
-  const [streak, setStreak] = useState<StreakStatus | null>(null);
+  /** Sentences already answered in an unfinished session, or 0. */
+  const [resumeAt, setResumeAt] = useState(0);
 
   const showGloss = useSettingsStore((s) => s.showGloss);
   const guideDone = useSettingsStore((s) => s.guideDone);
   const summary = TIER_SUMMARY[tier];
 
-  const refresh = useCallback(async () => {
-    const now = new Date();
-    const today = localDate(now);
+  // On focus, not on mount: Home stays mounted under the session, and coming
+  // back from "Pause" must show the resume label straight away.
+  useFocusEffect(
+    useCallback(() => {
+      let cancelled = false;
 
-    const [progress, played] = await Promise.all([
-      loadProgress(),
-      loadPlayedDates(),
-    ]);
+      void (async () => {
+        const progress = await loadProgress();
+        const unfinished = await loadUnfinishedSessionId(SESSION_LENGTH);
+        const answered = unfinished
+          ? (await loadSessionAttempts(unfinished)).length
+          : 0;
 
-    setTier(progress?.tier ?? 1);
-    setDays(weekStrip(played, today, now));
+        if (cancelled) return;
+        setTier(progress?.tier ?? 1);
+        setResumeAt(answered);
+      })();
 
-    const yesterdayDate = new Date(now);
-    yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+      return () => {
+        cancelled = true;
+      };
+    }, []),
+  );
 
-    setStreak(
-      streakStatus({
-        streakDays: progress?.streakDays ?? 0,
-        lastSessionDate: progress?.lastSessionDate ?? null,
-        sessionsToday: progress?.sessionsToday ?? 0,
-        today,
-        yesterday: previousDate(now),
-        dayBeforeYesterday: previousDate(yesterdayDate),
-      }),
-    );
-  }, []);
+  const start = () =>
+    router.push(guideDone ? '/(game)/session' : '/(game)/intro');
 
-  useEffect(() => {
-    void refresh();
-  }, [refresh]);
+  let label = 'Üben';
+  let hint = 'Zehn Sätze, etwa zwölf Minuten.';
+  if (!guideDone) {
+    label = 'Los geht’s';
+    hint = 'Ein Übungssatz zeigt dir, wie es geht.';
+  } else if (resumeAt > 0) {
+    label = `Weitermachen · Satz ${resumeAt + 1} von ${SESSION_LENGTH}`;
+    hint = 'Du machst da weiter, wo du aufgehört hast.';
+  }
 
   return (
     <SafeAreaView style={styles.root} edges={['top', 'bottom']}>
@@ -120,41 +120,19 @@ export default function HomeScreen() {
       </View>
 
       <View style={styles.body}>
-        <View style={styles.tier}>
-          <Text style={styles.tierLabel}>Stufe {tier}</Text>
-          <Text style={styles.tierName}>{TIER_NAME[tier] ?? ''}</Text>
-          {summary ? (
-            <>
-              <Text style={styles.tierSummary}>{summary.de}</Text>
-              {showGloss ? <Text style={styles.tierGloss}>{summary.en}</Text> : null}
-            </>
-          ) : null}
-        </View>
-
-        <WeekStrip
-          days={days}
-          {...(streak?.repairable
-            ? { repairSessionsNeeded: streak.repairSessionsNeeded }
-            : {})}
-        />
+        <Text style={styles.tierLabel}>Stufe {tier}</Text>
+        <Text style={styles.tierName}>{TIER_NAME[tier] ?? ''}</Text>
+        {summary ? (
+          <>
+            <Text style={styles.tierSummary}>{summary.de}</Text>
+            {showGloss ? <Text style={styles.tierGloss}>{summary.en}</Text> : null}
+          </>
+        ) : null}
       </View>
 
       <View style={styles.footer}>
-        <Button
-          // The very first session opens with a guided sentence; saying so
-          // tells a new learner they will not be dropped in cold.
-          label={guideDone ? 'Sitzung starten' : 'Los geht’s'}
-          accessibilityLabel={
-            guideDone ? 'Sitzung starten, zehn Sätze' : 'Los geht’s, mit Einführung'
-          }
-          onPress={() => router.push('/(game)/session')}
-        />
-
-        <Text style={styles.hint}>
-          {guideDone
-            ? 'Zehn Sätze, etwa zwölf Minuten.'
-            : 'Der erste Satz zeigt dir Schritt für Schritt, wie es geht.'}
-        </Text>
+        <Button label={label} onPress={start} />
+        <Text style={styles.hint}>{hint}</Text>
 
         <Button
           variant="secondary"
@@ -181,16 +159,13 @@ const styles = StyleSheet.create({
   subtitleGloss: gloss,
   body: {
     padding: space.lg,
-    gap: space.xl,
-  },
-  tier: {
     gap: space.xs,
   },
   tierLabel: gloss,
   tierName: heading,
   tierSummary: {
     ...explanation,
-    marginTop: space.xs,
+    marginTop: space.sm,
   },
   tierGloss: gloss,
   footer: {

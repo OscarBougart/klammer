@@ -99,8 +99,6 @@ export default function SessionScreen() {
   const selectedTileId = useBoardStore((s) => s.selectedTileId);
 
   const showGloss = useSettingsStore((s) => s.showGloss);
-  const guideDone = useSettingsStore((s) => s.guideDone);
-  const setSetting = useSettingsStore((s) => s.set);
 
   const [result, setResult] = useState<Result | null>(null);
   const [shakeNonce, setShakeNonce] = useState(0);
@@ -296,7 +294,6 @@ export default function SessionScreen() {
   const ready = isComplete({ tray });
   const closed = result !== null && isCorrect(result.verdict);
   const wrong = result?.verdict === 'falsch';
-  const guided = !guideDone;
 
   /**
    * Shows the fix by making it — one tile travels, the rest reflow around it.
@@ -316,20 +313,17 @@ export default function SessionScreen() {
   /** Back to the board as the learner left it, to fix it themselves. */
   const tryAgain = () => setResult(null);
 
-  const next = () => {
-    // The guided first sentence ends when the learner moves past it, whatever
-    // the verdict — they have seen every step by then.
-    if (guided) setSetting('guideDone', true);
-    advance();
-  };
+  const next = advance;
 
   const leftBracket = fields.linkeKlammer ?? [];
   const verbInPlace = tiles.some(
     (t) => t.role === 'FIN' && leftBracket.includes(t.id),
   );
 
+  // The guided steps live in the introduction (intro.tsx). A session keeps
+  // only the two hints worth repeating.
   const hint = guideLine({
-    guided,
+    guided: false,
     trayCount: tray.length,
     placedCount: tiles.length - tray.length,
     hasSelection: selectedTileId !== null,
@@ -395,7 +389,7 @@ export default function SessionScreen() {
             accessible
             accessibilityLabel={hint.de}
           >
-            <Text style={guided ? styles.hintGuided : styles.hintText}>{hint.de}</Text>
+            <Text style={styles.hintText}>{hint.de}</Text>
             {showGloss ? <Text style={styles.hintGloss}>{hint.en}</Text> : null}
           </View>
         ) : null}
@@ -465,18 +459,15 @@ const styles = StyleSheet.create({
   pauseLabel: gloss,
   gloss,
   footer: {
-    padding: space.lg,
-    gap: space.md,
+    paddingHorizontal: space.lg,
+    paddingVertical: space.md,
+    gap: space.sm,
   },
   hint: {
     gap: space.xs,
   },
   hintText: fieldLabel,
-  hintGuided: {
-    ...explanation,
-    color: palette.kreide,
-  },
-  hintGloss: gloss,
+  hintGloss: fieldLabel,
   row: {
     flexDirection: 'row',
     gap: space.md,

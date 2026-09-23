@@ -149,9 +149,10 @@ const styles = StyleSheet.create({
     borderRadius: radius.field,
     borderWidth: border.hairline,
     borderColor: palette.kante,
-    padding: space.sm,
-    // An empty zone still has to look like somewhere a tile could go.
-    minHeight: a11y.minTouchTarget + space.lg,
+    padding: space.xs,
+    // An empty zone still has to look like somewhere a tile could go: one
+    // tile high, and no taller, so the whole board fits without scrolling.
+    minHeight: a11y.minTouchTarget + space.sm,
     justifyContent: 'center',
   },
   zoneAwaiting: {

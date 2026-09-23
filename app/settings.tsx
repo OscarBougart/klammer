@@ -81,14 +81,12 @@ export default function SettingsScreen() {
           Werbung, keine Datenübertragung.
         </Text>
 
-        {settings.guideDone ? (
-          <Button
-            variant="secondary"
-            label="Einführung wiederholen"
-            accessibilityHint="Der nächste Satz zeigt die Schritte noch einmal."
-            onPress={() => settings.set('guideDone', false)}
-          />
-        ) : null}
+        <Button
+          variant="secondary"
+          label="Übungssatz wiederholen"
+          accessibilityHint="Zeigt die Einführung mit einem Übungssatz noch einmal."
+          onPress={() => router.push('/(game)/intro')}
+        />
 
         <Button label="Zurück" onPress={() => router.back()} />
       </View>

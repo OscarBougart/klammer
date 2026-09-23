@@ -226,11 +226,14 @@ export default function Board({
         })}
       </View>
 
-      <View style={styles.tray}>
-        <Text style={styles.trayLabel}>
-          {tray.length > 0 ? 'Bausteine' : 'Alle Bausteine gesetzt'}
-        </Text>
-
+      {/*
+        The tray only exists while it holds something. An empty tray is the
+        moment the verdict and its buttons need the room, and a board that
+        overflowed let the footer cover the tiles, so none could be picked up.
+        A tile dropped outside the fields brings the tray straight back.
+      */}
+      {tray.length > 0 ? (
+      <View style={styles.tray} accessibilityLabel="Bausteine">
         <View style={styles.trayTiles}>
           {tray.map((id) => {
             const tile = byId.get(id);
@@ -251,6 +254,7 @@ export default function Board({
           })}
         </View>
       </View>
+      ) : null}
     </View>
   );
 }
@@ -287,14 +291,13 @@ const styles = StyleSheet.create({
   },
   tray: {
     backgroundColor: palette.feld,
-    padding: space.lg,
-    gap: space.md,
+    paddingHorizontal: space.lg,
+    paddingVertical: space.md,
     // The tray is the one surface that reaches the screen edge — it is where
     // the hand rests.
     borderTopWidth: border.hairline,
     borderTopColor: palette.kante,
   },
-  trayLabel: fieldLabel,
   trayTiles: {
     flexDirection: 'row',
     flexWrap: 'wrap',
