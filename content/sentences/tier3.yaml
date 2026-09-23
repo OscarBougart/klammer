@@ -352,7 +352,7 @@
 - id: t3-25
   tier: 3
   ruleId: dativ-vor-akkusativ
-  verified: true
+  verified: false
   gloss: We gave our neighbours the keys.
   chunks:
     - { id: wir,    surface: "Wir",              neutralSurface: "wir",              role: PRON_NOM }
@@ -365,7 +365,7 @@
 - id: t3-26
   tier: 3
   ruleId: dativ-vor-akkusativ
-  verified: true
+  verified: false
   gloss: I bought my son a bicycle for his birthday.
   chunks:
     - { id: ich,   surface: "Ich",            neutralSurface: "ich",            role: PRON_NOM }
@@ -379,7 +379,7 @@
 - id: t3-27
   tier: 3
   ruleId: dativ-vor-akkusativ
-  verified: true
+  verified: false
   gloss: She showed her sister the photos.
   chunks:
     - { id: sie,   surface: "Sie",              neutralSurface: "sie",              role: PRON_NOM }
@@ -392,7 +392,7 @@
 - id: t3-28
   tier: 3
   ruleId: dativ-vor-akkusativ
-  verified: true
+  verified: false
   gloss: My father bought my mother flowers.
   chunks:
     - { id: vater,  surface: "Mein Vater",     neutralSurface: "mein Vater",     role: SUBJ }
@@ -405,7 +405,7 @@
 - id: t3-29
   tier: 3
   ruleId: dativ-vor-akkusativ
-  verified: true
+  verified: false
   gloss: We are sending our friends a card in the summer.
   chunks:
     - { id: wir,    surface: "Wir",              neutralSurface: "wir",              role: PRON_NOM }
@@ -420,7 +420,7 @@
 - id: t3-30
   tier: 3
   ruleId: pronomen-akk-vor-dat
-  verified: true
+  verified: false
   gloss: I will bring it along for you on Monday.
   chunks:
     - { id: ich,    surface: "Ich",         neutralSurface: "ich",         role: PRON_NOM }
@@ -434,7 +434,7 @@
 - id: t3-31
   tier: 3
   ruleId: pronomen-akk-vor-dat
-  verified: true
+  verified: false
   gloss: She explained it to him yesterday.
   chunks:
     - { id: sie,     surface: "Sie",       neutralSurface: "sie",       role: PRON_NOM }
@@ -448,7 +448,7 @@
 - id: t3-32
   tier: 3
   ruleId: pronomen-akk-vor-dat
-  verified: true
+  verified: false
   gloss: We can show it to you tomorrow.
   chunks:
     - { id: wir,    surface: "Wir",      neutralSurface: "wir",      role: PRON_NOM }
@@ -462,7 +462,7 @@
 - id: t3-33
   tier: 3
   ruleId: pronomen-akk-vor-dat
-  verified: true
+  verified: false
   gloss: He gives it back to me after the course.
   chunks:
     - { id: er,   surface: "Er",           neutralSurface: "er",           role: PRON_NOM }
@@ -482,7 +482,7 @@
 - id: t3-34
   tier: 3
   ruleId: pronomen-vor-nomen
-  verified: true
+  verified: false
   gloss: My colleague gave me the book yesterday.
   chunks:
     - { id: koll,    surface: "Mein Kollege", neutralSurface: "mein Kollege", role: SUBJ }
@@ -496,7 +496,7 @@
 - id: t3-35
   tier: 3
   ruleId: pronomen-vor-nomen
-  verified: true
+  verified: false
   gloss: My sister picked me up from the station yesterday.
   chunks:
     - { id: schw,    surface: "Meine Schwester", neutralSurface: "meine Schwester", role: SUBJ }
@@ -510,7 +510,7 @@
 - id: t3-36
   tier: 3
   ruleId: pronomen-vor-nomen
-  verified: true
+  verified: false
   gloss: The neighbours showed us the flat on Saturday.
   chunks:
     - { id: nachb,   surface: "Die Nachbarn", neutralSurface: "die Nachbarn", role: SUBJ }
@@ -524,7 +524,7 @@
 - id: t3-37
   tier: 3
   ruleId: pronomen-vor-nomen
-  verified: true
+  verified: false
   gloss: My boss wrote me an email yesterday.
   chunks:
     - { id: chef,    surface: "Mein Chef",   neutralSurface: "mein Chef",   role: SUBJ }
@@ -538,7 +538,7 @@
 - id: t3-38
   tier: 3
   ruleId: pronomen-vor-nomen
-  verified: true
+  verified: false
   gloss: The child told its mother about it.
   chunks:
     - { id: kind,   surface: "Das Kind",      neutralSurface: "das Kind",      role: SUBJ }
@@ -553,7 +553,7 @@
 - id: t3-39
   tier: 3
   ruleId: tekamolo-voll
-  verified: true
+  verified: false
   gloss: We are driving to Italy by car in August.
   chunks:
     - { id: wir,     surface: "Wir",           neutralSurface: "wir",           role: PRON_NOM }
@@ -566,7 +566,7 @@
 - id: t3-40
   tier: 3
   ruleId: tekamolo-voll
-  verified: true
+  verified: false
   gloss: I go home by bus at the weekend.
   chunks:
     - { id: ich,   surface: "Ich",           neutralSurface: "ich",           role: PRON_NOM }
@@ -579,7 +579,7 @@
 - id: t3-41
   tier: 3
   ruleId: tekamolo-voll
-  verified: true
+  verified: false
   gloss: My colleague is coming later tomorrow because of the meeting.
   chunks:
     - { id: koll,   surface: "Meine Kollegin", neutralSurface: "meine Kollegin", role: SUBJ }
@@ -592,7 +592,7 @@
 - id: t3-42
   tier: 3
   ruleId: tekamolo-voll
-  verified: true
+  verified: false
   gloss: We like going to the swimming pool in the summer.
   chunks:
     - { id: wir,    surface: "Wir",            neutralSurface: "wir",            role: PRON_NOM }
@@ -605,7 +605,7 @@
 - id: t3-43
   tier: 3
   ruleId: tekamolo-voll
-  verified: true
+  verified: false
   gloss: He takes the train to Bonn every day because of work.
   chunks:
     - { id: er,     surface: "Er",          neutralSurface: "er",          role: PRON_NOM }
@@ -619,7 +619,7 @@
 - id: t3-44
   tier: 3
   ruleId: tekamolo-voll
-  verified: true
+  verified: false
   gloss: The children like playing in the garden in the afternoon.
   chunks:
     - { id: kinder,  surface: "Die Kinder",    neutralSurface: "die Kinder",    role: SUBJ }
@@ -637,7 +637,7 @@
 - id: t3-45
   tier: 3
   ruleId: negation-vor-klammer
-  verified: true
+  verified: false
   gloss: We did not drive home on Saturday.
   chunks:
     - { id: wir,     surface: "Wir",        neutralSurface: "wir",        role: PRON_NOM }
@@ -651,7 +651,7 @@
 - id: t3-46
   tier: 3
   ruleId: negation-vor-klammer
-  verified: true
+  verified: false
   gloss: I am not working at the office today.
   chunks:
     - { id: ich,     surface: "Ich",     neutralSurface: "ich",     role: PRON_NOM }
@@ -664,7 +664,7 @@
 - id: t3-47
   tier: 3
   ruleId: negation-vor-klammer
-  verified: true
+  verified: false
   gloss: The shop is not open on Sundays.
   chunks:
     - { id: laden,   surface: "Der Laden",  neutralSurface: "der Laden",  role: SUBJ }
@@ -677,7 +677,7 @@
 - id: t3-48
   tier: 3
   ruleId: negation-vor-klammer
-  verified: true
+  verified: false
   gloss: He did not come into the office yesterday.
   chunks:
     - { id: er,      surface: "Er",       neutralSurface: "er",       role: PRON_NOM }

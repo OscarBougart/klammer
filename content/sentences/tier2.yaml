@@ -368,7 +368,7 @@
 - id: t2-27
   tier: 2
   ruleId: satzklammer-trennbar
-  verified: true
+  verified: false
   gloss: We leave for Cologne by train on Friday.
   chunks:
     - { id: wir,     surface: "Wir",         neutralSurface: "wir",         role: PRON_NOM }
@@ -382,7 +382,7 @@
 - id: t2-28
   tier: 2
   ruleId: satzklammer-trennbar
-  verified: true
+  verified: false
   gloss: The German course starts again in September.
   chunks:
     - { id: kurs,   surface: "Der Deutschkurs", neutralSurface: "der Deutschkurs", role: SUBJ }
@@ -395,7 +395,7 @@
 - id: t2-29
   tier: 2
   ruleId: satzklammer-trennbar
-  verified: true
+  verified: false
   gloss: I tidy my room up at the weekend.
   chunks:
     - { id: ich,    surface: "Ich",           neutralSurface: "ich",           role: PRON_NOM }
@@ -408,7 +408,7 @@
 - id: t2-30
   tier: 2
   ruleId: satzklammer-trennbar
-  verified: true
+  verified: false
   gloss: My mother calls me every Sunday.
   chunks:
     - { id: mutter,  surface: "Meine Mutter",  neutralSurface: "meine Mutter",  role: SUBJ }
@@ -421,7 +421,7 @@
 - id: t2-31
   tier: 2
   ruleId: satzklammer-trennbar
-  verified: true
+  verified: false
   gloss: We are moving to Hamburg in the summer.
   chunks:
     - { id: wir,     surface: "Wir",          neutralSurface: "wir",          role: PRON_NOM }
@@ -434,7 +434,7 @@
 - id: t2-32
   tier: 2
   ruleId: satzklammer-trennbar
-  verified: true
+  verified: false
   gloss: My brother is picking me up by car tomorrow.
   chunks:
     - { id: bruder, surface: "Mein Bruder",  neutralSurface: "mein Bruder",  role: SUBJ }
@@ -448,7 +448,7 @@
 - id: t2-33
   tier: 2
   ruleId: satzklammer-trennbar
-  verified: true
+  verified: false
   gloss: I turn the light off at ten.
   chunks:
     - { id: ich,   surface: "Ich",         neutralSurface: "ich",         role: PRON_NOM }
@@ -463,7 +463,7 @@
 - id: t2-34
   tier: 2
   ruleId: satzklammer-perfekt
-  verified: true
+  verified: false
   gloss: We visited the museum at the weekend.
   chunks:
     - { id: wir,     surface: "Wir",           neutralSurface: "wir",           role: PRON_NOM }
@@ -476,7 +476,7 @@
 - id: t2-35
   tier: 2
   ruleId: satzklammer-perfekt
-  verified: true
+  verified: false
   gloss: I cycled to work yesterday.
   chunks:
     - { id: ich,     surface: "Ich",             neutralSurface: "ich",             role: PRON_NOM }
@@ -490,7 +490,7 @@
 - id: t2-36
   tier: 2
   ruleId: satzklammer-perfekt
-  verified: true
+  verified: false
   gloss: My parents sent me a parcel.
   chunks:
     - { id: eltern, surface: "Meine Eltern", neutralSurface: "meine Eltern", role: SUBJ }
@@ -503,7 +503,7 @@
 - id: t2-37
   tier: 2
   ruleId: satzklammer-perfekt
-  verified: true
+  verified: false
   gloss: We talked on the phone for a long time yesterday evening.
   chunks:
     - { id: wir,   surface: "Wir",           neutralSurface: "wir",           role: PRON_NOM }
@@ -516,7 +516,7 @@
 - id: t2-38
   tier: 2
   ruleId: satzklammer-perfekt
-  verified: true
+  verified: false
   gloss: He left the key in the car.
   chunks:
     - { id: er,   surface: "Er",            neutralSurface: "er",            role: PRON_NOM }
@@ -529,7 +529,7 @@
 - id: t2-39
   tier: 2
   ruleId: satzklammer-perfekt
-  verified: true
+  verified: false
   gloss: The bus came too late this morning.
   chunks:
     - { id: bus,    surface: "Der Bus",      neutralSurface: "der Bus",      role: SUBJ }
@@ -542,7 +542,7 @@
 - id: t2-40
   tier: 2
   ruleId: satzklammer-perfekt
-  verified: true
+  verified: false
   gloss: I gave my sister the book.
   chunks:
     - { id: ich,  surface: "Ich",              neutralSurface: "ich",              role: PRON_NOM }
@@ -557,7 +557,7 @@
 - id: t2-41
   tier: 2
   ruleId: satzklammer-modal
-  verified: true
+  verified: false
   gloss: We have to get up early on Monday.
   chunks:
     - { id: wir,    surface: "Wir",       neutralSurface: "wir",       role: PRON_NOM }
@@ -570,7 +570,7 @@
 - id: t2-42
   tier: 2
   ruleId: satzklammer-modal
-  verified: true
+  verified: false
   gloss: I can bring you the book tomorrow.
   chunks:
     - { id: ich,    surface: "Ich",        neutralSurface: "ich",        role: PRON_NOM }
@@ -584,7 +584,7 @@
 - id: t2-43
   tier: 2
   ruleId: satzklammer-modal
-  verified: true
+  verified: false
   gloss: The children are allowed to watch television longer today.
   chunks:
     - { id: kinder, surface: "Die Kinder", neutralSurface: "die Kinder", role: SUBJ }
@@ -597,7 +597,7 @@
 - id: t2-44
   tier: 2
   ruleId: satzklammer-modal
-  verified: true
+  verified: false
   gloss: We want to drive to France in the summer.
   chunks:
     - { id: wir,    surface: "Wir",             neutralSurface: "wir",             role: PRON_NOM }
@@ -611,7 +611,7 @@
 - id: t2-45
   tier: 2
   ruleId: satzklammer-modal
-  verified: true
+  verified: false
   gloss: My son would like to go to the swimming pool on Saturday.
   chunks:
     - { id: sohn,    surface: "Mein Sohn",      neutralSurface: "mein Sohn",      role: SUBJ }
@@ -624,7 +624,7 @@
 - id: t2-46
   tier: 2
   ruleId: satzklammer-modal
-  verified: true
+  verified: false
   gloss: You should call me at the office tomorrow.
   chunks:
     - { id: du,     surface: "Du",       neutralSurface: "du",       role: PRON_NOM }
@@ -640,7 +640,7 @@
 - id: t2-47
   tier: 2
   ruleId: negation-vor-klammer
-  verified: true
+  verified: false
   gloss: The train is not leaving for Munich today.
   chunks:
     - { id: zug,    surface: "Der Zug",      neutralSurface: "der Zug",      role: SUBJ }
@@ -654,7 +654,7 @@
 - id: t2-48
   tier: 2
   ruleId: negation-vor-klammer
-  verified: true
+  verified: false
   gloss: I did not find my key today.
   chunks:
     - { id: ich,   surface: "Ich",              neutralSurface: "ich",              role: PRON_NOM }
@@ -668,7 +668,7 @@
 - id: t2-49
   tier: 2
   ruleId: negation-vor-klammer
-  verified: true
+  verified: false
   gloss: We cannot go to the cinema on Sunday.
   chunks:
     - { id: wir,     surface: "Wir",        neutralSurface: "wir",        role: PRON_NOM }
@@ -682,7 +682,7 @@
 - id: t2-50
   tier: 2
   ruleId: negation-vor-klammer
-  verified: true
+  verified: false
   gloss: My brother has not given me the money back yet.
   chunks:
     - { id: bruder,  surface: "Mein Bruder",    neutralSurface: "mein Bruder",    role: SUBJ }

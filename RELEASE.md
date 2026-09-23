@@ -217,9 +217,10 @@ mechanic hold attention for a fortnight?**
 
 Prerequisites, in order:
 
-1. ~~A German speaker has verified the bank~~ — done. Every sentence carries
-   `verified: true`; see the verification-status note in `GERMAN-REVIEW.md`
-   for exactly what the review covered.
+1. A German speaker has verified the bank — done for the first 130
+   sentences, **open for the 68 added after the review** (and for everything
+   added from here on). `npm run content:expand` counts what's left; see the
+   verification-status note in `GERMAN-REVIEW.md`.
 2. A real device build succeeds — E0.5, still open.
 3. Content reaches roughly 370 sentences across tiers 1–3. Currently 198
    (tier 1: 100, tier 2: 50, tier 3: 48).

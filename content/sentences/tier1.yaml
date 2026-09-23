@@ -976,7 +976,7 @@
 - id: t1-81
   tier: 1
   ruleId: v2-deklarativ
-  verified: true
+  verified: false
   gloss: I cook a soup in the evening.
   chunks:
     - { id: ich,   surface: "Ich",      neutralSurface: "ich",      role: PRON_NOM }
@@ -988,7 +988,7 @@
 - id: t1-82
   tier: 1
   ruleId: v2-deklarativ
-  verified: true
+  verified: false
   gloss: We like listening to music.
   chunks:
     - { id: wir,   surface: "Wir",    neutralSurface: "wir",    role: PRON_NOM }
@@ -1000,7 +1000,7 @@
 - id: t1-83
   tier: 1
   ruleId: v2-deklarativ
-  verified: true
+  verified: false
   gloss: My daughter plays the piano every day.
   chunks:
     - { id: tochter, surface: "Meine Tochter", neutralSurface: "meine Tochter", role: SUBJ }
@@ -1012,7 +1012,7 @@
 - id: t1-84
   tier: 1
   ruleId: v2-deklarativ
-  verified: true
+  verified: false
   gloss: He drinks a coffee every morning.
   chunks:
     - { id: er,     surface: "Er",            neutralSurface: "er",            role: PRON_NOM }
@@ -1024,7 +1024,7 @@
 - id: t1-85
   tier: 1
   ruleId: v2-deklarativ
-  verified: true
+  verified: false
   gloss: We visit my parents at the weekend.
   chunks:
     - { id: wir,    surface: "Wir",            neutralSurface: "wir",            role: PRON_NOM }
@@ -1036,7 +1036,7 @@
 - id: t1-86
   tier: 1
   ruleId: v2-deklarativ
-  verified: true
+  verified: false
   gloss: I do not understand the question.
   chunks:
     - { id: ich,   surface: "Ich",       neutralSurface: "ich",       role: PRON_NOM }
@@ -1048,7 +1048,7 @@
 - id: t1-87
   tier: 1
   ruleId: v2-deklarativ
-  verified: true
+  verified: false
   gloss: She has been looking for a new flat since May.
   chunks:
     - { id: sie,  surface: "Sie",             neutralSurface: "sie",             role: PRON_NOM }
@@ -1060,7 +1060,7 @@
 - id: t1-88
   tier: 1
   ruleId: v2-deklarativ
-  verified: true
+  verified: false
   gloss: My husband cooks the meal on Sunday.
   chunks:
     - { id: mann,    surface: "Mein Mann",   neutralSurface: "mein Mann",   role: SUBJ }
@@ -1074,7 +1074,7 @@
 - id: t1-89
   tier: 1
   ruleId: tekamolo-te-lo
-  verified: true
+  verified: false
   gloss: We have breakfast in the garden on Saturday.
   chunks:
     - { id: wir,     surface: "Wir",         neutralSurface: "wir",         role: PRON_NOM }
@@ -1086,7 +1086,7 @@
 - id: t1-90
   tier: 1
   ruleId: tekamolo-te-lo
-  verified: true
+  verified: false
   gloss: I am waiting at the station at three.
   chunks:
     - { id: ich,   surface: "Ich",         neutralSurface: "ich",         role: PRON_NOM }
@@ -1098,7 +1098,7 @@
 - id: t1-91
   tier: 1
   ruleId: tekamolo-te-lo
-  verified: true
+  verified: false
   gloss: My girlfriend has been working in Munich since January.
   chunks:
     - { id: fr,   surface: "Meine Freundin", neutralSurface: "meine Freundin", role: SUBJ }
@@ -1110,7 +1110,7 @@
 - id: t1-92
   tier: 1
   ruleId: tekamolo-te-lo
-  verified: true
+  verified: false
   gloss: My dog sleeps in the kitchen at night.
   chunks:
     - { id: hund,   surface: "Mein Hund",     neutralSurface: "mein Hund",     role: SUBJ }
@@ -1122,7 +1122,7 @@
 - id: t1-93
   tier: 1
   ruleId: tekamolo-te-lo
-  verified: true
+  verified: false
   gloss: We eat at home in the evenings.
   chunks:
     - { id: wir,    surface: "Wir",       neutralSurface: "wir",       role: PRON_NOM }
@@ -1136,7 +1136,7 @@
 - id: t1-94
   tier: 1
   ruleId: tekamolo-voll
-  verified: true
+  verified: false
   gloss: I take the bus into town in the mornings.
   chunks:
     - { id: ich,      surface: "Ich",           neutralSurface: "ich",           role: PRON_NOM }
@@ -1149,7 +1149,7 @@
 - id: t1-95
   tier: 1
   ruleId: tekamolo-voll
-  verified: true
+  verified: false
   gloss: She comes to Cologne by train on Friday.
   chunks:
     - { id: sie,     surface: "Sie",          neutralSurface: "sie",          role: PRON_NOM }
@@ -1162,7 +1162,7 @@
 - id: t1-96
   tier: 1
   ruleId: tekamolo-voll
-  verified: true
+  verified: false
   gloss: We like going to the museum on Sundays.
   chunks:
     - { id: wir,     surface: "Wir",        neutralSurface: "wir",        role: PRON_NOM }
@@ -1175,7 +1175,7 @@
 - id: t1-97
   tier: 1
   ruleId: tekamolo-voll
-  verified: true
+  verified: false
   gloss: He runs to school quickly every morning.
   chunks:
     - { id: er,      surface: "Er",            neutralSurface: "er",            role: PRON_NOM }
@@ -1190,7 +1190,7 @@
 - id: t1-98
   tier: 1
   ruleId: praedikativ-final
-  verified: true
+  verified: false
   gloss: The film was very good yesterday.
   chunks:
     - { id: film,    surface: "Der Film",  neutralSurface: "der Film",  role: SUBJ }
@@ -1202,7 +1202,7 @@
 - id: t1-99
   tier: 1
   ruleId: praedikativ-final
-  verified: true
+  verified: false
   gloss: My flat is very cold in winter.
   chunks:
     - { id: wohn,   surface: "Meine Wohnung", neutralSurface: "meine Wohnung", role: SUBJ }
@@ -1214,7 +1214,7 @@
 - id: t1-100
   tier: 1
   ruleId: praedikativ-final
-  verified: true
+  verified: false
   gloss: The soup is too hot today.
   chunks:
     - { id: suppe, surface: "Die Suppe", neutralSurface: "die Suppe", role: SUBJ }
