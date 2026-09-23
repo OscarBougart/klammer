@@ -21,6 +21,11 @@ module.exports = {
 
   presets: [require("nativewind/preset")],
 
+  // The app is dark-only (app.json userInterfaceStyle) and uses no `dark:`
+  // variants. With the default "media", react-native-css-interop throws on web
+  // the moment the scheme is set, and the web preview renders nothing.
+  darkMode: "class",
+
   theme: {
     // Replaced, not extended: the palette is exactly seven values and the app
     // must not be able to reach for a stray Tailwind blue.

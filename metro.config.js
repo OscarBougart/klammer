@@ -11,6 +11,10 @@ const config = getDefaultConfig(__dirname);
 // makes Metro hand raw SQL to the JS parser and the build fails.
 config.resolver.sourceExts.push("sql");
 
+// expo-sqlite's web build loads wa-sqlite from a .wasm file. Without this the
+// web preview's database worker never starts. Native builds are unaffected.
+config.resolver.assetExts.push("wasm");
+
 // withNativeWind wraps the config to:
 //   1. Process global.css through PostCSS + Tailwind
 //   2. Make the generated styles available to the NativeWind runtime
