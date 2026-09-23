@@ -8,7 +8,20 @@
  */
 import { describe, expect, it } from 'vitest';
 
+import { hashOrder } from '../engine/hash';
+
 import { seed } from './seed';
+
+function* permutations<T>(items: readonly T[]): Generator<T[]> {
+  if (items.length <= 1) {
+    yield [...items];
+    return;
+  }
+  for (const [i, head] of items.entries()) {
+    const rest = [...items.slice(0, i), ...items.slice(i + 1)];
+    for (const tail of permutations(rest)) yield [head, ...tail];
+  }
+}
 
 describe('the sentence bank', () => {
   it('is not empty', () => {
@@ -59,6 +72,38 @@ describe('the sentence bank', () => {
         'falsch',
       );
     }
+  });
+
+  it('never moves a chunk across nicht', () => {
+    /*
+     * Which side of `nicht` a constituent sits on is scope, not word order:
+     * `den Weg nicht sofort gefunden` and `sofort nicht den Weg gefunden` are
+     * different claims, and the second is not what the sentence means. The
+     * generator's pairwise swap once produced exactly that as `gueltig`
+     * (a draft of t2-120). Only the fronted chunk may leave its side.
+     *
+     * Every permutation is hashed and tested for membership, because the
+     * seed stores hashes, not orders. Sentences are small enough for that.
+     */
+    const crossings: string[] = [];
+    for (const s of seed.sentences) {
+      const neg = s.chunks.find((c) => c.role === 'NEG');
+      if (!neg || s.chunks.some((c) => c.role === 'KONJ')) continue;
+      const side = (order: readonly string[], id: string) =>
+        order.indexOf(id) < order.indexOf(neg.id);
+      for (const order of permutations(s.canonical)) {
+        if (!(hashOrder(order) in s.acceptedHashes)) continue;
+        const rest = order.slice(1);
+        const moved = s.canonical.find(
+          (id) =>
+            id !== neg.id &&
+            id !== order[0] &&
+            side(s.canonical, id) !== side(rest, id),
+        );
+        if (moved) crossings.push(`${s.id}: ${order.join(' ')}`);
+      }
+    }
+    expect(crossings).toEqual([]);
   });
 
   it('lists every canonical chunk id in the sentence', () => {
