@@ -9,7 +9,7 @@
  *   primary    brass face, slate label. At most one per screen.
  *   secondary  outlined in chalk-grey. Alternatives to the primary action.
  */
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
 import { a11y, border, buttonLabel, palette, radius, space } from '@/theme';
@@ -35,15 +35,23 @@ function ButtonComponent({
 }: ButtonProps) {
   const primary = variant === 'primary';
 
+  // Pressed state is tracked by hand rather than with Pressable's style
+  // function: NativeWind v4 wraps Pressable and drops a function `style`,
+  // which left the primary button with no background, so its slate label
+  // vanished into the slate screen.
+  const [pressed, setPressed] = useState(false);
+
   return (
     <Pressable
       onPress={onPress}
+      onPressIn={() => setPressed(true)}
+      onPressOut={() => setPressed(false)}
       disabled={disabled}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel ?? label}
       {...(accessibilityHint ? { accessibilityHint } : {})}
       accessibilityState={{ disabled }}
-      style={({ pressed }) => [
+      style={[
         styles.base,
         primary ? styles.primary : styles.secondary,
         pressed && !disabled && styles.pressed,
