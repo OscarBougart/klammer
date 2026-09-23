@@ -15561,6 +15561,1544 @@
         "bcf41732": "kanonisch",
         "6241c70a": "ungewoehnlich"
       }
+    },
+    {
+      "id": "t3-77",
+      "tier": 3,
+      "ruleId": "dativ-vor-akkusativ",
+      "gloss": "In the evenings grandpa reads the grandchildren a fairy tale.",
+      "chunks": [
+        {
+          "id": "opa",
+          "surface": "Der Opa",
+          "neutralSurface": "der Opa",
+          "role": "SUBJ"
+        },
+        {
+          "id": "liest",
+          "surface": "liest",
+          "neutralSurface": "liest",
+          "role": "FIN"
+        },
+        {
+          "id": "enkel",
+          "surface": "Den Enkeln",
+          "neutralSurface": "den Enkeln",
+          "role": "DAT",
+          "definite": true
+        },
+        {
+          "id": "abends",
+          "surface": "Abends",
+          "neutralSurface": "abends",
+          "role": "TEMP"
+        },
+        {
+          "id": "maerchen",
+          "surface": "Ein Märchen",
+          "neutralSurface": "ein Märchen",
+          "role": "AKK",
+          "definite": false
+        },
+        {
+          "id": "vor",
+          "surface": "vor",
+          "neutralSurface": "vor",
+          "role": "PTKVZ"
+        }
+      ],
+      "canonical": [
+        "opa",
+        "liest",
+        "enkel",
+        "abends",
+        "maerchen",
+        "vor"
+      ],
+      "acceptedHashes": {
+        "f146f580": "kanonisch",
+        "a8b8060a": "gueltig",
+        "bc0a0d78": "gueltig",
+        "ec5700ac": "ungewoehnlich",
+        "900e695c": "gueltig",
+        "64278e98": "ungewoehnlich",
+        "ecb10844": "gueltig",
+        "be4c9f66": "gueltig",
+        "cd1ed518": "ungewoehnlich",
+        "f0a0ca1e": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t3-78",
+      "tier": 3,
+      "ruleId": "dativ-vor-akkusativ",
+      "gloss": "Yesterday I lent my colleague an umbrella.",
+      "chunks": [
+        {
+          "id": "ich",
+          "surface": "Ich",
+          "neutralSurface": "ich",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "habe",
+          "surface": "habe",
+          "neutralSurface": "habe",
+          "role": "FIN"
+        },
+        {
+          "id": "kollegin",
+          "surface": "Meiner Kollegin",
+          "neutralSurface": "meiner Kollegin",
+          "role": "DAT",
+          "definite": true
+        },
+        {
+          "id": "gestern",
+          "surface": "Gestern",
+          "neutralSurface": "gestern",
+          "role": "TEMP"
+        },
+        {
+          "id": "schirm",
+          "surface": "Einen Regenschirm",
+          "neutralSurface": "einen Regenschirm",
+          "role": "AKK",
+          "definite": false
+        },
+        {
+          "id": "geliehen",
+          "surface": "geliehen",
+          "neutralSurface": "geliehen",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "ich",
+        "habe",
+        "kollegin",
+        "gestern",
+        "schirm",
+        "geliehen"
+      ],
+      "acceptedHashes": {
+        "84330735": "ungewoehnlich",
+        "3f848cdf": "kanonisch",
+        "99d3b463": "gueltig",
+        "e743faf1": "gueltig",
+        "0023860f": "ungewoehnlich",
+        "12ae0af9": "gueltig",
+        "47cafa19": "ungewoehnlich",
+        "310c392f": "gueltig",
+        "6a82ad6d": "gueltig",
+        "8dd70071": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t3-79",
+      "tier": 3,
+      "ruleId": "dativ-vor-akkusativ",
+      "gloss": "The company sends its customers a bill every month.",
+      "chunks": [
+        {
+          "id": "firma",
+          "surface": "Die Firma",
+          "neutralSurface": "die Firma",
+          "role": "SUBJ"
+        },
+        {
+          "id": "schickt",
+          "surface": "schickt",
+          "neutralSurface": "schickt",
+          "role": "FIN"
+        },
+        {
+          "id": "kunden",
+          "surface": "Den Kunden",
+          "neutralSurface": "den Kunden",
+          "role": "DAT",
+          "definite": true
+        },
+        {
+          "id": "monat",
+          "surface": "Jeden Monat",
+          "neutralSurface": "jeden Monat",
+          "role": "TEMP"
+        },
+        {
+          "id": "rechnung",
+          "surface": "Eine Rechnung",
+          "neutralSurface": "eine Rechnung",
+          "role": "AKK",
+          "definite": false
+        }
+      ],
+      "canonical": [
+        "firma",
+        "schickt",
+        "kunden",
+        "monat",
+        "rechnung"
+      ],
+      "acceptedHashes": {
+        "24d2715f": "kanonisch",
+        "568d65a9": "gueltig",
+        "9b205461": "gueltig",
+        "331e28a9": "ungewoehnlich",
+        "eed017d7": "gueltig",
+        "8ea0df81": "ungewoehnlich",
+        "e6653709": "gueltig",
+        "2854ebbb": "gueltig",
+        "1cea4433": "ungewoehnlich",
+        "8101d295": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t3-80",
+      "tier": 3,
+      "ruleId": "dativ-vor-akkusativ",
+      "gloss": "We wrote the hotel an email.",
+      "chunks": [
+        {
+          "id": "wir",
+          "surface": "Wir",
+          "neutralSurface": "wir",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "haben",
+          "surface": "haben",
+          "neutralSurface": "haben",
+          "role": "FIN"
+        },
+        {
+          "id": "hotel",
+          "surface": "Dem Hotel",
+          "neutralSurface": "dem Hotel",
+          "role": "DAT",
+          "definite": true
+        },
+        {
+          "id": "mail",
+          "surface": "Eine E-Mail",
+          "neutralSurface": "eine E-Mail",
+          "role": "AKK",
+          "definite": false
+        },
+        {
+          "id": "geschr",
+          "surface": "geschrieben",
+          "neutralSurface": "geschrieben",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "wir",
+        "haben",
+        "hotel",
+        "mail",
+        "geschr"
+      ],
+      "acceptedHashes": {
+        "a7df017e": "kanonisch",
+        "af8f001a": "gueltig",
+        "18e722f2": "gueltig",
+        "f445cc5a": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t3-81",
+      "tier": 3,
+      "ruleId": "dativ-vor-akkusativ",
+      "gloss": "He wants to give his girlfriend flowers for their anniversary.",
+      "chunks": [
+        {
+          "id": "er",
+          "surface": "Er",
+          "neutralSurface": "er",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "will",
+          "surface": "will",
+          "neutralSurface": "will",
+          "role": "FIN"
+        },
+        {
+          "id": "freundin",
+          "surface": "Seiner Freundin",
+          "neutralSurface": "seiner Freundin",
+          "role": "DAT",
+          "definite": true
+        },
+        {
+          "id": "jt",
+          "surface": "Zum Jahrestag",
+          "neutralSurface": "zum Jahrestag",
+          "role": "KAUS"
+        },
+        {
+          "id": "blumen",
+          "surface": "Blumen",
+          "neutralSurface": "Blumen",
+          "role": "AKK",
+          "definite": false
+        },
+        {
+          "id": "schenken",
+          "surface": "schenken",
+          "neutralSurface": "schenken",
+          "role": "INF"
+        }
+      ],
+      "canonical": [
+        "er",
+        "will",
+        "freundin",
+        "jt",
+        "blumen",
+        "schenken"
+      ],
+      "acceptedHashes": {
+        "7913db21": "kanonisch",
+        "c6aab903": "gueltig",
+        "51ba5b3d": "gueltig",
+        "4561ac0b": "gueltig",
+        "6147d3a5": "gueltig",
+        "70a7287f": "gueltig",
+        "9efc6543": "gueltig",
+        "c7587aa7": "gueltig",
+        "9b52f1af": "ungewoehnlich",
+        "d30b434d": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t3-82",
+      "tier": 3,
+      "ruleId": "dativ-vor-akkusativ",
+      "gloss": "The doctor explained the results to the patient.",
+      "chunks": [
+        {
+          "id": "aerztin",
+          "surface": "Die Ärztin",
+          "neutralSurface": "die Ärztin",
+          "role": "SUBJ"
+        },
+        {
+          "id": "hat",
+          "surface": "hat",
+          "neutralSurface": "hat",
+          "role": "FIN"
+        },
+        {
+          "id": "patient",
+          "surface": "Dem Patienten",
+          "neutralSurface": "dem Patienten",
+          "role": "DAT",
+          "definite": true
+        },
+        {
+          "id": "ergebn",
+          "surface": "Die Ergebnisse",
+          "neutralSurface": "die Ergebnisse",
+          "role": "AKK",
+          "definite": true
+        },
+        {
+          "id": "erklaert",
+          "surface": "erklärt",
+          "neutralSurface": "erklärt",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "aerztin",
+        "hat",
+        "patient",
+        "ergebn",
+        "erklaert"
+      ],
+      "acceptedHashes": {
+        "15277403": "gueltig",
+        "e4e77aab": "kanonisch",
+        "1d2b4f0d": "gueltig",
+        "2d44fbed": "gueltig"
+      }
+    },
+    {
+      "id": "t3-83",
+      "tier": 3,
+      "ruleId": "pronomen-akk-vor-dat",
+      "gloss": "I'll drop them round to you tomorrow.",
+      "chunks": [
+        {
+          "id": "ich",
+          "surface": "Ich",
+          "neutralSurface": "ich",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "bringe",
+          "surface": "bringe",
+          "neutralSurface": "bringe",
+          "role": "FIN"
+        },
+        {
+          "id": "sie",
+          "surface": "Sie",
+          "neutralSurface": "sie",
+          "role": "PRON_AKK"
+        },
+        {
+          "id": "euch",
+          "surface": "Euch",
+          "neutralSurface": "euch",
+          "role": "PRON_DAT"
+        },
+        {
+          "id": "morgen",
+          "surface": "Morgen",
+          "neutralSurface": "morgen",
+          "role": "TEMP"
+        },
+        {
+          "id": "vorbei",
+          "surface": "vorbei",
+          "neutralSurface": "vorbei",
+          "role": "PTKVZ"
+        }
+      ],
+      "canonical": [
+        "ich",
+        "bringe",
+        "sie",
+        "euch",
+        "morgen",
+        "vorbei"
+      ],
+      "acceptedHashes": {
+        "24662531": "ungewoehnlich",
+        "4a020233": "kanonisch",
+        "8a77d769": "ungewoehnlich",
+        "d75997bd": "ungewoehnlich",
+        "0a6f622b": "ungewoehnlich",
+        "1fd9ed9d": "ungewoehnlich",
+        "83c5d17f": "ungewoehnlich",
+        "1d09a1ad": "gueltig"
+      }
+    },
+    {
+      "id": "t3-84",
+      "tier": 3,
+      "ruleId": "pronomen-akk-vor-dat",
+      "gloss": "He told it to us straight away.",
+      "chunks": [
+        {
+          "id": "er",
+          "surface": "Er",
+          "neutralSurface": "er",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "hat",
+          "surface": "hat",
+          "neutralSurface": "hat",
+          "role": "FIN"
+        },
+        {
+          "id": "es",
+          "surface": "Es",
+          "neutralSurface": "es",
+          "role": "PRON_AKK",
+          "stressable": false
+        },
+        {
+          "id": "uns",
+          "surface": "Uns",
+          "neutralSurface": "uns",
+          "role": "PRON_DAT"
+        },
+        {
+          "id": "sofort",
+          "surface": "Sofort",
+          "neutralSurface": "sofort",
+          "role": "TEMP"
+        },
+        {
+          "id": "erzaehlt",
+          "surface": "erzählt",
+          "neutralSurface": "erzählt",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "er",
+        "hat",
+        "es",
+        "uns",
+        "sofort",
+        "erzaehlt"
+      ],
+      "acceptedHashes": {
+        "9b13b3fb": "kanonisch",
+        "24d68a77": "ungewoehnlich",
+        "6aa74ee5": "ungewoehnlich",
+        "83efd775": "gueltig"
+      }
+    },
+    {
+      "id": "t3-85",
+      "tier": 3,
+      "ruleId": "pronomen-akk-vor-dat",
+      "gloss": "We'll show it to you in a moment.",
+      "chunks": [
+        {
+          "id": "wir",
+          "surface": "Wir",
+          "neutralSurface": "wir",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "zeigen",
+          "surface": "zeigen",
+          "neutralSurface": "zeigen",
+          "role": "FIN"
+        },
+        {
+          "id": "ihn",
+          "surface": "Ihn",
+          "neutralSurface": "ihn",
+          "role": "PRON_AKK"
+        },
+        {
+          "id": "ihnen",
+          "surface": "Ihnen",
+          "neutralSurface": "Ihnen",
+          "role": "PRON_DAT"
+        },
+        {
+          "id": "gleich",
+          "surface": "Gleich",
+          "neutralSurface": "gleich",
+          "role": "TEMP"
+        }
+      ],
+      "canonical": [
+        "wir",
+        "zeigen",
+        "ihn",
+        "ihnen",
+        "gleich"
+      ],
+      "acceptedHashes": {
+        "1986adc8": "kanonisch",
+        "e0905d7a": "ungewoehnlich",
+        "2393698c": "ungewoehnlich",
+        "4cc50426": "ungewoehnlich",
+        "f1756b22": "ungewoehnlich",
+        "7e939250": "ungewoehnlich",
+        "8d65c396": "ungewoehnlich",
+        "44063f2e": "gueltig"
+      }
+    },
+    {
+      "id": "t3-86",
+      "tier": 3,
+      "ruleId": "pronomen-akk-vor-dat",
+      "gloss": "She gave it to me as a leaving present.",
+      "chunks": [
+        {
+          "id": "sie",
+          "surface": "Sie",
+          "neutralSurface": "sie",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "hat",
+          "surface": "hat",
+          "neutralSurface": "hat",
+          "role": "FIN"
+        },
+        {
+          "id": "es",
+          "surface": "Es",
+          "neutralSurface": "es",
+          "role": "PRON_AKK",
+          "stressable": false
+        },
+        {
+          "id": "mir",
+          "surface": "Mir",
+          "neutralSurface": "mir",
+          "role": "PRON_DAT"
+        },
+        {
+          "id": "abschied",
+          "surface": "Zum Abschied",
+          "neutralSurface": "zum Abschied",
+          "role": "KAUS"
+        },
+        {
+          "id": "geschenkt",
+          "surface": "geschenkt",
+          "neutralSurface": "geschenkt",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "sie",
+        "hat",
+        "es",
+        "mir",
+        "abschied",
+        "geschenkt"
+      ],
+      "acceptedHashes": {
+        "a6d12db4": "kanonisch",
+        "89329b7c": "ungewoehnlich",
+        "9cab47c0": "ungewoehnlich",
+        "990d0636": "gueltig"
+      }
+    },
+    {
+      "id": "t3-87",
+      "tier": 3,
+      "ruleId": "pronomen-akk-vor-dat",
+      "gloss": "I have to tell her today.",
+      "chunks": [
+        {
+          "id": "ich",
+          "surface": "Ich",
+          "neutralSurface": "ich",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "muss",
+          "surface": "muss",
+          "neutralSurface": "muss",
+          "role": "FIN"
+        },
+        {
+          "id": "es",
+          "surface": "Es",
+          "neutralSurface": "es",
+          "role": "PRON_AKK",
+          "stressable": false
+        },
+        {
+          "id": "ihr",
+          "surface": "Ihr",
+          "neutralSurface": "ihr",
+          "role": "PRON_DAT"
+        },
+        {
+          "id": "heute",
+          "surface": "Heute noch",
+          "neutralSurface": "heute noch",
+          "role": "TEMP"
+        },
+        {
+          "id": "sagen",
+          "surface": "sagen",
+          "neutralSurface": "sagen",
+          "role": "INF"
+        }
+      ],
+      "canonical": [
+        "ich",
+        "muss",
+        "es",
+        "ihr",
+        "heute",
+        "sagen"
+      ],
+      "acceptedHashes": {
+        "1090b235": "kanonisch",
+        "9d66f2fd": "ungewoehnlich",
+        "08a71d55": "ungewoehnlich",
+        "dcc6fc55": "gueltig"
+      }
+    },
+    {
+      "id": "t3-88",
+      "tier": 3,
+      "ruleId": "pronomen-vor-nomen",
+      "gloss": "Our neighbour brought us a cake yesterday.",
+      "chunks": [
+        {
+          "id": "nachbarin",
+          "surface": "Unsere Nachbarin",
+          "neutralSurface": "unsere Nachbarin",
+          "role": "SUBJ"
+        },
+        {
+          "id": "hat",
+          "surface": "hat",
+          "neutralSurface": "hat",
+          "role": "FIN"
+        },
+        {
+          "id": "uns",
+          "surface": "Uns",
+          "neutralSurface": "uns",
+          "role": "PRON_DAT"
+        },
+        {
+          "id": "gestern",
+          "surface": "Gestern",
+          "neutralSurface": "gestern",
+          "role": "TEMP"
+        },
+        {
+          "id": "kuchen",
+          "surface": "Einen Kuchen",
+          "neutralSurface": "einen Kuchen",
+          "role": "AKK",
+          "definite": false
+        },
+        {
+          "id": "gebracht",
+          "surface": "gebracht",
+          "neutralSurface": "gebracht",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "nachbarin",
+        "hat",
+        "uns",
+        "gestern",
+        "kuchen",
+        "gebracht"
+      ],
+      "acceptedHashes": {
+        "98592672": "ungewoehnlich",
+        "1c6ab44c": "kanonisch",
+        "4079fe7c": "ungewoehnlich",
+        "2d0ddae4": "ungewoehnlich",
+        "d22eebe8": "ungewoehnlich",
+        "c9f7c420": "ungewoehnlich",
+        "af108e58": "gueltig",
+        "7cff6748": "gueltig",
+        "31e9b522": "ungewoehnlich",
+        "934506a2": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t3-89",
+      "tier": 3,
+      "ruleId": "pronomen-vor-nomen",
+      "gloss": "The teacher praised him today.",
+      "chunks": [
+        {
+          "id": "lehrerin",
+          "surface": "Die Lehrerin",
+          "neutralSurface": "die Lehrerin",
+          "role": "SUBJ"
+        },
+        {
+          "id": "hat",
+          "surface": "hat",
+          "neutralSurface": "hat",
+          "role": "FIN"
+        },
+        {
+          "id": "ihn",
+          "surface": "Ihn",
+          "neutralSurface": "ihn",
+          "role": "PRON_AKK"
+        },
+        {
+          "id": "heute",
+          "surface": "Heute",
+          "neutralSurface": "heute",
+          "role": "TEMP"
+        },
+        {
+          "id": "gelobt",
+          "surface": "gelobt",
+          "neutralSurface": "gelobt",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "lehrerin",
+        "hat",
+        "ihn",
+        "heute",
+        "gelobt"
+      ],
+      "acceptedHashes": {
+        "9cde00c8": "kanonisch",
+        "19f0f808": "ungewoehnlich",
+        "3c57f684": "ungewoehnlich",
+        "e590d1e0": "gueltig",
+        "4eedcd7e": "gueltig"
+      }
+    },
+    {
+      "id": "t3-90",
+      "tier": 3,
+      "ruleId": "pronomen-vor-nomen",
+      "gloss": "I'll write you a message tomorrow.",
+      "chunks": [
+        {
+          "id": "ich",
+          "surface": "Ich",
+          "neutralSurface": "ich",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "schreibe",
+          "surface": "schreibe",
+          "neutralSurface": "schreibe",
+          "role": "FIN"
+        },
+        {
+          "id": "dir",
+          "surface": "Dir",
+          "neutralSurface": "dir",
+          "role": "PRON_DAT"
+        },
+        {
+          "id": "morgen",
+          "surface": "Morgen",
+          "neutralSurface": "morgen",
+          "role": "TEMP"
+        },
+        {
+          "id": "nachricht",
+          "surface": "Eine Nachricht",
+          "neutralSurface": "eine Nachricht",
+          "role": "AKK",
+          "definite": false
+        }
+      ],
+      "canonical": [
+        "ich",
+        "schreibe",
+        "dir",
+        "morgen",
+        "nachricht"
+      ],
+      "acceptedHashes": {
+        "5327c017": "kanonisch",
+        "725d69d5": "ungewoehnlich",
+        "a1b59a77": "ungewoehnlich",
+        "53c343fd": "ungewoehnlich",
+        "8e744d2d": "ungewoehnlich",
+        "81d83bcb": "gueltig",
+        "d26c12d3": "ungewoehnlich",
+        "ec926251": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t3-91",
+      "tier": 3,
+      "ruleId": "pronomen-vor-nomen",
+      "gloss": "The travel agency recommended a cheap hotel to us.",
+      "chunks": [
+        {
+          "id": "buero",
+          "surface": "Das Reisebüro",
+          "neutralSurface": "das Reisebüro",
+          "role": "SUBJ"
+        },
+        {
+          "id": "hat",
+          "surface": "hat",
+          "neutralSurface": "hat",
+          "role": "FIN"
+        },
+        {
+          "id": "uns",
+          "surface": "Uns",
+          "neutralSurface": "uns",
+          "role": "PRON_DAT"
+        },
+        {
+          "id": "hotel",
+          "surface": "Ein günstiges Hotel",
+          "neutralSurface": "ein günstiges Hotel",
+          "role": "AKK",
+          "definite": false
+        },
+        {
+          "id": "empf",
+          "surface": "empfohlen",
+          "neutralSurface": "empfohlen",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "buero",
+        "hat",
+        "uns",
+        "hotel",
+        "empf"
+      ],
+      "acceptedHashes": {
+        "b933454d": "kanonisch",
+        "f6dc2c4d": "ungewoehnlich",
+        "5cea47ad": "ungewoehnlich",
+        "c4c29a09": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t3-92",
+      "tier": 3,
+      "ruleId": "pronomen-vor-nomen",
+      "gloss": "We have not told our parents yet.",
+      "chunks": [
+        {
+          "id": "wir",
+          "surface": "Wir",
+          "neutralSurface": "wir",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "haben",
+          "surface": "haben",
+          "neutralSurface": "haben",
+          "role": "FIN"
+        },
+        {
+          "id": "es",
+          "surface": "Es",
+          "neutralSurface": "es",
+          "role": "PRON_AKK",
+          "stressable": false
+        },
+        {
+          "id": "eltern",
+          "surface": "Unseren Eltern",
+          "neutralSurface": "unseren Eltern",
+          "role": "DAT",
+          "definite": true
+        },
+        {
+          "id": "nicht",
+          "surface": "Noch nicht",
+          "neutralSurface": "noch nicht",
+          "role": "NEG"
+        },
+        {
+          "id": "erzaehlt",
+          "surface": "erzählt",
+          "neutralSurface": "erzählt",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "wir",
+        "haben",
+        "es",
+        "eltern",
+        "nicht",
+        "erzaehlt"
+      ],
+      "acceptedHashes": {
+        "0de546f4": "kanonisch",
+        "eddb104c": "gueltig"
+      }
+    },
+    {
+      "id": "t3-93",
+      "tier": 3,
+      "ruleId": "pronomen-vor-nomen",
+      "gloss": "The dog woke me up this morning.",
+      "chunks": [
+        {
+          "id": "hund",
+          "surface": "Der Hund",
+          "neutralSurface": "der Hund",
+          "role": "SUBJ"
+        },
+        {
+          "id": "hat",
+          "surface": "hat",
+          "neutralSurface": "hat",
+          "role": "FIN"
+        },
+        {
+          "id": "mich",
+          "surface": "Mich",
+          "neutralSurface": "mich",
+          "role": "PRON_AKK"
+        },
+        {
+          "id": "morgen",
+          "surface": "Heute Morgen",
+          "neutralSurface": "heute Morgen",
+          "role": "TEMP"
+        },
+        {
+          "id": "geweckt",
+          "surface": "geweckt",
+          "neutralSurface": "geweckt",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "hund",
+        "hat",
+        "mich",
+        "morgen",
+        "geweckt"
+      ],
+      "acceptedHashes": {
+        "cc7e9128": "kanonisch",
+        "11b899aa": "ungewoehnlich",
+        "a4d33fa8": "ungewoehnlich",
+        "ba356e7c": "gueltig",
+        "71ffc59c": "gueltig"
+      }
+    },
+    {
+      "id": "t3-94",
+      "tier": 3,
+      "ruleId": "tekamolo-voll",
+      "gloss": "Tomorrow I'm going to the doctor because of the pain.",
+      "chunks": [
+        {
+          "id": "ich",
+          "surface": "Ich",
+          "neutralSurface": "ich",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "gehe",
+          "surface": "gehe",
+          "neutralSurface": "gehe",
+          "role": "FIN"
+        },
+        {
+          "id": "morgen",
+          "surface": "Morgen",
+          "neutralSurface": "morgen",
+          "role": "TEMP"
+        },
+        {
+          "id": "schmerzen",
+          "surface": "Wegen der Schmerzen",
+          "neutralSurface": "wegen der Schmerzen",
+          "role": "KAUS"
+        },
+        {
+          "id": "arzt",
+          "surface": "Zum Arzt",
+          "neutralSurface": "zum Arzt",
+          "role": "DIR"
+        }
+      ],
+      "canonical": [
+        "ich",
+        "gehe",
+        "morgen",
+        "schmerzen",
+        "arzt"
+      ],
+      "acceptedHashes": {
+        "f11a2476": "kanonisch",
+        "0b1972dc": "gueltig",
+        "c5570ff2": "gueltig",
+        "3af5466a": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t3-95",
+      "tier": 3,
+      "ruleId": "tekamolo-voll",
+      "gloss": "On Sunday we are cycling to the lake.",
+      "chunks": [
+        {
+          "id": "wir",
+          "surface": "Wir",
+          "neutralSurface": "wir",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "fahren",
+          "surface": "fahren",
+          "neutralSurface": "fahren",
+          "role": "FIN"
+        },
+        {
+          "id": "sonntag",
+          "surface": "Am Sonntag",
+          "neutralSurface": "am Sonntag",
+          "role": "TEMP"
+        },
+        {
+          "id": "rad",
+          "surface": "Mit dem Rad",
+          "neutralSurface": "mit dem Rad",
+          "role": "INSTR"
+        },
+        {
+          "id": "see",
+          "surface": "An den See",
+          "neutralSurface": "an den See",
+          "role": "DIR"
+        }
+      ],
+      "canonical": [
+        "wir",
+        "fahren",
+        "sonntag",
+        "rad",
+        "see"
+      ],
+      "acceptedHashes": {
+        "70537605": "gueltig",
+        "9ec58b25": "kanonisch",
+        "2d8d48f3": "gueltig",
+        "af58f38b": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t3-96",
+      "tier": 3,
+      "ruleId": "tekamolo-voll",
+      "gloss": "She has been happily working in the library for years.",
+      "chunks": [
+        {
+          "id": "sie",
+          "surface": "Sie",
+          "neutralSurface": "sie",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "arbeitet",
+          "surface": "arbeitet",
+          "neutralSurface": "arbeitet",
+          "role": "FIN"
+        },
+        {
+          "id": "jahre",
+          "surface": "Seit Jahren",
+          "neutralSurface": "seit Jahren",
+          "role": "TEMP"
+        },
+        {
+          "id": "gern",
+          "surface": "Sehr gern",
+          "neutralSurface": "sehr gern",
+          "role": "MODAL"
+        },
+        {
+          "id": "bib",
+          "surface": "In der Bibliothek",
+          "neutralSurface": "in der Bibliothek",
+          "role": "LOK"
+        }
+      ],
+      "canonical": [
+        "sie",
+        "arbeitet",
+        "jahre",
+        "gern",
+        "bib"
+      ],
+      "acceptedHashes": {
+        "dbe76855": "kanonisch",
+        "d1e876d3": "gueltig",
+        "508e13b1": "ungewoehnlich",
+        "0908c39f": "gueltig"
+      }
+    },
+    {
+      "id": "t3-97",
+      "tier": 3,
+      "ruleId": "tekamolo-voll",
+      "gloss": "Every morning my father drives to the office.",
+      "chunks": [
+        {
+          "id": "vater",
+          "surface": "Mein Vater",
+          "neutralSurface": "mein Vater",
+          "role": "SUBJ"
+        },
+        {
+          "id": "faehrt",
+          "surface": "fährt",
+          "neutralSurface": "fährt",
+          "role": "FIN"
+        },
+        {
+          "id": "morgen",
+          "surface": "Jeden Morgen",
+          "neutralSurface": "jeden Morgen",
+          "role": "TEMP"
+        },
+        {
+          "id": "auto",
+          "surface": "Mit dem Auto",
+          "neutralSurface": "mit dem Auto",
+          "role": "INSTR"
+        },
+        {
+          "id": "buero",
+          "surface": "Ins Büro",
+          "neutralSurface": "ins Büro",
+          "role": "DIR"
+        }
+      ],
+      "canonical": [
+        "vater",
+        "faehrt",
+        "morgen",
+        "auto",
+        "buero"
+      ],
+      "acceptedHashes": {
+        "807fdf9b": "kanonisch",
+        "3fb4cacf": "gueltig",
+        "02203013": "gueltig",
+        "5d9f5835": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t3-98",
+      "tier": 3,
+      "ruleId": "tekamolo-voll",
+      "gloss": "He sits alone in his room all day.",
+      "chunks": [
+        {
+          "id": "er",
+          "surface": "Er",
+          "neutralSurface": "er",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "sitzt",
+          "surface": "sitzt",
+          "neutralSurface": "sitzt",
+          "role": "FIN"
+        },
+        {
+          "id": "tag",
+          "surface": "Den ganzen Tag",
+          "neutralSurface": "den ganzen Tag",
+          "role": "TEMP"
+        },
+        {
+          "id": "allein",
+          "surface": "Allein",
+          "neutralSurface": "allein",
+          "role": "MODAL"
+        },
+        {
+          "id": "zimmer",
+          "surface": "In seinem Zimmer",
+          "neutralSurface": "in seinem Zimmer",
+          "role": "LOK"
+        }
+      ],
+      "canonical": [
+        "er",
+        "sitzt",
+        "tag",
+        "allein",
+        "zimmer"
+      ],
+      "acceptedHashes": {
+        "45be5387": "kanonisch",
+        "d0c6a723": "gueltig",
+        "e5d26353": "ungewoehnlich",
+        "7b88be9f": "gueltig"
+      }
+    },
+    {
+      "id": "t3-99",
+      "tier": 3,
+      "ruleId": "negation-vor-klammer",
+      "gloss": "I have not sent my boss the email yet.",
+      "chunks": [
+        {
+          "id": "ich",
+          "surface": "Ich",
+          "neutralSurface": "ich",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "habe",
+          "surface": "habe",
+          "neutralSurface": "habe",
+          "role": "FIN"
+        },
+        {
+          "id": "chef",
+          "surface": "Meinem Chef",
+          "neutralSurface": "meinem Chef",
+          "role": "DAT",
+          "definite": true
+        },
+        {
+          "id": "mail",
+          "surface": "Die E-Mail",
+          "neutralSurface": "die E-Mail",
+          "role": "AKK",
+          "definite": true
+        },
+        {
+          "id": "nicht",
+          "surface": "Noch nicht",
+          "neutralSurface": "noch nicht",
+          "role": "NEG"
+        },
+        {
+          "id": "geschickt",
+          "surface": "geschickt",
+          "neutralSurface": "geschickt",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "ich",
+        "habe",
+        "chef",
+        "mail",
+        "nicht",
+        "geschickt"
+      ],
+      "acceptedHashes": {
+        "f1c3a30f": "kanonisch",
+        "c5dbddb9": "gueltig",
+        "d68735bb": "gueltig",
+        "1b0da853": "gueltig"
+      }
+    },
+    {
+      "id": "t3-100",
+      "tier": 3,
+      "ruleId": "negation-vor-klammer",
+      "gloss": "She cannot visit us at the weekend.",
+      "chunks": [
+        {
+          "id": "sie",
+          "surface": "Sie",
+          "neutralSurface": "sie",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "kann",
+          "surface": "kann",
+          "neutralSurface": "kann",
+          "role": "FIN"
+        },
+        {
+          "id": "uns",
+          "surface": "Uns",
+          "neutralSurface": "uns",
+          "role": "PRON_AKK"
+        },
+        {
+          "id": "woche",
+          "surface": "Am Wochenende",
+          "neutralSurface": "am Wochenende",
+          "role": "TEMP"
+        },
+        {
+          "id": "nicht",
+          "surface": "Nicht",
+          "neutralSurface": "nicht",
+          "role": "NEG"
+        },
+        {
+          "id": "bes",
+          "surface": "besuchen",
+          "neutralSurface": "besuchen",
+          "role": "INF"
+        }
+      ],
+      "canonical": [
+        "sie",
+        "kann",
+        "uns",
+        "woche",
+        "nicht",
+        "bes"
+      ],
+      "acceptedHashes": {
+        "55841862": "gueltig",
+        "5057f930": "kanonisch",
+        "d90cd060": "ungewoehnlich",
+        "ec29193a": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t3-101",
+      "tier": 3,
+      "ruleId": "negation-vor-klammer",
+      "gloss": "Because of the rain we did not go to the beach.",
+      "chunks": [
+        {
+          "id": "wir",
+          "surface": "Wir",
+          "neutralSurface": "wir",
+          "role": "PRON_NOM"
+        },
+        {
+          "id": "sind",
+          "surface": "sind",
+          "neutralSurface": "sind",
+          "role": "FIN"
+        },
+        {
+          "id": "regen",
+          "surface": "Wegen des Regens",
+          "neutralSurface": "wegen des Regens",
+          "role": "KAUS"
+        },
+        {
+          "id": "nicht",
+          "surface": "Nicht",
+          "neutralSurface": "nicht",
+          "role": "NEG"
+        },
+        {
+          "id": "strand",
+          "surface": "An den Strand",
+          "neutralSurface": "an den Strand",
+          "role": "DIR"
+        },
+        {
+          "id": "gegangen",
+          "surface": "gegangen",
+          "neutralSurface": "gegangen",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "wir",
+        "sind",
+        "regen",
+        "nicht",
+        "strand",
+        "gegangen"
+      ],
+      "acceptedHashes": {
+        "7759c5ea": "kanonisch",
+        "769b7c28": "gueltig",
+        "34cc6408": "ungewoehnlich"
+      }
+    },
+    {
+      "id": "t3-102",
+      "tier": 3,
+      "ruleId": "negation-vor-klammer",
+      "gloss": "My husband did not pay the bill yesterday.",
+      "chunks": [
+        {
+          "id": "mann",
+          "surface": "Mein Mann",
+          "neutralSurface": "mein Mann",
+          "role": "SUBJ"
+        },
+        {
+          "id": "hat",
+          "surface": "hat",
+          "neutralSurface": "hat",
+          "role": "FIN"
+        },
+        {
+          "id": "rechnung",
+          "surface": "Die Rechnung",
+          "neutralSurface": "die Rechnung",
+          "role": "AKK",
+          "definite": true
+        },
+        {
+          "id": "gestern",
+          "surface": "Gestern",
+          "neutralSurface": "gestern",
+          "role": "TEMP"
+        },
+        {
+          "id": "nicht",
+          "surface": "Nicht",
+          "neutralSurface": "nicht",
+          "role": "NEG"
+        },
+        {
+          "id": "bezahlt",
+          "surface": "bezahlt",
+          "neutralSurface": "bezahlt",
+          "role": "PART"
+        }
+      ],
+      "canonical": [
+        "mann",
+        "hat",
+        "rechnung",
+        "gestern",
+        "nicht",
+        "bezahlt"
+      ],
+      "acceptedHashes": {
+        "30d915e6": "kanonisch",
+        "88ce605e": "gueltig",
+        "f3ae7fb6": "gueltig",
+        "4faed140": "gueltig"
+      }
+    },
+    {
+      "id": "t3-103",
+      "tier": 3,
+      "ruleId": "negation-vor-klammer",
+      "gloss": "The child does not want to go to nursery today.",
+      "chunks": [
+        {
+          "id": "kind",
+          "surface": "Das Kind",
+          "neutralSurface": "das Kind",
+          "role": "SUBJ"
+        },
+        {
+          "id": "will",
+          "surface": "will",
+          "neutralSurface": "will",
+          "role": "FIN"
+        },
+        {
+          "id": "heute",
+          "surface": "Heute",
+          "neutralSurface": "heute",
+          "role": "TEMP"
+        },
+        {
+          "id": "nicht",
+          "surface": "Nicht",
+          "neutralSurface": "nicht",
+          "role": "NEG"
+        },
+        {
+          "id": "kiga",
+          "surface": "In den Kindergarten",
+          "neutralSurface": "in den Kindergarten",
+          "role": "DIR"
+        },
+        {
+          "id": "gehen",
+          "surface": "gehen",
+          "neutralSurface": "gehen",
+          "role": "INF"
+        }
+      ],
+      "canonical": [
+        "kind",
+        "will",
+        "heute",
+        "nicht",
+        "kiga",
+        "gehen"
+      ],
+      "acceptedHashes": {
+        "996be56d": "kanonisch",
+        "c91209e5": "gueltig",
+        "ea10b977": "ungewoehnlich"
+      }
     }
   ]
 }
