@@ -14,7 +14,7 @@
   rule: v2-deklarativ
   gloss: I drink coffee in the mornings.
   chunks:
-    ich:     { surface: "Ich",     neutral: "ich",     role: SUBJ }
+    ich:     { surface: "Ich",     neutral: "ich",     role: PRON_NOM }
     trinke:  { surface: "trinke",  neutral: "trinke",  role: FIN }
     morgens: { surface: "morgens", neutral: "morgens", role: TEMP }
     kaffee:  { surface: "Kaffee",  neutral: "Kaffee",  role: AKK, definite: false }
@@ -22,23 +22,25 @@
     - [k, ich, trinke, morgens, kaffee]
     - [g, morgens, trinke, ich, kaffee]
     - [u, kaffee, trinke, ich, morgens]      # contrastive: coffee, as opposed to tea
+    # Native review 1.1: marked, not wrong. Reads with focus on `morgens`.
+    - [u, ich, trinke, kaffee, morgens]
   reject:
     - [ich, morgens, trinke, kaffee]         # FIN not second
-    - [ich, trinke, kaffee, morgens]         # bare indefinite object can't precede TEMP
+
 
 - id: t1-02
   tier: 1
   rule: tekamolo-te-lo
   gloss: We have lived in Aachen for three years.
   chunks:
-    wir:   { surface: "Wir",              neutral: "wir",              role: SUBJ }
+    wir:   { surface: "Wir",              neutral: "wir",              role: PRON_NOM }
     wohn:  { surface: "wohnen",           neutral: "wohnen",           role: FIN }
     seit:  { surface: "Seit drei Jahren", neutral: "seit drei Jahren", role: TEMP }
     aachen: { surface: "In Aachen",        neutral: "in Aachen",        role: LOK }
   accept:
     - [k, wir, wohn, seit, aachen]
     - [g, seit, wohn, wir, aachen]
-    - [u, aachen, wohn, wir, seit]
+    - [g, aachen, wohn, wir, seit]   # native review P2: place fronting is ordinary
   reject:
     - [wir, wohn, aachen, seit]              # LOK before TEMP breaks TeKaMoLo
 
@@ -77,7 +79,7 @@
   rule: praedikativ-final
   gloss: I'm off at the weekend.
   chunks:
-    ich:  { surface: "Ich",             neutral: "ich",             role: SUBJ }
+    ich:  { surface: "Ich",             neutral: "ich",             role: PRON_NOM }
     habe: { surface: "habe",            neutral: "habe",            role: FIN }
     we:   { surface: "Am Wochenende",   neutral: "am Wochenende",   role: TEMP }
     frei: { surface: "frei",            neutral: "frei",            role: PRAED }
@@ -95,7 +97,7 @@
   rule: satzklammer-trennbar
   gloss: I'm picking my sister up from the station tomorrow.
   chunks:
-    ich:    { surface: "Ich",             neutral: "ich",             role: SUBJ }
+    ich:    { surface: "Ich",             neutral: "ich",             role: PRON_NOM }
     hole:   { surface: "hole",            neutral: "hole",            role: FIN }
     schw:   { surface: "Meine Schwester", neutral: "meine Schwester", role: AKK, definite: true }
     morgen: { surface: "Morgen",          neutral: "morgen",          role: TEMP }
@@ -116,7 +118,7 @@
   rule: satzklammer-perfekt
   gloss: We watched a film yesterday.
   chunks:
-    wir:    { surface: "Wir",        neutral: "wir",        role: SUBJ }
+    wir:    { surface: "Wir",        neutral: "wir",        role: PRON_NOM }
     haben:  { surface: "haben",      neutral: "haben",      role: FIN }
     gestern: { surface: "Gestern",    neutral: "gestern",    role: TEMP }
     film:   { surface: "Einen Film", neutral: "einen Film", role: AKK, definite: false }
@@ -125,8 +127,10 @@
     - [k, wir, haben, gestern, film, gesehen]
     - [g, gestern, haben, wir, film, gesehen]
     - [u, film, haben, wir, gestern, gesehen]
+    # Native review 1.1: marked, not wrong.
+    - [u, wir, haben, film, gestern, gesehen]
   reject:
-    - [wir, haben, film, gestern, gesehen]   # indefinite object can't outrank TEMP
+
     - [wir, haben, gestern, gesehen, film]
 
 - id: t2-03
@@ -134,7 +138,7 @@
   rule: negation-vor-klammer
   gloss: You don't have to work today.
   chunks:
-    du:    { surface: "Du",       neutral: "du",       role: SUBJ }
+    du:    { surface: "Du",       neutral: "du",       role: PRON_NOM }
     musst: { surface: "musst",    neutral: "musst",    role: FIN }
     heute: { surface: "Heute",    neutral: "heute",    role: TEMP }
     nicht: { surface: "nicht",    neutral: "nicht",    role: NEG }
@@ -166,7 +170,7 @@
   rule: satzklammer-perfekt
   gloss: I left my key at home.
   chunks:
-    ich:   { surface: "Ich",             neutral: "ich",             role: SUBJ }
+    ich:   { surface: "Ich",             neutral: "ich",             role: PRON_NOM }
     habe:  { surface: "habe",            neutral: "habe",            role: FIN }
     schl:  { surface: "Meinen Schlüssel",neutral: "meinen Schlüssel",role: AKK, definite: true }
     hause: { surface: "Zu Hause",        neutral: "zu Hause",        role: LOK }
@@ -174,7 +178,7 @@
   accept:
     - [k, ich, habe, schl, hause, verg]
     - [g, schl, habe, ich, hause, verg]
-    - [u, hause, habe, ich, schl, verg]
+    - [g, hause, habe, ich, schl, verg]  # native review P2: place fronting is ordinary
   reject:
     - [ich, habe, hause, schl, verg]         # definite object before LOK
 
@@ -185,7 +189,7 @@
   rule: dativ-vor-akkusativ
   gloss: I'm giving my mother a book for her birthday.
   chunks:
-    ich:   { surface: "Ich",             neutral: "ich",             role: SUBJ }
+    ich:   { surface: "Ich",             neutral: "ich",             role: PRON_NOM }
     schenke: { surface: "schenke",        neutral: "schenke",         role: FIN }
     mutter: { surface: "Meiner Mutter",   neutral: "meiner Mutter",   role: DAT, definite: true }
     gb:    { surface: "Zum Geburtstag",  neutral: "zum Geburtstag",  role: KAUS }
@@ -203,7 +207,7 @@
   rule: pronomen-akk-vor-dat
   gloss: I'll give it to you tomorrow.
   chunks:
-    ich:   { surface: "Ich",    neutral: "ich",    role: SUBJ }
+    ich:   { surface: "Ich",    neutral: "ich",    role: PRON_NOM }
     gebe:  { surface: "gebe",   neutral: "gebe",   role: FIN }
     es:    { surface: "es",     neutral: "es",     role: PRON_AKK, stressable: false }
     dir:   { surface: "dir",    neutral: "dir",    role: PRON_DAT }
@@ -215,13 +219,14 @@
     - [ich, gebe, dir, es, morgen]           # THE tier-3 test: DAT before AKK pronoun
     - [es, gebe, ich, dir, morgen]           # unstressed pronoun in Vorfeld
     - [ich, gebe, morgen, es, dir]           # pronouns must lead the Mittelfeld
+    - [ich, gebe, morgen, dir, es]           # es cannot be stressed, so cannot trail an adverbial
 
 - id: t3-03
   tier: 3
   rule: pronomen-vor-nomen
   gloss: He still hasn't given me the book back.
   chunks:
-    er:   { surface: "Er",              neutral: "er",              role: SUBJ }
+    er:   { surface: "Er",              neutral: "er",              role: PRON_NOM }
     hat:  { surface: "hat",             neutral: "hat",             role: FIN }
     mir:  { surface: "mir",             neutral: "mir",             role: PRON_DAT }
     buch: { surface: "Das Buch",        neutral: "das Buch",        role: AKK, definite: true }
@@ -239,15 +244,18 @@
   rule: tekamolo-voll
   gloss: She cycles to work every day.
   chunks:
-    sie:  { surface: "Sie",             neutral: "sie",             role: SUBJ }
+    sie:  { surface: "Sie",             neutral: "sie",             role: PRON_NOM }
     faehrt: { surface: "fährt",          neutral: "fährt",           role: FIN }
     tag:  { surface: "Jeden Tag",       neutral: "jeden Tag",       role: TEMP }
-    rad:  { surface: "Mit dem Fahrrad", neutral: "mit dem Fahrrad", role: MODAL }
+    rad:  { surface: "Mit dem Fahrrad", neutral: "mit dem Fahrrad", role: INSTR }
     arb:  { surface: "Zur Arbeit",      neutral: "zur Arbeit",      role: DIR }
   accept:
     - [k, sie, faehrt, tag, rad, arb]
     - [g, tag, faehrt, sie, rad, arb]
-    - [u, rad, faehrt, sie, tag, arb]
+    # Native review: fronting an instrument is ordinary, not marked.
+    # `Mit dem Fahrrad fährt sie jeden Tag zur Arbeit` answers "how?" and
+    # needs no contrast — which is why INSTR split from MODAL.
+    - [g, rad, faehrt, sie, tag, arb]
     - [u, arb, faehrt, sie, tag, rad]
   reject:
     - [sie, faehrt, rad, tag, arb]           # Mo before Te
@@ -258,7 +266,7 @@
   rule: tekamolo-voll
   gloss: I'm going to Cologne tomorrow because of the exam.
   chunks:
-    ich:   { surface: "Ich",               neutral: "ich",               role: SUBJ }
+    ich:   { surface: "Ich",               neutral: "ich",               role: PRON_NOM }
     fahre: { surface: "fahre",             neutral: "fahre",             role: FIN }
     morgen: { surface: "Morgen",            neutral: "morgen",            role: TEMP }
     pruef: { surface: "Wegen der Prüfung", neutral: "wegen der Prüfung", role: KAUS }
@@ -281,7 +289,7 @@
   matrix: "Ich weiß nicht, …"
   chunks:
     ob:    { surface: "ob",     neutral: "ob",     role: KONJ }
-    er:    { surface: "er",     neutral: "er",     role: SUBJ }
+    er:    { surface: "er",     neutral: "er",     role: PRON_NOM }
     morgen: { surface: "morgen", neutral: "morgen", role: TEMP }
     kommt: { surface: "kommt",  neutral: "kommt",  role: FIN }
   accept:
@@ -297,7 +305,7 @@
   matrix: "Sie sagt, …"
   chunks:
     dass:  { surface: "dass",       neutral: "dass",       role: KONJ }
-    sie:   { surface: "sie",        neutral: "sie",        role: SUBJ }
+    sie:   { surface: "sie",        neutral: "sie",        role: PRON_NOM }
     mich:  { surface: "mich",       neutral: "mich",       role: PRON_AKK }
     morgen: { surface: "morgen",     neutral: "morgen",     role: TEMP }
     bhf:   { surface: "vom Bahnhof",neutral: "vom Bahnhof",role: DIR }
@@ -323,7 +331,7 @@
   chunks:
     weil:  { surface: "Weil ich krank war", neutral: "weil ich krank war", role: NEBENSATZ }
     bin:   { surface: "bin",                neutral: "bin",                role: FIN }
-    ich:   { surface: "ich",                neutral: "ich",                role: SUBJ }
+    ich:   { surface: "ich",                neutral: "ich",                role: PRON_NOM }
     hause: { surface: "zu Hause",           neutral: "zu Hause",           role: LOK }
     gebl:  { surface: "geblieben",          neutral: "geblieben",          role: PART }
   accept:
@@ -339,7 +347,7 @@
   rule: nachfeld-vergleich
   gloss: I've read more books than you.
   chunks:
-    ich:  { surface: "Ich",         neutral: "ich",         role: SUBJ }
+    ich:  { surface: "Ich",         neutral: "ich",         role: PRON_NOM }
     habe: { surface: "habe",        neutral: "habe",        role: FIN }
     buech: { surface: "Mehr Bücher", neutral: "mehr Bücher", role: AKK, definite: false }
     gel:  { surface: "gelesen",     neutral: "gelesen",     role: PART }
@@ -355,7 +363,7 @@
   rule: nachfeld-nebensatz
   gloss: He told me yesterday that he's moving to Berlin.
   chunks:
-    er:    { surface: "Er",       neutral: "er",       role: SUBJ }
+    er:    { surface: "Er",       neutral: "er",       role: PRON_NOM }
     hat:   { surface: "hat",      neutral: "hat",      role: FIN }
     mir:   { surface: "mir",      neutral: "mir",      role: PRON_DAT }
     gestern: { surface: "Gestern", neutral: "gestern",  role: TEMP }
@@ -364,6 +372,55 @@
   accept:
     - [k, er, hat, mir, gestern, erz, ns]
     - [g, gestern, hat, er, mir, erz, ns]
+    # Native review 1.4: only with stress on `mir`, so marked rather than wrong.
+    - [u, er, hat, gestern, mir, erz, ns]
   reject:
     - [er, hat, mir, gestern, ns, erz]       # Nachfeld sits outside the bracket
-    - [er, hat, gestern, mir, erz, ns]       # pronoun leads the Mittelfeld
+
+# ─── Native review 1.3 · pronoun object before a full-noun subject ─────────
+#
+# The bank exercises this rule in exactly one sentence (t3-05), and there only
+# under a marked fronting, so the accept list here is the real gate on it.
+# A pronoun outranks a full noun in the Mittelfeld whatever its case, so the
+# subject can follow the dative pronoun without the order becoming marked.
+
+- id: r13-01
+  tier: 3
+  rule: pronomen-vor-nomen
+  gloss: The man gave me the book yesterday.
+  chunks:
+    gestern: { surface: "Gestern",  neutral: "gestern",  role: TEMP }
+    hat:     { surface: "hat",      neutral: "hat",      role: FIN }
+    mann:    { surface: "Der Mann", neutral: "der Mann", role: SUBJ }
+    mir:     { surface: "mir",      neutral: "mir",      role: PRON_DAT }
+    buch:    { surface: "Das Buch", neutral: "das Buch", role: AKK, definite: true }
+    geg:     { surface: "gegeben",  neutral: "gegeben",  role: PART }
+  accept:
+    - [k, gestern, hat, mann, mir, buch, geg]
+    - [g, gestern, hat, mir, mann, buch, geg]   # 1.3 — pronoun comes early
+    - [g, mann, hat, mir, gestern, buch, geg]   # subject fronted, neutral
+  reject:
+    # The dative pronoun cannot sit behind the accusative full noun.
+    - [gestern, hat, mann, buch, mir, geg]
+
+# ─── Native review · `schon` and `wieder` stay out of the Vorfeld ──────────
+#
+# PARTIKEL ranks with the temporals but is absent from VORFELD_ELIGIBLE, so
+# the fronted order must not be produced at any class. The reject below is the
+# whole point of the role.
+
+- id: part-01
+  tier: 1
+  rule: v2-deklarativ
+  gloss: The child is already asleep by eight.
+  chunks:
+    kind:  { surface: "Das Kind",    neutral: "das Kind",    role: SUBJ }
+    schl:  { surface: "schläft",     neutral: "schläft",     role: FIN }
+    acht:  { surface: "Um acht Uhr", neutral: "um acht Uhr", role: TEMP }
+    schon: { surface: "Schon",       neutral: "schon",       role: PARTIKEL }
+  accept:
+    - [k, kind, schl, acht, schon]
+    - [g, acht, schl, kind, schon]          # time fronted, ordinary
+  reject:
+    - [schon, schl, kind, acht]             # bare `schon` in the Vorfeld
+    - [schon, schl, acht, kind]

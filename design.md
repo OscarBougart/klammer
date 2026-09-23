@@ -184,7 +184,7 @@ A light theme exists and is well-made, but dark is the shipping default.
 | `kreide` | `#E8E4D9` | Primary type, tile faces |
 | `grau` | `#8A97A6` | Field labels, English gloss, secondary |
 | `messing` | `#E4B363` | The Klammer arc, finite verb, success |
-| `ziegel` | `#C96A6A` | Error state only |
+| `ziegel` | `#CC7171` | Error state only |
 
 Seven values. `messing` and `ziegel` never appear together. Success is not
 green — success is the arc completing in brass. No other app does this and it
@@ -290,8 +290,10 @@ data collected, which is the fastest path through review.
   a drag gesture.
 - Every tile and slot has a screen-reader label naming its content and current
   field.
-- Contrast: `kreide` on `schiefer` is 12.4:1; `messing` on `schiefer` is 7.9:1;
-  `grau` on `schiefer` is 4.7:1 and is never used below 15px.
+- Contrast (measured, and asserted in `src/theme/contrast.test.ts`):
+  `kreide` on `schiefer` is 12.3:1; `messing` on `schiefer` is 8.1:1;
+  `grau` on `schiefer` is 5.3:1 and is never used below 15px;
+  `ziegel` on `schiefer` is 4.6:1.
 - Dynamic type to 200%; tiles wrap to two lines rather than truncating.
 - Colour never carries meaning alone — the arc's shape carries success, the
   named rule carries failure.

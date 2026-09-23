@@ -18,8 +18,9 @@ export const RANK = {
    * Thin spot: this is right for a pronominal subject (`dass sie mich morgen
    * abholen muss`) and defensible but not obligatory for a full-NP one —
    * `gestern hat mir der Mann das Buch gegeben` is at least as good as the
-   * order this produces. No corpus sentence tests a full-NP subject alongside
-   * an object pronoun. Revisit when tier 3 authoring reaches one.
+   * order this produces. That order is now generated — see `licensedSwap` and
+   * GERMAN-REVIEW.md 1.3 — as `gueltig` rather than as a second canonical,
+   * because exactly one order per sentence may be canonical.
    */
   SUBJ: 5,
 
@@ -36,18 +37,48 @@ export const RANK = {
   TEMP: 40,
   KAUS: 41,
 
-  /** Indefinite objects fall behind the temporal. This is the t2-01/t2-02 split. */
-  DAT_INDEFINITE: 50,
-  AKK_INDEFINITE: 51,
-
-  MODAL: 60,
-  LOK: 70,
+  /** `schon`, `wieder` — temporal in force, so they sit with the temporals. */
+  PARTIKEL: 42,
 
   /**
-   * Negation sits against the right bracket — after most Mittelfeld material,
-   * but still before directionals and predicatives.
+   * Negation sits further forward than design.md implied.
+   *
+   * Native review: `nicht` precedes the second verb part, prepositional
+   * objects, modal adverbials AND local adverbials — `Wir sind am Samstag
+   * nicht dorthin gefahren`. It still follows definite objects and pronouns
+   * (`Ich habe das Buch nicht gelesen`) and follows the time phrase; moving it
+   * in front of the time phrase turns it into contrastive negation, which
+   * needs a `sondern`.
+   *
+   * At its old rank of 80 the generator built `zu Hause nicht`, which is not
+   * a German sentence.
    */
-  NEG: 80,
+  NEG: 55,
+
+  MODAL: 60,
+
+  /**
+   * Instrument sits in the same TeKaMoLo slot as manner, just behind it:
+   * `Er hat den Brief schnell mit der Hand geschrieben`. No sentence in the
+   * bank carries both, so this ordering is a considered guess rather than
+   * something the corpus tests — it exists so the two roles never tie. What
+   * the split is actually *for* is the Vorfeld, where they diverge sharply.
+   */
+  INSTR: 61,
+
+  /**
+   * Indefinite and bare objects fall behind the adverbials.
+   *
+   * This is the t2-01/t2-02 split — `meine Schwester` precedes `morgen`,
+   * `einen Film` follows `gestern` — but it goes further than the temporal.
+   * A bare object forms a unit with its verb (`Deutsch sprechen`, `Kaffee
+   * trinken`) and sits as late as it can: `sie spricht sehr gut Deutsch`,
+   * never `sie spricht Deutsch sehr gut`.
+   */
+  DAT_INDEFINITE: 62,
+  AKK_INDEFINITE: 63,
+
+  LOK: 70,
 
   DIR: 85,
   PRAED: 90,
@@ -79,6 +110,10 @@ export function rankOf(chunk: AuthoredChunk): number {
       return RANK.TEMP;
     case 'KAUS':
       return RANK.KAUS;
+    case 'PARTIKEL':
+      return RANK.PARTIKEL;
+    case 'INSTR':
+      return RANK.INSTR;
     case 'MODAL':
       return RANK.MODAL;
     case 'LOK':

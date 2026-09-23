@@ -6,7 +6,6 @@
     "orientation": "portrait",
     "scheme": "klammer",
     "userInterfaceStyle": "dark",
-    "newArchEnabled": true,
     "backgroundColor": "#1B2430",
     "ios": {
       "supportsTablet": true,
@@ -17,8 +16,7 @@
       "adaptiveIcon": {
         "backgroundColor": "#1B2430"
       },
-      "permissions": [],
-      "edgeToEdgeEnabled": true
+      "permissions": []
     },
     "web": {
       "bundler": "metro",
