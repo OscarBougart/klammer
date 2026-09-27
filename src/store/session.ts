@@ -23,12 +23,18 @@ type SessionState = {
   /** Stable id; attempts key on it so a session can be reviewed later. */
   sessionId: string | null;
   sentences: SeedSentence[];
+  /**
+   * The Stufe this session practises. Only a session at the learner's
+   * current Stufe counts toward moving up; replaying a passed one is
+   * practice.
+   */
+  tier: number | null;
   /** Index of the sentence being played. */
   index: number;
   /** One per sentence answered, in play order. */
   attempts: SessionAttempt[];
 
-  start: (sessionId: string, sentences: SeedSentence[]) => void;
+  start: (sessionId: string, sentences: SeedSentence[], tier?: number | null) => void;
   /** Records the verdict for the current sentence. */
   record: (attempt: SessionAttempt) => void;
   /** Moves to the next sentence. */
@@ -38,6 +44,7 @@ type SessionState = {
     sessionId: string,
     sentences: SeedSentence[],
     attempts: SessionAttempt[],
+    tier?: number | null,
   ) => void;
   clear: () => void;
 };
@@ -45,11 +52,12 @@ type SessionState = {
 export const useSessionStore = create<SessionState>((set) => ({
   sessionId: null,
   sentences: [],
+  tier: null,
   index: 0,
   attempts: [],
 
-  start: (sessionId, sentences) =>
-    set({ sessionId, sentences, index: 0, attempts: [] }),
+  start: (sessionId, sentences, tier = null) =>
+    set({ sessionId, sentences, tier, index: 0, attempts: [] }),
 
   record: (attempt) =>
     set((state) => {
@@ -67,16 +75,17 @@ export const useSessionStore = create<SessionState>((set) => ({
       index: Math.min(state.index + 1, state.sentences.length),
     })),
 
-  resume: (sessionId, sentences, attempts) =>
+  resume: (sessionId, sentences, attempts, tier = null) =>
     set({
       sessionId,
       sentences,
+      tier,
       attempts,
       // Resume at the first unanswered sentence, not at the end.
       index: Math.min(attempts.length, sentences.length),
     }),
 
-  clear: () => set({ sessionId: null, sentences: [], index: 0, attempts: [] }),
+  clear: () => set({ sessionId: null, sentences: [], tier: null, index: 0, attempts: [] }),
 }));
 
 /** The sentence currently in play, or undefined once the session is over. */

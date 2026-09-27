@@ -115,7 +115,7 @@ export function explainRule(ruleId: string): Explanation {
 /**
  * The "auch richtig" line — design.md §5:
  *
- *   Auch richtig. Mit **morgen** im Vorfeld liegt die Betonung auf dem
+ *   Auch richtig. Mit **morgen** am Satzanfang liegt die Betonung auf dem
  *   Zeitpunkt.
  *
  * What shifted depends on what the learner put in the Vorfeld, so the message
@@ -194,14 +194,14 @@ export function explainAlternative(
 
   if (marked) {
     return {
-      de: `Möglich, aber ungewöhnlich: mit „${frontedSurface}" im Vorfeld ${effect.de}`,
+      de: `Möglich, aber ungewöhnlich: mit „${frontedSurface}" am Satzanfang ${effect.de}`,
       en: `Possible but unusual — fronting "${frontedSurface}" ${effect.en}`,
       emphasis: frontedSurface,
     };
   }
 
   return {
-    de: `Auch richtig. Mit „${frontedSurface}" im Vorfeld ${effect.de}`,
+    de: `Auch richtig. Mit „${frontedSurface}" am Satzanfang ${effect.de}`,
     en: `Also correct. Fronting "${frontedSurface}" ${effect.en}`,
     emphasis: frontedSurface,
   };

@@ -16,7 +16,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '@/components/Button';
 import FieldZone from '@/board/FieldZone';
 import { boardFields, type Tier } from '@/board/fields';
-import { DragProvider } from '@/board/dragContext';
+import { tierInfo } from '@/content/tiers';
 import { explanation, gloss, heading, palette, space } from '@/theme';
 
 /** What each tier opens up, in both languages. */
@@ -58,13 +58,12 @@ export default function UnlockScreen() {
     <SafeAreaView style={styles.root} edges={['top', 'bottom']}>
       <View style={styles.header}>
         <Text style={styles.eyebrow}>Stufe {tier}</Text>
-        <Text style={styles.title}>{lesson?.name ?? ''}</Text>
+        <Text style={styles.title}>{tierInfo(tier)?.name ?? lesson?.name ?? ''}</Text>
       </View>
 
       {/* The board as it now stands, with the new zone highlighted. Showing
           the real component rather than a picture means this can never drift
           out of step with the board the learner is about to play on. */}
-      <DragProvider>
         <View style={styles.board}>
           {fields.map((field) => (
             <View
@@ -75,7 +74,6 @@ export default function UnlockScreen() {
             </View>
           ))}
         </View>
-      </DragProvider>
 
       <View style={styles.lesson}>
         <Text style={styles.german}>{lesson?.de ?? ''}</Text>

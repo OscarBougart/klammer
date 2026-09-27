@@ -12,11 +12,12 @@
  * the final position — the tile still moves, it just does not bounce.
  */
 import * as Haptics from 'expo-haptics';
-import { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { StyleSheet, type View } from 'react-native';
+import { memo, useCallback, useEffect, useState } from 'react';
+import { StyleSheet, type LayoutChangeEvent } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   LinearTransition,
+  measure,
   runOnJS,
   useAnimatedStyle,
   useReducedMotion,
@@ -30,9 +31,8 @@ import Animated, {
 
 import Tile, { type TileProps } from './Tile';
 import { useSettingsStore } from '@/store/settings';
-import { useDragContext, zoneAt } from './dragContext';
-import type { FieldId } from './fields';
-import { border, duration, palette, radius, scale, shake, spring } from '@/theme';
+import { useDragContext, type DragSource } from './dragContext';
+import { border, duration, palette, radius, scale, shake, space, spring } from '@/theme';
 
 const SPRING: WithSpringConfig = {
   damping: spring.damping,
@@ -40,13 +40,17 @@ const SPRING: WithSpringConfig = {
 };
 
 export type DraggableTileProps = TileProps & {
+  /** Where the tile sits now; that container is raised while it is dragged. */
+  source: Exclude<DragSource, null>;
   /**
-   * Called when the tile is released over a zone, with the drop point in
-   * content coordinates so the board can work out where in the zone it landed.
+   * Called when the tile is released over the sentence row, with the drop
+   * point relative to the row so the board can work out where it landed.
    */
-  onDropInto: (field: FieldId, dropX: number, dropY: number) => void;
-  /** Called when the tile is released over nothing. */
+  onDropInRow: (rowX: number, rowY: number) => void;
+  /** Called when the tile is released anywhere else. */
   onDropOutside?: () => void;
+  /** Off in the checked field view, where tiles are shown, not moved. */
+  dragEnabled?: boolean;
   /**
    * Bumped to shake this tile — design.md §6 shakes the *offending* tile, not
    * the screen. A counter rather than a boolean so two wrong answers in a row
@@ -56,15 +60,15 @@ export type DraggableTileProps = TileProps & {
 };
 
 function DraggableTileComponent({
-  onDropInto,
+  source,
+  dragEnabled = true,
+  onDropInRow,
   onDropOutside,
   shakeNonce = 0,
   ...tileProps
 }: DraggableTileProps) {
-  const { zones, registerTile, draggingTileId, scrollY } = useDragContext();
+  const { rowRef, registerRowTile, dragSource } = useDragContext();
   const reducedMotion = useReducedMotion();
-
-  const wrapperRef = useRef<View>(null);
 
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
@@ -92,16 +96,17 @@ function DraggableTileComponent({
   const onRelease = useCallback(() => setIsLifted(false), []);
 
   /**
-   * Publishes this tile's resting rect so a later drop can be positioned
-   * against it. Fires on layout — including every reflow — and never during a
-   * gesture, since a dragged tile moves by transform and does not re-lay-out.
+   * A tile in the row publishes its rect, relative to the row, so a later
+   * drop can be placed between two of them. `onLayout` is parent-relative
+   * already, which is exactly the frame the drop point is converted into.
    */
-  const handleLayout = useCallback(() => {
-    wrapperRef.current?.measureInWindow((x, y, width, height) => {
-      if (width === 0 && height === 0) return;
-      registerTile(tileProps.id, { x, y, width, height });
-    });
-  }, [registerTile, tileProps.id]);
+  const handleLayout = useCallback(
+    (event: LayoutChangeEvent) => {
+      if (source !== 'row') return;
+      registerRowTile(tileProps.id, event.nativeEvent.layout);
+    },
+    [registerRowTile, source, tileProps.id],
+  );
 
   const onSnap = useCallback(() => {
     if (!useSettingsStore.getState().haptics) return;
@@ -109,9 +114,10 @@ function DraggableTileComponent({
   }, []);
 
   const pan = Gesture.Pan()
+    .enabled(dragEnabled)
     .onStart(() => {
       lifted.value = withTiming(1, { duration: duration.snap });
-      draggingTileId.value = tileProps.id;
+      dragSource.value = source;
       runOnJS(onLift)();
     })
     .onUpdate((event) => {
@@ -119,13 +125,20 @@ function DraggableTileComponent({
       translateY.value = event.translationY;
     })
     .onEnd((event) => {
-      // Rects are stored in content coordinates; convert the drop point to
-      // match, or a scrolled board would drop into the wrong field.
-      const dropY = event.absoluteY + scrollY.value;
-      const target = zoneAt(zones.value, event.absoluteX, dropY);
+      // Measured now, not on layout: see dragContext.tsx. A little slop
+      // above and below, because the row is a thin target for a thumb.
+      const row = measure(rowRef);
+      const rowX = row ? event.absoluteX - row.pageX : -1;
+      const rowY = row ? event.absoluteY - row.pageY : -1;
+      const inRow =
+        row !== null &&
+        rowX >= 0 &&
+        rowX <= row.width &&
+        rowY >= -space.lg &&
+        rowY <= row.height + space.lg;
 
       lifted.value = withTiming(0, { duration: duration.snap });
-      draggingTileId.value = null;
+      dragSource.value = null;
       runOnJS(onRelease)();
 
       // The tile returns to the origin either way: on a hit the board
@@ -139,9 +152,9 @@ function DraggableTileComponent({
       translateX.value = settle(0);
       translateY.value = settle(0);
 
-      if (target) {
+      if (inRow) {
         runOnJS(onSnap)();
-        runOnJS(onDropInto)(target, event.absoluteX, dropY);
+        runOnJS(onDropInRow)(rowX, rowY);
       } else if (onDropOutside) {
         runOnJS(onDropOutside)();
       }
@@ -194,14 +207,13 @@ function DraggableTileComponent({
           lifted.value * (scale.tileLifted - scale.tileRest),
       },
     ],
-    // A lifted tile must clear the zones it passes over.
+    // A lifted tile must clear the tiles it passes over.
     zIndex: lifted.value > 0 ? 10 : 0,
   }));
 
   return (
     <GestureDetector gesture={pan}>
       <Animated.View
-        ref={wrapperRef}
         onLayout={handleLayout}
         // When the board's order changes — a tile reflowing to make room, or
         // the single-tile correction being applied — the tile glides to its

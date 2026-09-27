@@ -65,25 +65,33 @@ structure is currently in play.
 
 ## 3. Mechanic
 
-1. A scrambled sentence arrives as tiles in a tray at the bottom.
-2. Drag tiles into slots on the board. Tap-to-place also works (accessibility,
-   and faster for most people).
-3. Slots accept anything. The board never blocks a wrong placement — being
-   wrong must be possible or nothing is being tested.
+1. A scrambled sentence arrives as tiles in a word bank at the bottom.
+2. The learner builds the sentence in **one row**, left to right. Tapping a
+   tile in the bank adds it to the end of the row; tapping a tile in the row
+   sends it back to its slot in the bank. Dragging puts a tile exactly where
+   it is dropped in the row.
+3. The row accepts any order. The board never blocks a wrong placement —
+   being wrong must be possible or nothing is being tested.
 4. **Prüfen** validates.
-5. Feedback (§5), then next sentence. After a wrong answer the learner may
-   try again ("Nochmal") or have the one-tile fix shown. Only the first
-   attempt counts for the score, tier progress and the review queue.
+5. The row then splits into its fields (§2), filled from the learner's own
+   order: position 1, the verb, the rest, and from tier 2 the bracket. A V2
+   mistake shows up in place, as two Satzteile in position 1.
+6. Feedback (§5), then next sentence. After a wrong answer the learner may
+   try again ("Nochmal", back to the row as they left it) or have the answer
+   shown in the fields. Only the first attempt counts for the score, tier
+   progress and the review queue.
 
-A line above the board reads back whatever has been placed, left to right,
-as German. The fields are stacked on a phone; this line is where the
-sentence, and the verb in second position, becomes visible as a sentence.
+Why a row and not the fields: on first contact, placing words into named
+zones asks the learner to know the model before they have seen it. Building
+a sentence is something everyone already knows how to do; the fields are
+then the explanation of what they built.
 
 **First run.** Before the first session comes one practice sentence on its
 own screen, outside any session and never scored. A line under the board
-says what to do next (tap a tile, tap a field, the verb goes in position 2,
-check), read off the board's state rather than scripted. It can be skipped,
-and it hands straight on to practice. Settings can replay it.
+says what to do next (tap the words in order, tap one to take it back, the
+verb goes in position 2, check), read off the board's state rather than
+scripted. It can be skipped, and it hands straight on to practice. Settings
+can replay it.
 
 ### Tiles are chunks, not words
 
@@ -101,7 +109,7 @@ internal order is exactly what tier 4 teaches.
 
 If a tile reads `Morgen`, the learner knows it goes first. So tiles render in
 **neutral form**: lowercase unless the word is a noun or a name. The first tile
-placed in the Vorfeld auto-capitalises with a small, visible flip animation —
+in the row auto-capitalises with a small, visible flip animation —
 which quietly teaches that German capitalises sentence-initially regardless of
 what goes there.
 
@@ -166,7 +174,7 @@ one tile, one move, so the learner sees the delta.
 
 Right answers with an alternative:
 
-> Auch richtig. Mit **morgen** im Vorfeld liegt die Betonung auf dem Zeitpunkt.
+> Auch richtig. Mit **morgen** am Satzanfang liegt die Betonung auf dem Zeitpunkt.
 
 Both languages, always. German first, English underneath in the muted tone. A
 learner who can read the German alone will stop reading the second line on their
@@ -226,8 +234,9 @@ labels at 13 with loose tracking. Sentence case everywhere; no all-caps labels.
 
 One orchestrated moment: **the bracket closing.** The fields stack vertically
 on a phone, so the arc runs down the board's left edge from the left bracket
-to the right one. A faint outline of it is always there from tier 2, showing
-which two fields belong together. When the sentence is right it draws in
+to the right one, in the field view shown after Prüfen. From tier 2 a faint
+outline of it is always there in that view, showing which two fields belong
+together. When the sentence is right it draws in
 brass over 420ms with a slight overshoot at the end, and one sharp haptic
 lands on arrival. Nothing else in the app has a signature animation.
 
@@ -254,8 +263,13 @@ Finishing shows a board of the ten sentences you built, tappable to review.
 **No timer during a puzzle.** Timing pressure degrades the exact processing this
 app trains.
 
-**No streak on screen.** The app is for practising a bit, easily; Home shows
-what the current tier trains and one button. Played days are still recorded
+**No streak on screen.** The app is for practising a bit, easily. Home shows a
+sample sentence from the selected Stufe (tiles, brass verb, and from Stufe 2
+the bracket), the five Stufen as a path — passed, current with "n von 3 guten
+Runden", locked, or "bald" when a Stufe has no sentences yet — and one button.
+A passed Stufe can be tapped to practise; only sessions at the current Stufe
+count toward moving up, and nobody is promoted into a Stufe with no sentences.
+Played days are still recorded
 (`progression.ts` keeps the week-strip and repair logic), but nothing shows
 them. If a streak ever returns, it is a seven-day week strip, never a number
 that climbs to 400.

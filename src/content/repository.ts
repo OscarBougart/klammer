@@ -14,9 +14,10 @@ import { attempts, progress, reviewQueue, sentences } from '@/db/schema';
 import type { Verdict } from '@/engine/validate';
 
 import { localDate } from './dates';
-import { shouldAdvanceTier } from './progression';
+import { goodRoundsInARow, shouldAdvanceTier } from './progression';
 import { scheduleRight, scheduleWrong, type ReviewEntry } from './review';
 import type { SeedSentence } from './seed';
+import { HIGHEST_PLAYABLE_TIER, majorityTier } from './tiers';
 
 /** The single progress row, created on first hydration. */
 export async function loadProgress() {
@@ -192,8 +193,13 @@ export async function completeSession(params: {
   today: string;
   /** Yesterday's date, for the streak-continuation check. */
   yesterday: string;
+  /**
+   * Whether this session was at the learner's current Stufe. Replaying a
+   * passed Stufe is practice and must not count toward moving up.
+   */
+  countsForProgress?: boolean;
 }): Promise<void> {
-  const { sessionId, today, yesterday } = params;
+  const { sessionId, today, yesterday, countsForProgress = true } = params;
 
   const row = await loadProgress();
   if (!row) return;
@@ -213,7 +219,9 @@ export async function completeSession(params: {
       ? row.streakDays + 1
       : 1;
 
-  const recent = [sessionId, ...row.recentSessions].slice(0, 3);
+  const recent = countsForProgress
+    ? [sessionId, ...row.recentSessions].slice(0, 3)
+    : row.recentSessions;
 
   await db
     .update(progress)
@@ -236,15 +244,8 @@ export async function advanceTierIfEarned(): Promise<number | null> {
   const row = await loadProgress();
   if (!row) return null;
 
-  const attemptsBySession = await loadRecentSessionAttempts(row.recentSessions);
-
-  // recentSessions is newest-first, and shouldAdvanceTier expects the same.
-  const correctPerSession = row.recentSessions.map((sessionId) => {
-    const forSession = attemptsBySession.filter((a) => a.sessionId === sessionId);
-    return forSession.filter((a) => a.verdict !== 'falsch').length;
-  });
-
-  if (!shouldAdvanceTier(row.tier, correctPerSession)) return null;
+  const correctPerSession = await loadCorrectPerSession(row.recentSessions);
+  if (!shouldAdvanceTier(row.tier, correctPerSession, HIGHEST_PLAYABLE_TIER)) return null;
 
   const nextTier = row.tier + 1;
 
@@ -260,6 +261,41 @@ export async function advanceTierIfEarned(): Promise<number | null> {
     .where(eq(progress.id, row.id));
 
   return nextTier;
+}
+
+/**
+ * The unfinished session, if any: how far it got and which Stufe it is at,
+ * so Home can offer to continue it on the right level.
+ */
+export async function loadUnfinishedSession(
+  sessionLength: number,
+  fallbackTier: number,
+): Promise<{ sessionId: string; answered: number; tier: number } | null> {
+  const sessionId = await loadUnfinishedSessionId(sessionLength);
+  if (!sessionId) return null;
+  const rows = await loadSessionAttempts(sessionId);
+  const played = await loadSentences(rows.map((a) => a.sentenceId));
+  return { sessionId, answered: rows.length, tier: majorityTier(played, fallbackTier) };
+}
+
+/**
+ * The learner's Stufe and how many good rounds in a row they have toward the
+ * next one, for the level path on Home.
+ */
+export async function loadTierProgress(): Promise<{ tier: number; goodRounds: number }> {
+  const row = await loadProgress();
+  if (!row) return { tier: 1, goodRounds: 0 };
+  const correctPerSession = await loadCorrectPerSession(row.recentSessions);
+  return { tier: row.tier, goodRounds: goodRoundsInARow(correctPerSession) };
+}
+
+/** Correct answers per session, in the order given (newest first). */
+async function loadCorrectPerSession(sessionIds: string[]): Promise<number[]> {
+  const attemptsBySession = await loadRecentSessionAttempts(sessionIds);
+  return sessionIds.map((sessionId) => {
+    const forSession = attemptsBySession.filter((a) => a.sessionId === sessionId);
+    return forSession.filter((a) => a.verdict !== 'falsch').length;
+  });
 }
 
 /**

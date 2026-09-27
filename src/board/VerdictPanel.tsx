@@ -25,6 +25,11 @@ export type VerdictPanelProps = {
   message: Explanation;
   /** The constituent to set in the bold face, if any. */
   emphasis?: string;
+  /**
+   * A wrong answer whose solution is now on the board. The heading stops
+   * saying "So nicht." over a sentence that is, by then, right.
+   */
+  solutionShown?: boolean;
 };
 
 /** The heading for each verdict. Sentence case, never all-caps. */
@@ -35,8 +40,20 @@ const HEADING: Record<Verdict, { de: string; en: string }> = {
   falsch: { de: 'So nicht.', en: 'Not like that.' },
 };
 
-function VerdictPanelComponent({ verdict, message, emphasis }: VerdictPanelProps) {
-  const heading = HEADING[verdict];
+const SOLUTION_HEADING = { de: 'So ist es richtig.', en: 'This is the right order.' };
+
+/** The message without a lead that repeats the heading ("Auch richtig. Auch richtig. …"). */
+function withoutLead(text: string, lead: string): string {
+  return text.startsWith(lead) ? text.slice(lead.length).trimStart() : text;
+}
+
+function VerdictPanelComponent({ verdict, message: raw, emphasis, solutionShown = false }: VerdictPanelProps) {
+  const showSolution = solutionShown && verdict === 'falsch';
+  const heading = showSolution ? SOLUTION_HEADING : HEADING[verdict];
+  const message = {
+    de: withoutLead(raw.de, heading.de),
+    en: withoutLead(raw.en, heading.en),
+  };
   // A learner who can read the German alone should be able to turn the crutch
   // off, rather than training themselves to skip a line that is always there.
   const showGloss = useSettingsStore((s) => s.showGloss);
@@ -59,18 +76,20 @@ function VerdictPanelComponent({ verdict, message, emphasis }: VerdictPanelProps
       <Text
         style={[
           styles.heading,
-          verdict === 'falsch' && styles.headingWrong,
+          verdict === 'falsch' && !showSolution && styles.headingWrong,
           verdict === 'ungewoehnlich' && styles.headingMarked,
         ]}
       >
         {heading.de}
       </Text>
 
-      <Text style={styles.german}>
-        {emphasis ? renderWithEmphasis(message.de, emphasis) : message.de}
-      </Text>
+      {message.de ? (
+        <Text style={styles.german}>
+          {emphasis ? renderWithEmphasis(message.de, emphasis) : message.de}
+        </Text>
+      ) : null}
 
-      {showGloss ? <Text style={styles.english}>{message.en}</Text> : null}
+      {showGloss && message.en ? <Text style={styles.english}>{message.en}</Text> : null}
     </View>
   );
 }

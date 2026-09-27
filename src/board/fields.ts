@@ -53,11 +53,31 @@ export type Field = {
  * it stops being the finite verb's home and becomes the conjunction's.
  */
 function fieldsFor(tier: Tier): Field[] {
-  const vorfeld: Field = {
-    id: 'vorfeld',
-    label: 'Vorfeld',
-    hint: 'Position 1 · ein Satzteil',
-    a11yLabel: 'Vorfeld, erste Position, ein Satzglied',
+  // Tier 1 names the first two fields by what they are for. The grammar's
+  // own names arrive with the bracket at tier 2, when there is a reason to
+  // call position 2 a "left" anything.
+  const vorfeld: Field =
+    tier === 1
+      ? {
+          id: 'vorfeld',
+          label: 'Position 1',
+          hint: 'ein Satzteil',
+          a11yLabel: 'Position 1, ein Satzglied',
+          capacity: 'single',
+        }
+      : {
+          id: 'vorfeld',
+          label: 'Vorfeld',
+          hint: 'Position 1 · ein Satzteil',
+          a11yLabel: 'Vorfeld, erste Position, ein Satzglied',
+          capacity: 'single',
+        };
+
+  const verb: Field = {
+    id: 'linkeKlammer',
+    label: 'Verb',
+    hint: 'Position 2',
+    a11yLabel: 'Position 2, das konjugierte Verb',
     capacity: 'single',
   };
 
@@ -115,7 +135,7 @@ function fieldsFor(tier: Tier): Field[] {
 
   switch (tier) {
     case 1:
-      return [vorfeld, linkeKlammer, rest];
+      return [vorfeld, verb, rest];
     case 2:
     case 3:
     case 4:

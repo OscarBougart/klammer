@@ -8,7 +8,7 @@
  * recorded (score, tier progress, review queue); the retry exists because
  * fixing it yourself is the most useful moment in the whole loop.
  */
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -18,6 +18,7 @@ import Board from '@/board/Board';
 import { DragProvider } from '@/board/dragContext';
 import { boardFields, isVerbFinal, type FieldId, type Tier } from '@/board/fields';
 import { guideLine } from '@/board/guide';
+import { segmentOrder } from '@/board/segment';
 import VerdictPanel from '@/board/VerdictPanel';
 import { localDate, previousDate } from '@/content/dates';
 import {
@@ -32,6 +33,7 @@ import {
 } from '@/content/repository';
 import { seed } from '@/content/seed';
 import { selectSession, SESSION_LENGTH } from '@/content/selection';
+import { majorityTier } from '@/content/tiers';
 import { diagnoseRule } from '@/engine/diagnose';
 import { explainAlternative, explainRule, type Explanation } from '@/engine/rules';
 import {
@@ -77,6 +79,8 @@ type Result = {
   verdict: Verdict;
   message: Explanation;
   emphasis?: string;
+  /** "Lösung zeigen" was used; the board now holds the right order. */
+  solutionShown?: boolean;
   correctionTileId?: string;
   /** The order one move away — E3.5. */
   correctedOrder?: string[];
@@ -84,8 +88,12 @@ type Result = {
 
 export default function SessionScreen() {
   const router = useRouter();
+  /** A passed Stufe picked on Home to practise; absent means the current one. */
+  const { tier: tierParam } = useLocalSearchParams<{ tier?: string }>();
+  const pickedTier = tierParam ? Number(tierParam) : null;
 
   const sessionId = useSessionStore((s) => s.sessionId);
+  const sessionTier = useSessionStore((s) => s.tier);
   const sentences = useSessionStore((s) => s.sentences);
   const index = useSessionStore((s) => s.index);
   const startSession = useSessionStore((s) => s.start);
@@ -94,9 +102,8 @@ export default function SessionScreen() {
   const advance = useSessionStore((s) => s.advance);
 
   const loadBoard = useBoardStore((s) => s.load);
-  const tray = useBoardStore((s) => s.tray);
-  const fields = useBoardStore((s) => s.fields);
-  const selectedTileId = useBoardStore((s) => s.selectedTileId);
+  const line = useBoardStore((s) => s.line);
+  const bankOrder = useBoardStore((s) => s.bankOrder);
 
   const showGloss = useSettingsStore((s) => s.showGloss);
 
@@ -119,23 +126,27 @@ export default function SessionScreen() {
       // An interrupted session resumes with the same ten sentences rather
       // than dealing a fresh set — design.md's session is a unit of work, and
       // restarting it would punish closing the app.
-      const unfinished = await loadUnfinishedSessionId(SESSION_LENGTH);
+      const [unfinished, progress, reviews, seen] = await Promise.all([
+        loadUnfinishedSessionId(SESSION_LENGTH),
+        loadProgress(),
+        loadReviewQueue(),
+        loadSeenIds(),
+      ]);
+      const target = pickedTier ?? progress?.tier ?? 1;
 
-      if (unfinished) {
-        const attempts = await loadSessionAttempts(unfinished);
-        const played = await loadSentences(attempts.map((a) => a.sentenceId));
+      const attempts = unfinished ? await loadSessionAttempts(unfinished) : [];
+      const played = await loadSentences(attempts.map((a) => a.sentenceId));
+      const tier = majorityTier(played, target);
 
+      // Resume only a session at the Stufe asked for. A different Stufe
+      // starts fresh, and the unfinished one is simply superseded, since only
+      // the latest session is ever resumed.
+      if (unfinished && tier === target) {
         // The rest of the session is re-selected around what was answered.
-        const [progress, reviews, seen] = await Promise.all([
-          loadProgress(),
-          loadReviewQueue(),
-          loadSeenIds(),
-        ]);
-
         const answered = new Set(attempts.map((a) => a.sentenceId));
         const remainder = selectSession({
           sentences: seed.sentences.filter((s) => !answered.has(s.id)),
-          tier: progress?.tier ?? 1,
+          tier,
           reviews,
           seen,
           now: Math.floor(Date.now() / 1000),
@@ -143,20 +154,14 @@ export default function SessionScreen() {
         }).slice(0, SESSION_LENGTH - attempts.length);
 
         if (cancelled) return;
-        resumeSession(unfinished, [...played, ...remainder], attempts);
+        resumeSession(unfinished, [...played, ...remainder], attempts, tier);
         setStarting(false);
         return;
       }
 
-      const [progress, reviews, seen] = await Promise.all([
-        loadProgress(),
-        loadReviewQueue(),
-        loadSeenIds(),
-      ]);
-
       const chosen = selectSession({
         sentences: seed.sentences,
-        tier: progress?.tier ?? 1,
+        tier: target,
         reviews,
         seen,
         now: Math.floor(Date.now() / 1000),
@@ -164,7 +169,7 @@ export default function SessionScreen() {
       });
 
       if (cancelled) return;
-      startSession(newSessionId(), chosen);
+      startSession(newSessionId(), chosen, target);
       setStarting(false);
     };
 
@@ -172,7 +177,7 @@ export default function SessionScreen() {
     return () => {
       cancelled = true;
     };
-  }, [sessionId, startSession, resumeSession]);
+  }, [sessionId, startSession, resumeSession, pickedTier]);
 
   const sentence = currentSentence({ sentences, index });
 
@@ -201,12 +206,17 @@ export default function SessionScreen() {
     if (!sessionId) return;
 
     const now = new Date();
-    void completeSession({
-      sessionId,
-      today: localDate(now),
-      yesterday: previousDate(now),
-    }).then(() => router.replace('/(game)/result'));
-  }, [starting, sentences, index, sessionId, router]);
+    void (async () => {
+      const progress = await loadProgress();
+      await completeSession({
+        sessionId,
+        today: localDate(now),
+        yesterday: previousDate(now),
+        countsForProgress: sessionTier === null || sessionTier === (progress?.tier ?? 1),
+      });
+      router.replace('/(game)/result');
+    })();
+  }, [starting, sentences, index, sessionId, sessionTier, router]);
 
   const fieldOrder = useMemo<FieldId[]>(() => {
     if (!sentence) return [];
@@ -217,7 +227,7 @@ export default function SessionScreen() {
   const check = useCallback(() => {
     if (!sentence || !sessionId) return;
 
-    const order = useBoardStore.getState().submittedOrder(fieldOrder);
+    const order = useBoardStore.getState().line;
     const verdict = validate(order, sentence);
 
     // Only the first answer to a sentence counts. A retry is for learning,
@@ -240,7 +250,7 @@ export default function SessionScreen() {
       // Name the rule the learner actually broke, not merely the one this
       // sentence was written to practise.
       const rule = diagnoseRule({
-        fields: useBoardStore.getState().fields,
+        fields: segmentOrder(order, (id) => tiles.find((t) => t.id === id)?.role, fieldOrder),
         fieldOrder,
         tiles,
         sentenceRuleId: sentence.ruleId,
@@ -248,12 +258,9 @@ export default function SessionScreen() {
       setResult({
         verdict,
         message: explainRule(rule),
-        ...(correction
-          ? {
-              correctionTileId: correction.tileId,
-              correctedOrder: correction.resultingOrder,
-            }
-          : {}),
+        // One move away shows that move; further off, the neutral order.
+        correctedOrder: correction ? correction.resultingOrder : sentence.canonical,
+        ...(correction ? { correctionTileId: correction.tileId } : {}),
       });
       // When no single move fixes it, the rule text stands alone and nothing
       // shakes — a board-wide shake would only say "everything is wrong".
@@ -291,23 +298,22 @@ export default function SessionScreen() {
     );
   }
 
-  const ready = isComplete({ tray });
+  const ready = isComplete({ bankOrder, line });
   const closed = result !== null && isCorrect(result.verdict);
   const wrong = result?.verdict === 'falsch';
 
   /**
-   * Shows the fix by making it — one tile travels, the rest reflow around it.
-   * design.md §5 asks for the delta, not a new sentence appearing, which is
-   * why this moves the board the learner built rather than replacing it.
+   * Shows the fix in the fields: the learner's own split is replaced by the
+   * right one, so position 1 visibly goes back to holding one Satzteil.
    */
   const showCorrection = () => {
     if (!result?.correctedOrder) return;
-    useBoardStore.getState().applyOrder(fieldOrder, result.correctedOrder);
+    useBoardStore.getState().setLine(result.correctedOrder);
 
     // Drop the corrected order so the button does not offer to show a fix
     // that has already been made.
     const { correctedOrder: _shown, ...rest } = result;
-    setResult(rest);
+    setResult({ ...rest, solutionShown: true });
   };
 
   /** Back to the board as the learner left it, to fix it themselves. */
@@ -315,20 +321,13 @@ export default function SessionScreen() {
 
   const next = advance;
 
-  const leftBracket = fields.linkeKlammer ?? [];
-  const verbInPlace = tiles.some(
-    (t) => t.role === 'FIN' && leftBracket.includes(t.id),
-  );
-
   // The guided steps live in the introduction (intro.tsx). A session keeps
   // only the two hints worth repeating.
   const hint = guideLine({
     guided: false,
-    trayCount: tray.length,
-    placedCount: tiles.length - tray.length,
-    hasSelection: selectedTileId !== null,
-    verbInPlace,
-    frontFilled: (fields.vorfeld ?? []).length > 0,
+    bankCount: tiles.length - line.length,
+    lineCount: line.length,
+    verbSecond: tiles.find((t) => t.id === line[1])?.role === 'FIN',
     verdict: result?.verdict ?? null,
     isRetry: result !== null && checks > 1,
   });
@@ -364,6 +363,7 @@ export default function SessionScreen() {
       <DragProvider>
         <Board
           tier={sentence.tier as Tier}
+          mode={result ? 'fields' : 'build'}
           {...(sentence.matrix ? { matrix: sentence.matrix } : {})}
           {...(result?.correctionTileId
             ? { shakeTileId: result.correctionTileId, shakeNonce }
@@ -379,6 +379,7 @@ export default function SessionScreen() {
               verdict={result.verdict}
               message={result.message}
               {...(result.emphasis ? { emphasis: result.emphasis } : {})}
+              solutionShown={result.solutionShown ?? false}
             />
           ) : null}
 
@@ -429,7 +430,7 @@ export default function SessionScreen() {
             disabled={!ready}
             {...(ready
               ? {}
-              : { accessibilityHint: 'Erst alle Bausteine setzen.' })}
+              : { accessibilityHint: 'Erst alle Wörter in den Satz setzen.' })}
           />
         )}
       </View>

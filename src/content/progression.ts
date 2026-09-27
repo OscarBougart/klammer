@@ -32,14 +32,29 @@ export const ADVANCE_THRESHOLD = 8;
 export function shouldAdvanceTier(
   currentTier: number,
   recentCorrect: readonly number[],
+  /**
+   * The highest tier that has sentences. Nobody is promoted into a tier
+   * with nothing to play: that would be an empty session, not a reward.
+   */
+  maxTier: number = MAX_TIER,
 ): boolean {
-  if (currentTier >= MAX_TIER) return false;
-  if (recentCorrect.length < ADVANCE_SESSIONS) return false;
+  if (currentTier >= Math.min(maxTier, MAX_TIER)) return false;
+  return goodRoundsInARow(recentCorrect) >= ADVANCE_SESSIONS;
+}
 
-  // Consecutive means the three most recent, not the best three ever.
-  return recentCorrect
-    .slice(0, ADVANCE_SESSIONS)
-    .every((correct) => correct >= ADVANCE_THRESHOLD);
+/**
+ * How many of the most recent sessions in a row reached the threshold,
+ * newest first, capped at the number needed. Shown on Home as
+ * "2 von 3 guten Runden" — the rule itself, not a proxy for it.
+ */
+export function goodRoundsInARow(recentCorrect: readonly number[]): number {
+  let count = 0;
+  // Consecutive means the most recent, not the best ever.
+  for (const correct of recentCorrect.slice(0, ADVANCE_SESSIONS)) {
+    if (correct < ADVANCE_THRESHOLD) break;
+    count += 1;
+  }
+  return count;
 }
 
 /** One square in the week strip. */

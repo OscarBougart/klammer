@@ -17,6 +17,7 @@ import Board from '@/board/Board';
 import { DragProvider } from '@/board/dragContext';
 import { boardFields, type FieldId } from '@/board/fields';
 import { guideLine } from '@/board/guide';
+import { segmentOrder } from '@/board/segment';
 import VerdictPanel from '@/board/VerdictPanel';
 import { seed } from '@/content/seed';
 import { diagnoseRule } from '@/engine/diagnose';
@@ -51,6 +52,8 @@ type Result = {
   verdict: Verdict;
   message: Explanation;
   emphasis?: string;
+  /** "Lösung zeigen" was used; the board now holds the right order. */
+  solutionShown?: boolean;
   correctedOrder?: string[];
 };
 
@@ -65,9 +68,8 @@ export default function IntroScreen() {
   );
 
   const loadBoard = useBoardStore((s) => s.load);
-  const tray = useBoardStore((s) => s.tray);
-  const fields = useBoardStore((s) => s.fields);
-  const selectedTileId = useBoardStore((s) => s.selectedTileId);
+  const line = useBoardStore((s) => s.line);
+  const bankOrder = useBoardStore((s) => s.bankOrder);
 
   const showGloss = useSettingsStore((s) => s.showGloss);
   const setSetting = useSettingsStore((s) => s.set);
@@ -96,13 +98,13 @@ export default function IntroScreen() {
 
   const check = useCallback(() => {
     if (!sentence) return;
-    const order = useBoardStore.getState().submittedOrder(fieldOrder);
+    const order = useBoardStore.getState().line;
     const verdict = validate(order, sentence);
 
     if (verdict === 'falsch') {
       const correction = findSingleTileCorrection(order, sentence);
       const rule = diagnoseRule({
-        fields: useBoardStore.getState().fields,
+        fields: segmentOrder(order, (id) => tiles.find((t) => t.id === id)?.role, fieldOrder),
         fieldOrder,
         tiles,
         sentenceRuleId: sentence.ruleId,
@@ -110,7 +112,7 @@ export default function IntroScreen() {
       setResult({
         verdict,
         message: explainRule(rule),
-        ...(correction ? { correctedOrder: correction.resultingOrder } : {}),
+        correctedOrder: correction ? correction.resultingOrder : sentence.canonical,
       });
       return;
     }
@@ -144,26 +146,23 @@ export default function IntroScreen() {
 
   if (!sentence) return null;
 
-  const ready = isComplete({ tray });
+  const ready = isComplete({ bankOrder, line });
   const wrong = result?.verdict === 'falsch';
-  const leftBracket = fields.linkeKlammer ?? [];
 
   const hint = guideLine({
     guided: true,
-    trayCount: tray.length,
-    placedCount: tiles.length - tray.length,
-    hasSelection: selectedTileId !== null,
-    verbInPlace: tiles.some((t) => t.role === 'FIN' && leftBracket.includes(t.id)),
-    frontFilled: (fields.vorfeld ?? []).length > 0,
+    bankCount: tiles.length - line.length,
+    lineCount: line.length,
+    verbSecond: tiles.find((t) => t.id === line[1])?.role === 'FIN',
     verdict: result?.verdict ?? null,
     isRetry: false,
   });
 
   const showCorrection = () => {
     if (!result?.correctedOrder) return;
-    useBoardStore.getState().applyOrder(fieldOrder, result.correctedOrder);
+    useBoardStore.getState().setLine(result.correctedOrder);
     const { correctedOrder: _shown, ...rest } = result;
-    setResult(rest);
+    setResult({ ...rest, solutionShown: true });
   };
 
   return (
@@ -182,7 +181,7 @@ export default function IntroScreen() {
           </Pressable>
         </View>
         <Text style={styles.subtitle}>
-          Bring die Bausteine in die richtige Reihenfolge. Dieser Satz zählt nicht.
+          Bau den Satz aus den Wörtern unten. Dieser Satz zählt nicht.
         </Text>
         {showGloss ? <Text style={styles.subtitle}>{sentence.gloss}</Text> : null}
       </View>
@@ -190,6 +189,7 @@ export default function IntroScreen() {
       <DragProvider>
         <Board
           tier={1}
+          mode={result ? 'fields' : 'build'}
           closed={result !== null && isCorrect(result.verdict)}
           dimmed={result?.verdict === 'ungewoehnlich'}
           showVerbAnchor={!wrong}
@@ -201,6 +201,7 @@ export default function IntroScreen() {
               verdict={result.verdict}
               message={result.message}
               {...(result.emphasis ? { emphasis: result.emphasis } : {})}
+              solutionShown={result.solutionShown ?? false}
             />
           ) : null}
 
@@ -235,7 +236,7 @@ export default function IntroScreen() {
             label="Prüfen"
             onPress={check}
             disabled={!ready}
-            {...(ready ? {} : { accessibilityHint: 'Erst alle Bausteine setzen.' })}
+            {...(ready ? {} : { accessibilityHint: 'Erst alle Wörter in den Satz setzen.' })}
           />
         )}
       </View>

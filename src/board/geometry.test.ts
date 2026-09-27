@@ -1,32 +1,12 @@
 import { describe, expect, it } from 'vitest';
 
-import { insertionIndex, zoneAt, type Rect } from './geometry';
+import { insertionIndex, type Rect } from './geometry';
 
 const rect = (x: number, y: number, w = 100, h = 40): Rect => ({
   x,
   y,
   width: w,
   height: h,
-});
-
-describe('zoneAt', () => {
-  const zones = {
-    vorfeld: rect(0, 0, 100, 50),
-    linkeKlammer: rect(100, 0, 100, 50),
-  };
-
-  it('finds the zone under a point', () => {
-    expect(zoneAt(zones, 50, 25)).toBe('vorfeld');
-    expect(zoneAt(zones, 150, 25)).toBe('linkeKlammer');
-  });
-
-  it('returns null outside every zone', () => {
-    expect(zoneAt(zones, 50, 500)).toBeNull();
-  });
-
-  it('counts the edges as inside', () => {
-    expect(zoneAt(zones, 0, 0)).toBe('vorfeld');
-  });
 });
 
 describe('insertionIndex', () => {

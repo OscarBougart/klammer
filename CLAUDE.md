@@ -76,10 +76,10 @@ preposition from its noun phrase. The one exception is the right bracket, where
 each verbal element is its own tile.
 
 **Neutral surfaces.** Tiles store `surface` and `neutralSurface`. Render
-`neutralSurface`; capitalise on placement into the Vorfeld. Never render a tile
-in a form that reveals its position.
+`neutralSurface`; capitalise the first tile of the built row. Never render a
+tile in a form that reveals its position.
 
-**Slots never reject.** A wrong placement must be possible. Validation happens
+**The row never rejects.** A wrong order must be possible. Validation happens
 only on Prüfen.
 
 **Motion.** Only the Klammer arc has a scripted animation. Everything else is a

@@ -1,76 +1,55 @@
 /**
- * Drop-target geometry, shared with the UI thread — E2.4.
+ * What a dragged tile needs to know about the board — E2.4.
  *
- * CLAUDE.md: Reanimated worklets only, no JS-thread layout during drag. So
- * zone rectangles are measured once when a zone lays out, written into a
- * shared value, and hit-tested inside the gesture worklet. Nothing crosses to
- * JavaScript between finger-down and finger-up except the final placement.
+ * There is one drop target: the sentence row. A tile released over it is
+ * inserted where it lands; released anywhere else, it goes back to the bank.
  *
- * The alternative — measuring on drop — puts a `measure()` round trip in the
- * one frame where the tile is supposed to snap, which is exactly the frame a
- * cheap Android device cannot spare.
+ * The row is measured *at drop time*, inside the gesture worklet, with
+ * Reanimated's `measure()`. That returns page coordinates in the same frame
+ * as the gesture's `absoluteX/Y`, whatever the status bar, edge-to-edge
+ * insets or scroll position are doing. The previous design stored window
+ * rects from `measureInWindow` on layout and compared them with the gesture's
+ * coordinates; on Android the two disagreed and no drop ever landed.
+ *
+ * Where in the row a tile lands is worked out from the row's own tiles, whose
+ * rects come from `onLayout` and are therefore already relative to the row.
  */
-import { createContext, useCallback, useContext, useMemo, type ReactNode } from 'react';
-import { useSharedValue, type SharedValue } from 'react-native-reanimated';
+import { createContext, useCallback, useContext, useMemo, useRef, type ReactNode, type RefObject } from 'react';
+import type Animated from 'react-native-reanimated';
+import { useAnimatedRef, useSharedValue, type AnimatedRef, type SharedValue } from 'react-native-reanimated';
 
-import type { FieldId } from './fields';
-import type { Rect, ZoneRects } from './geometry';
+import type { Rect } from './geometry';
 
-// Re-exported so callers have one import for the drag surface.
-export { insertionIndex, zoneAt } from './geometry';
-export type { Rect, ZoneRects } from './geometry';
+export { insertionIndex } from './geometry';
+export type { Rect } from './geometry';
+
+/** Which container the lifted tile came from; that container draws on top. */
+export type DragSource = 'row' | 'bank' | null;
 
 type DragContextValue = {
-  /** Field id -> rect in content coordinates (see scrollY). Read in worklets. */
-  zones: SharedValue<ZoneRects>;
-  /** Called by a zone once it knows where it is, with its window rect. */
-  registerZone: (field: FieldId, rect: Rect) => void;
-  /**
-   * Tile id -> rect in content coordinates. Used to work out *where* in a zone
-   * a tile was dropped, not just which zone. Read on the JS thread after the
-   * gesture ends, never during it.
-   */
-  tiles: SharedValue<Record<string, Rect>>;
-  registerTile: (tileId: string, rect: Rect) => void;
-  /** The tile currently under the finger, or null. Drives tray/zone styling. */
-  draggingTileId: SharedValue<string | null>;
-  /**
-   * How far the board has scrolled. The fields sit in a scroll view (so a
-   * tall board can never spill over the tray), which means window positions
-   * move when it scrolls. Every rect above is therefore stored in *content*
-   * coordinates, window y plus this, and every drop point is converted the
-   * same way before it is compared.
-   */
-  scrollY: SharedValue<number>;
+  /** The sentence row, measured in the worklet when a tile is released. */
+  rowRef: AnimatedRef<Animated.View>;
+  /** Tile id -> rect relative to the row. Read on the JS thread after a drop. */
+  rowTiles: RefObject<Record<string, Rect>>;
+  registerRowTile: (tileId: string, rect: Rect) => void;
+  /** Where the tile under the finger came from, or null. */
+  dragSource: SharedValue<DragSource>;
 };
 
 const DragContext = createContext<DragContextValue | null>(null);
 
 export function DragProvider({ children }: { children: ReactNode }) {
-  const zones = useSharedValue<ZoneRects>({});
-  const tiles = useSharedValue<Record<string, Rect>>({});
-  const draggingTileId = useSharedValue<string | null>(null);
-  const scrollY = useSharedValue(0);
+  const rowRef = useAnimatedRef<Animated.View>();
+  const rowTiles = useRef<Record<string, Rect>>({});
+  const dragSource = useSharedValue<DragSource>(null);
 
-  const registerZone = useCallback(
-    (field: FieldId, rect: Rect) => {
-      // Mutating the object in place would not notify the UI thread; a new
-      // object is what makes the write visible to worklets.
-      zones.value = { ...zones.value, [field]: { ...rect, y: rect.y + scrollY.value } };
-    },
-    [zones, scrollY],
-  );
-
-  const registerTile = useCallback(
-    (tileId: string, rect: Rect) => {
-      tiles.value = { ...tiles.value, [tileId]: { ...rect, y: rect.y + scrollY.value } };
-    },
-    [tiles, scrollY],
-  );
+  const registerRowTile = useCallback((tileId: string, rect: Rect) => {
+    rowTiles.current[tileId] = rect;
+  }, []);
 
   const value = useMemo(
-    () => ({ zones, registerZone, tiles, registerTile, draggingTileId, scrollY }),
-    [zones, registerZone, tiles, registerTile, draggingTileId, scrollY],
+    () => ({ rowRef, rowTiles, registerRowTile, dragSource }),
+    [rowRef, registerRowTile, dragSource],
   );
 
   return <DragContext.Provider value={value}>{children}</DragContext.Provider>;

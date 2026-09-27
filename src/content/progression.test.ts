@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  goodRoundsInARow,
   shouldAdvanceTier,
   streakStatus,
   weekStrip,
@@ -27,6 +28,29 @@ describe('shouldAdvanceTier', () => {
 
   it('stops at the last tier', () => {
     expect(shouldAdvanceTier(MAX_TIER, [10, 10, 10])).toBe(false);
+  });
+
+  it('does not promote into a tier that has no sentences', () => {
+    expect(shouldAdvanceTier(3, [10, 10, 10], 3)).toBe(false);
+    expect(shouldAdvanceTier(2, [10, 10, 10], 3)).toBe(true);
+  });
+});
+
+describe('goodRoundsInARow', () => {
+  it('counts the most recent good sessions until the first weak one', () => {
+    expect(goodRoundsInARow([9, 8, 3, 10])).toBe(2);
+  });
+
+  it('is zero when the latest session was weak', () => {
+    expect(goodRoundsInARow([7, 10, 10])).toBe(0);
+  });
+
+  it('never counts past the three that are needed', () => {
+    expect(goodRoundsInARow([10, 10, 10, 10])).toBe(3);
+  });
+
+  it('is zero with no sessions yet', () => {
+    expect(goodRoundsInARow([])).toBe(0);
   });
 });
 

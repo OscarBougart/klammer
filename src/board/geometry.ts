@@ -6,44 +6,10 @@
  * wrong, and it is the only part that can be tested without a device. Importing
  * React Native here would make it untestable in node.
  */
-import type { FieldId } from './fields';
-
 export type Rect = { x: number; y: number; width: number; height: number };
 
-export type ZoneRects = Partial<Record<FieldId, Rect>>;
-
 /**
- * Which zone contains this point, if any. A worklet — it runs on the UI thread
- * during the gesture.
- *
- * Returns the *last* matching zone so that nested or overlapping rects resolve
- * to the most specific one. Zones do not currently overlap, but a subdivided
- * Mittelfeld at tier 3 will.
- */
-export function zoneAt(zones: ZoneRects, x: number, y: number): FieldId | null {
-  'worklet';
-
-  let found: FieldId | null = null;
-
-  for (const key of Object.keys(zones) as FieldId[]) {
-    const rect = zones[key];
-    if (!rect) continue;
-
-    if (
-      x >= rect.x &&
-      x <= rect.x + rect.width &&
-      y >= rect.y &&
-      y <= rect.y + rect.height
-    ) {
-      found = key;
-    }
-  }
-
-  return found;
-}
-
-/**
- * Where in a zone a drop belongs.
+ * Where in the row a drop belongs.
  *
  * Tiles wrap across rows, so "before" means reading order: an earlier row
  * always precedes a later one, and within a row it is left of centre. Counting
