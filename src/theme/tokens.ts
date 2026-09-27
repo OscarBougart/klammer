@@ -129,3 +129,9 @@ export const a11y = {
   /** Tiles wrap rather than truncate up to this type scale multiplier. */
   maxDynamicTypeScale: 2,
 } as const;
+
+/** Line icons (the settings gear). */
+export const icon = {
+  size: 24,
+  stroke: 2,
+} as const;

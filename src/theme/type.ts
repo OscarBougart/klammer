@@ -92,3 +92,17 @@ export const display: TextStyle = {
   fontSize: fontSize.display,
   color: palette.kreide,
 };
+
+/** The small tiles in Home's sample sentence: same face, a size down. */
+export const miniTileText: TextStyle = {
+  fontFamily: fonts.displaySemiBold,
+  fontSize: fontSize.bodyLarge,
+  color: palette.schiefer,
+};
+
+/** A Stufe's name in the level path. */
+export const levelName: TextStyle = {
+  fontFamily: fonts.displaySemiBold,
+  fontSize: fontSize.bodyLarge,
+  color: palette.kreide,
+};
