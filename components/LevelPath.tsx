@@ -16,7 +16,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ADVANCE_SESSIONS } from '@/content/progression';
 import { TIERS } from '@/content/tiers';
-import { a11y, border, explanation, gloss, levelName, palette, radius, space } from '@/theme';
+import { a11y, border, makeStyles, radius, space } from '@/theme';
 
 export type LevelPathProps = {
   /** The learner's Stufe. */
@@ -45,6 +45,7 @@ function LevelPathComponent({
   showGloss,
   onSelect,
 }: LevelPathProps) {
+  const styles = useStyles();
   return (
     <View style={styles.list} accessibilityRole="list">
       {TIERS.map((info, i) => {
@@ -136,103 +137,105 @@ function LevelPathComponent({
 
 export default memo(LevelPathComponent);
 
-const styles = StyleSheet.create({
-  list: {
-    gap: 0,
-  },
-  row: {
-    flexDirection: 'row',
-    gap: space.md,
-    minHeight: a11y.minTouchTarget + space.sm,
-    paddingHorizontal: space.sm,
-    borderRadius: radius.field,
-    borderWidth: border.hairline,
-    borderColor: 'transparent',
-  },
-  rowSelected: {
-    backgroundColor: palette.feld,
-    borderColor: palette.kante,
-  },
-  rail: {
-    width: DOT,
-    alignItems: 'center',
-    paddingTop: space.md,
-  },
-  dot: {
-    width: DOT,
-    height: DOT,
-    borderRadius: DOT / 2,
-    borderWidth: border.emphasis,
-    borderColor: palette.grau,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  dotDone: {
-    borderColor: palette.messing,
-  },
-  dotCurrent: {
-    borderColor: palette.messing,
-    backgroundColor: palette.messing,
-  },
-  check: {
-    ...gloss,
-    color: palette.messing,
-    lineHeight: DOT - border.emphasis * 2,
-  },
-  line: {
-    flex: 1,
-    width: border.emphasis,
-    marginTop: space.xs,
-    backgroundColor: palette.kante,
-  },
-  lineDone: {
-    backgroundColor: palette.messing,
-  },
-  body: {
-    flex: 1,
-    paddingVertical: space.md,
-    gap: space.sm,
-  },
-  titleRow: {
-    flexDirection: 'row',
-    alignItems: 'baseline',
-    justifyContent: 'space-between',
-    gap: space.sm,
-  },
-  name: {
-    ...levelName,
-    flexShrink: 1,
-  },
-  number: {
-    ...levelName,
-    color: palette.grau,
-  },
-  muted: {
-    color: palette.grau,
-  },
-  status: gloss,
-  detail: {
-    gap: space.xs,
-  },
-  rule: explanation,
-  gloss,
-  progress: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: space.md,
-    marginTop: space.xs,
-  },
-  bars: {
-    flexDirection: 'row',
-    gap: space.xs,
-  },
-  bar: {
-    width: space.xl,
-    height: space.sm,
-    borderRadius: space.xs,
-    backgroundColor: palette.kante,
-  },
-  barOn: {
-    backgroundColor: palette.messing,
-  },
-});
+const useStyles = makeStyles(({ palette, type }) =>
+  StyleSheet.create({
+    list: {
+      gap: 0,
+    },
+    row: {
+      flexDirection: 'row',
+      gap: space.md,
+      minHeight: a11y.minTouchTarget + space.sm,
+      paddingHorizontal: space.sm,
+      borderRadius: radius.field,
+      borderWidth: border.hairline,
+      borderColor: 'transparent',
+    },
+    rowSelected: {
+      backgroundColor: palette.feld,
+      borderColor: palette.kante,
+    },
+    rail: {
+      width: DOT,
+      alignItems: 'center',
+      paddingTop: space.md,
+    },
+    dot: {
+      width: DOT,
+      height: DOT,
+      borderRadius: DOT / 2,
+      borderWidth: border.emphasis,
+      borderColor: palette.grau,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    dotDone: {
+      borderColor: palette.messing,
+    },
+    dotCurrent: {
+      borderColor: palette.messing,
+      backgroundColor: palette.messing,
+    },
+    check: {
+      ...type.gloss,
+      color: palette.messing,
+      lineHeight: DOT - border.emphasis * 2,
+    },
+    line: {
+      flex: 1,
+      width: border.emphasis,
+      marginTop: space.xs,
+      backgroundColor: palette.kante,
+    },
+    lineDone: {
+      backgroundColor: palette.messing,
+    },
+    body: {
+      flex: 1,
+      paddingVertical: space.md,
+      gap: space.sm,
+    },
+    titleRow: {
+      flexDirection: 'row',
+      alignItems: 'baseline',
+      justifyContent: 'space-between',
+      gap: space.sm,
+    },
+    name: {
+      ...type.levelName,
+      flexShrink: 1,
+    },
+    number: {
+      ...type.levelName,
+      color: palette.grau,
+    },
+    muted: {
+      color: palette.grau,
+    },
+    status: type.gloss,
+    detail: {
+      gap: space.xs,
+    },
+    rule: type.explanation,
+    gloss: type.gloss,
+    progress: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: space.md,
+      marginTop: space.xs,
+    },
+    bars: {
+      flexDirection: 'row',
+      gap: space.xs,
+    },
+    bar: {
+      width: space.xl,
+      height: space.sm,
+      borderRadius: space.xs,
+      backgroundColor: palette.kante,
+    },
+    barOn: {
+      backgroundColor: palette.messing,
+    },
+  }),
+);

@@ -13,7 +13,7 @@ import { memo, useCallback, useRef, type ReactNode } from 'react';
 import { StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 
 import type { Field } from './fields';
-import { a11y, border, fieldLabel, palette, radius, space } from '@/theme';
+import { a11y, border, makeStyles, radius, space } from '@/theme';
 
 /** A zone's box, in the coordinates of the list of zones it sits in. */
 export type ZoneBox = { y: number; height: number };
@@ -41,6 +41,7 @@ function FieldZoneComponent({
   isOverfull = false,
   onBoxLayout,
 }: FieldZoneProps) {
+  const styles = useStyles();
   // The box's position in its parent is the wrapper's offset plus the box's
   // offset inside the wrapper, and the two arrive in separate layout events.
   const wrapperY = useRef<number | null>(null);
@@ -103,37 +104,39 @@ function describeCount(count: number): string {
 
 export default memo(FieldZoneComponent);
 
-const styles = StyleSheet.create({
-  wrapper: {
-    // Never shrink below the content, or tiles spill out of their box and
-    // overlap the zone below — which is exactly what the first device run
-    // showed.
-    flexShrink: 0,
-    flexGrow: 0,
-    gap: space.xs,
-  },
-  zone: {
-    backgroundColor: palette.feld,
-    borderRadius: radius.field,
-    borderWidth: border.hairline,
-    borderColor: palette.kante,
-    padding: space.xs,
-    minHeight: a11y.minTouchTarget + space.sm,
-    justifyContent: 'center',
-  },
-  zoneOverfull: {
-    borderColor: palette.ziegel,
-    borderWidth: border.emphasis,
-  },
-  contents: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: space.sm,
-    alignItems: 'center',
-  },
-  label: fieldLabel,
-  name: {
-    ...fieldLabel,
-    color: palette.kreide,
-  },
-});
+const useStyles = makeStyles(({ palette, type }) =>
+  StyleSheet.create({
+    wrapper: {
+      // Never shrink below the content, or tiles spill out of their box and
+      // overlap the zone below — which is exactly what the first device run
+      // showed.
+      flexShrink: 0,
+      flexGrow: 0,
+      gap: space.xs,
+    },
+    zone: {
+      backgroundColor: palette.feld,
+      borderRadius: radius.field,
+      borderWidth: border.hairline,
+      borderColor: palette.kante,
+      padding: space.xs,
+      minHeight: a11y.minTouchTarget + space.sm,
+      justifyContent: 'center',
+    },
+    zoneOverfull: {
+      borderColor: palette.ziegel,
+      borderWidth: border.emphasis,
+    },
+    contents: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: space.sm,
+      alignItems: 'center',
+    },
+    label: type.fieldLabel,
+    name: {
+      ...type.fieldLabel,
+      color: palette.kreide,
+    },
+  }),
+);

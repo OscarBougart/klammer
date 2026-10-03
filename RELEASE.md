@@ -84,8 +84,7 @@ structure currently in play.
 WHAT THIS APP DOES NOT DO
 
 No accounts. No adverts. No in-app purchases. No leaderboards, hearts, XP,
-gems or mascots. No notifications beyond one optional daily reminder you can
-decline permanently.
+gems or mascots. No notifications.
 
 It collects nothing. There is no network connection at all — everything stays
 on your phone, which is also why it works on a plane.
@@ -178,8 +177,7 @@ policy must state the following, and every line of it is currently true —
 3. All data — progress, attempts, settings — is stored only on the device.
 4. Uninstalling the app deletes all of it. There is no backup and no account.
 5. No third-party SDK, analytics, crash reporter or advertising network.
-6. No permissions are requested. *(Revisit if the optional daily reminder
-   ships — local notifications on Android 13+ need `POST_NOTIFICATIONS`.)*
+6. No permissions are requested.
 7. Contact address for questions.
 8. Children: the app collects nothing from anyone, of any age.
 

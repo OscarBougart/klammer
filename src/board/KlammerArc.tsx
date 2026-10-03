@@ -30,7 +30,7 @@ import Animated, {
 import Svg, { Path } from 'react-native-svg';
 
 import { useSettingsStore } from '@/store/settings';
-import { arc, duration, palette } from '@/theme';
+import { arc, duration, makeStyles, useTheme } from '@/theme';
 
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 
@@ -49,6 +49,8 @@ export type KlammerArcProps = {
 };
 
 function KlammerArcComponent({ closed, dimmed = false, top, span }: KlammerArcProps) {
+  const styles = useStyles();
+  const { palette } = useTheme();
   const reducedMotion = useReducedMotion();
   const progress = useSharedValue(0);
 
@@ -136,9 +138,11 @@ function KlammerArcComponent({ closed, dimmed = false, top, span }: KlammerArcPr
 
 export default memo(KlammerArcComponent);
 
-const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    left: 0,
-  },
-});
+const useStyles = makeStyles(({ palette, type }) =>
+  StyleSheet.create({
+    container: {
+      position: 'absolute',
+      left: 0,
+    },
+  }),
+);

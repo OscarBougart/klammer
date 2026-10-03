@@ -21,16 +21,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-import {
-  a11y,
-  border,
-  duration,
-  palette,
-  radius,
-  shadow,
-  space,
-  tileText,
-} from '@/theme';
+import { a11y, border, duration, makeStyles, radius, shadow, space } from '@/theme';
 
 export type TileProps = {
   /** Chunk id. Stable; the board addresses tiles by this. */
@@ -75,6 +66,7 @@ function TileComponent({
   fieldName,
   onPress,
 }: TileProps) {
+  const styles = useStyles();
   const reducedMotion = useReducedMotion();
 
   /**
@@ -161,43 +153,45 @@ function TileComponent({
 
 export default memo(TileComponent);
 
-const styles = StyleSheet.create({
-  tile: {
-    // A floor, never a fixed height — the face grows with the text so a tile
-    // at 200% type gets taller instead of clipping.
-    minHeight: a11y.minTouchTarget,
-    justifyContent: 'center',
-  },
-  face: {
-    backgroundColor: palette.kreide,
-    borderRadius: radius.tile,
-    paddingHorizontal: space.md,
-    paddingVertical: space.sm,
-    minHeight: a11y.minTouchTarget,
-    justifyContent: 'center',
-  },
-  faceFinite: {
-    backgroundColor: palette.messing,
-  },
-  shadow: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: shadow.tileRest.offsetY,
-    bottom: -shadow.tileRest.offsetY,
-    backgroundColor: shadow.tileRest.color,
-    borderRadius: radius.tile,
-  },
-  shadowLifted: {
-    top: shadow.tileLifted.offsetY,
-    bottom: -shadow.tileLifted.offsetY,
-  },
-  selected: {
-    // Tap-to-place must be visible without colour alone carrying the meaning,
-    // so the selected tile is outlined rather than merely tinted.
-    borderWidth: border.emphasis,
-    borderColor: palette.messing,
-    borderRadius: radius.tile,
-  },
-  text: tileText,
-});
+const useStyles = makeStyles(({ palette, type }) =>
+  StyleSheet.create({
+    tile: {
+      // A floor, never a fixed height — the face grows with the text so a tile
+      // at 200% type gets taller instead of clipping.
+      minHeight: a11y.minTouchTarget,
+      justifyContent: 'center',
+    },
+    face: {
+      backgroundColor: palette.kreide,
+      borderRadius: radius.tile,
+      paddingHorizontal: space.md,
+      paddingVertical: space.sm,
+      minHeight: a11y.minTouchTarget,
+      justifyContent: 'center',
+    },
+    faceFinite: {
+      backgroundColor: palette.messing,
+    },
+    shadow: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      top: shadow.tileRest.offsetY,
+      bottom: -shadow.tileRest.offsetY,
+      backgroundColor: palette.kante,
+      borderRadius: radius.tile,
+    },
+    shadowLifted: {
+      top: shadow.tileLifted.offsetY,
+      bottom: -shadow.tileLifted.offsetY,
+    },
+    selected: {
+      // Tap-to-place must be visible without colour alone carrying the meaning,
+      // so the selected tile is outlined rather than merely tinted.
+      borderWidth: border.emphasis,
+      borderColor: palette.messing,
+      borderRadius: radius.tile,
+    },
+    text: type.tileText,
+  }),
+);

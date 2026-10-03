@@ -12,7 +12,7 @@
 import { memo, useState } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
-import { a11y, border, buttonLabel, palette, radius, space } from '@/theme';
+import { a11y, border, makeStyles, radius, space } from '@/theme';
 
 export type ButtonProps = {
   label: string;
@@ -33,6 +33,7 @@ function ButtonComponent({
   accessibilityLabel,
   accessibilityHint,
 }: ButtonProps) {
+  const styles = useStyles();
   const primary = variant === 'primary';
 
   // Pressed state is tracked by hand rather than with Pressable's style
@@ -70,38 +71,40 @@ function ButtonComponent({
 
 export default memo(ButtonComponent);
 
-const styles = StyleSheet.create({
-  base: {
-    // The touch-target floor and no more: the session screen stacks the board,
-    // the verdict and up to three buttons without a scroll view.
-    minHeight: a11y.minTouchTarget,
-    borderRadius: radius.tile,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: space.xl,
-    paddingVertical: space.sm,
-  },
-  primary: {
-    backgroundColor: palette.messing,
-  },
-  secondary: {
-    borderWidth: border.hairline,
-    borderColor: palette.grau,
-  },
-  pressed: {
-    // No soft shadows anywhere in the app, so pressing dims rather than sinks.
-    opacity: 0.8,
-  },
-  disabled: {
-    // Quieter, not invisible: the learner should see where the button is
-    // before they are able to press it.
-    opacity: 0.4,
-  },
-  label: {
-    ...buttonLabel,
-    textAlign: 'center',
-  },
-  labelPrimary: {
-    color: palette.schiefer,
-  },
-});
+const useStyles = makeStyles(({ palette, type }) =>
+  StyleSheet.create({
+    base: {
+      // The touch-target floor and no more: the session screen stacks the board,
+      // the verdict and up to three buttons without a scroll view.
+      minHeight: a11y.minTouchTarget,
+      borderRadius: radius.tile,
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingHorizontal: space.xl,
+      paddingVertical: space.sm,
+    },
+    primary: {
+      backgroundColor: palette.messing,
+    },
+    secondary: {
+      borderWidth: border.hairline,
+      borderColor: palette.grau,
+    },
+    pressed: {
+      // No soft shadows anywhere in the app, so pressing dims rather than sinks.
+      opacity: 0.8,
+    },
+    disabled: {
+      // Quieter, not invisible: the learner should see where the button is
+      // before they are able to press it.
+      opacity: 0.4,
+    },
+    label: {
+      ...type.buttonLabel,
+      textAlign: 'center',
+    },
+    labelPrimary: {
+      color: palette.schiefer,
+    },
+  }),
+);

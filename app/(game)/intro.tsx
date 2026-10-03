@@ -25,7 +25,7 @@ import { explainAlternative, explainRule, type Explanation } from '@/engine/rule
 import { findSingleTileCorrection, isCorrect, validate, type Verdict } from '@/engine/validate';
 import { isComplete, useBoardStore } from '@/store/board';
 import { useSettingsStore } from '@/store/settings';
-import { a11y, explanation, fieldLabel, gloss, numeral, palette, space } from '@/theme';
+import { a11y, makeStyles, space } from '@/theme';
 
 /**
  * Four tiles, a pronoun subject, a time word and a bare object: every
@@ -58,6 +58,7 @@ type Result = {
 };
 
 export default function IntroScreen() {
+  const styles = useStyles();
   const router = useRouter();
 
   const sentence = useMemo(
@@ -244,49 +245,51 @@ export default function IntroScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: palette.schiefer,
-  },
-  header: {
-    paddingHorizontal: space.lg,
-    paddingTop: space.sm,
-    gap: space.xs,
-  },
-  headerRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    minHeight: a11y.minTouchTarget,
-  },
-  title: numeral,
-  skip: {
-    minHeight: a11y.minTouchTarget,
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-  },
-  skipLabel: gloss,
-  subtitle: gloss,
-  footer: {
-    paddingHorizontal: space.lg,
-    paddingVertical: space.md,
-    gap: space.sm,
-  },
-  hint: {
-    gap: space.xs,
-    paddingHorizontal: space.lg,
-  },
-  hintText: {
-    ...explanation,
-    color: palette.kreide,
-  },
-  hintGloss: fieldLabel,
-  row: {
-    flexDirection: 'row',
-    gap: space.md,
-  },
-  rowItem: {
-    flex: 1,
-  },
-});
+const useStyles = makeStyles(({ palette, type }) =>
+  StyleSheet.create({
+    root: {
+      flex: 1,
+      backgroundColor: palette.schiefer,
+    },
+    header: {
+      paddingHorizontal: space.lg,
+      paddingTop: space.sm,
+      gap: space.xs,
+    },
+    headerRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      minHeight: a11y.minTouchTarget,
+    },
+    title: type.numeral,
+    skip: {
+      minHeight: a11y.minTouchTarget,
+      alignItems: 'flex-end',
+      justifyContent: 'center',
+    },
+    skipLabel: type.gloss,
+    subtitle: type.gloss,
+    footer: {
+      paddingHorizontal: space.lg,
+      paddingVertical: space.md,
+      gap: space.sm,
+    },
+    hint: {
+      gap: space.xs,
+      paddingHorizontal: space.lg,
+    },
+    hintText: {
+      ...type.explanation,
+      color: palette.kreide,
+    },
+    hintGloss: type.fieldLabel,
+    row: {
+      flexDirection: 'row',
+      gap: space.md,
+    },
+    rowItem: {
+      flex: 1,
+    },
+  }),
+);

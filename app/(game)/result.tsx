@@ -20,7 +20,7 @@ import {
   type SessionAttempt,
 } from '@/store/session';
 import Button from '@/components/Button';
-import { border, explanation, fieldLabel, gloss as glossStyle, heading, palette, radius, space } from '@/theme';
+import { border, makeStyles, radius, space } from '@/theme';
 
 /** How each verdict reads in the list. Shape and word, never colour alone. */
 const MARK: Record<Verdict, string> = {
@@ -31,6 +31,7 @@ const MARK: Record<Verdict, string> = {
 };
 
 export default function ResultScreen() {
+  const styles = useStyles();
   const router = useRouter();
 
   const sentences = useSessionStore((s) => s.sentences);
@@ -189,59 +190,61 @@ function renderOrder(
     .join(' ');
 }
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: palette.schiefer,
-  },
-  header: {
-    padding: space.lg,
-    gap: space.xs,
-  },
-  title: heading,
-  summary: explanation,
-  tapHint: glossStyle,
-  list: {
-    paddingHorizontal: space.lg,
-    paddingBottom: space.lg,
-    gap: space.sm,
-  },
-  row: {
-    backgroundColor: palette.feld,
-    borderRadius: radius.field,
-    padding: space.md,
-    gap: space.sm,
-  },
-  rowHead: {
-    flexDirection: 'row',
-    gap: space.md,
-    alignItems: 'flex-start',
-  },
-  mark: {
-    ...explanation,
-    color: palette.messing,
-  },
-  markMarked: {
-    color: palette.grau,
-  },
-  markWrong: {
-    color: palette.ziegel,
-  },
-  rowText: {
-    flex: 1,
-    gap: space.xs,
-  },
-  built: explanation,
-  gloss: glossStyle,
-  german: explanation,
-  detail: {
-    gap: space.xs,
-    borderTopWidth: border.hairline,
-    borderTopColor: palette.kante,
-    paddingTop: space.sm,
-  },
-  detailLabel: fieldLabel,
-  footer: {
-    padding: space.lg,
-  },
-});
+const useStyles = makeStyles(({ palette, type }) =>
+  StyleSheet.create({
+    root: {
+      flex: 1,
+      backgroundColor: palette.schiefer,
+    },
+    header: {
+      padding: space.lg,
+      gap: space.xs,
+    },
+    title: type.heading,
+    summary: type.explanation,
+    tapHint: type.gloss,
+    list: {
+      paddingHorizontal: space.lg,
+      paddingBottom: space.lg,
+      gap: space.sm,
+    },
+    row: {
+      backgroundColor: palette.feld,
+      borderRadius: radius.field,
+      padding: space.md,
+      gap: space.sm,
+    },
+    rowHead: {
+      flexDirection: 'row',
+      gap: space.md,
+      alignItems: 'flex-start',
+    },
+    mark: {
+      ...type.explanation,
+      color: palette.messing,
+    },
+    markMarked: {
+      color: palette.grau,
+    },
+    markWrong: {
+      color: palette.ziegel,
+    },
+    rowText: {
+      flex: 1,
+      gap: space.xs,
+    },
+    built: type.explanation,
+    gloss: type.gloss,
+    german: type.explanation,
+    detail: {
+      gap: space.xs,
+      borderTopWidth: border.hairline,
+      borderTopColor: palette.kante,
+      paddingTop: space.sm,
+    },
+    detailLabel: type.fieldLabel,
+    footer: {
+      padding: space.lg,
+    },
+  }),
+);

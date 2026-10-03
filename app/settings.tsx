@@ -1,9 +1,9 @@
 /**
  * Settings — E5.5.
  *
- * Five switches and nothing else. Every one of them is something design.md
- * promised: a light theme, sound off by default, haptics, a hideable gloss,
- * and one reminder that can be declined forever.
+ * Three switches and nothing else: a light theme, haptics, and a hideable
+ * gloss. Sound and a daily reminder were dropped rather than left as switches
+ * that did nothing; a reminder would also need a notification permission.
  */
 import { useRouter } from 'expo-router';
 import { StyleSheet, Switch, Text, View } from 'react-native';
@@ -11,31 +11,23 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Button from '@/components/Button';
 import { useSettingsStore } from '@/store/settings';
-import {
-  a11y,
-  border,
-  explanation,
-  gloss,
-  heading,
-  palette,
-  space,
-} from '@/theme';
+import { a11y, border, makeStyles, space, useTheme } from '@/theme';
 
 type Row = {
-  key: 'theme' | 'sound' | 'haptics' | 'showGloss' | 'reminder';
+  key: 'theme' | 'haptics' | 'showGloss';
   de: string;
   en: string;
 };
 
 const ROWS: Row[] = [
   { key: 'theme', de: 'Helles Design', en: 'Light theme' },
-  { key: 'sound', de: 'Ton', en: 'Sound' },
   { key: 'haptics', de: 'Vibration', en: 'Haptics' },
   { key: 'showGloss', de: 'Englische Übersetzung', en: 'English gloss' },
-  { key: 'reminder', de: 'Tägliche Erinnerung', en: 'Daily reminder' },
 ];
 
 export default function SettingsScreen() {
+  const styles = useStyles();
+  const { palette } = useTheme();
   const router = useRouter();
   const settings = useSettingsStore();
 
@@ -94,39 +86,41 @@ export default function SettingsScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: palette.schiefer,
-    justifyContent: 'space-between',
-  },
-  header: {
-    padding: space.lg,
-  },
-  title: heading,
-  list: {
-    paddingHorizontal: space.lg,
-    flex: 1,
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    minHeight: a11y.minTouchTarget,
-    paddingVertical: space.sm,
-    borderBottomWidth: border.hairline,
-    borderBottomColor: palette.kante,
-    gap: space.md,
-  },
-  rowText: {
-    flex: 1,
-    gap: space.xs,
-  },
-  german: explanation,
-  english: gloss,
-  footer: {
-    padding: space.lg,
-    gap: space.md,
-  },
-  privacy: gloss,
-});
+const useStyles = makeStyles(({ palette, type }) =>
+  StyleSheet.create({
+    root: {
+      flex: 1,
+      backgroundColor: palette.schiefer,
+      justifyContent: 'space-between',
+    },
+    header: {
+      padding: space.lg,
+    },
+    title: type.heading,
+    list: {
+      paddingHorizontal: space.lg,
+      flex: 1,
+    },
+    row: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      minHeight: a11y.minTouchTarget,
+      paddingVertical: space.sm,
+      borderBottomWidth: border.hairline,
+      borderBottomColor: palette.kante,
+      gap: space.md,
+    },
+    rowText: {
+      flex: 1,
+      gap: space.xs,
+    },
+    german: type.explanation,
+    english: type.gloss,
+    footer: {
+      padding: space.lg,
+      gap: space.md,
+    },
+    privacy: type.gloss,
+  }),
+);

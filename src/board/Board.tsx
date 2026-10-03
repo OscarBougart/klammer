@@ -22,17 +22,7 @@ import { insertionIndex, useDragContext } from './dragContext';
 import { boardFields, hasKlammer, isVerbFinal, type FieldId, type Tier } from './fields';
 import { segmentOrder } from './segment';
 import { bankTiles, useBoardStore, type BoardTile } from '@/store/board';
-import {
-  a11y,
-  arc,
-  border,
-  fieldLabel,
-  gloss,
-  palette,
-  radius,
-  sentenceLine,
-  space,
-} from '@/theme';
+import { a11y, arc, border, makeStyles, radius, space } from '@/theme';
 
 export type BoardProps = {
   tier: Tier;
@@ -74,6 +64,7 @@ export default function Board({
   children,
   revealKey,
 }: BoardProps) {
+  const styles = useStyles();
   const tiles = useBoardStore((s) => s.tiles);
   const line = useBoardStore((s) => s.line);
   const bankOrder = useBoardStore((s) => s.bankOrder);
@@ -252,6 +243,7 @@ function FieldsView({
   shakeTileId,
   shakeNonce,
 }: FieldsViewProps) {
+  const styles = useStyles();
   const zones = useMemo(() => boardFields(tier, { verbFinal }), [tier, verbFinal]);
   const segments = useMemo(
     () =>
@@ -329,70 +321,72 @@ function FieldsView({
   );
 }
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: palette.schiefer,
-  },
-  scroll: {
-    flex: 1,
-  },
-  scrollContent: {
-    gap: space.md,
-    paddingTop: space.sm,
-    paddingBottom: space.md,
-  },
-  matrix: {
-    ...fieldLabel,
-    paddingHorizontal: space.lg,
-  },
-  rowWrap: {
-    paddingHorizontal: space.lg,
-    paddingTop: space.sm,
-  },
-  row: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    gap: space.sm,
-    // Two lines of tiles before it grows, so the bank below does not jump
-    // on the first few taps.
-    minHeight: a11y.minTouchTarget * 2 + space.sm * 3,
-    padding: space.sm,
-    borderRadius: radius.field,
-    backgroundColor: palette.feld,
-    borderWidth: border.hairline,
-    borderColor: palette.kante,
-  },
-  rowEmpty: {
-    borderStyle: 'dashed',
-    borderColor: palette.grau,
-    justifyContent: 'center',
-  },
-  placeholder: gloss,
-  period: sentenceLine,
-  zones: {
-    flexGrow: 0,
-    flexShrink: 0,
-    gap: space.md,
-    paddingVertical: space.sm,
-    // The left edge is the bracket's gutter.
-    paddingLeft: arc.gutter,
-    paddingRight: space.lg,
-  },
-  tray: {
-    backgroundColor: palette.feld,
-    paddingHorizontal: space.lg,
-    paddingVertical: space.md,
-    // The bank is the one surface that reaches the screen edge — it is where
-    // the hand rests.
-    borderTopWidth: border.hairline,
-    borderTopColor: palette.kante,
-  },
-  trayTiles: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: space.sm,
-    minHeight: space.xxl,
-  },
-});
+const useStyles = makeStyles(({ palette, type }) =>
+  StyleSheet.create({
+    root: {
+      flex: 1,
+      backgroundColor: palette.schiefer,
+    },
+    scroll: {
+      flex: 1,
+    },
+    scrollContent: {
+      gap: space.md,
+      paddingTop: space.sm,
+      paddingBottom: space.md,
+    },
+    matrix: {
+      ...type.fieldLabel,
+      paddingHorizontal: space.lg,
+    },
+    rowWrap: {
+      paddingHorizontal: space.lg,
+      paddingTop: space.sm,
+    },
+    row: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      alignItems: 'center',
+      gap: space.sm,
+      // Two lines of tiles before it grows, so the bank below does not jump
+      // on the first few taps.
+      minHeight: a11y.minTouchTarget * 2 + space.sm * 3,
+      padding: space.sm,
+      borderRadius: radius.field,
+      backgroundColor: palette.feld,
+      borderWidth: border.hairline,
+      borderColor: palette.kante,
+    },
+    rowEmpty: {
+      borderStyle: 'dashed',
+      borderColor: palette.grau,
+      justifyContent: 'center',
+    },
+    placeholder: type.gloss,
+    period: type.sentenceLine,
+    zones: {
+      flexGrow: 0,
+      flexShrink: 0,
+      gap: space.md,
+      paddingVertical: space.sm,
+      // The left edge is the bracket's gutter.
+      paddingLeft: arc.gutter,
+      paddingRight: space.lg,
+    },
+    tray: {
+      backgroundColor: palette.feld,
+      paddingHorizontal: space.lg,
+      paddingVertical: space.md,
+      // The bank is the one surface that reaches the screen edge — it is where
+      // the hand rests.
+      borderTopWidth: border.hairline,
+      borderTopColor: palette.kante,
+    },
+    trayTiles: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: space.sm,
+      minHeight: space.xxl,
+    },
+  }),
+);

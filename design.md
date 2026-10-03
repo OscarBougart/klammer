@@ -192,7 +192,10 @@ is a composing stick, not a classroom — you are setting a sentence, and it loc
 
 Dark by default, which is unusual for a learning app and correct here: the
 fields and the bracket read as a diagram, and diagrams belong on dark grounds.
-A light theme exists and is well-made, but dark is the shipping default.
+A light theme exists and is well-made, but dark is the shipping default. The
+light theme swaps the same seven roles (tokens.json `paletteLight`): a pale
+slate ground, white surfaces, dark tiles, a deeper brass. Every pairing is
+held to the same contrast floors in `contrast.test.ts`, and switching is live.
 
 ### Palette
 
@@ -250,8 +253,9 @@ Respect `prefers-reduced-motion`: arc appears without drawing, springs become
 
 ### Sound
 
-Off by default. When on: a short wooden click on snap, a low brass tone on the
-bracket close. Nothing else. No failure sound — failing should be quiet.
+None in v1. Haptics carry the feedback: a tick on lift, a light tap on snap,
+one firm tap on the bracket closing, nothing on failure. A sound switch that
+did nothing was removed rather than shipped.
 
 ---
 
@@ -302,8 +306,8 @@ Simple SM-2-lite; no need for full spaced repetition here.
 ## 9. Deliberately not in v1
 
 Leaderboards. Hearts or lives. XP and a shop. A mascot. Social anything.
-Accounts. Cloud sync. Ads. Push notifications beyond one optional daily
-reminder that can be declined forever. Speaking or listening. Typed input
+Accounts. Cloud sync. Ads. Notifications of any kind, including a daily
+reminder (it would need a notification permission). Speaking or listening. Typed input
 (that's Diktat's job). Vocabulary teaching. Case drilling.
 
 Every one of these is a reason for a Play Store declaration, a permission, a

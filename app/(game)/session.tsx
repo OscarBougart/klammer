@@ -50,15 +50,7 @@ import {
   newSessionId,
   useSessionStore,
 } from '@/store/session';
-import {
-  a11y,
-  explanation,
-  fieldLabel,
-  gloss,
-  numeral,
-  palette,
-  space,
-} from '@/theme';
+import { a11y, makeStyles, space } from '@/theme';
 
 /** Fisher–Yates. The tray must not hand the answer over in order. */
 function shuffle<T>(values: readonly T[]): T[] {
@@ -87,6 +79,7 @@ type Result = {
 };
 
 export default function SessionScreen() {
+  const styles = useStyles();
   const router = useRouter();
   /** A passed Stufe picked on Home to practise; absent means the current one. */
   const { tier: tierParam } = useLocalSearchParams<{ tier?: string }>();
@@ -438,55 +431,57 @@ export default function SessionScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: palette.schiefer,
-  },
-  header: {
-    paddingHorizontal: space.lg,
-    paddingTop: space.sm,
-    gap: space.xs,
-  },
-  headerRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    minHeight: a11y.minTouchTarget,
-  },
-  progress: numeral,
-  pause: {
-    minHeight: a11y.minTouchTarget,
-    minWidth: a11y.minTouchTarget,
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-  },
-  pauseLabel: gloss,
-  gloss,
-  footer: {
-    paddingHorizontal: space.lg,
-    paddingVertical: space.md,
-    gap: space.sm,
-  },
-  hint: {
-    gap: space.xs,
-    paddingHorizontal: space.lg,
-  },
-  hintText: fieldLabel,
-  hintGloss: fieldLabel,
-  row: {
-    flexDirection: 'row',
-    gap: space.md,
-  },
-  rowItem: {
-    flex: 1,
-  },
-  empty: {
-    flex: 1,
-    backgroundColor: palette.schiefer,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: space.lg,
-  },
-  emptyText: explanation,
-});
+const useStyles = makeStyles(({ palette, type }) =>
+  StyleSheet.create({
+    root: {
+      flex: 1,
+      backgroundColor: palette.schiefer,
+    },
+    header: {
+      paddingHorizontal: space.lg,
+      paddingTop: space.sm,
+      gap: space.xs,
+    },
+    headerRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      minHeight: a11y.minTouchTarget,
+    },
+    progress: type.numeral,
+    pause: {
+      minHeight: a11y.minTouchTarget,
+      minWidth: a11y.minTouchTarget,
+      alignItems: 'flex-end',
+      justifyContent: 'center',
+    },
+    pauseLabel: type.gloss,
+    gloss: type.gloss,
+    footer: {
+      paddingHorizontal: space.lg,
+      paddingVertical: space.md,
+      gap: space.sm,
+    },
+    hint: {
+      gap: space.xs,
+      paddingHorizontal: space.lg,
+    },
+    hintText: type.fieldLabel,
+    hintGloss: type.fieldLabel,
+    row: {
+      flexDirection: 'row',
+      gap: space.md,
+    },
+    rowItem: {
+      flex: 1,
+    },
+    empty: {
+      flex: 1,
+      backgroundColor: palette.schiefer,
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: space.lg,
+    },
+    emptyText: type.explanation,
+  }),
+);

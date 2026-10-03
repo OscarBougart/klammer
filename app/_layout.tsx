@@ -20,11 +20,13 @@ import { hydrateIfNeeded } from '@/content/hydrate';
 import { useSettingsStore } from '@/store/settings';
 import { db } from '@/db/client';
 import migrations from '@/db/migrations/migrations';
-import { explanation, palette, space, useAppFonts } from '@/theme';
+import { makeStyles, space, useAppFonts, useTheme } from '@/theme';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const styles = useStyles();
+  const { palette, statusBar } = useTheme();
   const [fontsLoaded, fontError] = useAppFonts();
   const { success: migrated, error: migrationError } = useMigrations(db, migrations);
 
@@ -75,7 +77,7 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView style={styles.root}>
-      <StatusBar style="light" />
+      <StatusBar style={statusBar} />
 
       <Stack
         screenOptions={{
@@ -87,7 +89,7 @@ export default function RootLayout() {
   );
 }
 
-const styles = {
+const useStyles = makeStyles(({ palette, type }) => ({
   root: { flex: 1, backgroundColor: palette.schiefer },
   failure: {
     flex: 1,
@@ -97,5 +99,5 @@ const styles = {
     padding: space.lg,
     gap: space.sm,
   },
-  failureText: explanation,
-};
+  failureText: type.explanation,
+}));

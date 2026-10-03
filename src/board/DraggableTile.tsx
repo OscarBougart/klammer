@@ -32,7 +32,7 @@ import Animated, {
 import Tile, { type TileProps } from './Tile';
 import { useSettingsStore } from '@/store/settings';
 import { useDragContext, type DragSource } from './dragContext';
-import { border, duration, palette, radius, scale, shake, space, spring } from '@/theme';
+import { border, duration, makeStyles, radius, scale, shake, space, spring, useTheme } from '@/theme';
 
 const SPRING: WithSpringConfig = {
   damping: spring.damping,
@@ -67,6 +67,8 @@ function DraggableTileComponent({
   shakeNonce = 0,
   ...tileProps
 }: DraggableTileProps) {
+  const styles = useStyles();
+  const { palette } = useTheme();
   const { rowRef, registerRowTile, dragSource } = useDragContext();
   const reducedMotion = useReducedMotion();
 
@@ -232,9 +234,11 @@ function DraggableTileComponent({
 
 export default memo(DraggableTileComponent);
 
-const styles = StyleSheet.create({
-  container: {
-    // The tile sizes itself; this wrapper only carries the transform.
-    alignSelf: 'flex-start',
-  },
-});
+const useStyles = makeStyles(({ palette, type }) =>
+  StyleSheet.create({
+    container: {
+      // The tile sizes itself; this wrapper only carries the transform.
+      alignSelf: 'flex-start',
+    },
+  }),
+);

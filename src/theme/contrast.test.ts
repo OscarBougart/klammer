@@ -9,7 +9,10 @@
  */
 import { describe, expect, it } from 'vitest';
 
-import { a11y, fontSize, palette } from './tokens';
+import { a11y, fontSize, palettes, type Palette } from './tokens';
+
+/** The shipping default; the claims in design.md §10 are about this one. */
+const palette = palettes.dark;
 
 /** WCAG relative luminance of an sRGB hex colour. */
 function luminance(hex: string): number {
@@ -92,5 +95,26 @@ describe('WCAG thresholds', () => {
     // is enough.
     expect(ratio(palette.feld, palette.schiefer)).toBeLessThan(1.3);
     expect(ratio(palette.kante, palette.feld)).toBeGreaterThan(1.2);
+  });
+});
+
+describe('the light theme clears the same floors', () => {
+  const light: Palette = palettes.light;
+
+  it('running text clears AA on the ground and on surfaces', () => {
+    for (const colour of [light.kreide, light.messing, light.grau, light.ziegel]) {
+      expect(ratio(colour, light.schiefer)).toBeGreaterThanOrEqual(4.5);
+      expect(ratio(colour, light.feld)).toBeGreaterThanOrEqual(4.5);
+    }
+  });
+
+  it('tile type reads against its face, plain and brass', () => {
+    expect(ratio(light.schiefer, light.kreide)).toBeGreaterThanOrEqual(4.5);
+    expect(ratio(light.schiefer, light.messing)).toBeGreaterThanOrEqual(4.5);
+  });
+
+  it('surfaces still need their kante edge', () => {
+    expect(ratio(light.feld, light.schiefer)).toBeLessThan(1.3);
+    expect(ratio(light.kante, light.feld)).toBeGreaterThan(1.2);
   });
 });

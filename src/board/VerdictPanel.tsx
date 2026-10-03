@@ -12,12 +12,12 @@
  * on a wrong answer and no failure sound — failing should be quiet.
  */
 import { memo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, type TextStyle } from 'react-native';
 
 import { useSettingsStore } from '@/store/settings';
 import type { Explanation } from '@/engine/rules';
 import type { Verdict } from '@/engine/validate';
-import { explanation, explanationStrong, gloss, palette, space } from '@/theme';
+import { makeStyles, space } from '@/theme';
 
 export type VerdictPanelProps = {
   verdict: Verdict;
@@ -48,6 +48,7 @@ function withoutLead(text: string, lead: string): string {
 }
 
 function VerdictPanelComponent({ verdict, message: raw, emphasis, solutionShown = false }: VerdictPanelProps) {
+  const styles = useStyles();
   const showSolution = solutionShown && verdict === 'falsch';
   const heading = showSolution ? SOLUTION_HEADING : HEADING[verdict];
   const message = {
@@ -85,7 +86,7 @@ function VerdictPanelComponent({ verdict, message: raw, emphasis, solutionShown 
 
       {message.de ? (
         <Text style={styles.german}>
-          {emphasis ? renderWithEmphasis(message.de, emphasis) : message.de}
+          {emphasis ? renderWithEmphasis(message.de, emphasis, styles.emphasis) : message.de}
         </Text>
       ) : null}
 
@@ -98,14 +99,14 @@ function VerdictPanelComponent({ verdict, message: raw, emphasis, solutionShown 
  * Sets the fronted constituent in the bold face inside the German line.
  * design.md §5 shows it emphasised: *Mit **morgen** im Vorfeld …*
  */
-function renderWithEmphasis(text: string, emphasis: string) {
+function renderWithEmphasis(text: string, emphasis: string, emphasisStyle: TextStyle) {
   const at = text.indexOf(emphasis);
   if (at === -1) return text;
 
   return (
     <>
       {text.slice(0, at)}
-      <Text style={styles.emphasis}>{emphasis}</Text>
+      <Text style={emphasisStyle}>{emphasis}</Text>
       {text.slice(at + emphasis.length)}
     </>
   );
@@ -113,27 +114,29 @@ function renderWithEmphasis(text: string, emphasis: string) {
 
 export default memo(VerdictPanelComponent);
 
-const styles = StyleSheet.create({
-  panel: {
-    gap: space.xs,
-    paddingHorizontal: space.lg,
-    paddingVertical: space.md,
-  },
-  heading: {
-    ...explanation,
-    color: palette.messing,
-  },
-  headingMarked: {
-    // The dimmer tone that matches the dimmer arc.
-    color: palette.grau,
-  },
-  headingWrong: {
-    // `ziegel` is the error state and appears nowhere else; it never shares a
-    // screen with `messing`.
-    color: palette.ziegel,
-  },
-  german: explanation,
-  english: gloss,
-  // Atkinson's real bold, named in the theme — never a font string here.
-  emphasis: explanationStrong,
-});
+const useStyles = makeStyles(({ palette, type }) =>
+  StyleSheet.create({
+    panel: {
+      gap: space.xs,
+      paddingHorizontal: space.lg,
+      paddingVertical: space.md,
+    },
+    heading: {
+      ...type.explanation,
+      color: palette.messing,
+    },
+    headingMarked: {
+      // The dimmer tone that matches the dimmer arc.
+      color: palette.grau,
+    },
+    headingWrong: {
+      // `ziegel` is the error state and appears nowhere else; it never shares a
+      // screen with `messing`.
+      color: palette.ziegel,
+    },
+    german: type.explanation,
+    english: type.gloss,
+    // Atkinson's real bold, named in the theme — never a font string here.
+    emphasis: type.explanationStrong,
+  }),
+);

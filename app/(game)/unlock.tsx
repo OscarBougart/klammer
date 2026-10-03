@@ -17,7 +17,7 @@ import Button from '@/components/Button';
 import FieldZone from '@/board/FieldZone';
 import { boardFields, type Tier } from '@/board/fields';
 import { tierInfo } from '@/content/tiers';
-import { explanation, gloss, heading, palette, space } from '@/theme';
+import { makeStyles, space } from '@/theme';
 
 /** What each tier opens up, in both languages. */
 const TIER_LESSON: Record<number, { name: string; de: string; en: string }> = {
@@ -44,6 +44,7 @@ const TIER_LESSON: Record<number, { name: string; de: string; en: string }> = {
 };
 
 export default function UnlockScreen() {
+  const styles = useStyles();
   const router = useRouter();
   const { tier: tierParam } = useLocalSearchParams<{ tier?: string }>();
 
@@ -87,37 +88,39 @@ export default function UnlockScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: palette.schiefer,
-    justifyContent: 'space-between',
-  },
-  header: {
-    padding: space.lg,
-    gap: space.xs,
-  },
-  eyebrow: gloss,
-  title: heading,
-  board: {
-    paddingHorizontal: space.lg,
-    gap: space.sm,
-  },
-  zoneWrap: {
-    opacity: 0.45,
-  },
-  zoneNew: {
-    // The new zone is the only one at full strength — the eye goes to it
-    // without needing an arrow or a label saying "new".
-    opacity: 1,
-  },
-  lesson: {
-    padding: space.lg,
-    gap: space.sm,
-  },
-  german: explanation,
-  english: gloss,
-  footer: {
-    padding: space.lg,
-  },
-});
+const useStyles = makeStyles(({ palette, type }) =>
+  StyleSheet.create({
+    root: {
+      flex: 1,
+      backgroundColor: palette.schiefer,
+      justifyContent: 'space-between',
+    },
+    header: {
+      padding: space.lg,
+      gap: space.xs,
+    },
+    eyebrow: type.gloss,
+    title: type.heading,
+    board: {
+      paddingHorizontal: space.lg,
+      gap: space.sm,
+    },
+    zoneWrap: {
+      opacity: 0.45,
+    },
+    zoneNew: {
+      // The new zone is the only one at full strength — the eye goes to it
+      // without needing an arrow or a label saying "new".
+      opacity: 1,
+    },
+    lesson: {
+      padding: space.lg,
+      gap: space.sm,
+    },
+    german: type.explanation,
+    english: type.gloss,
+    footer: {
+      padding: space.lg,
+    },
+  }),
+);

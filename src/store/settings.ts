@@ -1,9 +1,8 @@
 /**
  * Settings — E5.5.
  *
- * design.md §6 and §9: sound is off by default, the gloss can be hidden for
- * learners who want German only, and the daily reminder is optional and
- * declinable forever.
+ * design.md §6 and §9: a light theme on request, haptics that can be turned
+ * off, and a gloss that can be hidden for learners who want German only.
  *
  * Stored in AsyncStorage rather than SQLite: these are per-device preferences,
  * not learner history, and they should survive a database migration without
@@ -17,8 +16,6 @@ const STORAGE_KEY = 'klammer.settings.v1';
 export type Settings = {
   /** design.md §6: dark is the shipping default, and deliberately so. */
   theme: 'dark' | 'light';
-  /** Off by default. Failing should be quiet; succeeding should be optional. */
-  sound: boolean;
   haptics: boolean;
   /**
    * Whether to show the English gloss. A learner who can read the German alone
@@ -26,8 +23,6 @@ export type Settings = {
    * skip it.
    */
   showGloss: boolean;
-  /** One optional daily reminder, declinable forever. */
-  reminder: boolean;
   /**
    * The guided first sentence has been played. Not a switch on the settings
    * screen, but it is per-device and must survive a restart, so it lives with
@@ -38,10 +33,8 @@ export type Settings = {
 
 export const DEFAULT_SETTINGS: Settings = {
   theme: 'dark',
-  sound: false,
   haptics: true,
   showGloss: true,
-  reminder: false,
   guideDone: false,
 };
 
@@ -75,10 +68,10 @@ export const useSettingsStore = create<SettingsState>((setState, getState) => ({
   set: (key, value) => {
     setState({ [key]: value } as Pick<SettingsState, typeof key>);
 
-    const { theme, sound, haptics, showGloss, reminder, guideDone } = getState();
+    const { theme, haptics, showGloss, guideDone } = getState();
     void AsyncStorage.setItem(
       STORAGE_KEY,
-      JSON.stringify({ theme, sound, haptics, showGloss, reminder, guideDone }),
+      JSON.stringify({ theme, haptics, showGloss, guideDone }),
     );
   },
 }));

@@ -12,7 +12,7 @@ import { StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 
 import { capitalise } from '@/board/Tile';
 import { seed, type SeedSentence } from '@/content/seed';
-import { a11y, arc, border, gloss, miniTileText, palette, radius, shadow, space } from '@/theme';
+import { a11y, arc, border, makeStyles, radius, shadow, space } from '@/theme';
 
 export type SampleSentenceProps = {
   /** The Stufe to show a sentence from. */
@@ -44,6 +44,7 @@ function pickSentence(tier: number): SeedSentence | undefined {
 type Span = { x: number; y: number; width: number };
 
 function SampleSentenceComponent({ tier }: SampleSentenceProps) {
+  const styles = useStyles();
   const sentence = useMemo(() => pickSentence(tier), [tier]);
   const [spans, setSpans] = useState<Record<string, Span>>({});
 
@@ -126,57 +127,59 @@ function SampleSentenceComponent({ tier }: SampleSentenceProps) {
 
 export default memo(SampleSentenceComponent);
 
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: palette.feld,
-    borderRadius: radius.field,
-    borderWidth: border.hairline,
-    borderColor: palette.kante,
-    padding: space.lg,
-    gap: space.xs,
-  },
-  tiles: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: space.sm,
-  },
-  tile: {
-    backgroundColor: palette.kreide,
-    borderRadius: radius.tile,
-    paddingHorizontal: space.sm,
-    paddingVertical: space.xs,
-    // The same hard offset shadow as a board tile, drawn as a bottom edge.
-    borderBottomWidth: shadow.tileRest.offsetY,
-    borderBottomColor: shadow.tileRest.color,
-  },
-  tileFinite: {
-    backgroundColor: palette.messing,
-  },
-  tileText: miniTileText,
-  markRow: {
-    // Room for the bracket and its label under the tiles.
-    height: arc.tick + space.xl,
-  },
-  bracket: {
-    position: 'absolute',
-    top: space.xs,
-    height: arc.tick,
-    borderColor: palette.messing,
-    borderLeftWidth: arc.stroke,
-    borderRightWidth: arc.stroke,
-    borderBottomWidth: arc.stroke,
-    borderBottomLeftRadius: radius.tile,
-    borderBottomRightRadius: radius.tile,
-  },
-  markLabel: {
-    ...gloss,
-    position: 'absolute',
-    top: arc.tick + space.xs,
-    textAlign: 'center',
-    color: palette.messing,
-  },
-  verbNote: {
-    ...gloss,
-    color: palette.messing,
-  },
-});
+const useStyles = makeStyles(({ palette, type }) =>
+  StyleSheet.create({
+    card: {
+      backgroundColor: palette.feld,
+      borderRadius: radius.field,
+      borderWidth: border.hairline,
+      borderColor: palette.kante,
+      padding: space.lg,
+      gap: space.xs,
+    },
+    tiles: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: space.sm,
+    },
+    tile: {
+      backgroundColor: palette.kreide,
+      borderRadius: radius.tile,
+      paddingHorizontal: space.sm,
+      paddingVertical: space.xs,
+      // The same hard offset shadow as a board tile, drawn as a bottom edge.
+      borderBottomWidth: shadow.tileRest.offsetY,
+      borderBottomColor: palette.kante,
+    },
+    tileFinite: {
+      backgroundColor: palette.messing,
+    },
+    tileText: type.miniTileText,
+    markRow: {
+      // Room for the bracket and its label under the tiles.
+      height: arc.tick + space.xl,
+    },
+    bracket: {
+      position: 'absolute',
+      top: space.xs,
+      height: arc.tick,
+      borderColor: palette.messing,
+      borderLeftWidth: arc.stroke,
+      borderRightWidth: arc.stroke,
+      borderBottomWidth: arc.stroke,
+      borderBottomLeftRadius: radius.tile,
+      borderBottomRightRadius: radius.tile,
+    },
+    markLabel: {
+      ...type.gloss,
+      position: 'absolute',
+      top: arc.tick + space.xs,
+      textAlign: 'center',
+      color: palette.messing,
+    },
+    verbNote: {
+      ...type.gloss,
+      color: palette.messing,
+    },
+  }),
+);

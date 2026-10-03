@@ -24,11 +24,12 @@ import { SESSION_LENGTH } from '@/content/selection';
 import { HIGHEST_PLAYABLE_TIER } from '@/content/tiers';
 import { useSessionStore } from '@/store/session';
 import { useSettingsStore } from '@/store/settings';
-import { explanation, gloss, heading, palette, space } from '@/theme';
+import { makeStyles, space } from '@/theme';
 
 type Unfinished = { answered: number; tier: number } | null;
 
 export default function HomeScreen() {
+  const styles = useStyles();
   const router = useRouter();
 
   const [tier, setTier] = useState(1);
@@ -129,49 +130,51 @@ export default function HomeScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: palette.schiefer,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-    paddingHorizontal: space.lg,
-    paddingTop: space.lg,
-    paddingBottom: space.md,
-    gap: space.md,
-  },
-  headerText: {
-    flex: 1,
-    gap: space.xs,
-  },
-  title: heading,
-  subtitle: explanation,
-  subtitleGloss: gloss,
-  scroll: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingHorizontal: space.lg,
-    paddingBottom: space.lg,
-    gap: space.xl,
-  },
-  section: {
-    gap: space.sm,
-  },
-  sectionLabel: gloss,
-  footer: {
-    paddingHorizontal: space.lg,
-    paddingTop: space.md,
-    paddingBottom: space.md,
-    gap: space.sm,
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: palette.kante,
-  },
-  hint: {
-    ...gloss,
-    textAlign: 'center',
-  },
-});
+const useStyles = makeStyles(({ palette, type }) =>
+  StyleSheet.create({
+    root: {
+      flex: 1,
+      backgroundColor: palette.schiefer,
+    },
+    header: {
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+      justifyContent: 'space-between',
+      paddingHorizontal: space.lg,
+      paddingTop: space.lg,
+      paddingBottom: space.md,
+      gap: space.md,
+    },
+    headerText: {
+      flex: 1,
+      gap: space.xs,
+    },
+    title: type.heading,
+    subtitle: type.explanation,
+    subtitleGloss: type.gloss,
+    scroll: {
+      flex: 1,
+    },
+    scrollContent: {
+      paddingHorizontal: space.lg,
+      paddingBottom: space.lg,
+      gap: space.xl,
+    },
+    section: {
+      gap: space.sm,
+    },
+    sectionLabel: type.gloss,
+    footer: {
+      paddingHorizontal: space.lg,
+      paddingTop: space.md,
+      paddingBottom: space.md,
+      gap: space.sm,
+      borderTopWidth: StyleSheet.hairlineWidth,
+      borderTopColor: palette.kante,
+    },
+    hint: {
+      ...type.gloss,
+      textAlign: 'center',
+    },
+  }),
+);

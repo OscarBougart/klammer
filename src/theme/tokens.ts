@@ -10,8 +10,19 @@
  */
 import raw from './tokens.json';
 
-/** Seven values. `messing` and `ziegel` never appear together. */
-export const palette = raw.palette;
+/**
+ * Seven values per theme. `messing` and `ziegel` never appear together.
+ *
+ * The names are roles, not colours: in the light theme `kreide` is the dark
+ * type and tile face, `schiefer` the light ground. Swapping the whole set is
+ * what makes a theme, so no component ever asks which theme it is in. Read
+ * the current set with `useTheme()`; never import a palette into a style
+ * sheet directly, or the screen stops following the setting.
+ */
+export const palettes = {
+  dark: raw.palette,
+  light: raw.paletteLight,
+} as const;
 
 /**
  * schiefer — board ground
@@ -22,7 +33,11 @@ export const palette = raw.palette;
  * messing  — the Klammer arc, finite verb, success
  * ziegel   — error state only
  */
-export type PaletteToken = keyof typeof palette;
+export type PaletteToken = keyof typeof raw.palette;
+
+export type Palette = Record<PaletteToken, string>;
+
+export type ThemeName = keyof typeof palettes;
 
 /**
  * Font families.
@@ -65,9 +80,10 @@ export const space = raw.space;
 export const radius = raw.radius;
 
 /** Hard offset shadows only. No soft blur anywhere in the app. */
+/** The colour is always the theme's `kante`. */
 export const shadow = {
-  tileRest: { offsetY: 2, blur: 0, color: palette.kante },
-  tileLifted: { offsetY: 5, blur: 0, color: palette.kante },
+  tileRest: { offsetY: 2, blur: 0 },
+  tileLifted: { offsetY: 5, blur: 0 },
 } as const;
 
 export const scale = {
