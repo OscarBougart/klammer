@@ -1,7 +1,7 @@
 /**
  * The session — E4.1 / E4.4 / E4.6.
  *
- * design.md §7: a session is ten sentences. Fixed. No endless mode, no "just
+ * design.md §7: a session is five sentences. Fixed. No endless mode, no "just
  * one more". No timer during a puzzle, because timing pressure degrades the
  * exact processing this app trains.
  *
@@ -104,7 +104,7 @@ export function isSessionComplete(
 /**
  * How many of the session's answers were correct.
  *
- * Tier advance needs 8/10 canonical-or-valid across three consecutive
+ * Tier advance needs 4/5 canonical-or-valid across three consecutive
  * sessions, so the three accepted classes count equally here — a learner who
  * reaches for a marked-but-grammatical order has not made a mistake.
  */

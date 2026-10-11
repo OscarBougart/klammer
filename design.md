@@ -6,7 +6,7 @@ German word order, one sentence at a time.
 **Package:** `com.carbonelk.klammer`
 **Platform:** Android first (Google Play), iOS later
 **Price:** Free. No ads, no accounts, no network, no IAP.
-**Session:** 10 sentences, 10–14 minutes.
+**Session:** 5 sentences, about 5 minutes.
 
 ---
 
@@ -261,8 +261,10 @@ did nothing was removed rather than shipped.
 
 ## 7. Session and progression
 
-**A session is ten sentences.** Fixed. No endless mode, no "just one more."
-Finishing shows a board of the ten sentences you built, tappable to review.
+**A session is five sentences.** Fixed. No endless mode, no "just one more."
+Five, not ten: the app is for practising a bit, and ten read as a chore.
+Finishing shows the five sentences you built, wrong ones first, tappable to
+review.
 
 **No timer during a puzzle.** Timing pressure degrades the exact processing this
 app trains.
@@ -270,15 +272,18 @@ app trains.
 **No streak on screen.** The app is for practising a bit, easily. Home shows a
 sample sentence from the selected Stufe (tiles, brass verb, and from Stufe 2
 the bracket), the five Stufen as a path — passed, current with "n von 3 guten
-Runden", locked, or "bald" when a Stufe has no sentences yet — and one button.
-A passed Stufe can be tapped to practise; only sessions at the current Stufe
-count toward moving up, and nobody is promoted into a Stufe with no sentences.
+Runden", open, or "bald" when a Stufe has no sentences yet — and one button.
+Every Stufe with sentences can be tapped and played: nothing is locked, so a
+learner who already knows the basics can go straight to the bracket. The
+path is a suggested route, not a gate. Only sessions at the learner's own
+Stufe count toward moving up, and nobody is promoted into a Stufe with no
+sentences.
 Played days are still recorded
 (`progression.ts` keeps the week-strip and repair logic), but nothing shows
 them. If a streak ever returns, it is a seven-day week strip, never a number
 that climbs to 400.
 
-**Tier advance** requires 8/10 canonical-or-valid across three consecutive
+**Tier advance** requires 4/5 canonical-or-valid across three consecutive
 sessions. Advancement is announced as a new zone appearing on the board, with a
 30-second explanation of what that zone does.
 

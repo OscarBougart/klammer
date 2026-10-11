@@ -18,11 +18,11 @@ export const MAX_TIER = 5;
 /** Sessions needed at the threshold before a tier opens up. */
 export const ADVANCE_SESSIONS = 3;
 
-/** Correct answers out of ten required in each of them. */
-export const ADVANCE_THRESHOLD = 8;
+/** Correct answers out of five required in each of them. */
+export const ADVANCE_THRESHOLD = 4;
 
 /**
- * Whether the learner has earned the next tier — 8/10 correct across three
+ * Whether the learner has earned the next tier — 4/5 correct across three
  * consecutive sessions.
  *
  * `recentCorrect` is the correct-count of the last sessions, newest first.

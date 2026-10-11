@@ -49,10 +49,11 @@ export type Field = {
 };
 
 /**
- * Field definitions. The label for the left bracket changes at tier 4, where
- * it stops being the finite verb's home and becomes the conjunction's.
+ * Field definitions. The label for the left bracket changes in a verb-final
+ * clause, where it stops being the finite verb's home and becomes the
+ * conjunction's. A main clause keeps the verb there at every tier.
  */
-function fieldsFor(tier: Tier): Field[] {
+function fieldsFor(tier: Tier, verbFinal: boolean): Field[] {
   // Tier 1 names the first two fields by what they are for. The grammar's
   // own names arrive with the bracket at tier 2, when there is a reason to
   // call position 2 a "left" anything.
@@ -82,7 +83,7 @@ function fieldsFor(tier: Tier): Field[] {
   };
 
   const linkeKlammer: Field =
-    tier >= 4
+    tier >= 4 && verbFinal
       ? {
           id: 'linkeKlammer',
           label: 'Konjunktion',
@@ -154,7 +155,25 @@ export type ClauseShape = {
    * with the sentence, not with the tier.
    */
   verbFinal: boolean;
+  /**
+   * The sentence has something that may stand after the right bracket — a
+   * whole subordinate clause or an `als` comparison. A tier-4 main clause
+   * with a `weil` clause can be built either way round, and the extraposed
+   * reading needs a field to be drawn in.
+   */
+  nachfeld?: boolean;
 };
+
+/** Roles that may stand in the Nachfeld — mirrors content/roles.ts. */
+const NACHFELD_ROLES = new Set(['NEBENSATZ', 'VERGL']);
+
+/** The shape of a sentence, read off its chunks' roles. */
+export function clauseShape(roles: readonly string[]): ClauseShape {
+  return {
+    verbFinal: isVerbFinal(roles),
+    nachfeld: roles.some((r) => NACHFELD_ROLES.has(r)),
+  };
+}
 
 /**
  * The zones on the board for this sentence, left to right.
@@ -165,9 +184,14 @@ export type ClauseShape = {
  * The board shows the structure actually in play.
  */
 export function boardFields(tier: Tier, shape: ClauseShape = { verbFinal: false }): Field[] {
-  const fields = fieldsFor(tier);
-  if (!shape.verbFinal) return fields;
-  return fields.filter((f) => f.id !== 'vorfeld');
+  const fields = fieldsFor(tier, shape.verbFinal);
+  if (shape.verbFinal) return fields.filter((f) => f.id !== 'vorfeld' && f.id !== 'nachfeld');
+  // Tier 5 always has the Nachfeld; tier 4 only for a sentence that can use it.
+  if (tier === 4 && shape.nachfeld) {
+    const nachfeld = fieldsFor(5, false).find((f) => f.id === 'nachfeld');
+    if (nachfeld) return [...fields, nachfeld];
+  }
+  return fields;
 }
 
 /**

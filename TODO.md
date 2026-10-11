@@ -1,6 +1,6 @@
 # Klammer — what is left
 
-State as of 2026-09-25, branch `feat/core-and-sdk57` (PR #1).
+State as of 2026-10-06, branch `feat/core-and-sdk57` (PR #1).
 
 ## 1. Broken: fix first
 
@@ -11,13 +11,12 @@ State as of 2026-09-25, branch `feat/core-and-sdk57` (PR #1).
   which fixed the drop that never landed. Checked on the Pixel 7 emulator
   (tier-1 intro). Still to check: a tier-2 sentence (bracket in the field
   view), large text, TalkBack.
-- **Three settings do nothing.** Light theme, Sound and Daily reminder are
-  saved but nothing reads them. Either implement them or remove the
-  switches (a reminder needs a notification permission, which changes the
-  Play Data Safety answers; see CLAUDE.md).
+- **Settings:** done. Sound and Daily reminder were removed; Light theme,
+  Vibration and the English gloss all work.
 
 - **Home redesign (2026-09-27, uncommitted):** sample sentence card, level
-  path (tap a passed Stufe to practise; only the current Stufe counts), gear
+  path (every Stufe with sentences can be played; only the learner's own
+  Stufe counts toward moving up — changed 2026-10-06), gear
   for settings. Checked on the emulator at Stufe 1 and (temporarily forced)
   Stufe 3. The Expo Go dev button sits over the gear on the emulator, so the
   gear tap itself is untested there.
@@ -45,18 +44,20 @@ State as of 2026-09-25, branch `feat/core-and-sdk57` (PR #1).
 
 ## 4. UX to improve
 
-- Session length: ten sentences may be too much for "practise a bit";
-  consider 5, or a "Fertig für heute" exit that keeps what was answered.
+- Session length: now 5 sentences, a good round 4 of 5 (2026-10-06). A
+  "Fertig für heute" exit is still an option if 5 feels long.
 - Tier-unlock screens (2–5) still use the old static board; bring them in
   line with the intro (a guided example sentence).
 - Tapping a tile in the tray while another is selected just switches the
   selection; fine, but worth checking it reads as intended.
-- Result screen: the list is long; consider showing only the wrong ones
-  first.
+- Result screen: wrong answers now come first, the first one opened.
+- Intro/board: the word bank now sits under the row instead of at the foot
+  of the screen. Check on a short phone that Prüfen and the bank still fit.
 
 ## 5. Content and grammar
 
-- **240 of 370 sentences are `verified: false`.** A German speaker must
+- **392 of 522 sentences are `verified: false`** (all of tiers 4 and 5 are
+  new drafts). A German speaker must
   read them before closed testing (see `GERMAN-REVIEW.md`, "Verification
   status"). This is the release blocker.
 - Open questions for the reviewer in `GERMAN-REVIEW.md`: accusative-first
@@ -66,7 +67,9 @@ State as of 2026-09-25, branch `feat/core-and-sdk57` (PR #1).
   shapes; a bank test catches it but the generator is not fixed.
 - Generator never produces a bare object after a place phrase (`Sie kauft
   auf dem Markt Gemüse`); t1-70 and t1-105 use `extraAccepted` instead.
-- Tiers 4 and 5 (100 + 50 sentences) for the full 520.
+- Tiers 4 and 5 drafted (102 + 50, 2026-10-06). Not yet seen on a device:
+  the lead-in line above a subclause, the Nachfeld field after Prüfen, the
+  Home sample card at Stufe 4 and 5.
 
 ## 6. Release (RELEASE.md)
 

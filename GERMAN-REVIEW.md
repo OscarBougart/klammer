@@ -152,6 +152,20 @@ rules, but no German speaker has seen them. They are playable, and
 `npm run content:expand` prints the draft warning until they are checked.
 Flip each one only after a German speaker has read it.
 
+**Tiers 4 and 5 are entirely `verified: false`** (2026-10-06): t4-01–t4-102
+and t5-01–t5-50, drafted without a native speaker so the two Stufen are
+playable. Points a reviewer should look at first:
+
+- Comparisons (t5-01–t5-20) with `als …` kept inside the bracket are accepted
+  as `gueltig` (`Sie hat besser als ich gespielt`). Fronting the comparative
+  word itself is accepted only with `als …` in the Nachfeld; the other order
+  is vetoed per sentence.
+- Fronted subclauses at tier 5 (`Dass heute Montag ist, habe ich vergessen`,
+  `Wie der Urlaub war, hat er uns erzählt`) are all accepted as `gueltig`.
+- Subclause swaps of an object around `wirklich`, `selbst`, `allein`,
+  `unbedingt` (t4-12, t4-20, t4-33, t4-59, t4-74) are `gueltig`; `selbst`
+  in front of the object shifts its meaning to "herself".
+
 What that review actually covered, so the record is honest:
 
 - Every **rule** the generator applies — Mittelfeld ranking, Vorfeld

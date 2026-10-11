@@ -29,7 +29,7 @@ const base = {
 };
 
 describe('selectSession', () => {
-  it('returns ten sentences', () => {
+  it('returns a full session', () => {
     expect(selectSession(base)).toHaveLength(SESSION_LENGTH);
   });
 
@@ -64,12 +64,12 @@ describe('selectSession', () => {
   });
 
   it('prefers unseen sentences over seen ones', () => {
-    const seen = new Set(Array.from({ length: 10 }, (_, i) => `t1-${i}`));
+    const seen = new Set(Array.from({ length: 12 }, (_, i) => `t1-${i}`));
     const chosen = selectSession({ ...base, seen });
 
-    // Five unseen exist; they should all appear before any seen one.
+    // Three unseen exist; they should all appear before any seen one.
     const firstSeenAt = chosen.findIndex((s) => seen.has(s.id));
-    expect(firstSeenAt).toBe(5);
+    expect(firstSeenAt).toBe(3);
   });
 
   it('never repeats a sentence within a session', () => {
@@ -81,10 +81,10 @@ describe('selectSession', () => {
   });
 
   it('falls back to earlier tiers when the current one runs short', () => {
-    const small = [sentence('t2-only', 2), ...Array.from({ length: 5 }, (_, i) => sentence(`t1-${i}`, 1))];
+    const small = [sentence('t2-only', 2), ...Array.from({ length: 3 }, (_, i) => sentence(`t1-${i}`, 1))];
     const chosen = selectSession({ ...base, sentences: small, tier: 2 });
 
-    expect(chosen).toHaveLength(6);
+    expect(chosen).toHaveLength(4);
     expect(chosen[0]?.id).toBe('t2-only');
   });
 

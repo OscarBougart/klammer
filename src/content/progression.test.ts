@@ -9,44 +9,44 @@ import {
 } from './progression';
 
 describe('shouldAdvanceTier', () => {
-  it('advances on three consecutive sessions at 8/10', () => {
-    expect(shouldAdvanceTier(1, [8, 9, 10])).toBe(true);
+  it('advances on three consecutive sessions at 4/5', () => {
+    expect(shouldAdvanceTier(1, [4, 5, 4])).toBe(true);
   });
 
   it('does not advance on two good sessions', () => {
-    expect(shouldAdvanceTier(1, [10, 10])).toBe(false);
+    expect(shouldAdvanceTier(1, [5, 5])).toBe(false);
   });
 
   it('requires the three most recent, not the best three', () => {
     // A weak session most recently means not yet, however good the older ones.
-    expect(shouldAdvanceTier(1, [7, 10, 10, 10])).toBe(false);
+    expect(shouldAdvanceTier(1, [3, 5, 5, 5])).toBe(false);
   });
 
   it('ignores sessions older than the last three', () => {
-    expect(shouldAdvanceTier(1, [8, 8, 8, 0, 0])).toBe(true);
+    expect(shouldAdvanceTier(1, [4, 4, 4, 0, 0])).toBe(true);
   });
 
   it('stops at the last tier', () => {
-    expect(shouldAdvanceTier(MAX_TIER, [10, 10, 10])).toBe(false);
+    expect(shouldAdvanceTier(MAX_TIER, [5, 5, 5])).toBe(false);
   });
 
   it('does not promote into a tier that has no sentences', () => {
-    expect(shouldAdvanceTier(3, [10, 10, 10], 3)).toBe(false);
-    expect(shouldAdvanceTier(2, [10, 10, 10], 3)).toBe(true);
+    expect(shouldAdvanceTier(3, [5, 5, 5], 3)).toBe(false);
+    expect(shouldAdvanceTier(2, [5, 5, 5], 3)).toBe(true);
   });
 });
 
 describe('goodRoundsInARow', () => {
   it('counts the most recent good sessions until the first weak one', () => {
-    expect(goodRoundsInARow([9, 8, 3, 10])).toBe(2);
+    expect(goodRoundsInARow([5, 4, 3, 5])).toBe(2);
   });
 
   it('is zero when the latest session was weak', () => {
-    expect(goodRoundsInARow([7, 10, 10])).toBe(0);
+    expect(goodRoundsInARow([3, 5, 5])).toBe(0);
   });
 
   it('never counts past the three that are needed', () => {
-    expect(goodRoundsInARow([10, 10, 10, 10])).toBe(3);
+    expect(goodRoundsInARow([5, 5, 5, 5])).toBe(3);
   });
 
   it('is zero with no sessions yet', () => {

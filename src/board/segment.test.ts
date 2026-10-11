@@ -6,6 +6,7 @@ import { segmentOrder } from './segment';
 const TIER1: FieldId[] = ['vorfeld', 'linkeKlammer', 'mittelfeld'];
 const TIER2: FieldId[] = ['vorfeld', 'linkeKlammer', 'mittelfeld', 'rechteKlammer'];
 const VERB_FINAL: FieldId[] = ['linkeKlammer', 'mittelfeld', 'rechteKlammer'];
+const TIER5: FieldId[] = ['vorfeld', 'linkeKlammer', 'mittelfeld', 'rechteKlammer', 'nachfeld'];
 
 const roles: Record<string, string> = {
   ich: 'PRON_NOM',
@@ -19,6 +20,11 @@ const roles: Record<string, string> = {
   weil: 'KONJ',
   muss: 'FIN',
   gehen: 'INF',
+  bin: 'FIN',
+  hause: 'LOK',
+  geblieben: 'PART',
+  krank: 'NEBENSATZ',
+  als: 'VERGL',
 };
 const roleOf = (id: string) => roles[id];
 
@@ -85,6 +91,34 @@ describe('segmentOrder', () => {
       linkeKlammer: ['weil'],
       mittelfeld: ['ich', 'morgen'],
       rechteKlammer: ['gehen', 'muss'],
+    });
+  });
+
+  it('puts a clause after the bracket in the Nachfeld', () => {
+    expect(segmentOrder(['ich', 'bin', 'hause', 'geblieben', 'krank'], roleOf, TIER5)).toEqual({
+      vorfeld: ['ich'],
+      linkeKlammer: ['bin'],
+      mittelfeld: ['hause'],
+      rechteKlammer: ['geblieben'],
+      nachfeld: ['krank'],
+    });
+  });
+
+  it('leaves the Nachfeld empty when the clause is fronted', () => {
+    expect(segmentOrder(['krank', 'bin', 'ich', 'hause', 'geblieben'], roleOf, TIER5)).toEqual({
+      vorfeld: ['krank'],
+      linkeKlammer: ['bin'],
+      mittelfeld: ['ich', 'hause'],
+      rechteKlammer: ['geblieben'],
+      nachfeld: [],
+    });
+  });
+
+  it('keeps a comparison inside the bracket in the Mittelfeld', () => {
+    expect(segmentOrder(['ich', 'hat', 'kaffee', 'als', 'gekauft'], roleOf, TIER5)).toMatchObject({
+      mittelfeld: ['kaffee', 'als'],
+      rechteKlammer: ['gekauft'],
+      nachfeld: [],
     });
   });
 });

@@ -15,6 +15,9 @@ import type { FieldId } from './fields';
 /** Verbal material that closes a main clause's right bracket. */
 const RIGHT_BRACKET_ROLES = new Set(['PART', 'INF', 'PTKVZ']);
 
+/** What may stand after the right bracket — content/roles.ts NACHFELD_ELIGIBLE. */
+const NACHFELD_ROLES = new Set(['NEBENSATZ', 'VERGL']);
+
 export type Segments = Partial<Record<FieldId, string[]>>;
 
 export function segmentOrder(
@@ -35,7 +38,16 @@ export function segmentOrder(
     return RIGHT_BRACKET_ROLES.has(role) || (verbFinal && role === 'FIN');
   };
 
+  // The Nachfeld is whatever Nachfeld material ends the sentence, behind the
+  // bracket. Peeled first, so the bracket's run of verbs is found in front of
+  // it. Material of that kind anywhere else stays where the learner put it.
   let end = order.length;
+  if (has('nachfeld')) {
+    while (end > 0 && NACHFELD_ROLES.has(roleOf(order[end - 1] ?? '') ?? '')) end -= 1;
+    out.nachfeld = order.slice(end);
+  }
+  const nachfeldStart = end;
+
   if (has('rechteKlammer')) {
     while (end > 0 && closes(order[end - 1] ?? '')) end -= 1;
   }
@@ -55,7 +67,7 @@ export function segmentOrder(
   }
 
   out.mittelfeld = order.slice(start, end);
-  if (has('rechteKlammer')) out.rechteKlammer = order.slice(end);
+  if (has('rechteKlammer')) out.rechteKlammer = order.slice(end, nachfeldStart);
 
   return out;
 }

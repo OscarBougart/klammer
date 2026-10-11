@@ -141,7 +141,7 @@ export async function loadSessionAttempts(
  * A session is unfinished when it has fewer attempts than it had sentences.
  * The sentence list is not stored separately; it is recovered from the
  * attempts plus the selection that produced them, so an interrupted session
- * resumes with the same ten sentences it started with.
+ * resumes with the same five sentences it started with.
  */
 export async function loadUnfinishedSessionId(
   sessionLength: number,

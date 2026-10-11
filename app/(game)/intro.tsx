@@ -283,7 +283,7 @@ const useStyles = makeStyles(({ palette, type }) =>
       ...type.explanation,
       color: palette.kreide,
     },
-    hintGloss: type.fieldLabel,
+    hintGloss: type.gloss,
     row: {
       flexDirection: 'row',
       gap: space.md,

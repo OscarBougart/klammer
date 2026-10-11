@@ -1,7 +1,7 @@
 /**
- * The session — ten sentences, one board — E4.1 / E4.2 / E4.4 / E4.6.
+ * The session — five sentences, one board — E4.1 / E4.2 / E4.4 / E4.6.
  *
- * design.md §7: ten sentences, fixed, and no timer during a puzzle. The
+ * design.md §7: five sentences, fixed, and no timer during a puzzle. The
  * progress indicator says how far through you are and nothing about how fast.
  *
  * After a wrong answer the learner may try again. Only the first attempt is
@@ -16,7 +16,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '@/components/Button';
 import Board from '@/board/Board';
 import { DragProvider } from '@/board/dragContext';
-import { boardFields, isVerbFinal, type FieldId, type Tier } from '@/board/fields';
+import { boardFields, clauseShape, type FieldId, type Tier } from '@/board/fields';
 import { guideLine } from '@/board/guide';
 import { segmentOrder } from '@/board/segment';
 import VerdictPanel from '@/board/VerdictPanel';
@@ -116,7 +116,7 @@ export default function SessionScreen() {
     let cancelled = false;
 
     const begin = async () => {
-      // An interrupted session resumes with the same ten sentences rather
+      // An interrupted session resumes with the same five sentences rather
       // than dealing a fresh set — design.md's session is a unit of work, and
       // restarting it would punish closing the app.
       const [unfinished, progress, reviews, seen] = await Promise.all([
@@ -213,7 +213,7 @@ export default function SessionScreen() {
 
   const fieldOrder = useMemo<FieldId[]>(() => {
     if (!sentence) return [];
-    const shape = { verbFinal: isVerbFinal(tiles.map((t) => t.role)) };
+    const shape = clauseShape(tiles.map((t) => t.role));
     return boardFields(sentence.tier as Tier, shape).map((f) => f.id);
   }, [sentence, tiles]);
 
@@ -466,8 +466,10 @@ const useStyles = makeStyles(({ palette, type }) =>
       gap: space.xs,
       paddingHorizontal: space.lg,
     },
-    hintText: type.fieldLabel,
-    hintGloss: type.fieldLabel,
+    // Sentences, so they read as sentences: no label tracking, and at the
+    // 15px floor design.md §10 sets for grau.
+    hintText: { ...type.gloss, color: palette.kreide },
+    hintGloss: type.gloss,
     row: {
       flexDirection: 'row',
       gap: space.md,

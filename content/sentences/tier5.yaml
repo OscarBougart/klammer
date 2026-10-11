@@ -1,0 +1,729 @@
+# Tier 5 — Das Nachfeld.
+#
+# What may stand behind the right bracket: a comparison with `als`/`wie`, and
+# a whole subclause carried as one tile. Every comparison sentence but one has
+# a right bracket (Perfekt) so the Nachfeld is visibly outside it. A
+# comparison may also stay inside the bracket (`gueltig`); a subclause may
+# instead fill the Vorfeld.
+#
+# The generator cannot tell which tile a comparison belongs to, so when that
+# tile is fronted it still offers `als …` inside the bracket: `Besser hat sie
+# als ich gespielt`, which is not German. Those orders are vetoed per sentence.
+#
+# All `verified: false`: drafted without a native speaker. GERMAN-REVIEW.md.
+#
+# Authored source of truth. Edit here, then `npm run content:expand`.
+
+# ─── Comparisons behind the bracket ───
+
+- id: t5-01
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: He came earlier today than usual.
+  chunks:
+    - { id: er,     surface: "Er",        neutralSurface: "er",        role: PRON_NOM }
+    - { id: ist,    surface: "ist",       neutralSurface: "ist",       role: FIN }
+    - { id: heute,  surface: "heute",     neutralSurface: "heute",     role: TEMP }
+    - { id: fruehe, surface: "früher",    neutralSurface: "früher",    role: MODAL }
+    - { id: gekomm, surface: "gekommen",  neutralSurface: "gekommen",  role: PART }
+    - { id: sonst,  surface: "als sonst", neutralSurface: "als sonst", role: VERGL }
+  canonical: [er, ist, heute, fruehe, gekomm, sonst]
+  # The comparative fronted leaves `als …` stranded inside the bracket.
+  vetoed:
+    - [fruehe, ist, er, heute, sonst, gekomm]
+
+- id: t5-02
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: She played better than me.
+  chunks:
+    - { id: sie,    surface: "Sie",      neutralSurface: "sie",      role: PRON_NOM }
+    - { id: hat,    surface: "hat",      neutralSurface: "hat",      role: FIN }
+    - { id: besser, surface: "besser",   neutralSurface: "besser",   role: MODAL }
+    - { id: gespie, surface: "gespielt", neutralSurface: "gespielt", role: PART }
+    - { id: ich,    surface: "als ich",  neutralSurface: "als ich",  role: VERGL }
+  canonical: [sie, hat, besser, gespie, ich]
+  # The comparative fronted leaves `als …` stranded inside the bracket.
+  vetoed:
+    - [besser, hat, sie, ich, gespie]
+
+- id: t5-03
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: We ate more today than yesterday.
+  chunks:
+    - { id: wir,    surface: "Wir",         neutralSurface: "wir",         role: PRON_NOM }
+    - { id: haben,  surface: "haben",       neutralSurface: "haben",       role: FIN }
+    - { id: heute,  surface: "heute",       neutralSurface: "heute",       role: TEMP }
+    - { id: mehr,   surface: "mehr",        neutralSurface: "mehr",        role: MODAL }
+    - { id: gegess, surface: "gegessen",    neutralSurface: "gegessen",    role: PART }
+    - { id: gester, surface: "als gestern", neutralSurface: "als gestern", role: VERGL }
+  canonical: [wir, haben, heute, mehr, gegess, gester]
+  # The comparative fronted leaves `als …` stranded inside the bracket.
+  vetoed:
+    - [mehr, haben, wir, heute, gester, gegess]
+
+- id: t5-04
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: The hotel cost more than planned.
+  chunks:
+    - { id: hotel,  surface: "Das Hotel",   neutralSurface: "das Hotel",   role: SUBJ }
+    - { id: hat,    surface: "hat",         neutralSurface: "hat",         role: FIN }
+    - { id: mehr,   surface: "mehr",        neutralSurface: "mehr",        role: MODAL }
+    - { id: gekost, surface: "gekostet",    neutralSurface: "gekostet",    role: PART }
+    - { id: geplan, surface: "als geplant", neutralSurface: "als geplant", role: VERGL }
+  canonical: [hotel, hat, mehr, gekost, geplan]
+  # The comparative fronted leaves `als …` stranded inside the bracket.
+  vetoed:
+    - [mehr, hat, hotel, geplan, gekost]
+
+- id: t5-05
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: I ran faster than my brother.
+  chunks:
+    - { id: ich,    surface: "Ich",             neutralSurface: "ich",             role: PRON_NOM }
+    - { id: bin,    surface: "bin",             neutralSurface: "bin",             role: FIN }
+    - { id: schnel, surface: "schneller",       neutralSurface: "schneller",       role: MODAL }
+    - { id: gelauf, surface: "gelaufen",        neutralSurface: "gelaufen",        role: PART }
+    - { id: mein,   surface: "als mein Bruder", neutralSurface: "als mein Bruder", role: VERGL }
+  canonical: [ich, bin, schnel, gelauf, mein]
+  # The comparative fronted leaves `als …` stranded inside the bracket.
+  vetoed:
+    - [schnel, bin, ich, mein, gelauf]
+
+- id: t5-06
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: He slept longer than us.
+  chunks:
+    - { id: er,     surface: "Er",         neutralSurface: "er",         role: PRON_NOM }
+    - { id: hat,    surface: "hat",        neutralSurface: "hat",        role: FIN }
+    - { id: laenge, surface: "länger",     neutralSurface: "länger",     role: MODAL }
+    - { id: geschl, surface: "geschlafen", neutralSurface: "geschlafen", role: PART }
+    - { id: wir,    surface: "als wir",    neutralSurface: "als wir",    role: VERGL }
+  canonical: [er, hat, laenge, geschl, wir]
+  # The comparative fronted leaves `als …` stranded inside the bracket.
+  vetoed:
+    - [laenge, hat, er, wir, geschl]
+
+- id: t5-07
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: She speaks German better than me.
+  chunks:
+    - { id: sie,    surface: "Sie",     neutralSurface: "sie",     role: PRON_NOM }
+    - { id: sprich, surface: "spricht", neutralSurface: "spricht", role: FIN }
+    - { id: besser, surface: "besser",  neutralSurface: "besser",  role: MODAL }
+    - { id: deutsc, surface: "Deutsch", neutralSurface: "Deutsch", role: AKK, definite: false }
+    - { id: ich,    surface: "als ich", neutralSurface: "als ich", role: VERGL }
+  canonical: [sie, sprich, besser, deutsc, ich]
+
+- id: t5-08
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: The cake turned out better than last time.
+  chunks:
+    - { id: kuchen, surface: "Der Kuchen",      neutralSurface: "der Kuchen",      role: SUBJ }
+    - { id: ist,    surface: "ist",             neutralSurface: "ist",             role: FIN }
+    - { id: besser, surface: "besser",          neutralSurface: "besser",          role: PRAED }
+    - { id: geword, surface: "geworden",        neutralSurface: "geworden",        role: PART }
+    - { id: letzte, surface: "als letztes Mal", neutralSurface: "als letztes Mal", role: VERGL }
+  canonical: [kuchen, ist, besser, geword, letzte]
+  # The comparative fronted leaves `als …` stranded inside the bracket.
+  vetoed:
+    - [besser, ist, kuchen, letzte, geword]
+
+- id: t5-09
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: We arrived later than planned.
+  chunks:
+    - { id: wir,    surface: "Wir",         neutralSurface: "wir",         role: PRON_NOM }
+    - { id: sind,   surface: "sind",        neutralSurface: "sind",        role: FIN }
+    - { id: spaete, surface: "später",      neutralSurface: "später",      role: MODAL }
+    - { id: angeko, surface: "angekommen",  neutralSurface: "angekommen",  role: PART }
+    - { id: geplan, surface: "als geplant", neutralSurface: "als geplant", role: VERGL }
+  canonical: [wir, sind, spaete, angeko, geplan]
+  # The comparative fronted leaves `als …` stranded inside the bracket.
+  vetoed:
+    - [spaete, sind, wir, geplan, angeko]
+
+- id: t5-10
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: She spent more money than her husband.
+  chunks:
+    - { id: sie,    surface: "Sie",          neutralSurface: "sie",          role: PRON_NOM }
+    - { id: hat,    surface: "hat",          neutralSurface: "hat",          role: FIN }
+    - { id: geld,   surface: "mehr Geld",    neutralSurface: "mehr Geld",    role: AKK, definite: false }
+    - { id: ausgeg, surface: "ausgegeben",   neutralSurface: "ausgegeben",   role: PART }
+    - { id: ihr,    surface: "als ihr Mann", neutralSurface: "als ihr Mann", role: VERGL }
+  canonical: [sie, hat, geld, ausgeg, ihr]
+  # The comparative fronted leaves `als …` stranded inside the bracket.
+  vetoed:
+    - [geld, hat, sie, ihr, ausgeg]
+
+- id: t5-11
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: He drove faster than allowed.
+  chunks:
+    - { id: er,     surface: "Er",          neutralSurface: "er",          role: PRON_NOM }
+    - { id: ist,    surface: "ist",         neutralSurface: "ist",         role: FIN }
+    - { id: schnel, surface: "schneller",   neutralSurface: "schneller",   role: MODAL }
+    - { id: gefahr, surface: "gefahren",    neutralSurface: "gefahren",    role: PART }
+    - { id: erlaub, surface: "als erlaubt", neutralSurface: "als erlaubt", role: VERGL }
+  canonical: [er, ist, schnel, gefahr, erlaub]
+  # The comparative fronted leaves `als …` stranded inside the bracket.
+  vetoed:
+    - [schnel, ist, er, erlaub, gefahr]
+
+- id: t5-12
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: I found the exam easier than I'd thought.
+  chunks:
+    - { id: ich,    surface: "Ich",         neutralSurface: "ich",         role: PRON_NOM }
+    - { id: habe,   surface: "habe",        neutralSurface: "habe",        role: FIN }
+    - { id: pruefu, surface: "die Prüfung", neutralSurface: "die Prüfung", role: AKK, definite: true }
+    - { id: leicht, surface: "leichter",    neutralSurface: "leichter",    role: PRAED }
+    - { id: gefund, surface: "gefunden",    neutralSurface: "gefunden",    role: PART }
+    - { id: gedach, surface: "als gedacht", neutralSurface: "als gedacht", role: VERGL }
+  canonical: [ich, habe, pruefu, leicht, gefund, gedach]
+  # The comparative fronted leaves `als …` stranded inside the bracket.
+  vetoed:
+    - [leicht, habe, ich, pruefu, gedach, gefund]
+
+- id: t5-13
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: My sister got married earlier than me.
+  chunks:
+    - { id: schwes, surface: "Meine Schwester", neutralSurface: "meine Schwester", role: SUBJ }
+    - { id: hat,    surface: "hat",             neutralSurface: "hat",             role: FIN }
+    - { id: fruehe, surface: "früher",          neutralSurface: "früher",          role: MODAL }
+    - { id: geheir, surface: "geheiratet",      neutralSurface: "geheiratet",      role: PART }
+    - { id: ich,    surface: "als ich",         neutralSurface: "als ich",         role: VERGL }
+  canonical: [schwes, hat, fruehe, geheir, ich]
+  # The comparative fronted leaves `als …` stranded inside the bracket.
+  vetoed:
+    - [fruehe, hat, schwes, ich, geheir]
+
+- id: t5-14
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: We paid less than last year.
+  chunks:
+    - { id: wir,    surface: "Wir",              neutralSurface: "wir",              role: PRON_NOM }
+    - { id: haben,  surface: "haben",            neutralSurface: "haben",            role: FIN }
+    - { id: wenige, surface: "weniger",          neutralSurface: "weniger",          role: MODAL }
+    - { id: bezahl, surface: "bezahlt",          neutralSurface: "bezahlt",          role: PART }
+    - { id: letzte, surface: "als letztes Jahr", neutralSurface: "als letztes Jahr", role: VERGL }
+  canonical: [wir, haben, wenige, bezahl, letzte]
+  # The comparative fronted leaves `als …` stranded inside the bracket.
+  vetoed:
+    - [wenige, haben, wir, letzte, bezahl]
+
+- id: t5-15
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: You were luckier than me.
+  chunks:
+    - { id: du,     surface: "Du",         neutralSurface: "du",         role: PRON_NOM }
+    - { id: hast,   surface: "hast",       neutralSurface: "hast",       role: FIN }
+    - { id: glueck, surface: "mehr Glück", neutralSurface: "mehr Glück", role: AKK, definite: false }
+    - { id: gehabt, surface: "gehabt",     neutralSurface: "gehabt",     role: PART }
+    - { id: ich,    surface: "als ich",    neutralSurface: "als ich",    role: VERGL }
+  canonical: [du, hast, glueck, gehabt, ich]
+  # The comparative fronted leaves `als …` stranded inside the bracket.
+  vetoed:
+    - [glueck, hast, du, ich, gehabt]
+
+- id: t5-16
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: He earned just as much as his father.
+  chunks:
+    - { id: er,     surface: "Er",             neutralSurface: "er",             role: PRON_NOM }
+    - { id: hat,    surface: "hat",            neutralSurface: "hat",            role: FIN }
+    - { id: viel,   surface: "genauso viel",   neutralSurface: "genauso viel",   role: MODAL }
+    - { id: verdie, surface: "verdient",       neutralSurface: "verdient",       role: PART }
+    - { id: sein,   surface: "wie sein Vater", neutralSurface: "wie sein Vater", role: VERGL }
+  canonical: [er, hat, viel, verdie, sein]
+  # The comparative fronted leaves `als …` stranded inside the bracket.
+  vetoed:
+    - [viel, hat, er, sein, verdie]
+
+- id: t5-17
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: The concert went on longer than expected.
+  chunks:
+    - { id: konzer, surface: "Das Konzert", neutralSurface: "das Konzert", role: SUBJ }
+    - { id: hat,    surface: "hat",         neutralSurface: "hat",         role: FIN }
+    - { id: laenge, surface: "länger",      neutralSurface: "länger",      role: MODAL }
+    - { id: gedaue, surface: "gedauert",    neutralSurface: "gedauert",    role: PART }
+    - { id: gedach, surface: "als gedacht", neutralSurface: "als gedacht", role: VERGL }
+  canonical: [konzer, hat, laenge, gedaue, gedach]
+  # The comparative fronted leaves `als …` stranded inside the bracket.
+  vetoed:
+    - [laenge, hat, konzer, gedach, gedaue]
+
+- id: t5-18
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: Today I walked further than ever before.
+  chunks:
+    - { id: ich,    surface: "Ich",          neutralSurface: "ich",          role: PRON_NOM }
+    - { id: bin,    surface: "bin",          neutralSurface: "bin",          role: FIN }
+    - { id: heute,  surface: "heute",        neutralSurface: "heute",        role: TEMP }
+    - { id: weiter, surface: "weiter",       neutralSurface: "weiter",       role: MODAL }
+    - { id: gelauf, surface: "gelaufen",     neutralSurface: "gelaufen",     role: PART }
+    - { id: je,     surface: "als je zuvor", neutralSurface: "als je zuvor", role: VERGL }
+  canonical: [ich, bin, heute, weiter, gelauf, je]
+  # The comparative fronted leaves `als …` stranded inside the bracket.
+  vetoed:
+    - [weiter, bin, ich, heute, je, gelauf]
+
+- id: t5-19
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: She sang just as well as her sister.
+  chunks:
+    - { id: sie,    surface: "Sie",                neutralSurface: "sie",                role: PRON_NOM }
+    - { id: hat,    surface: "hat",                neutralSurface: "hat",                role: FIN }
+    - { id: gut,    surface: "genauso gut",        neutralSurface: "genauso gut",        role: MODAL }
+    - { id: gesung, surface: "gesungen",           neutralSurface: "gesungen",           role: PART }
+    - { id: ihre,   surface: "wie ihre Schwester", neutralSurface: "wie ihre Schwester", role: VERGL }
+  canonical: [sie, hat, gut, gesung, ihre]
+  # The comparative fronted leaves `als …` stranded inside the bracket.
+  vetoed:
+    - [gut, hat, sie, ihre, gesung]
+
+- id: t5-20
+  tier: 5
+  ruleId: nachfeld-vergleich
+  verified: false
+  gloss: We waited longer than an hour.
+  chunks:
+    - { id: wir,    surface: "Wir",             neutralSurface: "wir",             role: PRON_NOM }
+    - { id: haben,  surface: "haben",           neutralSurface: "haben",           role: FIN }
+    - { id: laenge, surface: "länger",          neutralSurface: "länger",          role: MODAL }
+    - { id: gewart, surface: "gewartet",        neutralSurface: "gewartet",        role: PART }
+    - { id: eine,   surface: "als eine Stunde", neutralSurface: "als eine Stunde", role: VERGL }
+  canonical: [wir, haben, laenge, gewart, eine]
+  # The comparative fronted leaves `als …` stranded inside the bracket.
+  vetoed:
+    - [laenge, haben, wir, eine, gewart]
+
+# ─── A whole subclause behind the bracket ───
+
+- id: t5-21
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: He told me yesterday that he's moving to Berlin.
+  chunks:
+    - { id: er,     surface: "Er",                        neutralSurface: "er",                        role: PRON_NOM }
+    - { id: hat,    surface: "hat",                       neutralSurface: "hat",                       role: FIN }
+    - { id: mir,    surface: "mir",                       neutralSurface: "mir",                       role: PRON_DAT }
+    - { id: gester, surface: "gestern",                   neutralSurface: "gestern",                   role: TEMP }
+    - { id: erzaeh, surface: "erzählt",                   neutralSurface: "erzählt",                   role: PART }
+    - { id: dass,   surface: "dass er nach Berlin zieht", neutralSurface: "dass er nach Berlin zieht", role: NEBENSATZ }
+  canonical: [er, hat, mir, gester, erzaeh, dass]
+
+- id: t5-22
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: I forgot that today is Monday.
+  chunks:
+    - { id: ich,    surface: "Ich",                   neutralSurface: "ich",                   role: PRON_NOM }
+    - { id: habe,   surface: "habe",                  neutralSurface: "habe",                  role: FIN }
+    - { id: verges, surface: "vergessen",             neutralSurface: "vergessen",             role: PART }
+    - { id: dass,   surface: "dass heute Montag ist", neutralSurface: "dass heute Montag ist", role: NEBENSATZ }
+  canonical: [ich, habe, verges, dass]
+
+- id: t5-23
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: She asked me whether I have time tomorrow.
+  chunks:
+    - { id: sie,    surface: "Sie",                     neutralSurface: "sie",                     role: PRON_NOM }
+    - { id: hat,    surface: "hat",                     neutralSurface: "hat",                     role: FIN }
+    - { id: mich,   surface: "mich",                    neutralSurface: "mich",                    role: PRON_AKK }
+    - { id: gefrag, surface: "gefragt",                 neutralSurface: "gefragt",                 role: PART }
+    - { id: ob,     surface: "ob ich morgen Zeit habe", neutralSurface: "ob ich morgen Zeit habe", role: NEBENSATZ }
+  canonical: [sie, hat, mich, gefrag, ob]
+
+- id: t5-24
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: We stayed at home because it rained.
+  chunks:
+    - { id: wir,    surface: "Wir",                  neutralSurface: "wir",                  role: PRON_NOM }
+    - { id: sind,   surface: "sind",                 neutralSurface: "sind",                 role: FIN }
+    - { id: hause,  surface: "zu Hause",             neutralSurface: "zu Hause",             role: LOK }
+    - { id: geblie, surface: "geblieben",            neutralSurface: "geblieben",            role: PART }
+    - { id: weil,   surface: "weil es geregnet hat", neutralSurface: "weil es geregnet hat", role: NEBENSATZ }
+  canonical: [wir, sind, hause, geblie, weil]
+
+- id: t5-25
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: I called you because I have a question.
+  chunks:
+    - { id: ich,    surface: "Ich",                      neutralSurface: "ich",                      role: PRON_NOM }
+    - { id: habe,   surface: "habe",                     neutralSurface: "habe",                     role: FIN }
+    - { id: dich,   surface: "dich",                     neutralSurface: "dich",                     role: PRON_AKK }
+    - { id: angeru, surface: "angerufen",                neutralSurface: "angerufen",                role: PART }
+    - { id: weil,   surface: "weil ich eine Frage habe", neutralSurface: "weil ich eine Frage habe", role: NEBENSATZ }
+  canonical: [ich, habe, dich, angeru, weil]
+
+- id: t5-26
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: He said he'd come later.
+  chunks:
+    - { id: er,     surface: "Er",                   neutralSurface: "er",                   role: PRON_NOM }
+    - { id: hat,    surface: "hat",                  neutralSurface: "hat",                  role: FIN }
+    - { id: gesagt, surface: "gesagt",               neutralSurface: "gesagt",               role: PART }
+    - { id: dass,   surface: "dass er später kommt", neutralSurface: "dass er später kommt", role: NEBENSATZ }
+  canonical: [er, hat, gesagt, dass]
+
+- id: t5-27
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: I can't come because I have to work.
+  chunks:
+    - { id: ich,    surface: "Ich",                    neutralSurface: "ich",                    role: PRON_NOM }
+    - { id: kann,   surface: "kann",                   neutralSurface: "kann",                   role: FIN }
+    - { id: nicht,  surface: "nicht",                  neutralSurface: "nicht",                  role: NEG }
+    - { id: kommen, surface: "kommen",                 neutralSurface: "kommen",                 role: INF }
+    - { id: weil,   surface: "weil ich arbeiten muss", neutralSurface: "weil ich arbeiten muss", role: NEBENSATZ }
+  canonical: [ich, kann, nicht, kommen, weil]
+
+- id: t5-28
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: You have to let me know when you arrive.
+  chunks:
+    - { id: du,     surface: "Du",               neutralSurface: "du",               role: PRON_NOM }
+    - { id: musst,  surface: "musst",            neutralSurface: "musst",            role: FIN }
+    - { id: mir,    surface: "mir",              neutralSurface: "mir",              role: PRON_DAT }
+    - { id: besche, surface: "Bescheid",         neutralSurface: "Bescheid",         role: AKK, definite: false }
+    - { id: sagen,  surface: "sagen",            neutralSurface: "sagen",            role: INF }
+    - { id: wenn,   surface: "wenn du ankommst", neutralSurface: "wenn du ankommst", role: NEBENSATZ }
+  canonical: [du, musst, mir, besche, sagen, wenn]
+
+- id: t5-29
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: We waited a long time until the bus came.
+  chunks:
+    - { id: wir,    surface: "Wir",                      neutralSurface: "wir",                      role: PRON_NOM }
+    - { id: haben,  surface: "haben",                    neutralSurface: "haben",                    role: FIN }
+    - { id: lange,  surface: "lange",                    neutralSurface: "lange",                    role: TEMP }
+    - { id: gewart, surface: "gewartet",                 neutralSurface: "gewartet",                 role: PART }
+    - { id: der,    surface: "bis der Bus gekommen ist", neutralSurface: "bis der Bus gekommen ist", role: NEBENSATZ }
+  canonical: [wir, haben, lange, gewart, der]
+
+- id: t5-30
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: I didn't know that you have children.
+  chunks:
+    - { id: ich,    surface: "Ich",                 neutralSurface: "ich",                 role: PRON_NOM }
+    - { id: habe,   surface: "habe",                neutralSurface: "habe",                role: FIN }
+    - { id: nicht,  surface: "nicht",               neutralSurface: "nicht",               role: NEG }
+    - { id: gewuss, surface: "gewusst",             neutralSurface: "gewusst",             role: PART }
+    - { id: dass,   surface: "dass du Kinder hast", neutralSurface: "dass du Kinder hast", role: NEBENSATZ }
+  canonical: [ich, habe, nicht, gewuss, dass]
+
+- id: t5-31
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: She promised me she'd be on time.
+  chunks:
+    - { id: sie,    surface: "Sie",                      neutralSurface: "sie",                      role: PRON_NOM }
+    - { id: hat,    surface: "hat",                      neutralSurface: "hat",                      role: FIN }
+    - { id: mir,    surface: "mir",                      neutralSurface: "mir",                      role: PRON_DAT }
+    - { id: verspr, surface: "versprochen",              neutralSurface: "versprochen",              role: PART }
+    - { id: dass,   surface: "dass sie pünktlich kommt", neutralSurface: "dass sie pünktlich kommt", role: NEBENSATZ }
+  canonical: [sie, hat, mir, verspr, dass]
+
+- id: t5-32
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: He fell asleep straight away when he was lying in bed.
+  chunks:
+    - { id: er,     surface: "Er",                 neutralSurface: "er",                 role: PRON_NOM }
+    - { id: ist,    surface: "ist",                neutralSurface: "ist",                role: FIN }
+    - { id: sofort, surface: "sofort",             neutralSurface: "sofort",             role: TEMP }
+    - { id: einges, surface: "eingeschlafen",      neutralSurface: "eingeschlafen",      role: PART }
+    - { id: er2,    surface: "als er im Bett lag", neutralSurface: "als er im Bett lag", role: NEBENSATZ }
+  canonical: [er, ist, sofort, einges, er2]
+
+- id: t5-33
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: I opened the window because it was so warm.
+  chunks:
+    - { id: ich,    surface: "Ich",                 neutralSurface: "ich",                 role: PRON_NOM }
+    - { id: habe,   surface: "habe",                neutralSurface: "habe",                role: FIN }
+    - { id: fenste, surface: "das Fenster",         neutralSurface: "das Fenster",         role: AKK, definite: true }
+    - { id: aufgem, surface: "aufgemacht",          neutralSurface: "aufgemacht",          role: PART }
+    - { id: weil,   surface: "weil es so warm war", neutralSurface: "weil es so warm war", role: NEBENSATZ }
+  canonical: [ich, habe, fenste, aufgem, weil]
+
+- id: t5-34
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: We can go tomorrow if the weather is good.
+  chunks:
+    - { id: wir,    surface: "Wir",                     neutralSurface: "wir",                     role: PRON_NOM }
+    - { id: koenne, surface: "können",                  neutralSurface: "können",                  role: FIN }
+    - { id: morgen, surface: "morgen",                  neutralSurface: "morgen",                  role: TEMP }
+    - { id: fahren, surface: "fahren",                  neutralSurface: "fahren",                  role: INF }
+    - { id: wenn,   surface: "wenn das Wetter gut ist", neutralSurface: "wenn das Wetter gut ist", role: NEBENSATZ }
+  canonical: [wir, koenne, morgen, fahren, wenn]
+
+- id: t5-35
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: She showed me how it works.
+  chunks:
+    - { id: sie,    surface: "Sie",                  neutralSurface: "sie",                  role: PRON_NOM }
+    - { id: hat,    surface: "hat",                  neutralSurface: "hat",                  role: FIN }
+    - { id: mir,    surface: "mir",                  neutralSurface: "mir",                  role: PRON_DAT }
+    - { id: gezeig, surface: "gezeigt",              neutralSurface: "gezeigt",              role: PART }
+    - { id: das,    surface: "wie das funktioniert", neutralSurface: "wie das funktioniert", role: NEBENSATZ }
+  canonical: [sie, hat, mir, gezeig, das]
+
+- id: t5-36
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: She asked when the train leaves.
+  chunks:
+    - { id: sie,    surface: "Sie",                  neutralSurface: "sie",                  role: PRON_NOM }
+    - { id: hat,    surface: "hat",                  neutralSurface: "hat",                  role: FIN }
+    - { id: gefrag, surface: "gefragt",              neutralSurface: "gefragt",              role: PART }
+    - { id: wann,   surface: "wann der Zug abfährt", neutralSurface: "wann der Zug abfährt", role: NEBENSATZ }
+  canonical: [sie, hat, gefrag, wann]
+
+- id: t5-37
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: He didn't believe me that I was ill.
+  chunks:
+    - { id: er,     surface: "Er",                 neutralSurface: "er",                 role: PRON_NOM }
+    - { id: hat,    surface: "hat",                neutralSurface: "hat",                role: FIN }
+    - { id: mir,    surface: "mir",                neutralSurface: "mir",                role: PRON_DAT }
+    - { id: nicht,  surface: "nicht",              neutralSurface: "nicht",              role: NEG }
+    - { id: geglau, surface: "geglaubt",           neutralSurface: "geglaubt",           role: PART }
+    - { id: dass,   surface: "dass ich krank war", neutralSurface: "dass ich krank war", role: NEBENSATZ }
+  canonical: [er, hat, mir, nicht, geglau, dass]
+
+- id: t5-38
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: I got up early so that I'd catch the train.
+  chunks:
+    - { id: ich,    surface: "Ich",                        neutralSurface: "ich",                        role: PRON_NOM }
+    - { id: bin,    surface: "bin",                        neutralSurface: "bin",                        role: FIN }
+    - { id: frueh,  surface: "früh",                       neutralSurface: "früh",                       role: TEMP }
+    - { id: aufges, surface: "aufgestanden",               neutralSurface: "aufgestanden",               role: PART }
+    - { id: damit,  surface: "damit ich den Zug erreiche", neutralSurface: "damit ich den Zug erreiche", role: NEBENSATZ }
+  canonical: [ich, bin, frueh, aufges, damit]
+
+- id: t5-39
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: We wondered whether that's true.
+  chunks:
+    - { id: wir,    surface: "Wir",           neutralSurface: "wir",           role: PRON_NOM }
+    - { id: haben,  surface: "haben",         neutralSurface: "haben",         role: FIN }
+    - { id: uns,    surface: "uns",           neutralSurface: "uns",           role: PRON_AKK, stressable: false }
+    - { id: gefrag, surface: "gefragt",       neutralSurface: "gefragt",       role: PART }
+    - { id: ob,     surface: "ob das stimmt", neutralSurface: "ob das stimmt", role: NEBENSATZ }
+  canonical: [wir, haben, uns, gefrag, ob]
+
+- id: t5-40
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: I wrote to her that I'll come later.
+  chunks:
+    - { id: ich,    surface: "Ich",                   neutralSurface: "ich",                   role: PRON_NOM }
+    - { id: habe,   surface: "habe",                  neutralSurface: "habe",                  role: FIN }
+    - { id: ihr,    surface: "ihr",                   neutralSurface: "ihr",                   role: PRON_DAT }
+    - { id: geschr, surface: "geschrieben",           neutralSurface: "geschrieben",           role: PART }
+    - { id: dass,   surface: "dass ich später komme", neutralSurface: "dass ich später komme", role: NEBENSATZ }
+  canonical: [ich, habe, ihr, geschr, dass]
+
+- id: t5-41
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: You never told me that you play the piano.
+  chunks:
+    - { id: du,     surface: "Du",                      neutralSurface: "du",                      role: PRON_NOM }
+    - { id: hast,   surface: "hast",                    neutralSurface: "hast",                    role: FIN }
+    - { id: mir,    surface: "mir",                     neutralSurface: "mir",                     role: PRON_DAT }
+    - { id: nie,    surface: "nie",                     neutralSurface: "nie",                     role: NEG }
+    - { id: gesagt, surface: "gesagt",                  neutralSurface: "gesagt",                  role: PART }
+    - { id: dass,   surface: "dass du Klavier spielst", neutralSurface: "dass du Klavier spielst", role: NEBENSATZ }
+  canonical: [du, hast, mir, nie, gesagt, dass]
+
+- id: t5-42
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: He sold the car although it still ran well.
+  chunks:
+    - { id: er,     surface: "Er",                      neutralSurface: "er",                      role: PRON_NOM }
+    - { id: hat,    surface: "hat",                     neutralSurface: "hat",                     role: FIN }
+    - { id: auto,   surface: "das Auto",                neutralSurface: "das Auto",                role: AKK, definite: true }
+    - { id: verkau, surface: "verkauft",                neutralSurface: "verkauft",                role: PART }
+    - { id: obwohl, surface: "obwohl es noch gut lief", neutralSurface: "obwohl es noch gut lief", role: NEBENSATZ }
+  canonical: [er, hat, auto, verkau, obwohl]
+
+- id: t5-43
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: I'll call you as soon as I'm home.
+  chunks:
+    - { id: ich,    surface: "Ich",                     neutralSurface: "ich",                     role: PRON_NOM }
+    - { id: rufe,   surface: "rufe",                    neutralSurface: "rufe",                    role: FIN }
+    - { id: dich,   surface: "dich",                    neutralSurface: "dich",                    role: PRON_AKK }
+    - { id: an,     surface: "an",                      neutralSurface: "an",                      role: PTKVZ }
+    - { id: sobald, surface: "sobald ich zu Hause bin", neutralSurface: "sobald ich zu Hause bin", role: NEBENSATZ }
+  canonical: [ich, rufe, dich, an, sobald]
+
+- id: t5-44
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: She cried when she read the letter.
+  chunks:
+    - { id: sie,    surface: "Sie",                           neutralSurface: "sie",                           role: PRON_NOM }
+    - { id: hat,    surface: "hat",                           neutralSurface: "hat",                           role: FIN }
+    - { id: gewein, surface: "geweint",                       neutralSurface: "geweint",                       role: PART }
+    - { id: sie2,   surface: "als sie den Brief gelesen hat", neutralSurface: "als sie den Brief gelesen hat", role: NEBENSATZ }
+  canonical: [sie, hat, gewein, sie2]
+
+- id: t5-45
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: I didn't notice that it's already so late.
+  chunks:
+    - { id: ich,    surface: "Ich",                       neutralSurface: "ich",                       role: PRON_NOM }
+    - { id: habe,   surface: "habe",                      neutralSurface: "habe",                      role: FIN }
+    - { id: nicht,  surface: "nicht",                     neutralSurface: "nicht",                     role: NEG }
+    - { id: gemerk, surface: "gemerkt",                   neutralSurface: "gemerkt",                   role: PART }
+    - { id: dass,   surface: "dass es schon so spät ist", neutralSurface: "dass es schon so spät ist", role: NEBENSATZ }
+  canonical: [ich, habe, nicht, gemerk, dass]
+
+- id: t5-46
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: We cancelled the party because a lot of people were ill.
+  chunks:
+    - { id: wir,    surface: "Wir",                    neutralSurface: "wir",                    role: PRON_NOM }
+    - { id: haben,  surface: "haben",                  neutralSurface: "haben",                  role: FIN }
+    - { id: party,  surface: "die Party",              neutralSurface: "die Party",              role: AKK, definite: true }
+    - { id: abgesa, surface: "abgesagt",               neutralSurface: "abgesagt",               role: PART }
+    - { id: weil,   surface: "weil viele krank waren", neutralSurface: "weil viele krank waren", role: NEBENSATZ }
+  canonical: [wir, haben, party, abgesa, weil]
+
+- id: t5-47
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: He told us what the holiday was like.
+  chunks:
+    - { id: er,     surface: "Er",                 neutralSurface: "er",                 role: PRON_NOM }
+    - { id: hat,    surface: "hat",                neutralSurface: "hat",                role: FIN }
+    - { id: uns,    surface: "uns",                neutralSurface: "uns",                role: PRON_DAT }
+    - { id: erzaeh, surface: "erzählt",            neutralSurface: "erzählt",            role: PART }
+    - { id: der,    surface: "wie der Urlaub war", neutralSurface: "wie der Urlaub war", role: NEBENSATZ }
+  canonical: [er, hat, uns, erzaeh, der]
+
+- id: t5-48
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: I'd hoped you'd come along.
+  chunks:
+    - { id: ich,    surface: "Ich",               neutralSurface: "ich",               role: PRON_NOM }
+    - { id: habe,   surface: "habe",              neutralSurface: "habe",              role: FIN }
+    - { id: gehoff, surface: "gehofft",           neutralSurface: "gehofft",           role: PART }
+    - { id: dass,   surface: "dass du mitkommst", neutralSurface: "dass du mitkommst", role: NEBENSATZ }
+  canonical: [ich, habe, gehoff, dass]
+
+- id: t5-49
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: She went home because she had a headache.
+  chunks:
+    - { id: sie,    surface: "Sie",                          neutralSurface: "sie",                          role: PRON_NOM }
+    - { id: ist,    surface: "ist",                          neutralSurface: "ist",                          role: FIN }
+    - { id: hause,  surface: "nach Hause",                   neutralSurface: "nach Hause",                   role: DIR }
+    - { id: gegang, surface: "gegangen",                     neutralSurface: "gegangen",                     role: PART }
+    - { id: weil,   surface: "weil sie Kopfschmerzen hatte", neutralSurface: "weil sie Kopfschmerzen hatte", role: NEBENSATZ }
+  canonical: [sie, ist, hause, gegang, weil]
+
+- id: t5-50
+  tier: 5
+  ruleId: nachfeld-nebensatz
+  verified: false
+  gloss: I locked the door before I left.
+  chunks:
+    - { id: ich,    surface: "Ich",                    neutralSurface: "ich",                    role: PRON_NOM }
+    - { id: habe,   surface: "habe",                   neutralSurface: "habe",                   role: FIN }
+    - { id: tuer,   surface: "die Tür",                neutralSurface: "die Tür",                role: AKK, definite: true }
+    - { id: abgesc, surface: "abgeschlossen",          neutralSurface: "abgeschlossen",          role: PART }
+    - { id: bevor,  surface: "bevor ich gegangen bin", neutralSurface: "bevor ich gegangen bin", role: NEBENSATZ }
+  canonical: [ich, habe, tuer, abgesc, bevor]

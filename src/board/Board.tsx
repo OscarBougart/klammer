@@ -19,7 +19,7 @@ import DraggableTile from './DraggableTile';
 import FieldZone, { type ZoneBox } from './FieldZone';
 import KlammerArc from './KlammerArc';
 import { insertionIndex, useDragContext } from './dragContext';
-import { boardFields, hasKlammer, isVerbFinal, type FieldId, type Tier } from './fields';
+import { boardFields, clauseShape, hasKlammer, type ClauseShape, type FieldId, type Tier } from './fields';
 import { segmentOrder } from './segment';
 import { bankTiles, useBoardStore, type BoardTile } from '@/store/board';
 import { a11y, arc, border, makeStyles, radius, space } from '@/theme';
@@ -77,7 +77,8 @@ export default function Board({
 
   const bank = useMemo(() => bankTiles({ bankOrder, line }), [bankOrder, line]);
   const byId = useMemo(() => new Map(tiles.map((t) => [t.id, t])), [tiles]);
-  const verbFinal = useMemo(() => isVerbFinal(tiles.map((t) => t.role)), [tiles]);
+  const shape = useMemo(() => clauseShape(tiles.map((t) => t.role)), [tiles]);
+  const verbFinal = shape.verbFinal;
 
   // ─── Scrolling, only when it has to ───────────────────────────────────────
   const scrollRef = useRef<Animated.ScrollView>(null);
@@ -107,10 +108,10 @@ export default function Board({
 
   const complete = bank.length === 0;
 
-  const scroller = (body: ReactNode) => (
+  const scroller = (body: ReactNode, grow: boolean) => (
     <Animated.ScrollView
       ref={scrollRef}
-      style={styles.scroll}
+      style={grow ? styles.scroll : styles.scrollHugging}
       contentContainerStyle={styles.scrollContent}
       scrollEnabled={canScroll}
       onLayout={(e) => setViewport(e.nativeEvent.layout.height)}
@@ -128,7 +129,8 @@ export default function Board({
             {matrix ? <Text style={styles.matrix}>{matrix}</Text> : null}
             <FieldsView
               tier={tier}
-              verbFinal={verbFinal}
+              afterLeadIn={Boolean(matrix)}
+              shape={shape}
               order={line}
               byId={byId}
               closed={closed}
@@ -139,6 +141,7 @@ export default function Board({
             />
             {children}
           </>,
+          true,
         )}
       </View>
     );
@@ -171,7 +174,9 @@ export default function Board({
                   neutralSurface={tile.neutralSurface}
                   // The first word of a German sentence is capitalised,
                   // whatever it is. Watching it flip is part of the lesson.
-                  capitalised={index === 0}
+                  // Behind a lead-in (`Ich weiß nicht, …`) the row is the
+                  // middle of a sentence, and nothing flips.
+                  capitalised={index === 0 && !matrix}
                   // design.md §6: the verb's face turns brass once it is
                   // second, so the sentence's anchor shows while building.
                   isFiniteAnchor={
@@ -193,7 +198,10 @@ export default function Board({
         </Animated.View>
       </Animated.View>
 
-      {scroller(children)}
+      {/* Hugs its content, so the bank sits right under the row and the hint
+          rather than at the foot of a tall screen with a gap above it. The
+          spare height falls below the bank instead. */}
+      {scroller(children, false)}
 
       {bank.length > 0 ? (
         <Animated.View style={[styles.tray, bankLayer]} accessibilityLabel="Wörter">
@@ -221,7 +229,9 @@ export default function Board({
 
 type FieldsViewProps = {
   tier: Tier;
-  verbFinal: boolean;
+  /** The row continues a fixed lead-in, so its first word stays lowercase. */
+  afterLeadIn: boolean;
+  shape: ClauseShape;
   order: readonly string[];
   byId: Map<string, BoardTile>;
   closed: boolean;
@@ -234,7 +244,8 @@ type FieldsViewProps = {
 /** The checked sentence, split into its fields, with the bracket. */
 function FieldsView({
   tier,
-  verbFinal,
+  afterLeadIn,
+  shape,
   order,
   byId,
   closed,
@@ -244,7 +255,8 @@ function FieldsView({
   shakeNonce,
 }: FieldsViewProps) {
   const styles = useStyles();
-  const zones = useMemo(() => boardFields(tier, { verbFinal }), [tier, verbFinal]);
+  const verbFinal = shape.verbFinal;
+  const zones = useMemo(() => boardFields(tier, shape), [tier, shape]);
   const segments = useMemo(
     () =>
       segmentOrder(
@@ -301,7 +313,7 @@ function FieldsView({
                   source="row"
                   dragEnabled={false}
                   neutralSurface={tile.neutralSurface}
-                  capitalised={id === order[0]}
+                  capitalised={id === order[0] && !afterLeadIn}
                   isFiniteAnchor={
                     showVerbAnchor &&
                     !verbFinal &&
@@ -329,6 +341,10 @@ const useStyles = makeStyles(({ palette, type }) =>
     },
     scroll: {
       flex: 1,
+    },
+    scrollHugging: {
+      flexGrow: 0,
+      flexShrink: 1,
     },
     scrollContent: {
       gap: space.md,

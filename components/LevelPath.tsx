@@ -4,12 +4,12 @@
  * Shows what exists, where the learner is, and what it takes to move on, so
  * the app's shape is visible from the first screen. It is a syllabus, not a
  * trophy shelf: a passed Stufe gets a check, the current one says what it
- * trains and how many good rounds are in hand, and the rest are named but
- * closed. A Stufe with no sentences yet says so ("bald") instead of pretending
+ * trains and how many good rounds are in hand, and the ones ahead are open
+ * to try. A Stufe with no sentences yet says so ("bald") instead of pretending
  * to be one more level away.
  *
- * Passed Stufen can be tapped to practise; the current one is selected by
- * default. Locked rows are not buttons.
+ * Every Stufe with sentences can be tapped; the current one is selected by
+ * default. Only "bald" rows are not buttons.
  */
 import { memo } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -32,7 +32,7 @@ export type LevelPathProps = {
   onSelect: (tier: number) => void;
 };
 
-type RowState = 'done' | 'current' | 'locked' | 'soon';
+type RowState = 'done' | 'current' | 'open' | 'soon';
 
 /** The rail's dots: a little larger than body text, so the path reads first. */
 const DOT = space.lg + space.xs;
@@ -56,15 +56,15 @@ function LevelPathComponent({
               ? 'current'
               : info.tier > highestPlayable
                 ? 'soon'
-                : 'locked';
-        const pressable = state === 'done' || state === 'current';
+                : 'open';
+        const pressable = state !== 'soon';
         const isSelected = info.tier === selected;
         const isLast = i === TIERS.length - 1;
         // The last Stufe with content has nothing to advance into.
         const showProgress = state === 'current' && current < highestPlayable;
 
         const status =
-          state === 'done' ? 'geschafft' : state === 'soon' ? 'bald' : state === 'locked' ? 'gesperrt' : '';
+          state === 'done' ? 'geschafft' : state === 'soon' ? 'bald' : '';
 
         return (
           <Pressable
@@ -123,7 +123,7 @@ function LevelPathComponent({
                     </View>
                   ) : null}
                   {showProgress && showGloss ? (
-                    <Text style={styles.gloss}>A good round is 8 of 10 right.</Text>
+                    <Text style={styles.gloss}>A good round is 4 of 5 right.</Text>
                   ) : null}
                 </View>
               ) : null}

@@ -59,7 +59,7 @@ export default function SettingsScreen() {
             <Switch
               value={valueOf(row.key)}
               onValueChange={(next) => toggle(row.key, next)}
-              accessibilityLabel={row.en}
+              accessibilityLabel={row.de}
               trackColor={{ false: palette.kante, true: palette.messing }}
               thumbColor={palette.kreide}
             />

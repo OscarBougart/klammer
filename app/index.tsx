@@ -62,8 +62,9 @@ export default function HomeScreen() {
     }, []),
   );
 
-  const selected = picked !== null && picked <= tier ? picked : tier;
+  const selected = picked !== null && picked <= HIGHEST_PLAYABLE_TIER ? picked : tier;
   const isPractice = selected < tier;
+  const isAhead = selected > tier;
   const resumeAt = unfinished && unfinished.tier === selected ? unfinished.answered : 0;
 
   const start = () => {
@@ -79,7 +80,7 @@ export default function HomeScreen() {
   };
 
   let label = 'Üben';
-  let hint = 'Zehn Sätze, etwa zwölf Minuten.';
+  let hint = 'Fünf Sätze, etwa fünf Minuten.';
   if (!guideDone) {
     label = 'Los geht’s';
     hint = 'Ein Übungssatz zeigt dir, wie es geht.';
@@ -89,6 +90,9 @@ export default function HomeScreen() {
   } else if (isPractice) {
     label = `Stufe ${selected} wiederholen`;
     hint = 'Zum Üben. Zählt nicht für den Aufstieg.';
+  } else if (isAhead) {
+    label = `Stufe ${selected} ausprobieren`;
+    hint = `Zum Ausprobieren. Für den Aufstieg zählt Stufe ${tier}.`;
   }
 
   return (

@@ -4,7 +4,8 @@
  * Not a screenshot and not an illustration: real sentences from the bank,
  * drawn with the same chalk tiles and brass the board uses. The finite verb is
  * brass; from Stufe 2 a bracket runs under the sentence from the verb to its
- * other half, which is the thing the app is named after. Static, so there is
+ * other half, which is the thing the app is named after. In a subclause the
+ * conjunction opens the bracket and the finite verb, now last, closes it. Static, so there is
  * nothing for reduced motion to switch off.
  */
 import { memo, useMemo, useState } from 'react';
@@ -31,6 +32,8 @@ const SAMPLE_ID: Record<number, string> = {
   1: 't1-01',
   2: 't2-02',
   3: 't3-12',
+  4: 't4-01',
+  5: 't5-01',
 };
 
 function pickSentence(tier: number): SeedSentence | undefined {
@@ -54,7 +57,9 @@ function SampleSentenceComponent({ tier }: SampleSentenceProps) {
     return sentence.canonical.flatMap((id, index) => {
       const chunk = byId.get(id);
       if (!chunk) return [];
-      const text = index === 0 ? capitalise(chunk.neutralSurface) : chunk.neutralSurface;
+      // Behind a lead-in the tiles continue a sentence; nothing is initial.
+      const initial = index === 0 && !sentence.matrix;
+      const text = initial ? capitalise(chunk.neutralSurface) : chunk.neutralSurface;
       return [{ id, text, role: chunk.role }];
     });
   }, [sentence]);
@@ -62,8 +67,14 @@ function SampleSentenceComponent({ tier }: SampleSentenceProps) {
   if (!sentence) return null;
 
   const finite = words.find((w) => w.role === 'FIN');
-  const closing = [...words].reverse().find((w) => RIGHT_BRACKET_ROLES.has(w.role));
-  const from = finite ? spans[finite.id] : undefined;
+  // A subclause: the conjunction holds the left bracket, the finite verb the
+  // right one.
+  const konj = words.find((w) => w.role === 'KONJ');
+  const opening = konj ?? finite;
+  const closing = konj
+    ? finite
+    : [...words].reverse().find((w) => RIGHT_BRACKET_ROLES.has(w.role));
+  const from = opening ? spans[opening.id] : undefined;
   const to = closing ? spans[closing.id] : undefined;
 
   // The bracket only makes sense drawn along one line of tiles.
@@ -85,10 +96,12 @@ function SampleSentenceComponent({ tier }: SampleSentenceProps) {
     });
   };
 
-  const sentenceText = `${words.map((w) => w.text).join(' ')}.`;
+  const leadIn = sentence.matrix?.replace(/\s*…\s*$/, '');
+  const sentenceText = `${leadIn ? `${leadIn} ` : ''}${words.map((w) => w.text).join(' ')}.`;
 
   return (
     <View style={styles.card} accessible accessibilityLabel={`Beispiel: ${sentenceText}`}>
+      {sentence.matrix ? <Text style={styles.leadIn}>{sentence.matrix}</Text> : null}
       <View style={styles.tiles}>
         {words.map((w) => (
           <View
@@ -176,6 +189,10 @@ const useStyles = makeStyles(({ palette, type }) =>
       top: arc.tick + space.xs,
       textAlign: 'center',
       color: palette.messing,
+    },
+    leadIn: {
+      ...type.gloss,
+      color: palette.kreide,
     },
     verbNote: {
       ...type.gloss,

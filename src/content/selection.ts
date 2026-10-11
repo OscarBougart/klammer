@@ -1,7 +1,8 @@
 /**
- * Choosing the ten sentences for a session — E4.1.
+ * Choosing the five sentences for a session — E4.1.
  *
- * design.md §7: a session is ten sentences, fixed. Selection is weighted by
+ * design.md §7: a session is five sentences, fixed — short enough for
+ * "practise a bit". Selection is weighted by
  * tier and by the review queue — due reviews come first, then unseen sentences
  * at the learner's tier, then whatever else fits.
  *
@@ -11,7 +12,7 @@
 import type { SeedSentence } from './seed';
 import { dueEntries, type ReviewEntry } from './review';
 
-export const SESSION_LENGTH = 10;
+export const SESSION_LENGTH = 5;
 
 export type SelectionInput = {
   /** Everything in the bank. */
@@ -31,7 +32,7 @@ export type SelectionInput = {
 /**
  * Returns up to SESSION_LENGTH sentences, in the order they will be played.
  *
- * Fewer than ten is possible and is not an error: a new install at tier 1 with
+ * Fewer than five is possible and is not an error: a new install at tier 1 with
  * a small bank, or a learner who has exhausted their tier, should still get a
  * session. E7.4 handles what the screen says about it.
  */

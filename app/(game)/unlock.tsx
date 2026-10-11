@@ -51,7 +51,8 @@ export default function UnlockScreen() {
   const tier = Number(tierParam ?? 2) as Tier;
   const lesson = TIER_LESSON[tier];
 
-  const fields = boardFields(tier);
+  // Stufe 4 is about the subclause, so it shows the subclause's fields.
+  const fields = boardFields(tier, { verbFinal: tier === 4 });
   // The zone that was not there before — the thing being announced.
   const previous = new Set(boardFields((tier - 1) as Tier).map((f) => f.id));
 

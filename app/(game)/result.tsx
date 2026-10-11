@@ -1,10 +1,10 @@
 /**
  * End of session — E4.3.
  *
- * design.md §7: finishing shows a board of the ten sentences you built,
- * tappable to review. No score out of ten shouted at you, no XP, no streak
- * fireworks — the ten sentences are the reward, and re-reading the one you got
- * wrong is the useful thing to do next.
+ * design.md §7: finishing shows the five sentences you built, tappable to
+ * review. No score shouted at you, no XP, no streak fireworks — the sentences
+ * are the reward, and re-reading the one you got wrong is the useful thing to
+ * do next. So the wrong ones come first, and the first of them is open.
  */
 import { useRouter } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
@@ -19,10 +19,19 @@ import {
   useSessionStore,
   type SessionAttempt,
 } from '@/store/session';
+import { useSettingsStore } from '@/store/settings';
 import Button from '@/components/Button';
 import { border, makeStyles, radius, space } from '@/theme';
 
 /** How each verdict reads in the list. Shape and word, never colour alone. */
+/** List order: what needs another look first, then the rest as played. */
+const RANK: Record<Verdict, number> = {
+  falsch: 0,
+  ungewoehnlich: 1,
+  gueltig: 2,
+  kanonisch: 2,
+};
+
 const MARK: Record<Verdict, string> = {
   kanonisch: '●',
   gueltig: '●',
@@ -37,12 +46,20 @@ export default function ResultScreen() {
   const sentences = useSessionStore((s) => s.sentences);
   const attempts = useSessionStore((s) => s.attempts);
   const clear = useSessionStore((s) => s.clear);
+  const showGloss = useSettingsStore((s) => s.showGloss);
 
-  const [expandedId, setExpandedId] = useState<string | null>(null);
+  // Array.prototype.sort is stable, so ties keep the order they were played in.
+  const ordered = useMemo(
+    () => [...attempts].sort((a, b) => RANK[a.verdict] - RANK[b.verdict]),
+    [attempts],
+  );
+
+  const firstWrong = ordered[0]?.verdict === 'falsch' ? ordered[0].sentenceId : null;
+  const [expandedId, setExpandedId] = useState<string | null>(firstWrong);
   const [unlockedTier, setUnlockedTier] = useState<number | null>(null);
 
   // Tier advancement is decided once the session is in the books, not during
-  // it — three sessions at 8/10 is a fact about finished sessions.
+  // it — three sessions at 4/5 is a fact about finished sessions.
   useEffect(() => {
     void advanceTierIfEarned().then(setUnlockedTier);
   }, []);
@@ -77,7 +94,7 @@ export default function ResultScreen() {
       </View>
 
       <ScrollView contentContainerStyle={styles.list}>
-        {attempts.map((attempt) => {
+        {ordered.map((attempt) => {
           const sentence = byId.get(attempt.sentenceId);
           if (!sentence) return null;
 
@@ -107,7 +124,7 @@ export default function ResultScreen() {
 
                 <View style={styles.rowText}>
                   <Text style={styles.built}>{render(sentence, attempt)}</Text>
-                  <Text style={styles.gloss}>{sentence.gloss}</Text>
+                  {showGloss ? <Text style={styles.gloss}>{sentence.gloss}</Text> : null}
                 </View>
               </View>
 
@@ -124,9 +141,9 @@ export default function ResultScreen() {
                   <Text style={styles.german}>
                     {explainRule(sentence.ruleId).de}
                   </Text>
-                  <Text style={styles.gloss}>
-                    {explainRule(sentence.ruleId).en}
-                  </Text>
+                  {showGloss ? (
+                    <Text style={styles.gloss}>{explainRule(sentence.ruleId).en}</Text>
+                  ) : null}
                 </View>
               ) : null}
             </Pressable>
@@ -159,10 +176,12 @@ function describe(verdict: Verdict): string {
 }
 
 /** The sentence as the learner built it. */
-function render(
-  sentence: { chunks: { id: string; surface: string; neutralSurface: string }[] },
-  attempt: SessionAttempt,
-): string {
+type Renderable = {
+  matrix?: string;
+  chunks: { id: string; surface: string; neutralSurface: string }[];
+};
+
+function render(sentence: Renderable, attempt: SessionAttempt): string {
   return renderOrder(sentence, attempt.submittedOrder);
 }
 
@@ -171,23 +190,25 @@ function render(
  * sentence should read as German rather than as neutral tray tokens. The
  * first word takes its capitalised form because it is sentence-initial.
  */
-function renderOrder(
-  sentence: { chunks: { id: string; surface: string; neutralSurface: string }[] },
-  order: readonly string[],
-): string {
+function renderOrder(sentence: Renderable, order: readonly string[]): string {
   const byId = new Map(sentence.chunks.map((c) => [c.id, c]));
+  // A played subclause follows its lead-in: `Ich weiß nicht, ob …`. The
+  // lead-in ends in an ellipsis on the board; here it joins the sentence.
+  const leadIn = sentence.matrix?.replace(/\s*…\s*$/, '');
 
-  return order
+  const body = order
     .map((id, i) => {
       const chunk = byId.get(id);
       if (!chunk) return id;
-      if (i === 0) {
+      if (i === 0 && !leadIn) {
         const text = chunk.neutralSurface;
         return text.charAt(0).toUpperCase() + text.slice(1);
       }
       return chunk.neutralSurface;
     })
     .join(' ');
+
+  return leadIn ? `${leadIn} ${body}` : body;
 }
 
 const useStyles = makeStyles(({ palette, type }) =>
