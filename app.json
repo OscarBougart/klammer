@@ -6,6 +6,7 @@
     "orientation": "portrait",
     "scheme": "klammer",
     "userInterfaceStyle": "dark",
+    "icon": "./assets/images/icon.png",
     "backgroundColor": "#1B2430",
     "ios": {
       "supportsTablet": true,
@@ -14,6 +15,8 @@
     "android": {
       "package": "com.carbonelk.klammer",
       "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "monochromeImage": "./assets/images/adaptive-monochrome.png",
         "backgroundColor": "#1B2430"
       },
       "permissions": []
@@ -26,7 +29,16 @@
       "expo-router",
       "expo-font",
       "expo-asset",
-      "expo-sqlite"
+      "expo-sqlite",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#1B2430"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

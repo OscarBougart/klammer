@@ -13,7 +13,8 @@
     "content:expand": "tsx scripts/expand.ts",
     "content:verify": "tsx scripts/expand.ts --verify",
     "build:preview": "eas build -p android --profile preview",
-    "content:review": "tsx scripts/review.ts"
+    "content:review": "tsx scripts/review.ts",
+    "icons": "tsx scripts/icons.ts"
   },
   "dependencies": {
     "@expo-google-fonts/atkinson-hyperlegible": "^0.4.1",
@@ -28,7 +29,7 @@
     "expo-haptics": "~57.0.3",
     "expo-linking": "~57.0.10",
     "expo-router": "~57.0.22",
-    "expo-splash-screen": "~57.0.9",
+    "expo-splash-screen": "~57.0.10",
     "expo-sqlite": "~57.0.3",
     "expo-status-bar": "~57.0.1",
     "nativewind": "^4.2.7",
@@ -54,6 +55,7 @@
     "eslint": "^9.36.0",
     "eslint-config-expo": "~57.0.2",
     "js-yaml": "^4.1.0",
+    "sharp": "^0.35.5",
     "tsx": "^4.20.6",
     "typescript": "~6.0.3",
     "vitest": "^3.2.4"

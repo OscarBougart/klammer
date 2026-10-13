@@ -5,8 +5,9 @@
  * drawn with the same chalk tiles and brass the board uses. The finite verb is
  * brass; from Stufe 2 a bracket runs under the sentence from the verb to its
  * other half, which is the thing the app is named after. In a subclause the
- * conjunction opens the bracket and the finite verb, now last, closes it. Static, so there is
- * nothing for reduced motion to switch off.
+ * conjunction opens the bracket and the finite verb, now last, closes it; at
+ * Stufe 5 what follows the bracket is named as the Nachfeld. Static, so there
+ * is nothing for reduced motion to switch off.
  */
 import { memo, useMemo, useState } from 'react';
 import { StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
@@ -85,7 +86,15 @@ function SampleSentenceComponent({ tier }: SampleSentenceProps) {
           width: to.x + to.width / 2 - (from.x + from.width / 2),
         }
       : null;
+  // On a narrow phone, or at large text, the sentence wraps and a line from
+  // one row to the next would point at nothing. The two ends are marked on
+  // the tiles instead, and named underneath.
+  const wrapped = tier >= 2 && opening && closing && from && to && !bracket;
   const verbMark = tier === 1 && from ? { left: from.x, width: from.width } : null;
+
+  // Stufe 5 is about what may follow the bracket, so it is named.
+  const closingIndex = closing ? words.indexOf(closing) : -1;
+  const nachfeld = tier >= 5 && !konj && closingIndex >= 0 ? words.slice(closingIndex + 1) : [];
 
   const record = (id: string) => (event: LayoutChangeEvent) => {
     const { x, y, width } = event.nativeEvent.layout;
@@ -107,7 +116,11 @@ function SampleSentenceComponent({ tier }: SampleSentenceProps) {
           <View
             key={w.id}
             onLayout={record(w.id)}
-            style={[styles.tile, w.role === 'FIN' && styles.tileFinite]}
+            style={[
+              styles.tile,
+              w.role === 'FIN' && styles.tileFinite,
+              wrapped && (w === opening || w === closing) && styles.tileBracketEnd,
+            ]}
           >
             <Text style={styles.tileText} maxFontSizeMultiplier={a11y.maxDynamicTypeScale}>
               {w.text}
@@ -122,7 +135,13 @@ function SampleSentenceComponent({ tier }: SampleSentenceProps) {
         <Text style={[styles.verbNote, { marginLeft: verbMark.left }]}>↑ Position 2</Text>
       ) : null}
 
-      {tier >= 2 ? (
+      {wrapped ? (
+        <Text style={styles.markText}>
+          Klammer: {opening.text} … {closing.text}
+        </Text>
+      ) : null}
+
+      {tier >= 2 && !wrapped ? (
         <View style={styles.markRow}>
           {bracket ? (
             <>
@@ -133,6 +152,12 @@ function SampleSentenceComponent({ tier }: SampleSentenceProps) {
             </>
           ) : null}
         </View>
+      ) : null}
+
+      {nachfeld.length > 0 ? (
+        <Text style={styles.markText}>
+          Nachfeld: {nachfeld.map((w) => w.text).join(' ')}
+        </Text>
       ) : null}
     </View>
   );
@@ -166,6 +191,14 @@ const useStyles = makeStyles(({ palette, type }) =>
     },
     tileFinite: {
       backgroundColor: palette.messing,
+    },
+    tileBracketEnd: {
+      // The bracket's two ends, when it cannot be drawn between them.
+      borderBottomColor: palette.messing,
+    },
+    markText: {
+      ...type.gloss,
+      color: palette.messing,
     },
     tileText: type.miniTileText,
     markRow: {

@@ -198,11 +198,6 @@ export default function Board({
         </Animated.View>
       </Animated.View>
 
-      {/* Hugs its content, so the bank sits right under the row and the hint
-          rather than at the foot of a tall screen with a gap above it. The
-          spare height falls below the bank instead. */}
-      {scroller(children, false)}
-
       {bank.length > 0 ? (
         <Animated.View style={[styles.tray, bankLayer]} accessibilityLabel="Wörter">
           <View style={styles.trayTiles}>
@@ -223,6 +218,12 @@ export default function Board({
           </View>
         </Animated.View>
       ) : null}
+
+      {/* The hint goes under the bank, not between it and the row: hints
+          come and go as words are placed, and above the bank each change
+          moved every word under the learner's next tap. Hugs its content,
+          so the spare height falls below. */}
+      {scroller(children, false)}
     </View>
   );
 }

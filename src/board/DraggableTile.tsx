@@ -209,7 +209,11 @@ function DraggableTileComponent({
           lifted.value * (scale.tileLifted - scale.tileRest),
       },
     ],
-    // A lifted tile must clear the tiles it passes over.
+  }));
+
+  // A lifted tile must clear the tiles it passes over. On the outer view,
+  // since that is the one its siblings are stacked against.
+  const raisedStyle = useAnimatedStyle(() => ({
     zIndex: lifted.value > 0 ? 10 : 0,
   }));
 
@@ -221,12 +225,18 @@ function DraggableTileComponent({
         // the single-tile correction being applied — the tile glides to its
         // new position instead of teleporting. Reduced motion skips it, since
         // the destination is the information, not the journey.
+        //
+        // The layout transition animates this view's own transform, so the
+        // drag/shake transform lives on the inner view. Sharing one view, the
+        // two fought, and a tile could settle on top of its neighbour.
         {...(reducedMotion
           ? {}
           : { layout: LinearTransition.duration(duration.arcDraw / 2) })}
-        style={[styles.container, animatedStyle]}
+        style={[styles.container, raisedStyle]}
       >
-        <Tile {...tileProps} isLifted={isLifted} />
+        <Animated.View style={animatedStyle}>
+          <Tile {...tileProps} isLifted={isLifted} />
+        </Animated.View>
       </Animated.View>
     </GestureDetector>
   );
@@ -237,7 +247,7 @@ export default memo(DraggableTileComponent);
 const useStyles = makeStyles(({ palette, type }) =>
   StyleSheet.create({
     container: {
-      // The tile sizes itself; this wrapper only carries the transform.
+      // The tile sizes itself; this wrapper only carries its place in the flow.
       alignSelf: 'flex-start',
     },
   }),
