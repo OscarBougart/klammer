@@ -19,7 +19,8 @@
         "monochromeImage": "./assets/images/adaptive-monochrome.png",
         "backgroundColor": "#1B2430"
       },
-      "permissions": []
+      "permissions": [],
+      "allowBackup": false
     },
     "web": {
       "bundler": "metro",

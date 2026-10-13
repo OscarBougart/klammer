@@ -35,71 +35,74 @@ rather than buried in the long copy.
 ```
 Word order is the mistake that survives longest.
 
-You can reach B2 vocabulary and still write "Ich habe gestern ins Kino
-gegangen mit meiner Frau" — every word correct, every word in the wrong place.
-Most grammar apps drill cases and conjugation, because those are easy to mark.
+You can reach B2 vocabulary and still write "Gestern ich habe ein neues
+Fahrrad gekauft" — every word correct, the verb in the wrong place. Most
+grammar apps drill cases and conjugation, because those are easy to mark.
 Almost nobody drills position.
 
 The reason is that position is hard to mark. German usually allows several
 correct orders, and most apps dodge this by accepting exactly one. Klammer
-accepts all of them, and tells you what changed in meaning when you choose a
-different one.
+accepts all of them, and tells you what changes when you choose a different
+one.
 
 HOW IT WORKS
 
-A sentence arrives as a set of tiles. You place them into the fields of the
-topological field model — the Vorfeld, the two halves of the Satzklammer, the
-Mittelfeld, the Nachfeld. This is how German syntax is actually described, and
-seeing it as a board makes the bracket obvious in a way a textbook diagram
-does not.
+A sentence arrives as a handful of word tiles. Tap them in the order you
+think is right, or drag one to where it belongs. Nothing stops you building
+a wrong sentence — being wrong has to be possible, or nothing is being
+tested.
 
-The board never blocks a wrong placement. Being wrong has to be possible, or
-nothing is being tested.
+Press Prüfen and your sentence is laid out in the fields German grammar
+actually uses: the Vorfeld, the two halves of the Satzklammer, the
+Mittelfeld, the Nachfeld. Seeing your own sentence split that way makes the
+bracket obvious in a way a textbook diagram does not.
 
 THREE WAYS TO BE RIGHT
 
-Most apps have two answers: right and wrong. German needs three.
+Most apps have two answers: right and wrong. German needs more.
 
-• Kanonisch — the neutral order
+• Richtig — the neutral order
 • Auch richtig — fully grammatical, different emphasis
 • Möglich, aber ungewöhnlich — grammatical, but you would rarely say it
 
-"Vom Bahnhof hole ich meine Schwester morgen ab" is not wrong. It is a
-sentence that answers the question "where from?". Being told that is worth
-more than a red cross.
+"Morgen fahre ich nach Berlin" and "Ich fahre morgen nach Berlin" are both
+right. Being told what the difference is is worth more than a red cross.
+When you are wrong, Klammer names the rule you broke and lets you try again
+or see the answer.
 
-THE BOARD GROWS
-
-Five tiers, each unlocking a new field:
+FIVE STUFEN
 
 1. Position zwei — the finite verb is always second
-2. Die Klammer — separable prefixes, the perfect tense, modal verbs
-3. Das Mittelfeld — TeKaMoLo, pronoun order, negation
-4. Der Nebensatz — verb-final clauses
-5. Das Nachfeld — extraposition and comparison
+2. Die Klammer — separable verbs, the perfect tense, modal verbs
+3. Das Mittelfeld — time, manner, place, pronouns, negation
+4. Der Nebensatz — the verb goes last
+5. Das Nachfeld — what may come after the bracket
 
-You never see five fields on your first day. The board shows only the
-structure currently in play.
+Start at the beginning, or try any Stufe whenever you like. Three good
+rounds in a row move you up.
+
+SHORT ON PURPOSE
+
+A round is five sentences, about five minutes. There is no timer while you
+are solving, because time pressure degrades exactly the kind of thinking
+this app trains.
 
 WHAT THIS APP DOES NOT DO
 
-No accounts. No adverts. No in-app purchases. No leaderboards, hearts, XP,
-gems or mascots. No notifications.
+No accounts. No adverts. No in-app purchases. No streaks, leaderboards,
+hearts, XP, gems or mascots. No notifications.
 
-It collects nothing. There is no network connection at all — everything stays
-on your phone, which is also why it works on a plane.
-
-A ten-sentence session takes about twelve minutes. There is no timer while you
-are solving, because time pressure degrades exactly the kind of thinking this
-app trains.
+It collects nothing. There is no network connection at all — everything
+stays on your phone, which is also why it works on a plane.
 
 BUILT FOR READING
 
-Dark by default, because the fields and the bracket read as a diagram.
-Set in Atkinson Hyperlegible, a typeface designed for maximum letterform
-clarity — which is what you want when reading a language you do not own yet.
-Full screen-reader support, dynamic type to 200%, and every animation
-respects your reduced-motion setting.
+Dark by default, with a light theme in Settings. Set in Atkinson
+Hyperlegible, a typeface designed for letterform clarity — which is what
+you want when reading a language you do not own yet. English translations
+can be switched off once you no longer need them. Screen-reader labels
+throughout, text that scales to 200%, and every animation respects your
+reduced-motion setting.
 
 Vocabulary stays inside the Goethe A1–B1 range, so word order is the only
 difficulty.
@@ -113,24 +116,24 @@ difficulty.
 - **Contains ads:** No
 - **In-app purchases:** No
 
-### Graphics still needed — E7.3
+### Graphics — E7.3
 
-| Asset | Size | Notes |
+| Asset | Size | Status |
 |---|---|---|
-| App icon | 512 × 512 | The Klammer arc on `schiefer`. Icon must not use `messing` and `ziegel` together |
-| Feature graphic | 1024 × 500 | A board mid-sentence with the arc closed reads better than a logo |
-| Phone screenshots | ≥ 2, up to 8 | See below |
+| App icon | 512 × 512 | **Done:** `assets/images/play-store-icon.png`, from `npm run icons` |
+| Feature graphic | 1024 × 500 | `assets/store/feature-graphic.png`, from `npm run icons` |
+| Phone screenshots | ≥ 2, up to 8 | Taken from a real build — see below |
 
 **Screenshot plan** — each should show the product doing its job, not a
 marketing slogan:
 
-1. A tier-2 board mid-solve, tiles in the tray
-2. The arc closed on a correct answer
-3. The **auch richtig** verdict — this is the differentiator, and no
+1. Home: the sample sentence with its bracket, the five Stufen
+2. A Stufe-2 sentence half built in the row, words left in the bank
+3. The same sentence after Prüfen: split into fields, the bracket closed
+4. The **Auch richtig** verdict — this is the differentiator, and no
    competitor screenshot looks like it
-4. A wrong answer with the rule named
-5. The result screen, ten sentences reviewable
-6. The week strip — seven squares, not a number
+5. A wrong answer with the rule named, Nochmal / Lösung zeigen
+6. The result screen, wrong answers first
 
 ---
 
@@ -191,8 +194,8 @@ contains no analytics, advertising, crash-reporting or tracking software of
 any kind.
 
 Everything the app remembers — which sentences you have answered, your
-progress through the tiers, your streak, and your settings — is stored only on
-your own device. It is never uploaded anywhere. Deleting the app deletes all
+progress through the levels, and your settings — is stored only on your own
+device. It is never uploaded anywhere. Deleting the app deletes all
 of it permanently; there is no account and no backup.
 
 The app requests no permissions.
@@ -216,15 +219,18 @@ mechanic hold attention for a fortnight?**
 Prerequisites, in order:
 
 1. A German speaker has verified the bank — done for the first 130
-   sentences, **open for the 240 added after the review** (and for everything
-   added from here on). `npm run content:expand` counts what's left; see the
-   verification-status note in `GERMAN-REVIEW.md`, which also lists the open
-   questions for the reviewer. **This is now the long pole.**
+   sentences, **open for the other 392** (all of tiers 4 and 5 included).
+   `npm run content:expand` counts what's left; see the verification-status
+   note in `GERMAN-REVIEW.md`, which also lists the open questions for the
+   reviewer. **This is the long pole.**
 2. A real device build succeeds — E0.5, still open.
-3. ~~Content reaches roughly 370 sentences across tiers 1–3~~ — done:
-   370 (tier 1: 120, tier 2: 120, tier 3: 130).
-4. Icon, feature graphic and screenshots exist — E7.3.
-5. Privacy policy has a public URL.
+3. ~~Content reaches roughly 370 sentences across tiers 1–3~~ — done: 522
+   across tiers 1–5.
+4. ~~Icon~~ (done) and feature graphic exist; screenshots from the first
+   real build — E7.3.
+5. Privacy policy has a public URL — `docs/privacy.html`, served by GitHub
+   Pages.
+6. ~~12 testers~~ — ready.
 
 **What to measure**, per epics.md E9.6:
 

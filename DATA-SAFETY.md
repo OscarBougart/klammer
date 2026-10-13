@@ -51,6 +51,9 @@ Data Safety re-check even though local notifications collect nothing.
 
 - `expo-sqlite` — attempts, progress, review queue. Local file, never synced.
 - `AsyncStorage` — five settings toggles. Local.
+- Android Auto Backup is **off** (`"allowBackup": false` in `app.json`). It is
+  on by default, and would copy the database to the user's Google Drive —
+  which would make "never uploaded anywhere" in the privacy policy untrue.
 
 Nothing leaves the device, so there is no transfer to declare.
 
@@ -78,7 +81,8 @@ convenience added during development that nobody remembers is there.
 
 1. Re-run the grep in §1 over `app/` and `src/`.
 2. Re-run the package check in §2 — a transitive dependency can introduce one.
-3. Confirm `app.json` still declares `"permissions": []`.
+3. Confirm `app.json` still declares `"permissions": []` and
+   `"allowBackup": false`.
 4. Confirm no `expo-updates` and no OTA configuration.
 5. If the daily reminder has shipped, confirm it is local-only and still off by
    default.

@@ -73,7 +73,9 @@ App
 - [x] App icon + splash (2026-10-13, uncommitted): flat brass verb tile, long
       chalk tile, bracket under them; `npm run icons` regenerates them from
       the tokens. Only visible in a real build — Expo Go shows its own.
-- [ ] Update the 6 Expo packages; lint + tests green.
+- [x] Expo packages aligned with SDK 57 patches (`d70a930`).
+- [x] Android Auto Backup off (`allowBackup: false`), so "nothing leaves the
+      device" holds.
 
 Build
 - [ ] `eas init` to link the project (no projectId in `app.json` yet).
@@ -81,10 +83,11 @@ Build
 - [ ] Production `.aab` with Play App Signing.
 
 Play Console
-- [ ] Privacy policy at a public URL (draft in `RELEASE.md`; GitHub Pages).
-- [ ] Rewrite the store text in `RELEASE.md`: it still describes placing
-      tiles into fields, ten-sentence sessions, the week strip and the streak.
-- [ ] Feature graphic 1024×500, 2–8 phone screenshots (E7.3).
+- [ ] Privacy policy: page written (`docs/privacy.html`). Needs the contact
+      email filled in, then GitHub Pages turned on (main branch, `/docs`).
+- [x] Store text in `RELEASE.md` rewritten for the current app.
+- [x] Feature graphic: `assets/store/feature-graphic.png` (`npm run icons`).
+- [ ] 2–8 phone screenshots, from the first real build (plan in `RELEASE.md`).
 - [ ] Data safety form: no data collected (`DATA-SAFETY.md`).
 - [ ] Content rating questionnaire (`RELEASE.md`); confirm after the German
       review.

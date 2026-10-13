@@ -1,5 +1,6 @@
 /**
- * The app icon and splash mark, drawn from the theme tokens — E7.3.
+ * The app icon, splash mark and store feature graphic, drawn from the theme
+ * tokens — E7.3.
  *
  * The mark is the picture on Home's sample card reduced to its bones: a brass
  * tile (the finite verb), a chalk tile (the other half of the bracket), and a
@@ -15,16 +16,19 @@
  * circle. The store icon and the legacy icon are full-bleed squares and can
  * carry the mark larger.
  */
-import { mkdirSync } from 'node:fs';
+import { mkdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
+import { parse, type Font } from 'opentype.js';
 import sharp from 'sharp';
 
 import tokens from '../src/theme/tokens.json';
 
-const { schiefer, kreide, messing } = tokens.palette;
+const { schiefer, kreide, messing, grau } = tokens.palette;
 
 const OUT = join(__dirname, '..', 'assets', 'images');
+/** Store-only artwork: not bundled into the app. */
+const STORE = join(__dirname, '..', 'assets', 'store');
 
 /**
  * The mark in its own units. The tiles are unequal on purpose: a short
@@ -104,8 +108,8 @@ function svg(size: number, fraction: number, paint: Paint, background: string | 
   );
 }
 
-async function write(name: string, source: string): Promise<void> {
-  await sharp(Buffer.from(source)).png().toFile(join(OUT, name));
+async function write(name: string, source: string, dir: string = OUT): Promise<void> {
+  await sharp(Buffer.from(source)).png().toFile(join(dir, name));
   console.log(`  ${name}`);
 }
 
@@ -117,8 +121,94 @@ const SAFE_FRACTION = 0.54;
 /** Full-bleed squares: the store and launcher round the corners themselves. */
 const FULL_FRACTION = 0.68;
 
+/**
+ * The Play Store feature graphic, 1024 × 500: the name, Home's tagline, and
+ * one real sentence built from the same flat tiles, its bracket closed. Text
+ * is drawn as outlines from the app's own fonts, so the PNG looks the same
+ * on any machine that runs this script.
+ */
+const FONTS = join(__dirname, '..', 'node_modules', '@expo-google-fonts');
+function font(family: string, weight: string, file: string): Font {
+  const bytes = readFileSync(join(FONTS, family, weight, file));
+  return parse(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength));
+}
+
+const display = font('bricolage-grotesque', '700Bold', 'BricolageGrotesque_700Bold.ttf');
+const tileFace = font('bricolage-grotesque', '600SemiBold', 'BricolageGrotesque_600SemiBold.ttf');
+const body = font('atkinson-hyperlegible', '400Regular', 'AtkinsonHyperlegible_400Regular.ttf');
+
+/** Text as an SVG path; `x` is the left edge, `y` the baseline. */
+function text(font: Font, value: string, x: number, y: number, size: number, fill: string): string {
+  return `<path d="${font.getPath(value, x, y, size).toPathData(2)}" fill="${fill}"/>`;
+}
+
+function centred(font: Font, value: string, cx: number, y: number, size: number, fill: string): string {
+  return text(font, value, cx - font.getAdvanceWidth(value, size) / 2, y, size, fill);
+}
+
+const SENTENCE = [
+  { word: 'Ich', bracket: false },
+  { word: 'habe', bracket: true },
+  { word: 'gestern', bracket: false },
+  { word: 'Kaffee', bracket: false },
+  { word: 'getrunken', bracket: true },
+];
+
+function featureGraphic(): string {
+  const W = 1024;
+  const H = 500;
+  const cx = W / 2;
+
+  const size = 40;
+  const padX = 22;
+  const tileH = 80;
+  const gap = 14;
+  const rowTop = 240;
+
+  const widths = SENTENCE.map((t) => tileFace.getAdvanceWidth(t.word, size) + padX * 2);
+  const rowWidth = widths.reduce((a, b) => a + b, 0) + gap * (SENTENCE.length - 1);
+
+  let x = cx - rowWidth / 2;
+  const tiles: string[] = [];
+  const ends: number[] = [];
+  SENTENCE.forEach((t, i) => {
+    const w = widths[i] ?? 0;
+    // The verb's face is brass, as on the board; the closing half is chalk.
+    const face = t.word === 'habe' ? messing : kreide;
+    tiles.push(`<rect x="${x}" y="${rowTop}" width="${w}" height="${tileH}" rx="12" fill="${face}"/>`);
+    tiles.push(text(tileFace, t.word, x + padX, rowTop + tileH / 2 + size * 0.36, size, schiefer));
+    if (t.bracket) ends.push(x + w / 2);
+    x += w + gap;
+  });
+
+  const [left = 0, right = 0] = ends;
+  const top = rowTop + tileH + 16;
+  const bottom = top + 36;
+  const r = 10;
+  const bracketPath = [
+    `M ${left} ${top}`,
+    `V ${bottom - r}`,
+    `A ${r} ${r} 0 0 0 ${left + r} ${bottom}`,
+    `H ${right - r}`,
+    `A ${r} ${r} 0 0 0 ${right} ${bottom - r}`,
+    `V ${top}`,
+  ].join(' ');
+
+  return (
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">` +
+    `<rect width="${W}" height="${H}" fill="${schiefer}"/>` +
+    centred(display, 'Klammer', cx, 138, 76, kreide) +
+    centred(body, 'Deutsche Wortstellung, Satz für Satz.', cx, 186, 28, grau) +
+    tiles.join('') +
+    `<path d="${bracketPath}" fill="none" stroke="${messing}" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>` +
+    centred(body, 'Klammer', (left + right) / 2, bottom + 42, 26, messing) +
+    `</svg>`
+  );
+}
+
 async function main(): Promise<void> {
   mkdirSync(OUT, { recursive: true });
+  mkdirSync(STORE, { recursive: true });
   console.log('Writing icons to assets/images:');
   await write('icon.png', svg(1024, FULL_FRACTION, COLOUR, schiefer));
   await write('play-store-icon.png', svg(512, FULL_FRACTION, COLOUR, schiefer));
@@ -127,6 +217,8 @@ async function main(): Promise<void> {
   await write('adaptive-monochrome.png', svg(1024, SAFE_FRACTION, MONO, null));
   // Android 12+ shows the splash icon inside a circle, like the adaptive icon.
   await write('splash-icon.png', svg(1024, SAFE_FRACTION, COLOUR, null));
+  console.log('Writing store artwork to assets/store:');
+  await write('feature-graphic.png', featureGraphic(), STORE);
 }
 
 main().catch((error: unknown) => {
