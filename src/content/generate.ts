@@ -193,45 +193,147 @@ function mittelfeldVariants(chunks: AuthoredChunk[]): MittelfeldVariant[] {
     { chunks: base, class: 'kanonisch', reason: '' },
   ];
 
-  const anchorIndex = base.findIndex(
-    (c) => c.role === 'TEMP' || c.role === 'KAUS',
-  );
-  const anchor = anchorIndex === -1 ? undefined : base[anchorIndex];
-  if (anchor === undefined) return variants;
-
+  /**
+   * Licensed departures from the default order, per the native-speaker review.
+   *
+   * The governing insight from that review: almost nothing in the Mittelfeld
+   * is flatly ungrammatical. Most "wrong" orders simply need contrastive
+   * stress, which this app cannot show. So an order that only works under
+   * stress is `ungewoehnlich` with a note — never `falsch`. The single
+   * exception is `es`, which cannot be stressed at all, and which the
+   * `stressable: false` flag already excludes.
+   */
   for (const [i, chunk] of base.entries()) {
-    if (i === anchorIndex) continue;
-    if (!isStressable(chunk)) continue;
+    for (const [j, anchor] of base.entries()) {
+      if (i === j) continue;
+      // Only ever generate a leftward move; the mirror is the base order.
+      if (i < j) continue;
 
-    // Only a full-NP object alternates across the anchor.
-    //
-    // Not adverbials: they keep TeKaMoLo, and reordering those is exactly what
-    // the corpus reject lists guard.
-    //
-    // Not pronouns either. `dass sie morgen mich vom Bahnhof abholen muss` is
-    // real, but the neighbouring `er hat gestern mir erzählt` is not, and two
-    // sentences are not enough to tell whether the difference is case or
-    // clause type. Guessing wrong here means generating ungrammatical German,
-    // so the generator declines and the author vouches for the good ones by
-    // hand via `extraAccepted`.
-    if (chunk.role !== 'AKK' && chunk.role !== 'DAT') continue;
+      const variant = licensedSwap(chunk, anchor);
+      if (!variant) continue;
 
-    // An indefinite object may not climb over a temporal — that is the
-    // t1-01 / t2-02 reject. A definite one may, and that is t2-01.
-    if (!chunk.definite && anchor.role === 'TEMP') continue;
+      const swapped = [...base];
+      swapped[i] = anchor;
+      swapped[j] = chunk;
 
-    const swapped = [...base];
-    swapped[i] = anchor;
-    swapped[anchorIndex] = chunk;
-
-    variants.push({
-      chunks: swapped,
-      class: 'gueltig',
-      reason: `${chunk.id} and ${anchor.id} exchanged`,
-    });
+      variants.push({
+        chunks: swapped,
+        class: variant.class,
+        reason: variant.reason,
+      });
+    }
   }
 
   return variants;
+}
+
+type SwapRule = { class: AcceptedClass; reason: string };
+
+/**
+ * Whether two neighbours in the Mittelfeld may exchange places, and what the
+ * result costs. Returns null when the exchange is not licensed.
+ *
+ * Classified by the *pair*, not by which one moves: `meine Schwester morgen`
+ * and `morgen meine Schwester` are the same alternation seen from either end,
+ * and the generator reaches it from whichever side the default order puts
+ * second.
+ *
+ * The governing insight from the native review: almost nothing in the
+ * Mittelfeld is flatly ungrammatical. Most "wrong" orders simply need
+ * contrastive stress, which this app cannot show — so an order that only works
+ * under stress is `ungewoehnlich`, never `falsch`. The one true exception is
+ * `es`, which cannot be stressed at all, and which `stressable: false` keeps
+ * out of every variant.
+ */
+function licensedSwap(a: AuthoredChunk, b: AuthoredChunk): SwapRule | null {
+  const object = pickObject(a, b);
+  const adverbial = pickAdverbial(a, b);
+
+  if (object && adverbial) {
+    // A pronoun leaves its slot only under contrast — and `es`, which cannot
+    // carry stress, never leaves it. This check was missing: `Ich gebe morgen
+    // dir es` shipped as `ungewoehnlich` in t3-06 while the comments above
+    // said it could not be generated.
+    if (object.role === 'PRON_AKK' || object.role === 'PRON_DAT') {
+      if (!isStressable(object)) return null;
+      return {
+        class: 'ungewoehnlich',
+        reason: `${object.id} behind ${adverbial.id} — only with stress on ${object.id}`,
+      };
+    }
+
+    // A bare or indefinite object resists climbing over a *time* phrase; it
+    // reads only with focus on the adverbial (`Ich trinke Kaffee morgens`,
+    // understood as "…nicht abends"). Across a reason or a manner phrase it
+    // moves freely — manner already sits next to the verb, so the object
+    // barely travels.
+    if (!object.definite && adverbial.role === 'TEMP') {
+      return {
+        class: 'ungewoehnlich',
+        reason: `${object.id} before ${adverbial.id} — needs focus on ${adverbial.id}`,
+      };
+    }
+
+    return {
+      class: 'gueltig',
+      reason: `${object.id} and ${adverbial.id} exchanged`,
+    };
+  }
+
+  // An object pronoun and a full-noun subject — GERMAN-REVIEW.md 1.3. In the
+  // Mittelfeld a pronoun outranks a full noun whatever its case, so `Gestern
+  // hat mir der Mann das Buch gegeben` is at least as natural as the
+  // subject-first order. Accepted as ordinary, not marked. Pronoun subjects
+  // carry `PRON_NOM` and are excluded: two pronouns keep nominative first.
+  const nounSubject = a.role === 'SUBJ' ? a : b.role === 'SUBJ' ? b : undefined;
+  const objectPronoun =
+    a.role === 'PRON_AKK' || a.role === 'PRON_DAT'
+      ? a
+      : b.role === 'PRON_AKK' || b.role === 'PRON_DAT'
+        ? b
+        : undefined;
+  if (nounSubject && objectPronoun) {
+    return {
+      class: 'gueltig',
+      reason: `${objectPronoun.id} before ${nounSubject.id} — a pronoun comes early`,
+    };
+  }
+
+  // Two full noun objects. Dative before accusative is the neutral order, but
+  // the reverse is emphasis rather than error — `Ich gebe das Buch meinem
+  // Bruder` has to be accepted.
+  const isFullPair =
+    (a.role === 'AKK' && b.role === 'DAT') ||
+    (a.role === 'DAT' && b.role === 'AKK');
+  if (isFullPair) {
+    return {
+      class: 'gueltig',
+      reason: 'accusative before dative — emphasis on the recipient',
+    };
+  }
+
+  return null;
+}
+
+const OBJECT_ROLES = new Set(['AKK', 'DAT', 'PRON_AKK', 'PRON_DAT']);
+const ADVERBIAL_ROLES_SWAP = new Set(['TEMP', 'KAUS', 'MODAL', 'INSTR']);
+
+function pickObject(
+  a: AuthoredChunk,
+  b: AuthoredChunk,
+): AuthoredChunk | undefined {
+  if (OBJECT_ROLES.has(a.role) && ADVERBIAL_ROLES_SWAP.has(b.role)) return a;
+  if (OBJECT_ROLES.has(b.role) && ADVERBIAL_ROLES_SWAP.has(a.role)) return b;
+  return undefined;
+}
+
+function pickAdverbial(
+  a: AuthoredChunk,
+  b: AuthoredChunk,
+): AuthoredChunk | undefined {
+  if (OBJECT_ROLES.has(a.role) && ADVERBIAL_ROLES_SWAP.has(b.role)) return b;
+  if (OBJECT_ROLES.has(b.role) && ADVERBIAL_ROLES_SWAP.has(a.role)) return a;
+  return undefined;
 }
 
 /** Vorfeld markedness — design.md §4 and the corpus accept lists. */
@@ -261,6 +363,31 @@ function classifyVorfeld(chunk: AuthoredChunk): {
     return {
       class: 'gueltig',
       reason: `${chunk.id} fronted — topic`,
+    };
+  }
+
+  // A scene-setting place phrase is ordinary, not marked: `In Aachen wohne ich
+  // seit 2022`. Native review moved this out of `ungewoehnlich`. Directionals
+  // stay marked — `Vom Bahnhof hole ich…` only works as a contrast.
+  if (chunk.role === 'LOK') {
+    return { class: 'gueltig', reason: `${chunk.id} fronted — sets the scene` };
+  }
+
+  // Instrument fronts freely — `Mit dem Fahrrad fahre ich zur Arbeit` answers
+  // "how do you get there?" and needs no contrast. True manner (`schnell`,
+  // `gern`, `spät`) falls through to the marked case below, which is the whole
+  // reason INSTR is a separate role.
+  if (chunk.role === 'INSTR') {
+    return { class: 'gueltig', reason: `${chunk.id} fronted — the means` };
+  }
+
+  // An object pronoun can be fronted, but only under contrast: `Mir hat er…`
+  // means "me, not them". Unstressable pronouns (`es`) never reach here —
+  // the caller drops them.
+  if (chunk.role === 'PRON_AKK' || chunk.role === 'PRON_DAT') {
+    return {
+      class: 'ungewoehnlich',
+      reason: `${chunk.id} fronted — only with stress on ${chunk.id}`,
     };
   }
 

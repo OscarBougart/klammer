@@ -49,14 +49,37 @@ export const ADVERBIAL_ROLES = [
   /** Ka — `wegen der Prüfung`. */
   'KAUS',
   /**
-   * Mo — `mit dem Fahrrad`, `sehr langsam`. This is the *modal adverbial*,
-   * nothing to do with modal verbs; a modal verb is a FIN.
+   * Mo — `sehr langsam`, `gern`, `fleißig`. This is the *modal adverbial*,
+   * nothing to do with modal verbs; a modal verb is a FIN. Manner proper:
+   * *how* the action is done.
    */
   'MODAL',
+  /**
+   * Instrument or means — `mit dem Fahrrad`, `mit dem Zug`. Split from MODAL
+   * on the native review's ruling: it sits in the same TeKaMoLo slot and
+   * ranks identically in the Mittelfeld, but the two behave differently in
+   * the Vorfeld. `Mit dem Fahrrad fahre ich zur Arbeit` is an ordinary
+   * sentence; `Schnell fahre ich zur Arbeit` needs a contrast to license it.
+   * One ordering fact, which is what earns a role its place in this list.
+   */
+  'INSTR',
   /** Lo — `in Aachen`, `zu Hause`. */
   'LOK',
   /** Directional — `nach Köln`, `in die Schule`, `vom Bahnhof`. */
   'DIR',
+  /**
+   * Temporal particle — `schon`, `wieder`, `noch`, `erst`.
+   *
+   * Ranks with the temporals in the Mittelfeld, but is deliberately absent
+   * from VORFELD_ELIGIBLE: bare `Schon schläft das Kind` is not something a
+   * speaker offers out of nowhere, and the generator was producing it as an
+   * ordinary alternative. Native review, `schon`/`wieder` section.
+   *
+   * A particle *phrase* is a different constituent — `Schon wieder hat der
+   * Zug Verspätung` is fine — and would be authored as one tile with its own
+   * role, not as PARTIKEL.
+   */
+  'PARTIKEL',
 ] as const;
 
 /** Everything else that has a fixed position of its own. */
@@ -97,15 +120,24 @@ export function isRole(value: string): value is Role {
  */
 export const VORFELD_ELIGIBLE: ReadonlySet<Role> = new Set<Role>([
   'SUBJ',
+  // A nominative pronoun in the Vorfeld is the most ordinary German sentence
+  // there is. The role sat unused until GERMAN-REVIEW.md 1.3 made the
+  // pronoun/noun subject distinction load-bearing, so the omission never bit.
+  'PRON_NOM',
   'TEMP',
   'KAUS',
   'MODAL',
+  'INSTR',
   'LOK',
   'DIR',
   'AKK',
   'DAT',
   'PRAED',
   'NEBENSATZ',
+  // Object pronouns may be fronted under contrast. `es` cannot be stressed and
+  // is excluded by `stressable: false`, not by role.
+  'PRON_AKK',
+  'PRON_DAT',
 ]);
 
 /** Verbal material that belongs in the right bracket. */

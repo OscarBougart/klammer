@@ -65,7 +65,7 @@ export const attempts = sqliteTable(
     sentenceId: text('sentence_id')
       .notNull()
       .references(() => sentences.id),
-    /** Session this attempt belongs to; a session is ten sentences. */
+    /** Session this attempt belongs to; a session is five sentences. */
     sessionId: text('session_id').notNull(),
     /** The order the learner built, as chunk ids. */
     submittedOrder: text('submitted_order', { mode: 'json' })
@@ -85,7 +85,7 @@ export const attempts = sqliteTable(
 
 /**
  * Single-row table. Tier state, streak, and the counters behind advancement
- * (8/10 canonical-or-valid across three consecutive sessions).
+ * (4/5 canonical-or-valid across three consecutive sessions).
  */
 export const progress = sqliteTable('progress', {
   id: integer('id').primaryKey(),

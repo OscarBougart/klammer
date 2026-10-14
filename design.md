@@ -6,7 +6,7 @@ German word order, one sentence at a time.
 **Package:** `com.carbonelk.klammer`
 **Platform:** Android first (Google Play), iOS later
 **Price:** Free. No ads, no accounts, no network, no IAP.
-**Session:** 10 sentences, 10–14 minutes.
+**Session:** 5 sentences, about 5 minutes.
 
 ---
 
@@ -65,13 +65,33 @@ structure is currently in play.
 
 ## 3. Mechanic
 
-1. A scrambled sentence arrives as tiles in a tray at the bottom.
-2. Drag tiles into slots on the board. Tap-to-place also works (accessibility,
-   and faster for most people).
-3. Slots accept anything. The board never blocks a wrong placement — being
-   wrong must be possible or nothing is being tested.
+1. A scrambled sentence arrives as tiles in a word bank at the bottom.
+2. The learner builds the sentence in **one row**, left to right. Tapping a
+   tile in the bank adds it to the end of the row; tapping a tile in the row
+   sends it back to its slot in the bank. Dragging puts a tile exactly where
+   it is dropped in the row.
+3. The row accepts any order. The board never blocks a wrong placement —
+   being wrong must be possible or nothing is being tested.
 4. **Prüfen** validates.
-5. Feedback (§5), then next sentence.
+5. The row then splits into its fields (§2), filled from the learner's own
+   order: position 1, the verb, the rest, and from tier 2 the bracket. A V2
+   mistake shows up in place, as two Satzteile in position 1.
+6. Feedback (§5), then next sentence. After a wrong answer the learner may
+   try again ("Nochmal", back to the row as they left it) or have the answer
+   shown in the fields. Only the first attempt counts for the score, tier
+   progress and the review queue.
+
+Why a row and not the fields: on first contact, placing words into named
+zones asks the learner to know the model before they have seen it. Building
+a sentence is something everyone already knows how to do; the fields are
+then the explanation of what they built.
+
+**First run.** Before the first session comes one practice sentence on its
+own screen, outside any session and never scored. A line under the board
+says what to do next (tap the words in order, tap one to take it back, the
+verb goes in position 2, check), read off the board's state rather than
+scripted. It can be skipped, and it hands straight on to practice. Settings
+can replay it.
 
 ### Tiles are chunks, not words
 
@@ -89,7 +109,7 @@ internal order is exactly what tier 4 teaches.
 
 If a tile reads `Morgen`, the learner knows it goes first. So tiles render in
 **neutral form**: lowercase unless the word is a noun or a name. The first tile
-placed in the Vorfeld auto-capitalises with a small, visible flip animation —
+in the row auto-capitalises with a small, visible flip animation —
 which quietly teaches that German capitalises sentence-initially regardless of
 what goes there.
 
@@ -154,7 +174,7 @@ one tile, one move, so the learner sees the delta.
 
 Right answers with an alternative:
 
-> Auch richtig. Mit **morgen** im Vorfeld liegt die Betonung auf dem Zeitpunkt.
+> Auch richtig. Mit **morgen** am Satzanfang liegt die Betonung auf dem Zeitpunkt.
 
 Both languages, always. German first, English underneath in the muted tone. A
 learner who can read the German alone will stop reading the second line on their
@@ -172,7 +192,10 @@ is a composing stick, not a classroom — you are setting a sentence, and it loc
 
 Dark by default, which is unusual for a learning app and correct here: the
 fields and the bracket read as a diagram, and diagrams belong on dark grounds.
-A light theme exists and is well-made, but dark is the shipping default.
+A light theme exists and is well-made, but dark is the shipping default. The
+light theme swaps the same seven roles (tokens.json `paletteLight`): a pale
+slate ground, white surfaces, dark tiles, a deeper brass. Every pairing is
+held to the same contrast floors in `contrast.test.ts`, and switching is live.
 
 ### Palette
 
@@ -184,7 +207,7 @@ A light theme exists and is well-made, but dark is the shipping default.
 | `kreide` | `#E8E4D9` | Primary type, tile faces |
 | `grau` | `#8A97A6` | Field labels, English gloss, secondary |
 | `messing` | `#E4B363` | The Klammer arc, finite verb, success |
-| `ziegel` | `#C96A6A` | Error state only |
+| `ziegel` | `#CC7171` | Error state only |
 
 Seven values. `messing` and `ziegel` never appear together. Success is not
 green — success is the arc completing in brass. No other app does this and it
@@ -212,10 +235,13 @@ labels at 13 with loose tracking. Sentence case everywhere; no all-caps labels.
 
 ### Motion
 
-One orchestrated moment: **the bracket closing.** When both halves are filled
-correctly, the arc draws left-to-right over 420ms with a slight overshoot at the
-end, and one sharp haptic lands on arrival. Nothing else in the app has a
-signature animation.
+One orchestrated moment: **the bracket closing.** The fields stack vertically
+on a phone, so the arc runs down the board's left edge from the left bracket
+to the right one, in the field view shown after Prüfen. From tier 2 a faint
+outline of it is always there in that view, showing which two fields belong
+together. When the sentence is right it draws in
+brass over 420ms with a slight overshoot at the end, and one sharp haptic
+lands on arrival. Nothing else in the app has a signature animation.
 
 Everything else answers a touch directly: tiles lift, snap, and settle with
 spring physics (Reanimated, `damping: 18, stiffness: 220`). Snap is 110ms and
@@ -227,25 +253,37 @@ Respect `prefers-reduced-motion`: arc appears without drawing, springs become
 
 ### Sound
 
-Off by default. When on: a short wooden click on snap, a low brass tone on the
-bracket close. Nothing else. No failure sound — failing should be quiet.
+None in v1. Haptics carry the feedback: a tick on lift, a light tap on snap,
+one firm tap on the bracket closing, nothing on failure. A sound switch that
+did nothing was removed rather than shipped.
 
 ---
 
 ## 7. Session and progression
 
-**A session is ten sentences.** Fixed. No endless mode, no "just one more."
-Finishing shows a board of the ten sentences you built, tappable to review.
+**A session is five sentences.** Fixed. No endless mode, no "just one more."
+Five, not ten: the app is for practising a bit, and ten read as a chore.
+Finishing shows the five sentences you built, wrong ones first, tappable to
+review.
 
 **No timer during a puzzle.** Timing pressure degrades the exact processing this
 app trains.
 
-**Streak, gently.** A seven-day week strip, not a number that climbs to 400. One
-missed day greys out; two missed days reset. A missed day can be repaired by
-doing two sessions the next day. This is the one place where Duolingo's design
-does active harm and it costs nothing to avoid it.
+**No streak on screen.** The app is for practising a bit, easily. Home shows a
+sample sentence from the selected Stufe (tiles, brass verb, and from Stufe 2
+the bracket), the five Stufen as a path — passed, current with "n von 3 guten
+Runden", open, or "bald" when a Stufe has no sentences yet — and one button.
+Every Stufe with sentences can be tapped and played: nothing is locked, so a
+learner who already knows the basics can go straight to the bracket. The
+path is a suggested route, not a gate. Only sessions at the learner's own
+Stufe count toward moving up, and nobody is promoted into a Stufe with no
+sentences.
+Played days are still recorded
+(`progression.ts` keeps the week-strip and repair logic), but nothing shows
+them. If a streak ever returns, it is a seven-day week strip, never a number
+that climbs to 400.
 
-**Tier advance** requires 8/10 canonical-or-valid across three consecutive
+**Tier advance** requires 4/5 canonical-or-valid across three consecutive
 sessions. Advancement is announced as a new zone appearing on the board, with a
 30-second explanation of what that zone does.
 
@@ -273,8 +311,8 @@ Simple SM-2-lite; no need for full spaced repetition here.
 ## 9. Deliberately not in v1
 
 Leaderboards. Hearts or lives. XP and a shop. A mascot. Social anything.
-Accounts. Cloud sync. Ads. Push notifications beyond one optional daily
-reminder that can be declined forever. Speaking or listening. Typed input
+Accounts. Cloud sync. Ads. Notifications of any kind, including a daily
+reminder (it would need a notification permission). Speaking or listening. Typed input
 (that's Diktat's job). Vocabulary teaching. Case drilling.
 
 Every one of these is a reason for a Play Store declaration, a permission, a
@@ -290,8 +328,10 @@ data collected, which is the fastest path through review.
   a drag gesture.
 - Every tile and slot has a screen-reader label naming its content and current
   field.
-- Contrast: `kreide` on `schiefer` is 12.4:1; `messing` on `schiefer` is 7.9:1;
-  `grau` on `schiefer` is 4.7:1 and is never used below 15px.
+- Contrast (measured, and asserted in `src/theme/contrast.test.ts`):
+  `kreide` on `schiefer` is 12.3:1; `messing` on `schiefer` is 8.1:1;
+  `grau` on `schiefer` is 5.3:1 and is never used below 15px;
+  `ziegel` on `schiefer` is 4.6:1.
 - Dynamic type to 200%; tiles wrap to two lines rather than truncating.
 - Colour never carries meaning alone — the arc's shape carries success, the
   named rule carries failure.

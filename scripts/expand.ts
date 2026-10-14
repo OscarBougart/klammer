@@ -133,6 +133,31 @@ function build(sentences: AuthoredSentence[]): Seed {
   };
 }
 
+/**
+ * How much of the bank a German speaker has actually signed off — E6.6.
+ *
+ * Printed on every expand, loudly, because the number that matters before
+ * release is not how many sentences exist but how many are known to be right.
+ * A bank of 520 unverified sentences is not content; it is 520 opportunities
+ * to teach someone wrong German.
+ */
+function reportVerification(sentences: AuthoredSentence[]): void {
+  const unverified = sentences.filter((s) => s.verified !== true);
+  if (unverified.length === 0) {
+    console.log(`All ${sentences.length} sentence(s) verified by a German speaker.`);
+    return;
+  }
+
+  console.log(
+    [
+      '',
+      `  ${unverified.length} of ${sentences.length} sentence(s) NOT yet verified by a German speaker.`,
+      '  These are drafts. Do not ship them — see E6.6.',
+      '',
+    ].join('\n'),
+  );
+}
+
 function main(): void {
   const verifyOnly = process.argv.includes('--verify');
 
@@ -180,6 +205,8 @@ function main(): void {
     `Wrote content/generated/seed.json — ${seed.sentences.length} sentence(s), ` +
       `${totalOrders} accepted order(s), hash v${HASH_VERSION}.`,
   );
+
+  reportVerification(sentences);
 }
 
 main();

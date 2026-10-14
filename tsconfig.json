@@ -3,19 +3,40 @@
   "compilerOptions": {
     "strict": true,
     "noUncheckedIndexedAccess": true,
-    "baseUrl": ".",
     "paths": {
-      "@/board/*": ["src/board/*"],
-      "@/engine/*": ["src/engine/*"],
-      "@/content/*": ["src/content/*"],
-      "@/store/*": ["src/store/*"],
-      "@/theme": ["src/theme"],
-      "@/theme/*": ["src/theme/*"],
-      "@/db/*": ["src/db/*"],
-      "@/components/*": ["components/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/utils/*": ["utils/*"],
-      "@/assets/*": ["assets/*"]
+      "@/board/*": [
+        "./src/board/*"
+      ],
+      "@/engine/*": [
+        "./src/engine/*"
+      ],
+      "@/content/*": [
+        "./src/content/*"
+      ],
+      "@/store/*": [
+        "./src/store/*"
+      ],
+      "@/theme": [
+        "./src/theme"
+      ],
+      "@/theme/*": [
+        "./src/theme/*"
+      ],
+      "@/db/*": [
+        "./src/db/*"
+      ],
+      "@/components/*": [
+        "./components/*"
+      ],
+      "@/hooks/*": [
+        "./hooks/*"
+      ],
+      "@/utils/*": [
+        "./utils/*"
+      ],
+      "@/assets/*": [
+        "./assets/*"
+      ]
     },
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
@@ -27,7 +48,10 @@
     "**/*.tsx",
     ".expo/types/**/*.d.ts",
     "expo-env.d.ts",
-    "nativewind-env.d.ts"
+    "nativewind-env.d.ts",
+    ".expo/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

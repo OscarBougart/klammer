@@ -10,8 +10,19 @@
  */
 import raw from './tokens.json';
 
-/** Seven values. `messing` and `ziegel` never appear together. */
-export const palette = raw.palette;
+/**
+ * Seven values per theme. `messing` and `ziegel` never appear together.
+ *
+ * The names are roles, not colours: in the light theme `kreide` is the dark
+ * type and tile face, `schiefer` the light ground. Swapping the whole set is
+ * what makes a theme, so no component ever asks which theme it is in. Read
+ * the current set with `useTheme()`; never import a palette into a style
+ * sheet directly, or the screen stops following the setting.
+ */
+export const palettes = {
+  dark: raw.palette,
+  light: raw.paletteLight,
+} as const;
 
 /**
  * schiefer — board ground
@@ -22,7 +33,11 @@ export const palette = raw.palette;
  * messing  — the Klammer arc, finite verb, success
  * ziegel   — error state only
  */
-export type PaletteToken = keyof typeof palette;
+export type PaletteToken = keyof typeof raw.palette;
+
+export type Palette = Record<PaletteToken, string>;
+
+export type ThemeName = keyof typeof palettes;
 
 /**
  * Font families.
@@ -65,9 +80,10 @@ export const space = raw.space;
 export const radius = raw.radius;
 
 /** Hard offset shadows only. No soft blur anywhere in the app. */
+/** The colour is always the theme's `kante`. */
 export const shadow = {
-  tileRest: { offsetY: 2, blur: 0, color: palette.kante },
-  tileLifted: { offsetY: 5, blur: 0, color: palette.kante },
+  tileRest: { offsetY: 2, blur: 0 },
+  tileLifted: { offsetY: 5, blur: 0 },
 } as const;
 
 export const scale = {
@@ -86,6 +102,26 @@ export const duration = {
   arcDraw: 420,
   /** Vorfeld capitalisation flip. */
   capitaliseFlip: 180,
+} as const;
+
+/**
+ * The Klammer arc, drawn down the board's left edge from the left bracket to
+ * the right one. `gutter` is the strip it lives in, `tick` how far each end
+ * reaches in towards its field. The stroke is deliberately thin so it reads as
+ * a drawn diagram rather than UI chrome. `ghostOpacity` is the always-visible
+ * outline that shows which two fields belong together before it closes.
+ */
+export const arc = {
+  stroke: 2,
+  gutter: 16,
+  tick: 10,
+  ghostOpacity: 0.35,
+} as const;
+
+/** Outline weights. Used where colour alone must not carry meaning. */
+export const border = {
+  hairline: 1,
+  emphasis: 2,
 } as const;
 
 /** Reanimated spring config for tile lift, follow and settle. */
@@ -108,4 +144,10 @@ export const a11y = {
   grauMinFontSize: 15,
   /** Tiles wrap rather than truncate up to this type scale multiplier. */
   maxDynamicTypeScale: 2,
+} as const;
+
+/** Line icons (the settings gear). */
+export const icon = {
+  size: 24,
+  stroke: 2,
 } as const;
