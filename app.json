@@ -43,6 +43,13 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "b2981b4e-9d99-4894-851a-1d0bd3071507"
+      }
+    },
+    "owner": "bougart"
   }
 }
