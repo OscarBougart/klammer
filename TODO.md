@@ -78,13 +78,14 @@ App
       device" holds.
 
 Build
-- [ ] `eas init` to link the project (no projectId in `app.json` yet).
+- [x] EAS project linked: `@bougart/klammer`; keystore held by Expo.
 - [ ] Preview build (`npm run build:preview`), played on a real phone (E0.5).
 - [ ] Production `.aab` with Play App Signing.
 
 Play Console
-- [ ] Privacy policy: page written (`docs/privacy.html`). Needs the contact
-      email filled in, then GitHub Pages turned on (main branch, `/docs`).
+- [x] Privacy policy live: https://oscarbougart.github.io/klammer/privacy.html
+      (GitHub Pages from `feat/core-and-sdk57` `/docs`; switch the Pages source
+      to `main` when PR #1 merges — the URL stays the same).
 - [x] Store text in `RELEASE.md` rewritten for the current app.
 - [x] Feature graphic: `assets/store/feature-graphic.png` (`npm run icons`).
 - [ ] 2–8 phone screenshots, from the first real build (plan in `RELEASE.md`).
